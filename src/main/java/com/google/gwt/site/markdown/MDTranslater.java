@@ -11,17 +11,18 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package com.google.gwt.site.markdown;
-
-import com.google.gwt.site.markdown.fs.MDNode;
-import com.google.gwt.site.markdown.fs.MDParent;
-import com.google.gwt.site.markdown.toc.TocCreator;
-
-import org.pegdown.PegDownProcessor;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import org.pegdown.PegDownProcessor;
+
+import com.google.gwt.site.markdown.fs.MDNode;
+import com.google.gwt.site.markdown.fs.MDParent;
+import com.google.gwt.site.markdown.toc.TocCreator;
 
 public class MDTranslater {
 
@@ -74,7 +75,6 @@ public class MDTranslater {
 
       writer.writeHTML(node, html);
     }
-
   }
 
   private String createHeadForNode(MDNode node) {
@@ -99,6 +99,5 @@ public class MDTranslater {
     } catch (IOException e1) {
       throw new TranslaterException("can not load content from file: '" + path + "'", e1);
     }
-
   }
 }
