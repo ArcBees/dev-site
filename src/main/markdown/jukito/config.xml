@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <folder href="index">
     <toc>
         <entries>
@@ -12,9 +10,5 @@
             <entry name="Maven" displayName="Maven" description="Maven"></entry>
             <entry name="Releasing-Procedure" displayName="Releasing procedure" description="Releasing procedure"></entry>
         </entries>
-
     </toc>
-
 </folder>
-
-
