@@ -4,9 +4,10 @@
 <folder href="index">
 	<toc>
 		<entries>
-			
+
 			<entry name="index" displayName="Home" description="Home"></entry>
 			<entry name="articles/" displayName="Articles" description="Articles"></entry>
+			<entry name="jukito/" displayName="Jukito" description="Jukito"></entry>
 			<entry name="doc/" displayName="Documentation" description="Documentation"></entry>
 			<entry name="books" displayName="Books" description="GWT Books"></entry>
 			<entry name="casestudies" displayName="Case Studies" description="Case Studies for using GWT"></entry>
