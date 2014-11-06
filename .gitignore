@@ -53,3 +53,6 @@ local.properties
 # CDT-specific
 .cproject
 
+# Mac os specific
+.DS_Store
+
