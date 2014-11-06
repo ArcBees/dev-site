@@ -11,6 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package com.google.gwt.site.markdown;
 
 import java.io.File;
@@ -86,7 +87,6 @@ public class MDHelper {
         throw new MDHelperException(
             "outputDirectory ('" + outputDirectoryFile + "') can not be created");
       }
-
     }
 
     if (!outputDirectoryFile.isDirectory()) {
