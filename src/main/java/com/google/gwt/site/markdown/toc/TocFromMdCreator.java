@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Google Inc.
+ * Copyright 2013 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -13,12 +13,12 @@
  */
 package com.google.gwt.site.markdown.toc;
 
-import com.google.gwt.site.markdown.fs.MDNode;
-import com.google.gwt.site.markdown.fs.MDParent;
-
 import java.util.List;
 
 import org.parboiled.common.StringUtils;
+
+import com.google.gwt.site.markdown.fs.MDNode;
+import com.google.gwt.site.markdown.fs.MDParent;
 
 public class TocFromMdCreator implements TocCreator {
 
@@ -47,7 +47,7 @@ public class TocFromMdCreator implements TocCreator {
         return;
       tmpNode = tmpNode.getParent();
     }
-    
+
     // Use 4 spaces to indent <li>'s, so as we have room for indenting <ul>'s
     String margin = StringUtils.repeat(' ', 4 * node.getDepth());
 
