@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder href="index">
+    <toc>
+        <entries>
+            <entry name="Home" displayName="Home" description="Home"></entry>
+            <entry name="@All" displayName="@All" description="@All annotation"></entry>
+            <entry name="@UseModules" displayName="@UseModules" description="@UseModules Annotation"></entry>
+            <entry name="Advantages-Over-Guiceberry" displayName="Advantages over Guiceberry" description="Advantages over Guiceberry"></entry>
+            <entry name="Advantages-Over-Vanilla-JUnit" displayName="Advantages over vanilla JUnit" description="Advantages over Vanilla JUnit"></entry>
+            <entry name="Maven" displayName="Maven" description="Maven"></entry>
+            <entry name="Releasing-Procedure" displayName="Releasing procedure" description="Releasing procedure"></entry>
+        </entries>
+    </toc>
+</folder>
