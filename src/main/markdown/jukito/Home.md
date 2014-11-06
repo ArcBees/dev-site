@@ -1,5 +1,5 @@
 ##Introduction
-Jukito lets you use dependency injection in all your tests, be they unit tests, full integration tests, or anything in between. Its automocking power reduces boilerplate to a minimum, and you will quickly grow addicted to its nice annotation-based and typesafe syntax for parametrized tests.
+Jukito lets you use dependency injection in all your tests, be they unit tests, full integration tests, or anything in between. Its automocking power reduces boilerplate to a minimum, and you will quickly grow addicted to its nice annotation-based and typesafe syntax for parameterized tests.
 
 You can get the latest Jukito release from the [Maven Central](https://code.google.com/p/jukito/wiki/MavenRepository) or from the [Releases page](https://github.com/ArcBees/Jukito/releases). For the latest build, fresh out of the oven, head over to our [continuous integration server](http://teamcity.codebetter.com/project.html?projectId=project103).
 
