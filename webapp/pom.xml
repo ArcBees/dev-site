@@ -34,6 +34,8 @@
         <eclipse-plugin.version>2.9</eclipse-plugin.version>
         <appengine.plugin.version>1.9.4</appengine.plugin.version>
         <maven-checkstyle-plugin.version>2.13</maven-checkstyle-plugin.version>
+
+        <jdk.version>1.7</jdk.version>
     </properties>
 
     <dependencies>
@@ -140,8 +142,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
                 </configuration>
             </plugin>
 

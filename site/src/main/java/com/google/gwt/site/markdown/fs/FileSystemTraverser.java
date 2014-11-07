@@ -129,7 +129,7 @@ public class FileSystemTraverser {
           }
 
           boolean folder = e.getName().endsWith("/");
-          String nameInTree = null;
+          String nameInTree;
           if (folder) {
             nameInTree = e.getName().substring(0, e.getName().length() - "/".length());
           } else {
@@ -215,9 +215,9 @@ public class FileSystemTraverser {
 
   private FolderConfig parseConfig(File file) throws TranslaterException {
     DocumentBuilder builder;
-    List<String> excludeList = new LinkedList<String>();
+    List<String> excludeList = new LinkedList<>();
 
-    List<Entry> folderEntries = new LinkedList<Entry>();
+    List<Entry> folderEntries = new LinkedList<>();
 
     String href = null;
 
@@ -277,7 +277,7 @@ public class FileSystemTraverser {
   }
 
   private List<Entry> parseFolderEntries(Element entriesNode) {
-    List<Entry> list = new LinkedList<Entry>();
+    List<Entry> list = new LinkedList<>();
 
     NodeList childNodes = entriesNode.getChildNodes();
     for (int i = 0; i < childNodes.getLength(); i++) {
@@ -301,7 +301,7 @@ public class FileSystemTraverser {
   }
 
   private List<String> parseExcludes(Element excludesNode) {
-    List<String> list = new LinkedList<String>();
+    List<String> list = new LinkedList<>();
 
     NodeList childNodes = excludesNode.getChildNodes();
     for (int i = 0; i < childNodes.getLength(); i++) {
@@ -350,8 +350,8 @@ public class FileSystemTraverser {
   private void sortChildren(List<Entry> entries, MDParent node) {
     List<MDNode> children = node.getChildren();
 
-    List<MDNode> sortedChildren = new LinkedList<MDNode>();
-    Set<MDNode> set = new HashSet<MDNode>(children);
+    List<MDNode> sortedChildren = new LinkedList<>();
+    Set<MDNode> set = new HashSet<>(children);
     for (Entry entry : entries) {
       String nodeName = entry.getName();
       boolean isFolder = nodeName.endsWith("/");
@@ -373,7 +373,7 @@ public class FileSystemTraverser {
     }
 
     if (!set.isEmpty()) {
-      List<MDNode> list = new ArrayList<MDNode>(set.size());
+      List<MDNode> list = new ArrayList<>(set.size());
       list.addAll(set);
       sortChildrenAlphaBetically(list);
 

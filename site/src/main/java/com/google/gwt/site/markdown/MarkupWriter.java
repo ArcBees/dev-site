@@ -34,7 +34,7 @@ public class MarkupWriter {
       throw new IllegalArgumentException();
     }
 
-    Stack<MDParent> stack = new Stack<MDParent>();
+    Stack<MDParent> stack = new Stack<>();
 
     MDParent tmp = node.getParent();
     stack.add(tmp);
