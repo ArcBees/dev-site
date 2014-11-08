@@ -1,14 +1,6 @@
-#GWT Documentation
-
-* GWT documentation is published under http://www.gwtproject.org/doc/latest/DevGuide.html
-
 ##Reference
 
 * Markdown processor: https://github.com/sirthias/pegdown
-
-##Adding content
-
-* See: http://www.gwtproject.org/makinggwtbetter.html#webpage
 
 ##Building
 
