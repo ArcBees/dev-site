@@ -52,18 +52,18 @@ public class UploadController {
 
     try {
 
-      Set<Resource> remoteResources = new HashSet<Resource>(fileUploader.getRemoteHashes());
+      Set<Resource> remoteResources = new HashSet<>(fileUploader.getRemoteHashes());
 
       Set<LocalResource> localResources =
-          new HashSet<LocalResource>(fileTraverser.getLocalResources());
+          new HashSet<>(fileTraverser.getLocalResources());
 
       logger.log(Level.INFO, "found " + localResources.size() + "resources");
 
-      Set<Resource> toBeRemovedOrChanged = new HashSet<Resource>(remoteResources);
+      Set<Resource> toBeRemovedOrChanged = new HashSet<>(remoteResources);
 
       toBeRemovedOrChanged.removeAll(localResources);
 
-      Set<LocalResource> toBeUploaded = new HashSet<LocalResource>(localResources);
+      Set<LocalResource> toBeUploaded = new HashSet<>(localResources);
 
       toBeUploaded.removeAll(remoteResources);
 
@@ -91,7 +91,7 @@ public class UploadController {
   }
 
   private Set<ResourceKey> copyResources(Set<? extends Resource> toBeRemovedOrChanged) {
-    Set<ResourceKey> toBeRemoved = new HashSet<ResourceKey>();
+    Set<ResourceKey> toBeRemoved = new HashSet<>();
     for (Resource resource : toBeRemovedOrChanged) {
       toBeRemoved.add(new ResourceKey(resource));
     }
