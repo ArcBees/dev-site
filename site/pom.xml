@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-checkstyle-plugin.version>2.13</maven-checkstyle-plugin.version>
         <checkstyle.version>6.0</checkstyle.version>
+        <build-tools.version>1.0-SNAPSHOT</build-tools.version>
     </properties>
 
     <build>
@@ -117,9 +118,9 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>com.arcbees.devsite</groupId>
-                        <artifactId>tools</artifactId>
-                        <version>${project.version}</version>
+                        <groupId>com.arcbees</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${build-tools.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
