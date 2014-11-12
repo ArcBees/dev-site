@@ -1,3 +1,5 @@
+#Releasing procedure
+
 ##Introduction
 This page describes the procedure to follow when releasing Jukito. It is targeted to project owners and contributors.
 

@@ -17,6 +17,8 @@
         <json.version>20140107</json.version>
         <commons-codec.version>1.9</commons-codec.version>
         <checkstyle.version>6.0</checkstyle.version>
+        <build-tools.version>1.0-SNAPSHOT</build-tools.version>
+
         <!-- javax -->
         <servlet.version>2.5</servlet.version>
 
@@ -304,9 +306,9 @@
                 </configuration>
                 <dependencies>
                     <dependency>
-                        <groupId>com.arcbees.devsite</groupId>
-                        <artifactId>tools</artifactId>
-                        <version>${project.version}</version>
+                        <groupId>com.arcbees</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${build-tools.version}</version>
                     </dependency>
                     <dependency>
                         <groupId>com.puppycrawl.tools</groupId>
