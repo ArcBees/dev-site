@@ -47,8 +47,6 @@
     <div class="second">
       <ul id='nav-desktop' class="nav">
         <li><a href="index.html">Home</a></li>
-        <li><a href="download.html">Download</a></li>
-        <li><a href="doc/latest/DevGuide.html">Docs</a></li>
       </ul>
       <ul id='nav-mobile' class="nav">
         <li><a href="#">···</a></li>
@@ -61,7 +59,6 @@
 <div id="gwt-header3">
   <div class="gwt-wrap">
     <div class="first"><gcse:search linktarget="_parent"></gcse:search></div>
-    <div class="beta-info">This is a <b>beta version</b>. If you find errors, please <a href="https://code.google.com/p/google-web-toolkit/issues/entry">report them</a> or <a href="makinggwtbetter.html#webpage">change them</a>!</div>
   </div>
 </div>
 
