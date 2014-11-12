@@ -1,3 +1,5 @@
+#@All
+
 The `@All` annotation is a powerful feature of Jukito which allows to execute the same test multiple times with a different input in each execution.
 Typical examples for this are:
 
@@ -13,7 +15,7 @@ In order to do so all inputs must be configured in the TestModule of the test cl
                 bindManyInstances(String.class, "Hello", "world");
             }
         }
-    
+
         @Test print(@All String s) {
             System.out.println(s);
         }
@@ -37,7 +39,7 @@ In this case the types are bound directly instead of concrete instances.
                 bindMany(MyInterface.class, Impl1.class, Impl2.class);
             }
         }
-    
+
         @Test print(@All MyInterface x) {
             System.out.println(x.getClass().getSimpleName());
         }
@@ -56,14 +58,14 @@ Tests are not limited to a single parameter. It is possible to annotated more th
                 bindManyInstances(String.class, "a", "b");
             }
         }
-    
+
         @Test print(@All String s, @All Integer i) {
             System.out.println(s + i);
         }
     }
 
 
-The above example will print the four strings "a1", "a2", "b1", and "b2". The order of them is not guaranteed.  
+The above example will print the four strings "a1", "a2", "b1", and "b2". The order of them is not guaranteed.
 **Warning**: the number of test executions increases dramatically for Cartesian products. The execution time of all tests will grow linear with the number of executions.
 i:e.: a test method with three parameters with an `@All` annotation and four bindings per parameter will be executed 4x4x4 = 64 times. Having five bindings for the same test method will lead to 5x5x5 = 125 executions.
 
@@ -78,11 +80,11 @@ Sometimes it is desirable to have different groups of bindings of the same class
                 bindManyNamedInstances(Integer.class, "odd", 1, 3, 5);
             }
         }
-    
+
         @Test printEven(@All("even") Integer i) {
             System.out.println("even " + i);
         }
-    
+
         @Test printOdd(@All("odd") Integer i) {
             System.out.println("odd " + i);
         }

@@ -1,3 +1,5 @@
+#Advantages over vanilla JUnit
+
 Compared to vanilla JUnit tests, Jukito has a number of advantages:
 
 * Greatly reduces boilerplate via automocking, leading to easier to read tests
