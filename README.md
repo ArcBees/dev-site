@@ -1,15 +1,9 @@
-##Reference
+# dev.arcbees.com
 
-* Markdown processor: https://github.com/sirthias/pegdown
+Based on http://www.gwtproject.org 's architecture.
 
-##Building
+## Components
 
-* simply run: `mvn clean install`
-* after that you will find the generated documentation in `target/generated-site/`.
-
-###Running locally
-Run the site locally for easy visual testing
-
-* Run: `mvn install`
-* Run: `mvn jetty:run`
-* Goto: http://127.0.0.1:8080
+* `site`: a mardown -> html converting system
+* `webapp`: the actual website to be hosted on app engine
+* `uploader`: a simple program that pushes compiled html files to `webapp`'s datastore
