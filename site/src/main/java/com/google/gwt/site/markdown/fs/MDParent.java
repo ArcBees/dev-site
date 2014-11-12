@@ -23,7 +23,7 @@ public class MDParent extends MDNode {
     super(parent, name, path, depth, relativePath);
   }
 
-  private List<MDNode> children = new LinkedList<MDNode>();
+  private List<MDNode> children = new LinkedList<>();
   private String href;
   private File configFile;
 

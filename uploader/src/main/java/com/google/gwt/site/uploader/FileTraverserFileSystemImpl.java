@@ -33,7 +33,7 @@ public class FileTraverserFileSystemImpl implements FileTraverser {
 
   @Override
   public List<LocalResource> getLocalResources() throws IOException {
-    List<LocalResource> resources = new LinkedList<LocalResource>();
+    List<LocalResource> resources = new LinkedList<>();
     traverse(filesDir, filesDir, resources);
     return resources;
   }

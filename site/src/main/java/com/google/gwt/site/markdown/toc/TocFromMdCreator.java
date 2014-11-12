@@ -55,11 +55,11 @@ public class TocFromMdCreator implements TocCreator {
       MDParent mdParent = node.asFolder();
 
       if (node.getDepth() != 0) {
-        buffer.append(margin + "<li class='folder'>");
+        buffer.append(margin).append("<li class='folder'>");
         buffer.append("<a href='#'>");
         buffer.append(node.getDisplayName());
         buffer.append("</a>\n");
-        buffer.append(margin + "  <ul>\n");
+        buffer.append(margin).append("  <ul>\n");
       }
 
       List<MDNode> children = mdParent.getChildren();
@@ -68,24 +68,24 @@ public class TocFromMdCreator implements TocCreator {
       }
 
       if (node.getDepth() != 0) {
-        buffer.append(margin + "  </ul>\n");
-        buffer.append(margin + "</li>\n");
+        buffer.append(margin).append("  </ul>\n");
+        buffer.append(margin).append("</li>\n");
       }
     } else {
-      StringBuffer relativeUrl = new StringBuffer();
+      StringBuilder relativeUrl = new StringBuilder();
       if (tocNode.getDepth() > 0) {
         for (int i = 1; i < tocNode.getDepth(); i++) {
           relativeUrl.append("../");
         }
       }
 
-      StringBuffer absoluteUrl = new StringBuffer();
+      StringBuilder absoluteUrl = new StringBuilder();
       absoluteUrl.append("/");
       absoluteUrl.append(node.getRelativePath());
 
       relativeUrl.append(node.getRelativePath());
 
-      buffer.append(margin + "<li class='file'>");
+      buffer.append(margin).append("<li class='file'>");
       // TODO escape HTML
       buffer.append("<a href='" + relativeUrl.toString() + "' ahref='" + absoluteUrl.toString()
           + "' title='" + node.getDescription() + "'>" + node.getDisplayName() + "</a>");

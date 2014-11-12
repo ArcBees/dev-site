@@ -47,7 +47,7 @@ public class UploadControllerTest {
 
     // setup mockdata
     File mockFile = new File("");
-    localFiles = new ArrayList<LocalResource>();
+    localFiles = new ArrayList<>();
 
     localFiles.add(new LocalResource("fileName1", "hash1", mockFile));
     localFiles.add(new LocalResource("fileName2", "hash2", mockFile));
@@ -56,7 +56,7 @@ public class UploadControllerTest {
     localFiles.add(new LocalResource("fileName5", "hash5", mockFile));
     localFiles.add(new LocalResource("fileName6", "hash6", mockFile));
 
-    remoteHashes = new ArrayList<Resource>();
+    remoteHashes = new ArrayList<>();
     remoteHashes.add(new Resource("fileName1", "hash1"));
     remoteHashes.add(new Resource("fileName2", "hash2"));
     remoteHashes.add(new Resource("fileName3", "hash3"));

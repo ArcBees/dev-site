@@ -124,7 +124,7 @@ public class ResourceUploaderAppEngineImpl implements ResourceUploader {
 
     throwIfNotInitialized();
 
-    List<Resource> hashes = new ArrayList<Resource>();
+    List<Resource> hashes = new ArrayList<>();
 
     while (true) {
       try {
@@ -139,10 +139,7 @@ public class ResourceUploaderAppEngineImpl implements ResourceUploader {
         }
         hashes.addAll(resources);
 
-      } catch (MalformedURLException e) {
-        logger.log(Level.SEVERE, "error building url", e);
-        throw new IOException("error building url", e);
-      } catch (ProtocolException e) {
+      } catch (MalformedURLException | ProtocolException e) {
         logger.log(Level.SEVERE, "error building url", e);
         throw new IOException("error building url", e);
       } catch (IOException e) {
@@ -156,7 +153,7 @@ public class ResourceUploaderAppEngineImpl implements ResourceUploader {
   }
 
   private List<Resource> parseJson(String data) throws JSONException {
-    List<Resource> hashes = new ArrayList<Resource>();
+    List<Resource> hashes = new ArrayList<>();
     JSONObject root = new JSONObject(data);
     JSONArray array = (JSONArray) root.get("hashes");
 

@@ -43,10 +43,7 @@ public class MarkDown {
          .setTemplateToc(templateToc)
          .create()
          .translate();
-    } catch (MDHelperException e) {
-      e.printStackTrace();
-      throw e;
-    } catch (TranslaterException e) {
+    } catch (MDHelperException | TranslaterException e) {
       e.printStackTrace();
       throw e;
     }

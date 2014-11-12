@@ -69,7 +69,7 @@ public class CredentialsProvider {
 
   // taken from RemoteApiInstaller
   private static Map<String, List<String>> parseProperties(String serializedCredentials) {
-    Map<String, List<String>> props = new HashMap<String, List<String>>();
+    Map<String, List<String>> props = new HashMap<>();
     for (String line : serializedCredentials.split("\n")) {
       line = line.trim();
       if (!line.startsWith("#") && line.contains("=")) {
@@ -78,7 +78,7 @@ public class CredentialsProvider {
         String value = line.substring(firstEqual + 1);
         List<String> values = props.get(key);
         if (values == null) {
-          values = new ArrayList<String>();
+          values = new ArrayList<>();
           props.put(key, values);
         }
         values.add(value);

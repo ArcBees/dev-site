@@ -42,7 +42,7 @@ public class FileTraverserTest {
     hashCalculatorMock = Mockito.mock(HashCalculator.class);
     fileTraverser = new FileTraverserFileSystemImpl(baseDir, hashCalculatorMock);
 
-    expectedFiles = new ArrayList<LocalResource>();
+    expectedFiles = new ArrayList<>();
     expectedFiles.add(new LocalResource("cssfile2.css", "1", new File(baseDir, "cssfile2.css")));
     expectedFiles
         .add(new LocalResource("htmlfile1.html", "2", new File(baseDir, "htmlfile1.html")));
