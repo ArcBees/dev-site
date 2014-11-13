@@ -1,6 +1,10 @@
 # dev.arcbees.com
+## Arcbees projects documentation
 
 Based on http://www.gwtproject.org 's architecture.
+
+## Contributing
+If you want to contribute and add some documentation for one of the projects, see the `site` module instructions.
 
 ## Components
 
