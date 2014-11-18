@@ -14,18 +14,13 @@
 package com.google.gwt.site.markdown;
 
 public class TranslaterException extends Exception {
+    private static final long serialVersionUID = 1732290113260995362L;
 
-  /**
-   *
-   */
-  private static final long serialVersionUID = 1732290113260995362L;
+    public TranslaterException(String message, Throwable e1) {
+        super(message, e1);
+    }
 
-  public TranslaterException(String message, Throwable e1) {
-    super(message, e1);
-  }
-
-  public TranslaterException(String string) {
-    super(string);
-  }
-
+    public TranslaterException(String string) {
+        super(string);
+    }
 }
