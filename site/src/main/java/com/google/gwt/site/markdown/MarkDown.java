@@ -14,6 +14,8 @@
 
 package com.google.gwt.site.markdown;
 
+import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
+
 public class MarkDown {
 
   public static void main(String[] args) throws MDHelperException, TranslaterException {
@@ -35,7 +37,7 @@ public class MarkDown {
     String templateToc = args.length > 3 ? args[3] : null;
     System.out.println("template TOC file: '" + templateToc + "'");
 
-    MDHelper helper = new MDHelper();
+    MDHelper helper = new MDHelper(new MarkdownToHtmlUtil());
     try {
       helper.setOutputDirectory(outputDir)
          .setSourceDirectory(sourceDir)
