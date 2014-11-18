@@ -18,15 +18,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import org.pegdown.PegDownProcessor;
-
 import com.google.gwt.site.markdown.fs.MDNode;
 import com.google.gwt.site.markdown.fs.MDParent;
+import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
 import com.google.gwt.site.markdown.toc.TocCreator;
 
 public class MDTranslater {
 
-  private PegDownProcessor pegDownProcessor = new PegDownProcessor(Long.MAX_VALUE);
+  private final MarkdownToHtmlUtil markdownToHtmlUtil = new MarkdownToHtmlUtil();
 
   private final TocCreator tocCreator;
 
@@ -56,7 +55,7 @@ public class MDTranslater {
 
     } else {
       String markDown = getNodeContent(node.getPath());
-      String htmlMarkDown = pegDownProcessor.markdownToHtml(markDown);
+      String htmlMarkDown = markdownToHtmlUtil.toHtml(markDown);
 
       String toc = tocCreator.createTocForNode(root, node);
 

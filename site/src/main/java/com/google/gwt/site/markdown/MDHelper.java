@@ -16,10 +16,9 @@ package com.google.gwt.site.markdown;
 
 import java.io.File;
 
-import org.pegdown.PegDownProcessor;
-
 import com.google.gwt.site.markdown.fs.FileSystemTraverser;
 import com.google.gwt.site.markdown.fs.MDParent;
+import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
 import com.google.gwt.site.markdown.toc.TocCreator;
 import com.google.gwt.site.markdown.toc.TocFromMdCreator;
 import com.google.gwt.site.markdown.toc.TocFromTemplateCreator;
@@ -36,6 +35,11 @@ public class MDHelper {
   private File outputDirectoryFile;
   private String template;
   private String templateToc;
+  private MarkdownToHtmlUtil markdownToHtmlUtil;
+
+  public MDHelper(MarkdownToHtmlUtil markdownToHtmlUtil) {
+    this.markdownToHtmlUtil = markdownToHtmlUtil;
+  }
 
   public MDHelper setSourceDirectory(String sourceDirectory) {
     this.sourceDirectory = sourceDirectory;
@@ -107,7 +111,7 @@ public class MDHelper {
 
     // read template TOC if parameter is provided
     if (templateTocFile != null) {
-      templateToc = new PegDownProcessor().markdownToHtml(readFile(templateTocFile));
+      templateToc = markdownToHtmlUtil.toHtml(readFile(templateTocFile));
     }
 
     created = true;
