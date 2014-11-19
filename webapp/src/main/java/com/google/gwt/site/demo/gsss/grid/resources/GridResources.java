@@ -20,7 +20,6 @@ import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.GssResource;
 
 public interface GridResources extends ClientBundle {
-
     interface Grid extends com.arcbees.gsss.grid.client.GridResources.Grid {
     }
 

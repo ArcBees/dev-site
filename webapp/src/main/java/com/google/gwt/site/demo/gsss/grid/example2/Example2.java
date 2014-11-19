@@ -15,6 +15,7 @@ public class Example2 implements IsWidget {
     private static Binder binder = GWT.create(Binder.class);
 
     private final Widget widget;
+
     @UiField
     GridResources resources;
 
