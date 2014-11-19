@@ -77,6 +77,12 @@
             <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.arcbees</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${build-tools.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>

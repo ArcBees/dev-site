@@ -131,6 +131,12 @@
             <type>zip</type>
             <classifier>generated-site</classifier>
          </dependency>
+        <dependency>
+            <groupId>com.arcbees</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${build-tools.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
         <!-- DEMO Dependencies -->
         <!-- GSSS -->
