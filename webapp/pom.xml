@@ -25,6 +25,10 @@
         <gwt.version>2.6.1</gwt.version>
         <gwtquery.version>1.4.2</gwtquery.version>
 
+        <!-- Demos -->
+        <gsss.version>1.0-SNAPSHOT</gsss.version>
+        <gss.version>1.0-SNAPSHOT</gss.version>
+
         <junit.version>4.11</junit.version>
 
         <!-- plugin -->
@@ -113,6 +117,20 @@
             <type>zip</type>
             <classifier>generated-site</classifier>
          </dependency>
+
+        <!-- DEMO Dependencies -->
+        <!-- GSSS -->
+        <dependency>
+            <groupId>com.arcbees.gss</groupId>
+            <artifactId>gsss</artifactId>
+            <version>${gsss.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jdramaix</groupId>
+            <artifactId>gssresource</artifactId>
+            <version>${gss.version}</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
