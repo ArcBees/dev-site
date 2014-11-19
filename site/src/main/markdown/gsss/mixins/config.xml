@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder href="index">
+    <toc>
+        <entries>
+            <entry name="how-to-install" displayName="How to install" description="How to install"></entry>
+            <entry name="border-radius" displayName="Border radius" description="Border radius"></entry>
+            <entry name="box-sizing" displayName="Box sizing" description="Box sizing"></entry>
+            <entry name="gradient" displayName="Gradient" description="Gradient"></entry>
+            <entry name="opacity" displayName="Opacity" description="Opacity"></entry>
+            <entry name="outline" displayName="Outline" description="Outline"></entry>
+            <entry name="shadow" displayName="Shadow" description="Shadow"></entry>
+            <entry name="transform" displayName="Transform" description="Transform"></entry>
+            <entry name="transition" displayName="Transition" description="Transition"></entry>
+        </entries>
+    </toc>
+</folder>

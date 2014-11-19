@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder href="index">
+    <toc>
+        <entries>
+            <entry name="how-to-install" displayName="How to install" description="How to install"></entry>
+            <entry name="default-structure" displayName="Default structure" description="Default structure"></entry>
+            <entry name="grid-breakpoints" displayName="Grid breakpoints" description="Grid breakpoints"></entry>
+            <entry name="columns-size" displayName="Columns size" description="Columns size"></entry>
+            <entry name="default" displayName="Default" description="Default"></entry>
+            <entry name="tablet" displayName="Tablet" description="Tablet"></entry>
+            <entry name="mobile" displayName="Mobile" description="Mobile"></entry>
+            <entry name="push" displayName="Push" description="Push"></entry>
+            <entry name="grid-settings" displayName="Grid settings" description="Grid settings"></entry>
+            <entry name="viewports-sizes" displayName="Min and max sizes of viewports" description="Min and max sizes of viewports"></entry>
+            <entry name="padding" displayName="Padding" description="Padding"></entry>
+            <entry name="gutter" displayName="Gutter" description="Gutter"></entry>
+        </entries>
+    </toc>
+</folder>

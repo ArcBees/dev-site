@@ -13,6 +13,7 @@
  */
 package com.google.gwt.site.webapp.client;
 
+import com.google.common.base.Objects;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
@@ -106,7 +107,9 @@ public class GWTProjectEntryPoint implements EntryPoint {
         if (shouldEnhanceLink(link)) {
           // No need to make complicated things for computing
           // the absolute path: anchor.pathname is the way
-          link.attr("href", link.prop("pathname"));
+          Object pathname = link.prop("pathname");
+          Object hash = link.prop("hash");
+          link.attr("href", String.valueOf(pathname) + Objects.firstNonNull(hash, ""));
         }
       }
     });
