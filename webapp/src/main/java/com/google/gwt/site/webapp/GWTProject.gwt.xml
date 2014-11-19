@@ -20,6 +20,4 @@
     <set-configuration-property name="installCode" value="false"/>
     <!-- remove after fix to issue 8630 lands -->
     <set-configuration-property name="installScriptJs" value="com/google/gwt/core/ext/linker/impl/installScriptDirect.js"/>
-
-    <set-property name="user.agent" value="safari"/>
 </module>

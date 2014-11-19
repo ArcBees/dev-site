@@ -13,6 +13,7 @@
  */
 package com.google.gwt.site.webapp.client;
 
+import com.google.common.base.Objects;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
@@ -22,7 +23,7 @@ import com.google.gwt.query.client.Properties;
 import com.google.gwt.query.client.js.JsUtils;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.site.demo.ContentLoadedEvent;
-import com.google.gwt.site.demo.gsss.grid.GSSSGridDemo;
+import com.google.gwt.site.demo.gsss.grid.GSSSGridDemos;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.impl.HyperlinkImpl;
@@ -66,7 +67,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
     }
 
     private void registerDemos() {
-        new GSSSGridDemo(eventBus);
+        new GSSSGridDemos(eventBus);
 
         ContentLoadedEvent.fire(eventBus);
     }
@@ -121,7 +122,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
                     // the absolute path: anchor.pathname is the way
                     Object pathname = link.prop("pathname");
                     Object hash = link.prop("hash");
-                    link.attr("href", String.valueOf(pathname) + (hash != null ? hash : ""));
+                    link.attr("href", String.valueOf(pathname) + Objects.firstNonNull(hash, ""));
                 }
             }
         });
