@@ -1,0 +1,20 @@
+@provide 'gridsettings';
+
+/* -- Settings --------------------------------------------- */
+
+/* -> Mobile - */
+@def MOBILE_MIN             0px;
+@def MOBILE_MAX             649px;
+@def MOBILE_PADDING         5px;
+@def MOBILE_GUTTER          0px;
+
+/* -> Tablet - */
+@def TABLET_MIN             650px;
+@def TABLET_MAX             979px;
+@def TABLET_PADDING         15px;
+@def TABLET_GUTTER          0px;
+
+/* -> Desktop - */
+@def DESKTOP_MIN            980px;
+@def DESKTOP_PADDING        20px;
+@def DESKTOP_GUTTER         0px;

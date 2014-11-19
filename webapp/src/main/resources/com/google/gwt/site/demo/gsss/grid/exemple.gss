@@ -1,0 +1,14 @@
+.colored {
+    background-color: #aaa;
+}
+
+.colored > div {
+    background-color: #ddd;
+    text-align: center;
+
+    padding: 10px inherit;
+}
+
+.colored > div:nth-child(even) {
+    background-color: #ccc;
+}

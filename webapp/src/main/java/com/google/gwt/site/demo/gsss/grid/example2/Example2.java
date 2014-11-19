@@ -1,4 +1,4 @@
-package com.google.gwt.site.demo.gsss.grid.example1;
+package com.google.gwt.site.demo.gsss.grid.example2;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.site.demo.gsss.grid.resources.GridResources;
@@ -8,8 +8,8 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
-public class Example1 implements IsWidget {
-    interface Binder extends UiBinder<HTMLPanel, Example1> {
+public class Example2 implements IsWidget {
+    interface Binder extends UiBinder<HTMLPanel, Example2> {
     }
 
     private static Binder binder = GWT.create(Binder.class);
@@ -18,7 +18,7 @@ public class Example1 implements IsWidget {
     @UiField
     GridResources resources;
 
-    public Example1() {
+    public Example2() {
         widget = binder.createAndBindUi(this);
         resources.grid().ensureInjected();
         resources.gridSettings().ensureInjected();

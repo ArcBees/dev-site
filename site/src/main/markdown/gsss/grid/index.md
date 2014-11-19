@@ -104,8 +104,6 @@ You can push a column using the push class. It will do the same as creating an e
     .col_push_2, .col_push_1_6:     1 / 6 push
     ...
     .col_push_11, .col_push_1_11:   11 / 12 push
-    
-$[gsss-grid-2]
 
 Same as sizes, you can target the push to Tablet and Mobile size :
 
@@ -115,6 +113,8 @@ Same as sizes, you can target the push to Tablet and Mobile size :
 You can also overwrite a push with push_0 :
 
     .col_m_push_0:      No push for Mobile only
+    
+$[gsss-grid-2]
 
 ## Grid Settings
 
