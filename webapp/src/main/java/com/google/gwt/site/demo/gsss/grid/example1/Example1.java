@@ -6,8 +6,6 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 
-import javax.inject.Inject;
-
 public class Example1 implements IsWidget {
     interface Binder extends UiBinder<HTMLPanel, Example1> {
     }
@@ -16,7 +14,7 @@ public class Example1 implements IsWidget {
 
     private final Widget widget;
 
-    Example1() {
+    public Example1() {
         widget = binder.createAndBindUi(this);
     }
 

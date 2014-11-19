@@ -27,6 +27,8 @@ Start by adding a `row` element. Inside of it, add the desired columns using `co
 
         </g:HTMLPanel>
     </ui:UiBinder>
+    
+$[gsss-grid-1]
 
 ## Grid breakpoints
 
@@ -102,6 +104,8 @@ You can push a column using the push class. It will do the same as creating an e
     .col_push_2, .col_push_1_6:     1 / 6 push
     ...
     .col_push_11, .col_push_1_11:   11 / 12 push
+    
+$[gsss-grid-2]
 
 Same as sizes, you can target the push to Tablet and Mobile size :
 
