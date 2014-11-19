@@ -7,6 +7,8 @@ import com.google.common.collect.Maps;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.NodeList;
 import com.google.gwt.query.client.GQuery;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.web.bindery.event.shared.EventBus;
@@ -34,7 +36,8 @@ public abstract class AbstractDemos implements ContentLoadedEvent.ContentLoadedH
 
             Widget demo = getDemoToLoad(item.getId().replace(prefix, ""));
             if (demo != null) {
-                item.appendChild(demo.getElement());
+                HTMLPanel panel = HTMLPanel.wrap(item);
+                panel.add(demo);
             }
         }
     }
