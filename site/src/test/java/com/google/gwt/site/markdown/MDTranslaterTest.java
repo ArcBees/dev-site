@@ -14,13 +14,14 @@
 
 package com.google.gwt.site.markdown;
 
-import junit.framework.TestCase;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Test class for MDTranslate
  */
-public class MDTranslaterTest extends TestCase {
-
+public class MDTranslaterTest {
   private void assertAdjustUrl(MDTranslater md, String relativePath, String tag, String attr,
       String url, String match) {
     String ini = "<foo>\n </foo>";
@@ -32,6 +33,7 @@ public class MDTranslaterTest extends TestCase {
     assertEquals(expected, actual);
   }
 
+  @Test
   public void testAdjustRelativePath() throws Exception {
     MDTranslater mdt = new MDTranslater(null, null, null);
 
