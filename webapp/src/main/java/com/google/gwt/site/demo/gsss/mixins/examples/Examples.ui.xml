@@ -6,7 +6,7 @@
     <g:HTMLPanel>
 
         <div class="{resources.style.dummy}">
-            <div class="{resources.style.example25}">Hello!</div>
+            <div ui:field="className"></div>
         </div>
 
     </g:HTMLPanel>
