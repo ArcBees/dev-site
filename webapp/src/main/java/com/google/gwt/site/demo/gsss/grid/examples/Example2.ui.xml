@@ -7,7 +7,7 @@
 
         <h3>Push live example</h3>
 
-        <div class="{resources.grid.row} {resources.exemple.colored}">
+        <div class="{resources.grid.row} {resources.style.colored}">
             <div class="{resources.grid.col} {resources.grid.col_6} {resources.grid.col_push_3}">
                 .col_6 with .col_push_3
             </div>

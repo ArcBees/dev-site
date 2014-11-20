@@ -1,0 +1,13 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="resources" type="com.google.gwt.site.demo.gsss.mixins.resources.MixinsResources"/>
+
+    <g:HTMLPanel>
+
+        <div class="{resources.style.dummy}">
+            <div class="{resources.style.example26}">Hello!</div>
+        </div>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

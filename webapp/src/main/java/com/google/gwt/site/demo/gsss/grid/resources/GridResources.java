@@ -26,7 +26,7 @@ public interface GridResources extends ClientBundle {
     interface GridSettings extends com.arcbees.gsss.grid.client.GridResources.Grid {
     }
 
-    interface Exemple extends GssResource {
+    interface Default extends GssResource {
         String colored();
     }
 
@@ -36,6 +36,6 @@ public interface GridResources extends ClientBundle {
     @Source({"com/google/gwt/site/demo/gsss/grid/gridSettings.gss", "com/arcbees/gsss/grid/client/grid.gss"})
     GridSettings gridSettings();
 
-    @Source("com/google/gwt/site/demo/gsss/grid/exemple.gss")
-    Exemple exemple();
+    @Source("com/google/gwt/site/demo/gsss/grid/example.gss")
+    Default style();
 }
