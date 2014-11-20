@@ -4,7 +4,7 @@
         <entries>
             <entry name="mixins/" displayName="Mixins" description="Mixins"></entry>
             <entry name="grid/" displayName="Grid" description="Grid"></entry>
-            <entry name="animations/" displayName="Animations" description="Animation"></entry>
+            <entry name="animation/" displayName="Animation" description="Animation"></entry>
         </entries>
     </toc>
 </folder>
