@@ -1,0 +1,135 @@
+@require "mixins";
+
+.dummy {
+    text-align: center;
+
+    padding: 1em 0;
+}
+
+.dummy div {
+    color: #000;
+    background-color: deeppink;
+
+    width: 80px;
+    height: 48px;
+    margin: 0 auto;
+    padding-top: 32px;
+}
+
+/* -> Examples -- */
+
+.example1 {
+    @mixin borderradius(15px, 0, 30px, 5px);
+}
+
+.example2 {
+    @mixin rounded(15px);
+}
+
+.example3 {
+    @mixin borderradius_t(15px);
+}
+
+.example4 {
+    @mixin borderradius_b(15px);
+}
+
+.example5 {
+    @mixin borderradius_l(15px);
+}
+
+.example6 {
+    @mixin borderradius_r(15px);
+}
+
+.example7 {
+    @mixin borderradius_tr(15px);
+}
+
+.example8 {
+    @mixin borderradius_tl(15px);
+}
+
+.example9 {
+    @mixin borderradius_br(15px);
+}
+
+.example10 {
+    @mixin borderradius_bl(15px);
+}
+
+.example11 {
+    @mixin gradient(#ff22ee, #0044e1);
+}
+
+.example12 {
+    @mixin gradient_h(#ff22ee, #0044e1);
+}
+
+.example13 {
+    @mixin gradient_tlbr(#ff22ee, #0044e1);
+}
+
+.example14 {
+    @mixin gradient_bltr(#ff22ee, #0044e1);
+}
+
+.example15 {
+    @mixin gradient_circular(#ff22ee, #0044e1);
+}
+
+.example16 {
+    @mixin opacity(0.5);
+}
+
+.example17 {
+    @mixin outline(2px, solid, #000, 10px);
+}
+
+.example18 {
+    @mixin shadow(5px, 5px, 3px, 0.3);
+}
+
+.example19 {
+    @mixin shadow_color(5px, 5px, 10px, 2px, #22ee22);
+}
+
+.example20 {
+    @mixin shadow_inner(0, 7px, 5px, 0.4);
+}
+
+.example21 {
+    @mixin shadow_inner_color(0, 7px, 5px, 2px, rgba(0, 0, 255, 0.4));
+}
+
+.example22 {
+    @mixin shadow_text(2px, 2px, 1px, 0.5);
+}
+
+.example23 {
+    @mixin shadow_text_color(0, 5px, 2px, #11ff66);
+}
+
+.example24 {
+    @mixin flip_horizontal();
+}
+
+.example25 {
+    @mixin flip_vertical();
+}
+
+.example26 {
+    @mixin rotate(45deg);
+}
+
+.example27 {
+    @mixin rotate_180_cw();
+}
+
+.example28 {
+    @mixin scale(1.5, 1);
+}
+
+.example29 {
+    @mixin translate(10px, 20px);
+}

@@ -7,7 +7,7 @@
 
         <h3>The Grid in action</h3>
 
-        <div class="{resources.grid.row} {resources.exemple.colored}">
+        <div class="{resources.grid.row} {resources.style.colored}">
             <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_full}">
                 <span class="{resources.grid.col_t_hide}">
                     .col_2
@@ -45,7 +45,7 @@
 
         <h3>With custom settings using Padding instead of Gutter</h3>
 
-        <div class="{resources.gridSettings.row} {resources.exemple.colored}">
+        <div class="{resources.gridSettings.row} {resources.style.colored}">
             <div class="{resources.gridSettings.col} {resources.gridSettings.col_1_4} {resources.gridSettings.col_t_1_3} {resources.gridSettings.col_m_1_2}">
                 <span class="{resources.gridSettings.col_t_hide}">
                     .col_1_4
