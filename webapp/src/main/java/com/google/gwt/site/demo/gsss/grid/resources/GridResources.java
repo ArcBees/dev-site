@@ -17,7 +17,7 @@
 package com.google.gwt.site.demo.gsss.grid.resources;
 
 import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.GssResource;
+import com.google.gwt.resources.client.CssResource;
 
 public interface GridResources extends ClientBundle {
     interface Grid extends com.arcbees.gsss.grid.client.GridResources.Grid {
@@ -26,7 +26,7 @@ public interface GridResources extends ClientBundle {
     interface GridSettings extends com.arcbees.gsss.grid.client.GridResources.Grid {
     }
 
-    interface Default extends GssResource {
+    interface Default extends CssResource {
         String colored();
     }
 

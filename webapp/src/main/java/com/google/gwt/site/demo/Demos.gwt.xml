@@ -5,10 +5,15 @@
     <inherits name="com.google.gwt.query.Query"/>
 
     <!-- GSSS Demo -->
-    <inherits name="com.google.gwt.resources.GssResource"/>
     <inherits name="com.google.common.collect.Collect"/>
     <inherits name="com.arcbees.gsss.grid.Grid"/>
     <inherits name="com.arcbees.gsss.mixin.Mixin"/>
+
+    <replace-with class="com.google.gwt.resources.client.CssResource">
+        <when-type-is class="com.google.gwt.resources.client.GssResource"/>
+    </replace-with>
+
+    <set-configuration-property name="CssResource.enableGss" value="true" />
 
     <source path="" />
 </module>
