@@ -6,17 +6,18 @@
     <inherits name="com.google.gwt.user.User"/>
     <inherits name="com.google.gwt.query.Query"/>
 
+    <inherits name="com.google.gwt.site.demo.Demos"/>
+
     <source path="client"/>
     <entry-point
             class="com.google.gwt.site.webapp.client.GWTProjectEntryPoint"/>
     <add-linker name="xsiframe"/>
     <set-property name="compiler.useSourceMaps" value="true"/>
-    <!-- change to localhost for development -->
     <set-configuration-property name="includeSourceMapUrl"
-                                value="http://www.gwtproject.org/src/__HASH___sourceMap__FRAGMENT__.json"/>
+            value="http://www.gwtproject.org/src/__HASH___sourceMap__FRAGMENT__.json"/>
 
     <set-configuration-property name="installCode" value="false"/>
-    <!-- remove after fix to issue 8630 lands -->
+    <!--remove after fix to issue 8630 lands -->
     <set-configuration-property name="installScriptJs"
-                                value="com/google/gwt/core/ext/linker/impl/installScriptDirect.js"/>
+            value="com/google/gwt/core/ext/linker/impl/installScriptDirect.js"/>
 </module>

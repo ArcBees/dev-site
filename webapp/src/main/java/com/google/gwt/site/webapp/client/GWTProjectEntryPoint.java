@@ -13,6 +13,7 @@
  */
 package com.google.gwt.site.webapp.client;
 
+import com.google.common.base.MoreObjects;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
@@ -21,9 +22,14 @@ import com.google.gwt.query.client.GQuery;
 import com.google.gwt.query.client.Properties;
 import com.google.gwt.query.client.js.JsUtils;
 import com.google.gwt.regexp.shared.RegExp;
+import com.google.gwt.site.demo.ContentLoadedEvent;
+import com.google.gwt.site.demo.gsss.grid.GSSSGridDemos;
+import com.google.gwt.site.demo.gsss.mixins.GSSSMixinsDemos;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.impl.HyperlinkImpl;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.SimpleEventBus;
 
 import static com.google.gwt.query.client.GQuery.$;
 import static com.google.gwt.query.client.GQuery.body;
@@ -50,12 +56,22 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private static boolean isPushstateCapable = history.get("pushState") != null;
     private static boolean ajaxEnabled = isPushstateCapable && origin.startsWith("http");
     private static String currentPage = Window.Location.getPath();
+    private static EventBus eventBus = new SimpleEventBus();
 
     @Override
     public void onModuleLoad() {
+        registerDemos();
+
         enhancePage();
         $("#gwt-toc li ul").hide();
         openMenu();
+    }
+
+    private void registerDemos() {
+        new GSSSGridDemos(eventBus);
+        new GSSSMixinsDemos(eventBus);
+
+        ContentLoadedEvent.fire(eventBus);
     }
 
     /*
@@ -108,7 +124,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
                     // the absolute path: anchor.pathname is the way
                     Object pathname = link.prop("pathname");
                     Object hash = link.prop("hash");
-                    link.attr("href", String.valueOf(pathname) + (hash != null ? hash : ""));
+                    link.attr("href", String.valueOf(pathname) + MoreObjects.firstNonNull(hash, ""));
                 }
             }
         });
@@ -206,6 +222,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
                 $("#gwt-content").load(pageUrl + " #gwt-content > div", null, new Function() {
                     @Override
                     public void f() {
+                        ContentLoadedEvent.fire(eventBus);
                         openMenu();
                         scrollToHash();
                         $("#spinner").hide();
