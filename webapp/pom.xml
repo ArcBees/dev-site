@@ -22,21 +22,39 @@
         <!-- javax -->
         <servlet.version>2.5</servlet.version>
 
-        <gwt.version>2.6.1</gwt.version>
+        <gwt.version>2.7.0</gwt.version>
         <gwtquery.version>1.4.2</gwtquery.version>
+
+        <!-- Demos -->
+        <gsss.version>1.0-SNAPSHOT</gsss.version>
+        <guava.version>18.0</guava.version>
 
         <junit.version>4.11</junit.version>
 
         <!-- plugin -->
         <surefire-plugin.version>2.17</surefire-plugin.version>
         <compiler-plugin.version>3.1</compiler-plugin.version>
-        <war-plugin.version>2.4</war-plugin.version>
+        <war-plugin.version>2.5</war-plugin.version>
         <eclipse-plugin.version>2.9</eclipse-plugin.version>
         <appengine.plugin.version>1.9.4</appengine.plugin.version>
         <maven-checkstyle-plugin.version>2.13</maven-checkstyle-plugin.version>
 
         <jdk.version>1.7</jdk.version>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!-- Compile/runtime dependencies -->
@@ -113,6 +131,26 @@
             <type>zip</type>
             <classifier>generated-site</classifier>
          </dependency>
+        <dependency>
+            <groupId>com.arcbees</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>${build-tools.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- DEMO Dependencies -->
+        <!-- GSSS -->
+        <dependency>
+            <groupId>com.arcbees.gss</groupId>
+            <artifactId>gsss</artifactId>
+            <version>${gsss.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-gwt</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -242,7 +280,8 @@
                             <includes>**/*GwtTest.java</includes>
                             <mode>htmlunit</mode>
                             <gen>gen</gen>
-                            <extraJvmArgs>-Xss1024k -Xmx512M -XX:MaxPermSize=512m</extraJvmArgs>
+                            <extraJvmArgs>-Xss1024k -Xmx512M -XX:MaxPermSize=512m -Duser.language=en
+                                -Duser.country=US</extraJvmArgs>
                             <saveSource>true</saveSource>
                             <module>com.google.gwt.site.webapp.GWTProject</module>
                             <style>OBF</style>
