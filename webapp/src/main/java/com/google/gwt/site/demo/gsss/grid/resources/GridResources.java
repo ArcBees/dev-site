@@ -30,10 +30,12 @@ public interface GridResources extends ClientBundle {
         String colored();
     }
 
-    @Source({"com/arcbees/gsss/grid/client/gridsettings.gss", "com/arcbees/gsss/grid/client/grid.gss"})
+    @Source({"com/arcbees/gsss/grid/client/gridsettings.gss", "com/arcbees/gsss/mixin/client/mixins.gss",
+            "com/arcbees/gsss/grid/client/grid.gss"})
     Grid grid();
 
-    @Source({"com/google/gwt/site/demo/gsss/grid/gridSettings.gss", "com/arcbees/gsss/grid/client/grid.gss"})
+    @Source({"com/google/gwt/site/demo/gsss/grid/gridSettings.gss", "com/arcbees/gsss/mixin/client/mixins.gss",
+            "com/arcbees/gsss/grid/client/grid.gss"})
     GridSettings gridSettings();
 
     @Source("com/google/gwt/site/demo/gsss/grid/example.gss")

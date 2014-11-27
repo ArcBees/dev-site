@@ -17,10 +17,10 @@
 package com.google.gwt.site.demo.gsss.animation.resources;
 
 import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.GssResource;
+import com.google.gwt.resources.client.CssResource;
 
 public interface AnimationResources extends ClientBundle {
-    interface Default extends GssResource {
+    interface Default extends CssResource {
         String dummy();
 
         String example1();

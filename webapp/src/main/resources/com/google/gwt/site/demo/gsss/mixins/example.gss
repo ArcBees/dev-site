@@ -1,4 +1,4 @@
-@require "mixins";
+@require "gsss-mixins";
 
 .dummy {
     text-align: center;
