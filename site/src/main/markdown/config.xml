@@ -4,6 +4,7 @@
         <entries>
             <entry name="index" displayName="Home" description="Home"></entry>
             <entry name="jukito/" displayName="Jukito" description="Jukito"></entry>
+            <entry name="gsss/" displayName="GSS on Steroids" description="GSSS"></entry>
         </entries>
     </toc>
 </folder>
