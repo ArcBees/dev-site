@@ -99,7 +99,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
     // Replace relative paths in anchors by absolute ones
     // exclude all anchors in the content area.
-    $("a").not($("#gwt-content a")).each(new Function() {
+    $("a").not($("#content a")).each(new Function() {
       @Override
       public void f(Element e) {
         GQuery link = $(e);
@@ -201,7 +201,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
       pageUrl = Window.Location.getPath();
       if (!currentPage.equals(pageUrl)) {
         $("#spinner").show();
-        $("#gwt-content").load(pageUrl + " #gwt-content > div", null, new Function() {
+        $("#content").load(pageUrl + " #content > div", null, new Function() {
           @Override
           public void f() {
             openMenu();

@@ -56,22 +56,8 @@
             <div class="wrapper">
                 <ul>
                     <li class="logo"><a href="/">GWT homepage</a></li>
-                    <li><a href="overview.html"><i class="icon_overview"></i>Overview</a></li>
-                    <li class="sep"><a href="gettingstarted.html"><i class="icon_arrow"></i>Get started</a></li>
-                    <li><a href="doc/latest/tutorial/index.html" class="active"><i class="icon_tutorials"></i>Tutorials</a></li>
-                    <li><a href="doc/latest/DevGuide.html"><i class="icon_doc"></i>Docs</a></li>
-                    <li><a href="examples.html"><i class="icon_ressources"></i>Ressources</a></li>
-                    <li><a href="makinggwtbetter.html"><i class="icon_getstarted"></i>Make GWT Better</a></li>
-                    <li class="sep"><a href="terms.html"><i class="icon_terms"></i>Terms</a></li>
-                    <li class="btn"><a href="download.html"><i class="icon_download"></i>Download</a></li>
-                    <li class="btn"><a href="#"><i class="icon_jd"></i>Java Doc</a></li>
+                    <li><a href="jukito/Home.html"><i class="icon_overview"></i>Jukito</a></li>
                 </ul>
-                <div id="social">
-                    <a class="googleplus" href="#"><i
-                            class="icon_gplus"></i><span>Access our Google+ community</span></a>
-                    <a class="twitter" href="#"><i class="icon_twitter"></i><span>Join us on Twitter</span></a>
-                </div>
-                <a id="cc" href="#">Creative Commons Attribution 3.0 License.</a>
             </div>
         </nav>
 
