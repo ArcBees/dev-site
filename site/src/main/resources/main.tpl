@@ -9,10 +9,8 @@
 
         <link rel="stylesheet" href="assets/build/css/style.css">
         <link rel="stylesheet" href="assets/build/fonts/icons/icons.css">
+        <link rel="stylesheet" href="assets/build/fonts/geometria/geometria.css">
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
-
-        <script type="text/javascript" src="https://use.typekit.net/wwv3dxt.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
         <script type="text/javascript" src="/gwtproject/gwtproject.nocache.js"></script>
         <script type="text/javascript">
@@ -46,7 +44,7 @@
         </script>
     </head>
 
-    <body>
+    <body class="jukito">
 
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -56,13 +54,16 @@
             <div class="wrapper">
                 <ul>
                     <li class="logo"><a href="/">GWT homepage</a></li>
-                    <li><a href="jukito/Home.html"><i class="icon_overview"></i>Jukito</a></li>
+                    <li><a href="jukito/Home.html"><i class="icon_menu"></i>Jukito</a></li>
                 </ul>
             </div>
         </nav>
 
         <div class="holder">
             <aside id="submenu">
+                <div class="logo">
+
+                </div>
                 <nav>
                     $toc
                 </nav>

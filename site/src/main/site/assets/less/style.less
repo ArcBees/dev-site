@@ -19,6 +19,7 @@
 @import 'layout.less';
 @import 'functions.less';
 @import 'flexnav.less';
+@import 'fonts.less';
 
 // -- Styles ---------------------------------------------
 
@@ -96,8 +97,8 @@
       margin: 0 auto 40px;
 
       &::after {
-        content: "";
-        background: url('../img/navLogoSmall.png') no-repeat;
+        content: "\e601";
+        font-family: @f-icons;
 
         display: block;
         width: 24px;
@@ -246,7 +247,7 @@ aside#submenu {
   display: table-cell;
   width: 240px;
   height: 100%;
-  padding: 174px 0 0 40px;
+  padding: 0 0 1em 40px;
 
   z-index: 9999;
 
@@ -256,6 +257,14 @@ aside#submenu {
 
   @media(@mobile) {
     display: block;
+  }
+  
+  .logo {
+    background-color: @c-secondary-dark;
+
+    width: 100%;
+    height: 185px;
+    margin-bottom: 25px;
   }
 
   a {
@@ -275,14 +284,7 @@ aside#submenu {
 
     &:hover {
       background-color: @c-background;
-    }
-
-    &:before {
-      content: "\003e";
-
-      margin-right: 4px;
-
-      position: relative;
+      color: @c-text;
     }
   }
   
@@ -307,6 +309,12 @@ aside#submenu {
 
   @media(@mobile) {
     display: none;
+  }
+}
+
+.jukito {
+  aside#submenu .logo {
+    background-color: @c-jukito;
   }
 }
 
