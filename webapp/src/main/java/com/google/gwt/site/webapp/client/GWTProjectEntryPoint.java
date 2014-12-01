@@ -90,19 +90,20 @@ public class GWTProjectEntryPoint implements EntryPoint {
         $("#gwt-toc a.selected").removeClass("selected");
         item.addClass("selected");
 
-    // Replace relative paths in anchors by absolute ones
-    // exclude all anchors in the content area.
-    $("a").not($("#content a")).each(new Function() {
-      @Override
-      public void f(Element e) {
-        GQuery link = $(e);
-        if (shouldEnhanceLink(link)) {
-          // No need to make complicated things for computing
-          // the absolute path: anchor.pathname is the way
-          link.attr("href", link.prop("pathname"));
-        }
-      }
-    });
+        // Replace relative paths in anchors by absolute ones
+        // exclude all anchors in the content area.
+        $("a").not($("#content a")).each(new Function() {
+            @Override
+            public void f(Element e) {
+                GQuery link = $(e);
+                if (shouldEnhanceLink(link)) {
+                    // No need to make complicated things for computing
+                    // the absolute path: anchor.pathname is the way
+                    link.attr("href", link.prop("pathname"));
+                }
+            }
+        });
+    }
 
     /*
      * Enhance the page adding handlers and replacing relative by absolute urls
