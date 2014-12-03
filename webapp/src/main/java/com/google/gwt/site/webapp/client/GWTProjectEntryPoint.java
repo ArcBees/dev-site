@@ -90,8 +90,19 @@ public class GWTProjectEntryPoint implements EntryPoint {
         $("#gwt-toc a.selected").removeClass("selected");
         item.addClass("selected");
 
-        // Change the page title for easy bookmarking
-        $("title").text("[GWT] " + item.text());
+        // Replace relative paths in anchors by absolute ones
+        // exclude all anchors in the content area.
+        $("a").not($("#content a")).each(new Function() {
+            @Override
+            public void f(Element e) {
+                GQuery link = $(e);
+                if (shouldEnhanceLink(link)) {
+                    // No need to make complicated things for computing
+                    // the absolute path: anchor.pathname is the way
+                    link.attr("href", link.prop("pathname"));
+                }
+            }
+        });
     }
 
     /*
@@ -219,7 +230,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
             pageUrl = Window.Location.getPath();
             if (!currentPage.equals(pageUrl)) {
                 $("#spinner").show();
-                $("#gwt-content").load(pageUrl + " #gwt-content > div", null, new Function() {
+                $("#content").load(pageUrl + " #content > div", null, new Function() {
                     @Override
                     public void f() {
                         ContentLoadedEvent.fire(eventBus);
