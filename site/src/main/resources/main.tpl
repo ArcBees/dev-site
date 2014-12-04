@@ -56,7 +56,9 @@
             <div class="wrapper">
                 <ul>
                     <li class="logo"><a href="/">GWT homepage</a></li>
+                    <li><a href="gaestudio/GettingStarted.html"><i class="icon_overview"></i>GAE Studio</a></li>
                     <li><a href="jukito/Home.html"><i class="icon_overview"></i>Jukito</a></li>
+                    <li><a href="gsss/index.html"><i class="icon_overview"></i>GSS on Steroids</a></li>
                 </ul>
             </div>
         </nav>
