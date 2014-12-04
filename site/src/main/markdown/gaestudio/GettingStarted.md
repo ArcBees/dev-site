@@ -8,11 +8,6 @@
 
 GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 
-    klajdwkjhdalskjdwlkajd
-    wdlkjawdaw
-    daw wdw
-    ad wdaw dwa dwa dwad wadl;kwdq;`k
-
 #Running GAE-Studio locally (Java runtime)
 ## Using MAVEN
 ### App Engine configuration files
