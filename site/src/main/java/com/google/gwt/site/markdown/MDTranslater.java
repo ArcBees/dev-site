@@ -54,8 +54,14 @@ public class MDTranslater {
       }
 
     } else {
-      String markDown = getNodeContent(node.getPath());
-      String htmlMarkDown = markdownToHtmlUtil.toHtml(markDown);
+      String fileContent = getNodeContent(node.getPath());
+
+      String content;
+      if (isMarkdown(node)) {
+        content = markdownToHtmlUtil.toHtml(fileContent);
+      } else {
+        content = fileContent;
+      }
 
       String toc = tocCreator.createTocForNode(root, node);
 
@@ -68,12 +74,16 @@ public class MDTranslater {
 
       String html = fillTemplate(
           adjustRelativePath(template, relativePath),
-          htmlMarkDown,
+          content,
           adjustRelativePath(toc, relativePath),
           adjustRelativePath(head, relativePath));
 
       writer.writeHTML(node, html);
     }
+  }
+
+  private boolean isMarkdown(MDNode node) {
+    return node.getPath().endsWith(".md");
   }
 
   private String createHeadForNode(MDNode node) {

@@ -67,7 +67,8 @@ public class FileTraverserFileSystemImpl implements FileTraverser {
 
   private boolean shouldFileBeUploaded(String fileName) {
     return fileName.endsWith(".html") || fileName.endsWith(".css") || fileName.endsWith(".js")
-        || fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")
-        || fileName.endsWith(".gif") || fileName.equals("package-list");
+            || fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")
+            || fileName.endsWith(".gif") || fileName.equals("package-list") || fileName.endsWith(".eot")
+            || fileName.endsWith(".svg") || fileName.endsWith(".ttf") || fileName.endsWith(".woff");
   }
 }

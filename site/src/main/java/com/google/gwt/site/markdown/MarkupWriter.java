@@ -55,14 +55,21 @@ public class MarkupWriter {
       ensureDirectory(currentDir);
     }
 
-    String fileName =
-        node.getName().substring(0, node.getName().length() - ".md".length()) + ".html";
+    String fileName = changeExtension(node.getName());
     File fileToWrite = new File(currentDir, fileName);
 
     try {
       Util.writeStringToFile(fileToWrite, html);
     } catch (IOException e) {
       throw new TranslaterException("can not write markup to file: '" + fileToWrite + "'", e);
+    }
+  }
+
+  private String changeExtension(String fileName) {
+    if (fileName.endsWith(".md")) {
+      return fileName.substring(0, fileName.length() - ".md".length()) + ".html";
+    } else {
+      return fileName;
     }
   }
 

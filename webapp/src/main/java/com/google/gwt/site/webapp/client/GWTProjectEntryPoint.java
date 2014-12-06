@@ -63,8 +63,6 @@ public class GWTProjectEntryPoint implements EntryPoint {
         registerDemos();
 
         enhancePage();
-        $("#gwt-toc li ul").hide();
-        openMenu();
     }
 
     private void registerDemos() {
@@ -78,7 +76,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
      * Open the branch and select the item corresponding to the current url.
      */
     private void openMenu() {
-        GQuery item = $("#gwt-toc a[href='" + Window.Location.getPath() + "']").eq(0);
+        GQuery item = $("#submenu a[href='" + Window.Location.getPath() + "']").eq(0);
 
         // Only collapse unrelated entries in mobile
         if ($("#nav-mobile").isVisible()) {
@@ -87,7 +85,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
         showBranch(item);
 
-        $("#gwt-toc a.selected").removeClass("selected");
+        $("#submenu a.selected").removeClass("selected");
         item.addClass("selected");
 
         // Replace relative paths in anchors by absolute ones
@@ -113,7 +111,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         // We add a span with the +/- icon so as the click area is well defined
         // this span is not rendered in server side because it is only needed
         // for enhancing the page.
-        GQuery parentItems = $("#gwt-toc li").has("ul").prepend("<span/>");
+        GQuery parentItems = $("#submenu li").has("ul").prepend("<span/>");
 
         // Toggle the branch when clicking on the arrow or anchor without content
         $(parentItems).children("span, a[href='#']").on("click", new Function() {
@@ -126,7 +124,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
         // Replace relative paths in anchors by absolute ones
         // exclude all anchors in the content area.
-        $("a").not($("#gwt-content a")).each(new Function() {
+        $("a").not($("#content a")).each(new Function() {
             @Override
             public void f(Element e) {
                 GQuery link = $(e);
@@ -144,7 +142,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         $("#nav-mobile").on("click", new Function() {
             @Override
             public void f() {
-                $("#gwt-toc").toggleClass("show");
+                $("#submenu").toggleClass("show");
             }
         });
 
@@ -164,7 +162,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
                         clickHelper.handleAsClick(e)) {
 
                     // In mobile, if menu is visible, close it
-                    $("#gwt-toc.show").removeClass("show");
+                    $("#submenu.show").removeClass("show");
 
                     // Load the page using Ajax
                     loadPage($(e));
@@ -198,7 +196,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
     }
 
     private void hideUnrelatedBranches(GQuery item) {
-        $("#gwt-toc li.open")
+        $("#submenu li.open")
                 .not(item).not(item.parents())
                 .removeClass("open")
                 .children("ul")
@@ -230,6 +228,9 @@ public class GWTProjectEntryPoint implements EntryPoint {
             pageUrl = Window.Location.getPath();
             if (!currentPage.equals(pageUrl)) {
                 $("#spinner").show();
+
+                updateMenusForPage(pageUrl);
+
                 $("#content").load(pageUrl + " #content > div", null, new Function() {
                     @Override
                     public void f() {
@@ -244,6 +245,24 @@ public class GWTProjectEntryPoint implements EntryPoint {
             }
             currentPage = pageUrl;
         }
+    }
+
+    private void updateMenusForPage(String pageUrl) {
+        if (pageUrl.equals("/")) {
+            lockMenus();
+        } else {
+            unlockMenus();
+        }
+    }
+
+    private void unlockMenus() {
+        $("#content").removeClass("home");
+        $("#nav").attr("class", "closed");
+    }
+
+    private void lockMenus() {
+        $("#content").addClass("home");
+        $("#nav").attr("class", "alwaysOpen");
     }
 
     /*

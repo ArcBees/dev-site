@@ -321,12 +321,16 @@ public class FileSystemTraverser {
   }
 
   private String changeExtension(String fileName) {
-    return fileName.substring(0, fileName.length() - ".md".length()) + ".html";
+    if (fileName.endsWith(".md")) {
+      return fileName.substring(0, fileName.length() - ".md".length()) + ".html";
+    } else {
+      return fileName;
+    }
   }
 
   private boolean ignoreFile(File file) {
     // ignore all files that do not end with .md
-    return !file.isDirectory() && !file.getName().endsWith(".md")
+    return !file.isDirectory() && !file.getName().endsWith(".md") && !file.getName().endsWith(".html")
         && !file.getName().equals(CONFIG_XML);
   }
 
