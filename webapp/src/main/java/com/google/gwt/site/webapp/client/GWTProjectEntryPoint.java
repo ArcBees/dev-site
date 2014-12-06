@@ -248,7 +248,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
     }
 
     private void updateMenusForPage(String pageUrl) {
-        if (pageUrl.equals("/")) {
+        if ("/".equals(pageUrl)) {
             lockMenus();
         } else {
             unlockMenus();

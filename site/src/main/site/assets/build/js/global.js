@@ -1,7 +1,7 @@
 var speed = 200;
 var isSameOriginRexp = new RegExp("^(?!(#|[a-z#]+:))(?!.*(|/)javadoc/)(?!.*\\.(jpe?g|png|mpe?g|mp[34]|avi)$)", "i");
 
-$(function() {
+$(function () {
     $("body")
         .on("mouseenter", "> #nav:not(.alwaysOpen)", function () {
             $(this).removeClass("closed");
@@ -13,7 +13,7 @@ $(function() {
     // FlexNav
     $(".flexnav").flexNav();
 
-    $("#content").bind("DOMSubtreeModified", function() {
+    $("#content").bind("DOMSubtreeModified", function () {
         // Homepage
         if ($('#content').hasClass('home')) {
             styleHome();
@@ -53,12 +53,12 @@ $(function() {
     $("#content").trigger("DOMSubtreeModified");
 });
 
-function styleHome(){
+function styleHome() {
     var wh = $(window).height();
     var sh = $("#letsbegin").height();
 
-    if(wh > sh){
-        $(".home section").each(function(){
+    if (wh > sh) {
+        $(".home section").each(function () {
             $(this).css({
                 height: wh,
                 padding: 0
@@ -113,7 +113,7 @@ function handleMenu() {
 function shouldEnhanceLink(link) {
     // Enhance only local links
     return isSameOriginRexp.test(link.attr("href")) &&
-    // Do not load links that are marked as full page reload
+            // Do not load links that are marked as full page reload
         !link.attr("data-full-load");
 }
 
