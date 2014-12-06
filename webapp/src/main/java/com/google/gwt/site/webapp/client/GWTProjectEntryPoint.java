@@ -95,9 +95,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
             public void f(Element e) {
                 GQuery link = $(e);
                 if (shouldEnhanceLink(link)) {
-                    // No need to make complicated things for computing
-                    // the absolute path: anchor.pathname is the way
-                    link.attr("href", link.prop("pathname"));
+                    enhanceLink(link);
                 }
             }
         });
@@ -129,11 +127,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
             public void f(Element e) {
                 GQuery link = $(e);
                 if (shouldEnhanceLink(link)) {
-                    // No need to make complicated things for computing
-                    // the absolute path: anchor.pathname is the way
-                    Object pathname = link.prop("pathname");
-                    Object hash = link.prop("hash");
-                    link.attr("href", String.valueOf(pathname) + MoreObjects.firstNonNull(hash, ""));
+                    enhanceLink(link);
                 }
             }
         });
@@ -179,6 +173,14 @@ public class GWTProjectEntryPoint implements EntryPoint {
                 loadPage(null);
             }
         });
+    }
+
+    private void enhanceLink(GQuery link) {
+        // No need to make complicated things for computing
+        // the absolute path: anchor.pathname is the way
+        Object pathname = link.prop("pathname");
+        Object hash = link.prop("hash");
+        link.attr("href", String.valueOf(pathname) + MoreObjects.firstNonNull(hash, ""));
     }
 
     private boolean shouldEnhanceLink(GQuery link) {

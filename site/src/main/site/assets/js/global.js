@@ -75,11 +75,7 @@ function handleMenu() {
     $("a").not($("#content a")).each(function () {
         var link = $(this);
         if (shouldEnhanceLink(link)) {
-            // No need to make complicated things for computing
-            // the absolute path: anchor.pathname is the way
-            var pathname = link.prop("pathname");
-            var hash = link.prop("hash");
-            link.attr("href", pathname + (hash ? hash : ""));
+            enhanceLink(link);
         }
     });
 
@@ -103,11 +99,17 @@ function handleMenu() {
     $("a").not($("#content a")).each(function () {
         var link = $(this);
         if (shouldEnhanceLink(link)) {
-            // No need to make complicated things for computing
-            // the absolute path: anchor.pathname is the way
-            link.attr("href", link.prop("pathname"));
+            enhanceLink(link);
         }
     });
+}
+
+function enhanceLink(link) {
+    // No need to make complicated things for computing
+    // the absolute path: anchor.pathname is the way
+    var pathname = link.prop("pathname");
+    var hash = link.prop("hash");
+    link.attr("href", pathname + (hash ? hash : ""));
 }
 
 function shouldEnhanceLink(link) {
