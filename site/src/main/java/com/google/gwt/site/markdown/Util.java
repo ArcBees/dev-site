@@ -21,23 +21,23 @@ import java.io.IOException;
 import org.apache.commons.io.IOUtils;
 
 public class Util {
-  public static String getStringFromFile(File file) throws IOException {
-    FileInputStream fileInputStream = null;
-    try {
-      fileInputStream = new FileInputStream(file);
-      return IOUtils.toString(fileInputStream, "UTF-8");
-    } finally {
-      IOUtils.closeQuietly(fileInputStream);
+    public static String getStringFromFile(File file) throws IOException {
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(file);
+            return IOUtils.toString(fileInputStream, "UTF-8");
+        } finally {
+            IOUtils.closeQuietly(fileInputStream);
+        }
     }
-  }
 
-  public static void writeStringToFile(File file, String content) throws IOException {
-    FileOutputStream fileOutputStream = null;
-    try {
-      fileOutputStream = new FileOutputStream(file);
-      IOUtils.write(content, fileOutputStream);
-    } finally {
-      IOUtils.closeQuietly(fileOutputStream);
+    public static void writeStringToFile(File file, String content) throws IOException {
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            IOUtils.write(content, fileOutputStream);
+        } finally {
+            IOUtils.closeQuietly(fileOutputStream);
+        }
     }
-  }
 }

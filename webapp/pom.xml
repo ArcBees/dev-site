@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.google.gwt.site.webapp</groupId>
@@ -130,7 +130,7 @@
             <version>${project.version}</version>
             <type>zip</type>
             <classifier>generated-site</classifier>
-         </dependency>
+        </dependency>
         <dependency>
             <groupId>com.arcbees</groupId>
             <artifactId>checkstyle</artifactId>
@@ -281,7 +281,8 @@
                             <mode>htmlunit</mode>
                             <gen>gen</gen>
                             <extraJvmArgs>-Xss1024k -Xmx512M -XX:MaxPermSize=512m -Duser.language=en
-                                -Duser.country=US</extraJvmArgs>
+                                -Duser.country=US
+                            </extraJvmArgs>
                             <saveSource>true</saveSource>
                             <module>com.google.gwt.site.webapp.GWTProject</module>
                             <style>OBF</style>
@@ -305,7 +306,7 @@
                         <configuration>
                             <includeGroupIds>com.google.gwt.site</includeGroupIds>
                             <includeArtifactIds>gwt-site</includeArtifactIds>
-                             <excludeTransitive>true</excludeTransitive>
+                            <excludeTransitive>true</excludeTransitive>
                             <outputDirectory>${project.build.directory}/www/</outputDirectory>
                         </configuration>
                     </execution>
@@ -324,7 +325,9 @@
                             <outputDirectory>${project.build.directory}/www/gwtproject/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.build.directory}/${project.artifactId}-${project.version}/gwtproject/</directory>
+                                    <directory>
+                                        ${project.build.directory}/${project.artifactId}-${project.version}/gwtproject/
+                                    </directory>
                                 </resource>
                             </resources>
                         </configuration>

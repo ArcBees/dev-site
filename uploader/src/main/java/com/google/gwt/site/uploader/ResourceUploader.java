@@ -22,39 +22,39 @@ import com.google.gwt.site.uploader.model.Resource;
 
 /**
  * A {@link ResourceUploader} communicates with the server.
- *
+ * <p/>
  * It deletes, uploads and gets the key and hash of the resources.
- *
+ * <p/>
  * <p>Note: Need to call {@link #initialize()} before uploading, deleting or getting remote Hashes. Need to call
  * {@link #uninitialize()} afterwards.
  */
 public interface ResourceUploader {
 
-  /**
-   * Delete a given resource.
-   */
-  void deleteResource(String key) throws IOException;
+    /**
+     * Delete a given resource.
+     */
+    void deleteResource(String key) throws IOException;
 
-  /**
-   * Upload a given resource.
-   */
-  void uploadResource(String key, String hash, File data) throws IOException;
+    /**
+     * Upload a given resource.
+     */
+    void uploadResource(String key, String hash, File data) throws IOException;
 
-  /**
-   * Get hashes for all remote resources.
-   */
-  List<Resource> getRemoteHashes() throws IOException;
+    /**
+     * Get hashes for all remote resources.
+     */
+    List<Resource> getRemoteHashes() throws IOException;
 
-  /**
-   * Initializes the ResourceUploader.
-   *
-   * <p>Note: Needs to be called before uploading, deleting or getting remote Hashes. Need to call
-   * {@link #uninitialize()} afterwards.
-   */
-  void initialize() throws InitializeException;
+    /**
+     * Initializes the ResourceUploader.
+     * <p/>
+     * <p>Note: Needs to be called before uploading, deleting or getting remote Hashes. Need to call
+     * {@link #uninitialize()} afterwards.
+     */
+    void initialize() throws InitializeException;
 
-  /**
-   * Uninitializes the ResourceUploader.
-   */
-  void uninitialize();
+    /**
+     * Uninitializes the ResourceUploader.
+     */
+    void uninitialize();
 }

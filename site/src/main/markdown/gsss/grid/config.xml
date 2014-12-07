@@ -11,7 +11,8 @@
             <entry name="mobile" displayName="Mobile" description="Mobile"></entry>
             <entry name="push" displayName="Push" description="Push"></entry>
             <entry name="grid-settings" displayName="Grid settings" description="Grid settings"></entry>
-            <entry name="viewports-sizes" displayName="Min and max sizes of viewports" description="Min and max sizes of viewports"></entry>
+            <entry name="viewports-sizes" displayName="Min and max sizes of viewports"
+                   description="Min and max sizes of viewports"></entry>
             <entry name="padding" displayName="Padding" description="Padding"></entry>
             <entry name="gutter" displayName="Gutter" description="Gutter"></entry>
         </entries>

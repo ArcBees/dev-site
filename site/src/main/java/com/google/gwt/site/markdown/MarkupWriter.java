@@ -22,63 +22,63 @@ import com.google.gwt.site.markdown.fs.MDParent;
 
 public class MarkupWriter {
 
-  private final File rootFile;
+    private final File rootFile;
 
-  public MarkupWriter(File rootFile) {
-    this.rootFile = rootFile;
-  }
-
-  public void writeHTML(MDNode node, String html) throws TranslaterException {
-
-    if (node.isFolder()) {
-      throw new IllegalArgumentException();
+    public MarkupWriter(File rootFile) {
+        this.rootFile = rootFile;
     }
 
-    Stack<MDParent> stack = new Stack<>();
+    public void writeHTML(MDNode node, String html) throws TranslaterException {
 
-    MDParent tmp = node.getParent();
-    stack.add(tmp);
+        if (node.isFolder()) {
+            throw new IllegalArgumentException();
+        }
 
-    while (tmp.getParent() != null) {
-      tmp = tmp.getParent();
-      stack.add(tmp);
+        Stack<MDParent> stack = new Stack<>();
+
+        MDParent tmp = node.getParent();
+        stack.add(tmp);
+
+        while (tmp.getParent() != null) {
+            tmp = tmp.getParent();
+            stack.add(tmp);
+        }
+
+        // get rootnode from stack
+        stack.pop();
+
+        File currentDir = rootFile;
+        ensureDirectory(currentDir);
+        while (!stack.isEmpty()) {
+            MDParent pop = stack.pop();
+            currentDir = new File(currentDir, pop.getName());
+            ensureDirectory(currentDir);
+        }
+
+        String fileName = changeExtension(node.getName());
+        File fileToWrite = new File(currentDir, fileName);
+
+        try {
+            Util.writeStringToFile(fileToWrite, html);
+        } catch (IOException e) {
+            throw new TranslaterException("can not write markup to file: '" + fileToWrite + "'", e);
+        }
     }
 
-    // get rootnode from stack
-    stack.pop();
-
-    File currentDir = rootFile;
-    ensureDirectory(currentDir);
-    while (!stack.isEmpty()) {
-      MDParent pop = stack.pop();
-      currentDir = new File(currentDir, pop.getName());
-      ensureDirectory(currentDir);
+    private String changeExtension(String fileName) {
+        if (fileName.endsWith(".md")) {
+            return fileName.substring(0, fileName.length() - ".md".length()) + ".html";
+        } else {
+            return fileName;
+        }
     }
 
-    String fileName = changeExtension(node.getName());
-    File fileToWrite = new File(currentDir, fileName);
-
-    try {
-      Util.writeStringToFile(fileToWrite, html);
-    } catch (IOException e) {
-      throw new TranslaterException("can not write markup to file: '" + fileToWrite + "'", e);
+    private void ensureDirectory(File dir) throws TranslaterException {
+        if (!dir.exists()) {
+            boolean created = dir.mkdir();
+            if (!created) {
+                throw new TranslaterException("can not create directory: '" + dir + "'");
+            }
+        }
     }
-  }
-
-  private String changeExtension(String fileName) {
-    if (fileName.endsWith(".md")) {
-      return fileName.substring(0, fileName.length() - ".md".length()) + ".html";
-    } else {
-      return fileName;
-    }
-  }
-
-  private void ensureDirectory(File dir) throws TranslaterException {
-    if (!dir.exists()) {
-      boolean created = dir.mkdir();
-      if (!created) {
-        throw new TranslaterException("can not create directory: '" + dir + "'");
-      }
-    }
-  }
 }

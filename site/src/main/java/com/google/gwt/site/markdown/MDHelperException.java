@@ -15,17 +15,16 @@ package com.google.gwt.site.markdown;
 
 public class MDHelperException extends Exception {
 
-  /**
-   *
-   */
-  private static final long serialVersionUID = 5455100230668917919L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5455100230668917919L;
 
-  public MDHelperException(String string) {
-    super(string);
-  }
+    public MDHelperException(String string) {
+        super(string);
+    }
 
-  public MDHelperException(String string, Throwable e) {
-    super(string, e);
-  }
-
+    public MDHelperException(String string, Throwable e) {
+        super(string, e);
+    }
 }

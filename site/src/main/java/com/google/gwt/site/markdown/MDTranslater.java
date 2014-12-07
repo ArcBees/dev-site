@@ -25,88 +25,87 @@ import com.google.gwt.site.markdown.toc.TocCreator;
 
 public class MDTranslater {
 
-  private final MarkdownToHtmlUtil markdownToHtmlUtil = new MarkdownToHtmlUtil();
+    private final MarkdownToHtmlUtil markdownToHtmlUtil = new MarkdownToHtmlUtil();
 
-  private final TocCreator tocCreator;
+    private final TocCreator tocCreator;
 
-  private final MarkupWriter writer;
+    private final MarkupWriter writer;
 
-  private final String template;
+    private final String template;
 
-  public MDTranslater(TocCreator tocCreator, MarkupWriter writer, String template) {
-    this.tocCreator = tocCreator;
-    this.writer = writer;
-    this.template = template;
-  }
-
-  public void render(MDParent root) throws TranslaterException {
-    renderTree(root, root);
-  }
-
-  private void renderTree(MDNode node, MDParent root) throws TranslaterException {
-
-    if (node.isFolder()) {
-      MDParent mdParent = node.asFolder();
-
-      List<MDNode> children = mdParent.getChildren();
-      for (MDNode mdNode : children) {
-        renderTree(mdNode, root);
-      }
-
-    } else {
-      String fileContent = getNodeContent(node.getPath());
-
-      String content;
-      if (isMarkdown(node)) {
-        content = markdownToHtmlUtil.toHtml(fileContent);
-      } else {
-        content = fileContent;
-      }
-
-      String toc = tocCreator.createTocForNode(root, node);
-
-      String head = createHeadForNode(node);
-
-      String relativePath = "./";
-      for (int i = 1; i < node.getDepth(); i++) {
-        relativePath += "../";
-      }
-
-      String html = fillTemplate(
-          adjustRelativePath(template, relativePath),
-          content,
-          adjustRelativePath(toc, relativePath),
-          adjustRelativePath(head, relativePath));
-
-      writer.writeHTML(node, html);
+    public MDTranslater(TocCreator tocCreator, MarkupWriter writer, String template) {
+        this.tocCreator = tocCreator;
+        this.writer = writer;
+        this.template = template;
     }
-  }
 
-  private boolean isMarkdown(MDNode node) {
-    return node.getPath().endsWith(".md");
-  }
-
-  private String createHeadForNode(MDNode node) {
-    return "<link href='css/main.css' rel='stylesheet' type='text/css'>";
-  }
-
-  private String fillTemplate(String template, String html, String toc, String head) {
-    return template.replace("$content", html).replace("$toc", toc).replace("$head", head);
-  }
-
-  protected String adjustRelativePath(String html, String relativePath) {
-    // Just using Regexp to add relative paths to certain urls.
-    // If we wanted to support a more complicated syntax
-    // we could parse the template with some library like jsoup
-    return html.replaceAll("(href|src)=(['\"])(?:(?:/+)|(?!(?:[a-z]+:|#)))(.*?)(\\2)",
-        "$1='" + relativePath + "$3'");
-  }
-
-  private String getNodeContent(String path) throws TranslaterException {
-    try {
-      return Util.getStringFromFile(new File(path));
-    } catch (IOException e1) {
-      throw new TranslaterException("can not load content from file: '" + path + "'", e1);
+    public void render(MDParent root) throws TranslaterException {
+        renderTree(root, root);
     }
-  }
+
+    private void renderTree(MDNode node, MDParent root) throws TranslaterException {
+
+        if (node.isFolder()) {
+            MDParent mdParent = node.asFolder();
+
+            List<MDNode> children = mdParent.getChildren();
+            for (MDNode mdNode : children) {
+                renderTree(mdNode, root);
+            }
+        } else {
+            String fileContent = getNodeContent(node.getPath());
+
+            String content;
+            if (isMarkdown(node)) {
+                content = markdownToHtmlUtil.toHtml(fileContent);
+            } else {
+                content = fileContent;
+            }
+
+            String toc = tocCreator.createTocForNode(root, node);
+
+            String head = createHeadForNode(node);
+
+            String relativePath = "./";
+            for (int i = 1; i < node.getDepth(); i++) {
+                relativePath += "../";
+            }
+
+            String html = fillTemplate(
+                    adjustRelativePath(template, relativePath),
+                    content,
+                    adjustRelativePath(toc, relativePath),
+                    adjustRelativePath(head, relativePath));
+
+            writer.writeHTML(node, html);
+        }
+    }
+
+    private boolean isMarkdown(MDNode node) {
+        return node.getPath().endsWith(".md");
+    }
+
+    private String createHeadForNode(MDNode node) {
+        return "<link href='css/main.css' rel='stylesheet' type='text/css'>";
+    }
+
+    private String fillTemplate(String template, String html, String toc, String head) {
+        return template.replace("$content", html).replace("$toc", toc).replace("$head", head);
+    }
+
+    protected String adjustRelativePath(String html, String relativePath) {
+        // Just using Regexp to add relative paths to certain urls.
+        // If we wanted to support a more complicated syntax
+        // we could parse the template with some library like jsoup
+        return html.replaceAll("(href|src)=(['\"])(?:(?:/+)|(?!(?:[a-z]+:|#)))(.*?)(\\2)",
+                "$1='" + relativePath + "$3'");
+    }
+
+    private String getNodeContent(String path) throws TranslaterException {
+        try {
+            return Util.getStringFromFile(new File(path));
+        } catch (IOException e1) {
+            throw new TranslaterException("can not load content from file: '" + path + "'", e1);
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
     <ui:with field="resources" type="com.google.gwt.site.demo.gsss.grid.resources.GridResources"/>
 
@@ -71,7 +71,10 @@
         </div>
 
         <p>
-            <em>See the <strong>Grid Settings</strong> section for more infos on how to use custom settings</em>
+            <em>See the
+                <strong>Grid Settings</strong>
+                section for more infos on how to use custom settings
+            </em>
         </p>
 
     </g:HTMLPanel>

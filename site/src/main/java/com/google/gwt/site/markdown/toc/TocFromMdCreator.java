@@ -22,74 +22,74 @@ import com.google.gwt.site.markdown.fs.MDParent;
 
 public class TocFromMdCreator implements TocCreator {
 
-  public String createTocForNode(MDParent root, MDNode node) {
+    public String createTocForNode(MDParent root, MDNode node) {
 
-    StringBuffer buffer = new StringBuffer();
-    buffer.append("  <ul>\n");
-    render(root, buffer, node);
-    buffer.append("  </ul>\n");
+        StringBuffer buffer = new StringBuffer();
+        buffer.append("  <ul>\n");
+        render(root, buffer, node);
+        buffer.append("  </ul>\n");
 
-    return buffer.toString();
-  }
-
-  private void render(MDNode node, StringBuffer buffer, MDNode tocNode) {
-
-    MDNode tmpNode = tocNode;
-    while (tmpNode.getParent() != null) {
-      if (tmpNode.isExcludeFromToc())
-        return;
-      tmpNode = tmpNode.getParent();
+        return buffer.toString();
     }
 
-    tmpNode = node;
-    while (tmpNode.getParent() != null) {
-      if (tmpNode.isExcludeFromToc())
-        return;
-      tmpNode = tmpNode.getParent();
-    }
+    private void render(MDNode node, StringBuffer buffer, MDNode tocNode) {
 
-    // Use 4 spaces to indent <li>'s, so as we have room for indenting <ul>'s
-    String margin = StringUtils.repeat(' ', 4 * node.getDepth());
-
-    if (node.isFolder()) {
-      MDParent mdParent = node.asFolder();
-
-      if (node.getDepth() != 0) {
-        buffer.append(margin).append("<li class='folder'>");
-        buffer.append("<a href='#'>");
-        buffer.append(node.getDisplayName());
-        buffer.append("</a>\n");
-        buffer.append(margin).append("  <ul>\n");
-      }
-
-      List<MDNode> children = mdParent.getChildren();
-      for (MDNode child : children) {
-        render(child, buffer, tocNode);
-      }
-
-      if (node.getDepth() != 0) {
-        buffer.append(margin).append("  </ul>\n");
-        buffer.append(margin).append("</li>\n");
-      }
-    } else {
-      StringBuilder relativeUrl = new StringBuilder();
-      if (tocNode.getDepth() > 0) {
-        for (int i = 1; i < tocNode.getDepth(); i++) {
-          relativeUrl.append("../");
+        MDNode tmpNode = tocNode;
+        while (tmpNode.getParent() != null) {
+            if (tmpNode.isExcludeFromToc())
+                return;
+            tmpNode = tmpNode.getParent();
         }
-      }
 
-      StringBuilder absoluteUrl = new StringBuilder();
-      absoluteUrl.append("/");
-      absoluteUrl.append(node.getRelativePath());
+        tmpNode = node;
+        while (tmpNode.getParent() != null) {
+            if (tmpNode.isExcludeFromToc())
+                return;
+            tmpNode = tmpNode.getParent();
+        }
 
-      relativeUrl.append(node.getRelativePath());
+        // Use 4 spaces to indent <li>'s, so as we have room for indenting <ul>'s
+        String margin = StringUtils.repeat(' ', 4 * node.getDepth());
 
-      buffer.append(margin).append("<li class='file'>");
-      // TODO escape HTML
-      buffer.append("<a href='" + relativeUrl.toString() + "' ahref='" + absoluteUrl.toString()
-          + "' title='" + node.getDescription() + "'>" + node.getDisplayName() + "</a>");
-      buffer.append("</li>\n");
+        if (node.isFolder()) {
+            MDParent mdParent = node.asFolder();
+
+            if (node.getDepth() != 0) {
+                buffer.append(margin).append("<li class='folder'>");
+                buffer.append("<a href='#'>");
+                buffer.append(node.getDisplayName());
+                buffer.append("</a>\n");
+                buffer.append(margin).append("  <ul>\n");
+            }
+
+            List<MDNode> children = mdParent.getChildren();
+            for (MDNode child : children) {
+                render(child, buffer, tocNode);
+            }
+
+            if (node.getDepth() != 0) {
+                buffer.append(margin).append("  </ul>\n");
+                buffer.append(margin).append("</li>\n");
+            }
+        } else {
+            StringBuilder relativeUrl = new StringBuilder();
+            if (tocNode.getDepth() > 0) {
+                for (int i = 1; i < tocNode.getDepth(); i++) {
+                    relativeUrl.append("../");
+                }
+            }
+
+            StringBuilder absoluteUrl = new StringBuilder();
+            absoluteUrl.append("/");
+            absoluteUrl.append(node.getRelativePath());
+
+            relativeUrl.append(node.getRelativePath());
+
+            buffer.append(margin).append("<li class='file'>");
+            // TODO escape HTML
+            buffer.append("<a href='" + relativeUrl.toString() + "' ahref='" + absoluteUrl.toString()
+                    + "' title='" + node.getDescription() + "'>" + node.getDisplayName() + "</a>");
+            buffer.append("</li>\n");
+        }
     }
-  }
 }
