@@ -316,7 +316,6 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private boolean shouldTrackAnalytics() {
         String host = Window.Location.getHost();
 
-        return "docs-site.appspot.com".equals(host) ||
-                host.endsWith("arcbees.com");
+        return host.endsWith(".arcbees.com");
     }
 }
