@@ -6,6 +6,7 @@
     <inherits name="com.google.gwt.user.User"/>
     <inherits name="com.google.gwt.query.Query"/>
 
+    <inherits name="com.arcbees.analytics.Analytics"/>
     <inherits name="com.google.gwt.site.demo.Demos"/>
 
     <source path="client"/>

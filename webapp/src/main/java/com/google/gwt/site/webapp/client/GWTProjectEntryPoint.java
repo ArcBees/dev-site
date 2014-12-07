@@ -11,8 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package com.google.gwt.site.webapp.client;
 
+import com.arcbees.analytics.client.ClientAnalyticsFactory;
+import com.arcbees.analytics.shared.Analytics;
 import com.google.common.base.MoreObjects;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -58,11 +61,28 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private static String currentPage = Window.Location.getPath();
     private static EventBus eventBus = new SimpleEventBus();
 
+    private Analytics analytics;
+
     @Override
     public void onModuleLoad() {
+        createAnalytics();
+
         registerDemos();
 
         enhancePage();
+    }
+
+    private void createAnalytics() {
+        if (shouldTrackAnalytics()) {
+            ClientAnalyticsFactory analyticsFactory = new ClientAnalyticsFactory();
+            analytics = analyticsFactory.create("UA-41550930-12", false);
+            analytics.create()
+                    .cookieDomain("arcbees.com")
+                    .allowLinkerParameters(true)
+                    .go();
+
+            trackPageView(Window.Location.getPath());
+        }
     }
 
     private void registerDemos() {
@@ -233,13 +253,11 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
                 updateMenusForPage(pageUrl);
 
+                final String finalPageUrl = pageUrl;
                 $("#content").load(pageUrl + " #content > div", null, new Function() {
                     @Override
                     public void f() {
-                        ContentLoadedEvent.fire(eventBus);
-                        openMenu();
-                        scrollToHash();
-                        $("#spinner").hide();
+                        onPageLoaded(finalPageUrl);
                     }
                 });
             } else {
@@ -247,6 +265,17 @@ public class GWTProjectEntryPoint implements EntryPoint {
             }
             currentPage = pageUrl;
         }
+    }
+
+    private void onPageLoaded(String pageUrl) {
+        if (shouldTrackAnalytics()) {
+            trackPageView(pageUrl);
+        }
+
+        ContentLoadedEvent.fire(eventBus);
+        openMenu();
+        scrollToHash();
+        $("#spinner").hide();
     }
 
     private void updateMenusForPage(String pageUrl) {
@@ -278,5 +307,16 @@ public class GWTProjectEntryPoint implements EntryPoint {
         } else {
             anchor.scrollIntoView();
         }
+    }
+
+    private void trackPageView(String pageUrl) {
+        analytics.sendPageView().documentPath(pageUrl).go();
+    }
+
+    private boolean shouldTrackAnalytics() {
+        String host = Window.Location.getHost();
+
+        return "docs-site.appspot.com".equals(host) ||
+                host.endsWith("arcbees.com");
     }
 }
