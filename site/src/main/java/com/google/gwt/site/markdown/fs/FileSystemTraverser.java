@@ -44,6 +44,7 @@ public class FileSystemTraverser {
         private final String title;
         private final String description;
         private final String style;
+        private final String logo;
         private final List<String> excludeList;
         private final List<Entry> folderEntries;
 
@@ -52,12 +53,14 @@ public class FileSystemTraverser {
                 String title,
                 String description,
                 String style,
+                String logo,
                 List<String> excludeList,
                 List<Entry> folderEntries) {
             this.folderHref = folderHref;
             this.title = title;
             this.description = description;
             this.style = style;
+            this.logo = logo;
             this.excludeList = excludeList;
             this.folderEntries = folderEntries;
         }
@@ -85,16 +88,22 @@ public class FileSystemTraverser {
         public String getStyle() {
             return style;
         }
+
+        public String getLogo() {
+            return logo;
+        }
     }
 
     private static class Entry {
         private String name;
         private String displayName;
+        private final String title;
         private String description;
 
-        public Entry(String name, String displayName, String description) {
+        public Entry(String name, String displayName, String title, String description) {
             this.name = name;
             this.displayName = displayName;
+            this.title = title;
             this.description = description;
         }
 
@@ -108,6 +117,10 @@ public class FileSystemTraverser {
 
         public String getName() {
             return name;
+        }
+
+        public String getTitle() {
+            return title;
         }
     }
 
@@ -150,6 +163,17 @@ public class FileSystemTraverser {
             return node.getStyle();
         }
     };
+    private static final FieldAccessor<MDNode> LOGO_ACCESSOR = new FieldAccessor<MDNode>() {
+        @Override
+        public void setValue(MDNode node, String value) {
+            node.setLogo(value);
+        }
+
+        @Override
+        public String getValue(MDNode node) {
+            return node.getLogo();
+        }
+    };
 
     public MDParent traverse(File file) throws TranslaterException {
         MDParent mdParent = traverse(null, file, 0, "");
@@ -171,6 +195,7 @@ public class FileSystemTraverser {
             current.setTitle(config.getTitle());
             current.setDescription(config.getDescription());
             current.setStyle(config.getStyle());
+            current.setLogo(config.getLogo());
 
             if (config.getExcludeList() != null) {
                 for (String exclude : config.getExcludeList()) {
@@ -206,6 +231,7 @@ public class FileSystemTraverser {
                         if (nameInTree.equals(node.getName())) {
                             node.setDisplayName(e.getDisplayName());
                             node.setDescription(e.getDescription());
+                            node.setTitle(e.getTitle());
                             break;
                         }
                     }
@@ -224,6 +250,7 @@ public class FileSystemTraverser {
             setTitle(mdNode, TITLE_ACCESSOR);
             setNodeValue(mdNode, DESCRIPTION_ACCESSOR);
             setNodeValue(mdNode, STYLE_ACCESSOR);
+            setNodeValue(mdNode, LOGO_ACCESSOR);
         }
     }
 
@@ -333,6 +360,7 @@ public class FileSystemTraverser {
         String title;
         String description;
         String style;
+        String logo;
 
         try {
             builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -349,6 +377,7 @@ public class FileSystemTraverser {
             title = parseAttribute(documentElement, "title");
             description = parseAttribute(documentElement, "description");
             style = parseAttribute(documentElement, "style");
+            logo = parseAttribute(documentElement, "logo");
 
             NodeList childNodes = documentElement.getChildNodes();
             for (int i = 0; i < childNodes.getLength(); i++) {
@@ -387,7 +416,7 @@ public class FileSystemTraverser {
             throw new TranslaterException("can not read file", e);
         }
 
-        return new FolderConfig(href, title, description, style, excludeList, folderEntries);
+        return new FolderConfig(href, title, description, style, logo, excludeList, folderEntries);
     }
 
     private String parseAttribute(Element element, String attribute) {
@@ -412,8 +441,9 @@ public class FileSystemTraverser {
 
             String name = entryNode.getAttribute("name");
             String displayName = entryNode.getAttribute("displayName");
+            String title = entryNode.getAttribute("title");
             String description = entryNode.getAttribute("description");
-            list.add(new Entry(name, displayName, description));
+            list.add(new Entry(name, displayName, title, description));
         }
         return list;
     }

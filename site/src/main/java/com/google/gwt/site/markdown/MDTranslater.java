@@ -69,8 +69,6 @@ public class MDTranslater {
 
             String toc = tocCreator.createTocForNode(root, node);
 
-            String head = createHeadForNode(node);
-
             String relativePath = "./";
             for (int i = 1; i < node.getDepth(); i++) {
                 relativePath += "../";
@@ -79,7 +77,6 @@ public class MDTranslater {
             String html = fillTemplate(
                     content,
                     adjustRelativePath(toc, relativePath),
-                    adjustRelativePath(head, relativePath),
                     node);
 
             writer.writeHTML(node, adjustRelativePath(html, relativePath));
@@ -90,28 +87,15 @@ public class MDTranslater {
         return node.getPath().endsWith(".md");
     }
 
-    private String createHeadForNode(MDNode node) {
-        return "<link href='css/main.css' rel='stylesheet' type='text/css'>";
-    }
-
     private String fillTemplate(
-            String html, 
-            String toc, 
-            String head,
+            String html,
+            String toc,
             MDNode node) {
         VelocityWrapper velocityWrapper = velocityFactory.create(template);
 
-        MDNode infoNode = node.getParent();
-        if (infoNode == null) {
-            infoNode = node;
-        }
-        
         velocityWrapper.put("content", html);
         velocityWrapper.put("toc", toc);
-        velocityWrapper.put("head", head);
-        .replace("$style", Strings.nullToEmpty(infoNode.getStyle()))
-                .replace("$title", infoNode.getTitle())
-                .replace("$description", infoNode.getDescription())
+        velocityWrapper.put("node", node);
 
         return velocityWrapper.generate();
     }
@@ -120,7 +104,7 @@ public class MDTranslater {
         // Just using Regexp to add relative paths to certain urls.
         // If we wanted to support a more complicated syntax
         // we could parse the template with some library like jsoup
-        return html.replaceAll("(href|src)=(['\"])(?:(?:/+)|(?!(?:[a-z]+:|#)))(.*?)(\\2)",
+        return html.replaceAll("(href|src|property=\"og:image\" content)=(['\"])(?:(?:/+)|(?!(?:[a-z]+:|#)))(.*?)(\\2)",
                 "$1='" + relativePath + "$3'");
     }
 

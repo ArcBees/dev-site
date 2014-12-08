@@ -14,19 +14,19 @@
 package com.google.gwt.site.markdown.fs;
 
 public class MDNode {
+    protected String displayName;
+
     private final String name;
     private final MDParent parent;
     private final String path;
-
-    private String title;
-    private String description;
     private final int depth;
     private final String relativePath;
 
-    protected String displayName;
-
-    private boolean excludeFromToc;
+    private String title;
+    private String description;
+    private String logo;
     private String style;
+    private boolean excludeFromToc;
 
     public MDNode(MDParent parent, String name, String path, int depth, String relativePath) {
         this.parent = parent;
@@ -116,5 +116,13 @@ public class MDNode {
 
     public void setStyle(String style) {
         this.style = style;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public String getLogo() {
+        return logo;
     }
 }
