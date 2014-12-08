@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder href="index">
+<folder href="index"
+        title="Jukito"
+        description="Jukito DevSite"
+        style="jukito">
     <toc>
         <entries>
             <entry name="@All" displayName="@All" description="@All annotation"></entry>

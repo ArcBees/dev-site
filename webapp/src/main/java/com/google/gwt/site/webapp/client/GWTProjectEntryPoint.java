@@ -24,6 +24,7 @@ import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.query.client.Properties;
 import com.google.gwt.query.client.js.JsUtils;
+import com.google.gwt.query.client.plugins.ajax.Ajax;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.site.demo.ContentLoadedEvent;
 import com.google.gwt.site.demo.gsss.grid.GSSSGridDemos;
@@ -60,6 +61,8 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private static boolean ajaxEnabled = isPushstateCapable && origin.startsWith("http");
     private static String currentPage = Window.Location.getPath();
     private static EventBus eventBus = new SimpleEventBus();
+
+    private final RegExp titleTagMatcher = RegExp.compile("<title>(.*?)</title>");
 
     private Analytics analytics;
 
@@ -254,17 +257,42 @@ public class GWTProjectEntryPoint implements EntryPoint {
                 updateMenusForPage(pageUrl);
 
                 final String finalPageUrl = pageUrl;
-                $("#content").load(pageUrl + " #content > div", null, new Function() {
-                    @Override
-                    public void f() {
-                        onPageLoaded(finalPageUrl);
-                    }
-                });
+//                + " #content > div"
+
+                ajaxLoad(pageUrl);
             } else {
                 scrollToHash();
             }
+
             currentPage = pageUrl;
         }
+    }
+
+    private void ajaxLoad(final String url) {
+        Ajax.Settings settings = Ajax.createSettings();
+        settings.setUrl(url);
+        settings.setDataType("html");
+        settings.setType("get");
+        settings.setSuccess(new Function() {
+            @Override
+            public void f() {
+                GQuery content = $("<div>" + getArgument(0) + "</div>");
+
+                String pageStyle = content.find("#holder").attr("class");
+                $("#holder").attr("class", pageStyle);
+
+                $("#content").empty().append(content.find("#content > div"));
+
+                $("meta").remove();
+                $("head").append(content.find("meta"));
+
+                $("head title").replaceWith(content.find("title"));
+
+                onPageLoaded(url);
+            }
+        });
+
+        Ajax.ajax(settings);
     }
 
     private void onPageLoaded(String pageUrl) {

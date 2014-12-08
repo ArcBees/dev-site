@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder href="index">
+<folder href="index" title="Mixins">
     <toc>
         <entries>
             <entry name="how-to-install" displayName="How to install" description="How to install"></entry>

@@ -75,7 +75,8 @@ public class MDTranslater {
                     adjustRelativePath(template, relativePath),
                     content,
                     adjustRelativePath(toc, relativePath),
-                    adjustRelativePath(head, relativePath));
+                    adjustRelativePath(head, relativePath),
+                    node);
 
             writer.writeHTML(node, html);
         }
@@ -89,8 +90,23 @@ public class MDTranslater {
         return "<link href='css/main.css' rel='stylesheet' type='text/css'>";
     }
 
-    private String fillTemplate(String template, String html, String toc, String head) {
-        return template.replace("$content", html).replace("$toc", toc).replace("$head", head);
+    private String fillTemplate(
+            String template,
+            String html,
+            String toc,
+            String head,
+            MDNode node) {
+        MDNode infoNode = node.getParent();
+        if (infoNode == null) {
+            infoNode = node;
+        }
+
+        return template.replace("$content", html)
+                .replace("$toc", toc)
+                .replace("$head", head)
+                .replace("$style", Strings.nullToEmpty(infoNode.getStyle()))
+                .replace("$title", infoNode.getTitle())
+                .replace("$description", infoNode.getDescription());
     }
 
     protected String adjustRelativePath(String html, String relativePath) {

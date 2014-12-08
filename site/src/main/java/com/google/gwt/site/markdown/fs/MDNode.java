@@ -18,6 +18,7 @@ public class MDNode {
     private final MDParent parent;
     private final String path;
 
+    private String title;
     private String description;
     private final int depth;
     private final String relativePath;
@@ -25,6 +26,7 @@ public class MDNode {
     protected String displayName;
 
     private boolean excludeFromToc;
+    private String style;
 
     public MDNode(MDParent parent, String name, String path, int depth, String relativePath) {
         this.parent = parent;
@@ -98,5 +100,21 @@ public class MDNode {
 
     public boolean isExcludeFromToc() {
         return excludeFromToc;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
     }
 }

@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-        <title>GWT Project</title>
+        <meta property="description" content="$description"/>
 
-        <link rel="stylesheet" href="assets/build/css/style.css">
+        <!-- Open Graph -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="$title">
+        <meta property="og:description" content="$description">
+        <meta property="og:image" content="$logo">
+        <meta property="og:image:width" content="$logo_width">
+        <meta property="og:image:height" content="$logo_height">
+
+        <title>$title</title>
+
+        <link rel="stylesheet" href="assets/build/css/style.min.css">
         <link rel="stylesheet" href="assets/build/fonts/icons/icons.css">
         <link rel="stylesheet" href="assets/build/fonts/geometria/geometria.css">
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
@@ -27,7 +37,7 @@
         </script>
     </head>
 
-    <body class="jukito">
+    <body>
 
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -44,7 +54,7 @@
             </div>
         </nav>
 
-        <div class="holder">
+        <div id="holder" class="$style">
             <aside id="submenu">
                 <div class="logo">
 
