@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  font-family: "soleil", sans-serif;
+  font-family: @f-base;
   font-weight: 400;
   font-size: 16px;
   font-size: 1.6rem;
@@ -68,55 +68,42 @@ body {
 // -- Headings -------------------------------------------
 
 h1 {
+  font-family: @f-base;
   font-size: 40px;
   font-size: 4rem;
-  font-weight: bold;
+  font-weight: normal;
   line-height: 1em;
 
   margin: 0 0 1em;
-
-  &::after {
-    content: "";
-    background-color: @c-text;
-
-    display: block;
-    width: 22px;
-    height: 3px;
-
-    position: relative;
-    left: -18px;
-    bottom: -20px;
-
-    .rounded(10px);
-  }
 }
 
 h2 {
   color: @c-primary;
-  font-size: 28px;
-  font-size: 2.8rem;
+  font-family: @f-base-b;
+  font-size: 20px;
+  font-size: 2rem;
 
-  margin: 1em 0 0.9em;
+  margin: 1em 0 1.5em;
 
   &::after {
     content: "";
     background-color: @c-primary;
 
     display: block;
-    width: 22px;
-    height: 3px;
+    width: 30px;
+    height: 4px;
 
     position: relative;
-    left: -18px;
-    bottom: -11px;
-
-    .rounded(10px);
+    left: 0;
+    bottom: -10px;
   }
 }
 
 h3 {
-  font-size: 18px;
-  font-size: 1.8rem;
+  font-family: @f-base-b;
+  font-size: 14px;
+  font-size: 1.4rem;
+  text-transform: uppercase;
 
   margin: 0.2em 0 0.9em;
 }
@@ -130,6 +117,12 @@ h4 {
   strong,
   code {
     color: @c-primary;
+  }
+}
+
+.jukito {
+  h2::after {
+    background-color: @c-jukito;
   }
 }
 
@@ -159,7 +152,8 @@ p {
 }
 
 strong {
-  font-weight: bold;
+  font-family: @f-base-b;
+  font-weight: normal;
 }
 
 em {

@@ -43,6 +43,7 @@ local.properties
 .loadpath
 *.ucls
 *.checkstyle
+node_modules/
 
 # External tool builders
 .externalToolBuilders/
