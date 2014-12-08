@@ -22,21 +22,26 @@ import com.google.gwt.site.markdown.fs.MDNode;
 import com.google.gwt.site.markdown.fs.MDParent;
 import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
 import com.google.gwt.site.markdown.toc.TocCreator;
+import com.google.gwt.site.markdown.velocity.VelocityWrapper;
+import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
 
 public class MDTranslater {
 
     private final MarkdownToHtmlUtil markdownToHtmlUtil = new MarkdownToHtmlUtil();
-
     private final TocCreator tocCreator;
-
     private final MarkupWriter writer;
-
     private final String template;
+    private final VelocityWrapperFactory velocityFactory;
 
-    public MDTranslater(TocCreator tocCreator, MarkupWriter writer, String template) {
+    public MDTranslater(
+            TocCreator tocCreator,
+            MarkupWriter writer,
+            String template,
+            VelocityWrapperFactory velocityFactory) {
         this.tocCreator = tocCreator;
         this.writer = writer;
         this.template = template;
+        this.velocityFactory = velocityFactory;
     }
 
     public void render(MDParent root) throws TranslaterException {
@@ -72,12 +77,11 @@ public class MDTranslater {
             }
 
             String html = fillTemplate(
-                    adjustRelativePath(template, relativePath),
                     content,
                     adjustRelativePath(toc, relativePath),
                     adjustRelativePath(head, relativePath));
 
-            writer.writeHTML(node, html);
+            writer.writeHTML(node, adjustRelativePath(html, relativePath));
         }
     }
 
@@ -89,8 +93,14 @@ public class MDTranslater {
         return "<link href='css/main.css' rel='stylesheet' type='text/css'>";
     }
 
-    private String fillTemplate(String template, String html, String toc, String head) {
-        return template.replace("$content", html).replace("$toc", toc).replace("$head", head);
+    private String fillTemplate(String html, String toc, String head) {
+        VelocityWrapper velocityWrapper = velocityFactory.create(template);
+
+        velocityWrapper.put("content", html);
+        velocityWrapper.put("toc", toc);
+        velocityWrapper.put("head", head);
+
+        return velocityWrapper.generate();
     }
 
     protected String adjustRelativePath(String html, String relativePath) {

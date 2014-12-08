@@ -22,6 +22,8 @@ import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
 import com.google.gwt.site.markdown.toc.TocCreator;
 import com.google.gwt.site.markdown.toc.TocFromMdCreator;
 import com.google.gwt.site.markdown.toc.TocFromTemplateCreator;
+import com.google.gwt.site.markdown.velocity.VelocityEngineProvider;
+import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
 
 public class MDHelper {
     private String sourceDirectory;
@@ -33,7 +35,6 @@ public class MDHelper {
     private boolean created = false;
     private File sourceDirectoryFile;
     private File outputDirectoryFile;
-    private String template;
     private String templateToc;
     private MarkdownToHtmlUtil markdownToHtmlUtil;
 
@@ -107,7 +108,6 @@ public class MDHelper {
         if (templateFile == null) {
             throw new MDHelperException("no templateFile set");
         }
-        template = readFile(templateFile);
 
         // read template TOC if parameter is provided
         if (templateTocFile != null) {
@@ -138,7 +138,10 @@ public class MDHelper {
 
         TocCreator tocCreator = templateToc != null ? new TocFromTemplateCreator(templateToc) : new TocFromMdCreator();
 
-        new MDTranslater(tocCreator, new MarkupWriter(outputDirectoryFile), template)
+        new MDTranslater(tocCreator,
+                new MarkupWriter(outputDirectoryFile),
+                templateFile,
+                new VelocityWrapperFactory(new VelocityEngineProvider()))
                 .render(mdRoot);
     }
 }
