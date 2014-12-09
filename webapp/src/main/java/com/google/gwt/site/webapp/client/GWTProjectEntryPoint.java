@@ -256,9 +256,6 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
                 updateMenusForPage(pageUrl);
 
-                final String finalPageUrl = pageUrl;
-//                + " #content > div"
-
                 ajaxLoad(pageUrl);
             } else {
                 scrollToHash();
