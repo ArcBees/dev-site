@@ -95,10 +95,10 @@ public class FileSystemTraverser {
     }
 
     private static class Entry {
-        private String name;
-        private String displayName;
+        private final String name;
         private final String title;
-        private String description;
+        private final String displayName;
+        private final String description;
 
         public Entry(String name, String displayName, String title, String description) {
             this.name = name;
