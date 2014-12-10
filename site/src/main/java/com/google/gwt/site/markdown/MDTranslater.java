@@ -22,21 +22,26 @@ import com.google.gwt.site.markdown.fs.MDNode;
 import com.google.gwt.site.markdown.fs.MDParent;
 import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
 import com.google.gwt.site.markdown.toc.TocCreator;
+import com.google.gwt.site.markdown.velocity.VelocityWrapper;
+import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
 
 public class MDTranslater {
 
     private final MarkdownToHtmlUtil markdownToHtmlUtil = new MarkdownToHtmlUtil();
-
     private final TocCreator tocCreator;
-
     private final MarkupWriter writer;
-
     private final String template;
+    private final VelocityWrapperFactory velocityFactory;
 
-    public MDTranslater(TocCreator tocCreator, MarkupWriter writer, String template) {
+    public MDTranslater(
+            TocCreator tocCreator,
+            MarkupWriter writer,
+            String template,
+            VelocityWrapperFactory velocityFactory) {
         this.tocCreator = tocCreator;
         this.writer = writer;
         this.template = template;
+        this.velocityFactory = velocityFactory;
     }
 
     public void render(MDParent root) throws TranslaterException {
@@ -64,20 +69,17 @@ public class MDTranslater {
 
             String toc = tocCreator.createTocForNode(root, node);
 
-            String head = createHeadForNode(node);
-
             String relativePath = "./";
             for (int i = 1; i < node.getDepth(); i++) {
                 relativePath += "../";
             }
 
             String html = fillTemplate(
-                    adjustRelativePath(template, relativePath),
                     content,
                     adjustRelativePath(toc, relativePath),
-                    adjustRelativePath(head, relativePath));
+                    node);
 
-            writer.writeHTML(node, html);
+            writer.writeHTML(node, adjustRelativePath(html, relativePath));
         }
     }
 
@@ -85,19 +87,24 @@ public class MDTranslater {
         return node.getPath().endsWith(".md");
     }
 
-    private String createHeadForNode(MDNode node) {
-        return "<link href='css/main.css' rel='stylesheet' type='text/css'>";
-    }
+    private String fillTemplate(
+            String html,
+            String toc,
+            MDNode node) {
+        VelocityWrapper velocityWrapper = velocityFactory.create(template);
 
-    private String fillTemplate(String template, String html, String toc, String head) {
-        return template.replace("$content", html).replace("$toc", toc).replace("$head", head);
+        velocityWrapper.put("content", html);
+        velocityWrapper.put("toc", toc);
+        velocityWrapper.put("node", node);
+
+        return velocityWrapper.generate();
     }
 
     protected String adjustRelativePath(String html, String relativePath) {
         // Just using Regexp to add relative paths to certain urls.
         // If we wanted to support a more complicated syntax
         // we could parse the template with some library like jsoup
-        return html.replaceAll("(href|src)=(['\"])(?:(?:/+)|(?!(?:[a-z]+:|#)))(.*?)(\\2)",
+        return html.replaceAll("(href|src|property=\"og:image\" content)=(['\"])(?:(?:/+)|(?!(?:[a-z]+:|#)))(.*?)(\\2)",
                 "$1='" + relativePath + "$3'");
     }
 

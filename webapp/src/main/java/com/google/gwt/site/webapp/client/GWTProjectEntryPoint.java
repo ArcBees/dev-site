@@ -11,8 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package com.google.gwt.site.webapp.client;
 
+import com.arcbees.analytics.client.ClientAnalyticsFactory;
+import com.arcbees.analytics.shared.Analytics;
 import com.google.common.base.MoreObjects;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -21,6 +24,7 @@ import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.query.client.Properties;
 import com.google.gwt.query.client.js.JsUtils;
+import com.google.gwt.query.client.plugins.ajax.Ajax;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.site.demo.ContentLoadedEvent;
 import com.google.gwt.site.demo.gsss.grid.GSSSGridDemos;
@@ -58,11 +62,30 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private static String currentPage = Window.Location.getPath();
     private static EventBus eventBus = new SimpleEventBus();
 
+    private final RegExp titleTagMatcher = RegExp.compile("<title>(.*?)</title>");
+
+    private Analytics analytics;
+
     @Override
     public void onModuleLoad() {
+        createAnalytics();
+
         registerDemos();
 
         enhancePage();
+    }
+
+    private void createAnalytics() {
+        if (shouldTrackAnalytics()) {
+            ClientAnalyticsFactory analyticsFactory = new ClientAnalyticsFactory();
+            analytics = analyticsFactory.create("UA-41550930-12", false);
+            analytics.create()
+                    .cookieDomain("arcbees.com")
+                    .allowLinkerParameters(true)
+                    .go();
+
+            trackPageView(Window.Location.getPath());
+        }
     }
 
     private void registerDemos() {
@@ -233,20 +256,51 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
                 updateMenusForPage(pageUrl);
 
-                $("#content").load(pageUrl + " #content > div", null, new Function() {
-                    @Override
-                    public void f() {
-                        ContentLoadedEvent.fire(eventBus);
-                        openMenu();
-                        scrollToHash();
-                        $("#spinner").hide();
-                    }
-                });
+                ajaxLoad(pageUrl);
             } else {
                 scrollToHash();
             }
+
             currentPage = pageUrl;
         }
+    }
+
+    private void ajaxLoad(final String url) {
+        Ajax.Settings settings = Ajax.createSettings();
+        settings.setUrl(url);
+        settings.setDataType("html");
+        settings.setType("get");
+        settings.setSuccess(new Function() {
+            @Override
+            public void f() {
+                GQuery content = $("<div>" + getArgument(0) + "</div>");
+
+                String pageStyle = content.find("#holder").attr("class");
+                $("#holder").attr("class", pageStyle);
+
+                $("#content").empty().append(content.find("#content > div"));
+
+                $("meta").remove();
+                $("head").append(content.find("meta"));
+
+                $("head title").replaceWith(content.find("title"));
+
+                onPageLoaded(url);
+            }
+        });
+
+        Ajax.ajax(settings);
+    }
+
+    private void onPageLoaded(String pageUrl) {
+        if (shouldTrackAnalytics()) {
+            trackPageView(pageUrl);
+        }
+
+        ContentLoadedEvent.fire(eventBus);
+        openMenu();
+        scrollToHash();
+        $("#spinner").hide();
     }
 
     private void updateMenusForPage(String pageUrl) {
@@ -278,5 +332,15 @@ public class GWTProjectEntryPoint implements EntryPoint {
         } else {
             anchor.scrollIntoView();
         }
+    }
+
+    private void trackPageView(String pageUrl) {
+        analytics.sendPageView().documentPath(pageUrl).go();
+    }
+
+    private boolean shouldTrackAnalytics() {
+        String host = Window.Location.getHost();
+
+        return host.endsWith(".arcbees.com");
     }
 }

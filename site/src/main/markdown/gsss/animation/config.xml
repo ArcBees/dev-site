@@ -1,10 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder href="index">
-    <toc>
-        <entries>
-            <entry name="how-to-install" displayName="How to install" description="How to install"></entry>
-            <entry name="default-structure" displayName="Default structure" description="Default structure"></entry>
-            <entry name="animations" displayName="Animations" description="Animations"></entry>
-        </entries>
-    </toc>
+<folder href="index" title="Animation">
 </folder>

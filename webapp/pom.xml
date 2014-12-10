@@ -21,6 +21,7 @@
 
         <!-- javax -->
         <servlet.version>2.5</servlet.version>
+        <universal-analytics.version>2.1</universal-analytics.version>
 
         <gwt.version>2.7.0</gwt.version>
         <gwtquery.version>1.4.2</gwtquery.version>
@@ -83,6 +84,11 @@
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
             <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.arcbees.analytics</groupId>
+            <artifactId>universal-analytics</artifactId>
+            <version>${universal-analytics.version}</version>
         </dependency>
 
         <!-- Test Dependencies -->
