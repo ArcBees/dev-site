@@ -21,15 +21,15 @@ import com.google.gwt.regexp.shared.RegExp;
  */
 public class ProjectEntryPointGwtTest extends ProjectEntryPointTest {
 
-  public String getModuleName() {
-    return "com.google.gwt.site.webapp.Test";
-  }
+    public String getModuleName() {
+        return "com.google.gwt.site.webapp.Test";
+    }
 
-  protected String getOrigin() {
-    return GWTProjectEntryPoint.origin;
-  }
+    protected String getOrigin() {
+        return GWTProjectEntryPoint.origin;
+    }
 
-  protected RegExp getSameOriginRegex() {
-    return GWTProjectEntryPoint.isSameOriginRexp;
-  }
+    protected RegExp getSameOriginRegex() {
+        return GWTProjectEntryPoint.isSameOriginRexp;
+    }
 }

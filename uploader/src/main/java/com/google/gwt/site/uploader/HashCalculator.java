@@ -22,8 +22,8 @@ import java.io.IOException;
  */
 public interface HashCalculator {
 
-  /**
-   * Calculates the hash of a given file.
-   */
-  String calculateHash(File file) throws IOException;
+    /**
+     * Calculates the hash of a given file.
+     */
+    String calculateHash(File file) throws IOException;
 }

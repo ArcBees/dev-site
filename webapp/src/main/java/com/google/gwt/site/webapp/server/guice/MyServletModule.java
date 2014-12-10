@@ -28,6 +28,6 @@ public class MyServletModule extends ServletModule {
 
         serve("/remote_api").with(RemoteApiServlet.class);
         serve("/hash").with(HashServlet.class);
-        serve("/*").with(ContentServlet.class);
+        serveRegex("/(?!_ah).*").with(ContentServlet.class);
     }
 }

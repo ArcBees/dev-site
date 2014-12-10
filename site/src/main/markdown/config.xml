@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder href="index">
+<folder href="index" title="ArcBees" description="ArcBees DevSite">
     <toc>
         <entries>
             <entry name="index" displayName="Home" description="Home"></entry>

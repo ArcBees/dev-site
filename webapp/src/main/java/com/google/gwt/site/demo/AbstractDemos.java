@@ -43,7 +43,7 @@ public abstract class AbstractDemos implements ContentLoadedEvent.ContentLoadedH
 
     @Override
     public void onContentLoaded() {
-        GQuery demos = $("//div[@id='gwt-content']//div[starts-with(@id, '" + prefix + "')]");
+        GQuery demos = $("//div[@id='content']//div[starts-with(@id, '" + prefix + "')]");
 
         NodeList<Element> nodeList = demos.get();
         for (int i = 0; i < nodeList.getLength(); i++) {

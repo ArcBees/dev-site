@@ -18,13 +18,13 @@ import com.google.gwt.site.markdown.fs.MDParent;
 
 public class TocFromTemplateCreator implements TocCreator {
 
-  private String templateToc;
+    private String templateToc;
 
-  public TocFromTemplateCreator(String templateToc) {
-    this.templateToc = templateToc;
-  }
+    public TocFromTemplateCreator(String templateToc) {
+        this.templateToc = templateToc;
+    }
 
-  public String createTocForNode(MDParent root, MDNode node) {
-    return templateToc;
-  }
+    public String createTocForNode(MDParent root, MDNode node) {
+        return templateToc;
+    }
 }

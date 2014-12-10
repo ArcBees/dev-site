@@ -6,7 +6,7 @@
       - [Advantages over vanilla JUnit](jukito/Advantages-Over-Vanilla-JUnit.html)
       - [Maven](jukito/Maven.html)
       - [Releasing procedure](jukito/Releasing-Procedure.html)
-  - [GSS on Steroids](gsss/)
+  - [GSS on Steroids](#)
       - [Mixins](gsss/mixins/)
           - [How to install](gsss/mixins/#how-to-install)
           - [Border radius](gsss/mixins/#border-radius)
