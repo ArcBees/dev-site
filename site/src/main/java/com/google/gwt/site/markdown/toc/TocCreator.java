@@ -17,5 +17,5 @@ import com.google.gwt.site.markdown.fs.MDNode;
 import com.google.gwt.site.markdown.fs.MDParent;
 
 public interface TocCreator {
-  String createTocForNode(MDParent root, MDNode node);
+    String createTocForNode(MDParent root, MDNode node);
 }

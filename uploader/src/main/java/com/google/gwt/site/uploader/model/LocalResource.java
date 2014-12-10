@@ -18,24 +18,24 @@ import java.io.File;
 
 public class LocalResource extends Resource {
 
-  private final File file;
+    private final File file;
 
-  public LocalResource(String path, String hash, File file) {
-    super(path, hash);
+    public LocalResource(String path, String hash, File file) {
+        super(path, hash);
 
-    if (file == null) {
-      throw new IllegalArgumentException("file cannot be null");
+        if (file == null) {
+            throw new IllegalArgumentException("file cannot be null");
+        }
+
+        this.file = file;
     }
 
-    this.file = file;
-  }
+    public File getFile() {
+        return file;
+    }
 
-  public File getFile() {
-    return file;
-  }
-
-  @Override
-  public String toString() {
-    return "LocalResource [ key=" + getKey() + " file=" + file + ", hash=" + getHash() + "]";
-  }
+    @Override
+    public String toString() {
+        return "LocalResource [ key=" + getKey() + " file=" + file + ", hash=" + getHash() + "]";
+    }
 }

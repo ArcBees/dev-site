@@ -23,52 +23,52 @@ import com.google.gwt.site.uploader.model.LocalResource;
 
 public class FileTraverserFileSystemImpl implements FileTraverser {
 
-  private final File filesDir;
-  private final HashCalculator hashCalculator;
+    private final File filesDir;
+    private final HashCalculator hashCalculator;
 
-  public FileTraverserFileSystemImpl(File filesDir, HashCalculator hashCalculator) {
-    this.filesDir = filesDir;
-    this.hashCalculator = hashCalculator;
-  }
-
-  @Override
-  public List<LocalResource> getLocalResources() throws IOException {
-    List<LocalResource> resources = new LinkedList<>();
-    traverse(filesDir, filesDir, resources);
-    return resources;
-  }
-
-  private void traverse(File root, File file, List<LocalResource> resources) throws IOException {
-
-    if (file.isDirectory()) {
-
-      File[] listFiles = file.listFiles();
-      for (File f : listFiles) {
-        traverse(root, f, resources);
-      }
-    } else if (file.isFile() && shouldFileBeUploaded(file.getName())) {
-
-      String hash = hashCalculator.calculateHash(file);
-
-      String filePath = file.getAbsolutePath();
-      String basePath = root.getAbsolutePath();
-
-      // make sure that basePath has a slash at the end
-      if (!basePath.endsWith(File.separator)) {
-        basePath += File.separator;
-      }
-
-      String url = filePath.replace(basePath, "");
-      // for windows replace backslashes
-      url = url.replace("\\", "/");
-      resources.add(new LocalResource(url, hash, file));
+    public FileTraverserFileSystemImpl(File filesDir, HashCalculator hashCalculator) {
+        this.filesDir = filesDir;
+        this.hashCalculator = hashCalculator;
     }
-  }
 
-  private boolean shouldFileBeUploaded(String fileName) {
-    return fileName.endsWith(".html") || fileName.endsWith(".css") || fileName.endsWith(".js")
-            || fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")
-            || fileName.endsWith(".gif") || fileName.equals("package-list") || fileName.endsWith(".eot")
-            || fileName.endsWith(".svg") || fileName.endsWith(".ttf") || fileName.endsWith(".woff");
-  }
+    @Override
+    public List<LocalResource> getLocalResources() throws IOException {
+        List<LocalResource> resources = new LinkedList<>();
+        traverse(filesDir, filesDir, resources);
+        return resources;
+    }
+
+    private void traverse(File root, File file, List<LocalResource> resources) throws IOException {
+
+        if (file.isDirectory()) {
+
+            File[] listFiles = file.listFiles();
+            for (File f : listFiles) {
+                traverse(root, f, resources);
+            }
+        } else if (file.isFile() && shouldFileBeUploaded(file.getName())) {
+
+            String hash = hashCalculator.calculateHash(file);
+
+            String filePath = file.getAbsolutePath();
+            String basePath = root.getAbsolutePath();
+
+            // make sure that basePath has a slash at the end
+            if (!basePath.endsWith(File.separator)) {
+                basePath += File.separator;
+            }
+
+            String url = filePath.replace(basePath, "");
+            // for windows replace backslashes
+            url = url.replace("\\", "/");
+            resources.add(new LocalResource(url, hash, file));
+        }
+    }
+
+    private boolean shouldFileBeUploaded(String fileName) {
+        return fileName.endsWith(".html") || fileName.endsWith(".css") || fileName.endsWith(".js")
+                || fileName.endsWith(".png") || fileName.endsWith(".jpg") || fileName.endsWith(".jpeg")
+                || fileName.endsWith(".gif") || fileName.equals("package-list") || fileName.endsWith(".eot")
+                || fileName.endsWith(".svg") || fileName.endsWith(".ttf") || fileName.endsWith(".woff");
+    }
 }

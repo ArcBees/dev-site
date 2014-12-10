@@ -19,9 +19,9 @@ package com.google.gwt.site.uploader;
  */
 public class InitializeException extends Exception {
 
-  private static final long serialVersionUID = 8487123279213835434L;
+    private static final long serialVersionUID = 8487123279213835434L;
 
-  public InitializeException(String message, Exception e) {
-    super(message, e);
-  }
+    public InitializeException(String message, Exception e) {
+        super(message, e);
+    }
 }

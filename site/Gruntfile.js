@@ -1,21 +1,11 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        concat: {
-            dist: {
-                src: [
-                    //'js/libs/*.js',
-                    'src/main/site/assets/js/global.js'
-                ],
-                dest: 'src/main/site/assets/build/js/global.js'
-            }
-        },
-
         uglify: {
             build: {
-                src: 'src/main/site/assets/build/js/global.js',
+                src: 'src/main/site/assets/js/global.js',
                 dest: 'src/main/site/assets/build/js/global.min.js'
             }
         },
@@ -32,15 +22,6 @@ module.exports = function(grunt) {
         },
 
         less: {
-            development: {
-                options: {
-                    paths: ["src/main/site/assets/less"],
-                    cleancss: false
-                },
-                files: {
-                    "src/main/site/assets/build/css/style.css": "src/main/site/assets/less/style.less"
-                }
-            },
             production: {
                 options: {
                     paths: ["src/main/site/assets/less"],

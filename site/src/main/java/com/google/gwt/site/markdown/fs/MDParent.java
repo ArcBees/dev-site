@@ -19,56 +19,56 @@ import java.util.List;
 
 public class MDParent extends MDNode {
 
-  public MDParent(MDParent parent, String name, String path, int depth, String relativePath) {
-    super(parent, name, path, depth, relativePath);
-  }
+    public MDParent(MDParent parent, String name, String path, int depth, String relativePath) {
+        super(parent, name, path, depth, relativePath);
+    }
 
-  private List<MDNode> children = new LinkedList<>();
-  private String href;
-  private File configFile;
+    private List<MDNode> children = new LinkedList<>();
+    private String href;
+    private File configFile;
 
-  @Override
-  public String toString() {
-    return "MDParent [getName()=" + getName() + ", getDepth()=" + getDepth() + "]";
-  }
+    @Override
+    public String toString() {
+        return "MDParent [getName()=" + getName() + ", getDepth()=" + getDepth() + "]";
+    }
 
-  public void setChildren(List<MDNode> children) {
-    this.children = children;
-  }
+    public void setChildren(List<MDNode> children) {
+        this.children = children;
+    }
 
-  public void addChild(MDNode node) {
-    children.add(node);
-  }
+    public void addChild(MDNode node) {
+        children.add(node);
+    }
 
-  public List<MDNode> getChildren() {
-    return children;
-  }
+    public List<MDNode> getChildren() {
+        return children;
+    }
 
-  @Override
-  public boolean isFolder() {
-    return true;
-  }
+    @Override
+    public boolean isFolder() {
+        return true;
+    }
 
-  @Override
-  public String getDisplayName() {
-    if (displayName == null)
-      return getName();
-    return displayName;
-  }
+    @Override
+    public String getDisplayName() {
+        if (displayName == null)
+            return getName();
+        return displayName;
+    }
 
-  public void setHref(String href) {
-    this.href = href;
-  }
+    public void setHref(String href) {
+        this.href = href;
+    }
 
-  public String getHref() {
-    return href;
-  }
+    public String getHref() {
+        return href;
+    }
 
-  public void setConfigFile(File file) {
-    this.configFile = file;
-  }
+    public void setConfigFile(File file) {
+        this.configFile = file;
+    }
 
-  public File getConfigFile() {
-    return configFile;
-  }
+    public File getConfigFile() {
+        return configFile;
+    }
 }
