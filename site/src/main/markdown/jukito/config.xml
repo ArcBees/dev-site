@@ -2,7 +2,7 @@
 <folder href="index"
         title="Jukito"
         description="Jukito DevSite"
-        logo="assets/build/img/navLogoSmall.png"
+        image="assets/build/img/navLogoSmall.png"
         style="jukito">
     <toc>
         <entries>

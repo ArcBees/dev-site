@@ -24,7 +24,7 @@ public class MDNode {
 
     private String title;
     private String description;
-    private String logo;
+    private String image;
     private String style;
     private boolean excludeFromToc;
 
@@ -118,11 +118,11 @@ public class MDNode {
         this.style = style;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getImage() {
+        return image;
     }
 }

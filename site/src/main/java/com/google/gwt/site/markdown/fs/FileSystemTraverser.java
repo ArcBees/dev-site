@@ -166,12 +166,12 @@ public class FileSystemTraverser {
     private static final FieldAccessor<MDNode> LOGO_ACCESSOR = new FieldAccessor<MDNode>() {
         @Override
         public void setValue(MDNode node, String value) {
-            node.setLogo(value);
+            node.setImage(value);
         }
 
         @Override
         public String getValue(MDNode node) {
-            return node.getLogo();
+            return node.getImage();
         }
     };
 
@@ -195,7 +195,7 @@ public class FileSystemTraverser {
             current.setTitle(config.getTitle());
             current.setDescription(config.getDescription());
             current.setStyle(config.getStyle());
-            current.setLogo(config.getLogo());
+            current.setImage(config.getLogo());
 
             if (config.getExcludeList() != null) {
                 for (String exclude : config.getExcludeList()) {

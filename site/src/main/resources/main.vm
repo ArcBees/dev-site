@@ -15,8 +15,8 @@
         <meta property="og:title" content="${node.title}">
         <title>${node.title}</title>
 #end
-#if (${node.logo})
-        <meta property="og:image" content="${node.logo}">
+#if (${node.image})
+        <meta property="og:image" content="${node.image}">
         <meta property="og:image:width" content="120">
         <meta property="og:image:height" content="120">
 #end
@@ -50,7 +50,7 @@
         <nav role="navigation" id="nav" class="closed">
             <div class="wrapper">
                 <ul>
-                    <li class="logo"><a href="/">GWT homepage</a></li>
+                    <li class="image"><a href="/">GWT homepage</a></li>
                     <li><a href="gaestudio/GettingStarted.html"><i class="icon_menu"></i>GAE Studio</a></li>
                     <li><a href="jukito/Home.html"><i class="icon_menu"></i>Jukito</a></li>
                     <li><a href="gsss/index.html"><i class="icon_menu"></i>GSS on Steroids</a></li>
@@ -60,7 +60,7 @@
 
         <div id="holder" class="${node.style}">
             <aside id="submenu">
-                <div class="logo">
+                <div class="image">
 
                 </div>
                 <nav>
