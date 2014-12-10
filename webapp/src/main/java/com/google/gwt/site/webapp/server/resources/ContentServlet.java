@@ -76,7 +76,6 @@ public class ContentServlet extends HttpServlet {
     }
 
     private void setContentTypeByFileEnding(HttpServletResponse resp, String fullPath) {
-
         if (fullPath.endsWith(".html")) {
             resp.setContentType("text/html");
             return;
@@ -108,6 +107,26 @@ public class ContentServlet extends HttpServlet {
 
         if (fullPath.endsWith("/package-list")) {
             resp.setContentType("text/plain");
+            return;
+        }
+
+        if (fullPath.endsWith(".eot")) {
+            resp.setContentType("application/vnd.ms-fontobject");
+            return;
+        }
+
+        if (fullPath.endsWith(".svg")) {
+            resp.setContentType("image/svg+xml");
+            return;
+        }
+
+        if (fullPath.endsWith(".ttf")) {
+            resp.setContentType("application/octet-stream");
+            return;
+        }
+
+        if (fullPath.endsWith(".woff")) {
+            resp.setContentType("application/font-woff");
             return;
         }
 

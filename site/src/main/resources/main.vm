@@ -1,37 +1,32 @@
+#* @vtlvariable name="node" type="com.google.gwt.site.markdown.fs.MDNode" *#
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta property="og:type" content="website">
 
-        <title>GWT Project</title>
+#if (${node.description})
+        <meta property="description" content="${node.description}"/>
+        <meta property="og:description" content="${node.description}">
+#end
+#if (${node.title})
+        <meta property="og:title" content="${node.title}">
+        <title>${node.title}</title>
+#end
+#if (${node.image})
+        <meta property="og:image" content="${node.image}">
+        <meta property="og:image:width" content="120">
+        <meta property="og:image:height" content="120">
+#end
 
-        <link rel="stylesheet" href="assets/build/css/style.css">
+        <link rel="stylesheet" href="assets/build/css/style.min.css">
         <link rel="stylesheet" href="assets/build/fonts/icons/icons.css">
+        <link rel="stylesheet" href="assets/build/fonts/geometria/geometria.css">
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
 
-        <script type="text/javascript" src="https://use.typekit.net/wwv3dxt.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-
         <script type="text/javascript" src="/gwtproject/gwtproject.nocache.js"></script>
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-40673139-1']);
-            _gaq.push(['_setDomainName', 'gwtproject.org']);
-            _gaq.push(['_setAllowLinker', true]);
-            _gaq.push(['_trackPageview']);
-
-            (function () {
-                var ga = document.createElement('script');
-                ga.type = 'text/javascript';
-                ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(ga, s);
-            })();
-
-        </script>
         <script>
             (function () {
                 var cx = '008698606704604874043:or32ypbnrfu';
@@ -55,16 +50,21 @@
         <nav role="navigation" id="nav" class="closed">
             <div class="wrapper">
                 <ul>
-                    <li class="logo"><a href="/">GWT homepage</a></li>
-                    <li><a href="jukito/Home.html"><i class="icon_overview"></i>Jukito</a></li>
+                    <li class="image"><a href="/">GWT homepage</a></li>
+                    <li><a href="gaestudio/GettingStarted.html"><i class="icon_menu"></i>GAE Studio</a></li>
+                    <li><a href="jukito/Home.html"><i class="icon_menu"></i>Jukito</a></li>
+                    <li><a href="gsss/index.html"><i class="icon_menu"></i>GSS on Steroids</a></li>
                 </ul>
             </div>
         </nav>
 
-        <div class="holder">
+        <div id="holder" class="${node.style}">
             <aside id="submenu">
+                <div class="image">
+
+                </div>
                 <nav>
-                    $toc
+                    ${toc}
                 </nav>
             </aside>
 
@@ -73,7 +73,7 @@
             <div class="menu-button">Menu</div>
 
             <nav id="nav-mobile" class="flexnav">
-                $toc
+                ${toc}
             </nav>
 
             <div id="search">
@@ -86,14 +86,13 @@
             <div id="content" role="main">
                 <div class="container">
 
-                    $content
+                    ${content}
 
                 </div>
             </div>
         </div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="assets/build/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
 
         <script src="/assets/build/js/vendor/jquery.flexnav.js"></script>
         <script src="/assets/build/js/global.min.js"></script>

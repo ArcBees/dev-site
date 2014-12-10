@@ -43,6 +43,7 @@ local.properties
 .loadpath
 *.ucls
 *.checkstyle
+node_modules/
 
 # External tool builders
 .externalToolBuilders/
@@ -56,5 +57,6 @@ local.properties
 # Mac os specific
 .DS_Store
 
+node_modules/
 credentials
 

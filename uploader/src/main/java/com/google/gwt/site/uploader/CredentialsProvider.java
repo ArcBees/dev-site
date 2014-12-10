@@ -29,61 +29,61 @@ import com.google.common.io.Files;
 
 public class CredentialsProvider {
 
-  private static final Logger logger = Logger.getLogger(CredentialsProvider.class.getName());
+    private static final Logger logger = Logger.getLogger(CredentialsProvider.class.getName());
 
-  public RemoteApiOptions readCredentialsFromFile(String credentialsFile) throws IOException {
+    public RemoteApiOptions readCredentialsFromFile(String credentialsFile) throws IOException {
 
-    String serialized = Files.toString(new File(credentialsFile), Charsets.UTF_8);
-    Map<String, List<String>> props = parseProperties(serialized);
+        String serialized = Files.toString(new File(credentialsFile), Charsets.UTF_8);
+        Map<String, List<String>> props = parseProperties(serialized);
 
-    checkOneProperty(props, "host");
-    checkOneProperty(props, "email");
+        checkOneProperty(props, "host");
+        checkOneProperty(props, "email");
 
-    String host = props.get("host").get(0);
-    String email = props.get("email").get(0);
+        String host = props.get("host").get(0);
+        String email = props.get("email").get(0);
 
-    int port = 443;
-    try {
-      if (props.containsKey("port")) {
-        checkOneProperty(props, "port");
-        port = Integer.parseInt(props.get("port").get(0));
-      }
-    } catch (NumberFormatException e) {
-      logger.log(Level.SEVERE, "error while parsing port", e);
-      throw new RuntimeException("error while parsing port");
-    }
-
-    return new RemoteApiOptions()
-        .server(host, port)
-        .reuseCredentials(email, serialized);
-  }
-
-  // taken from RemoteApiInstaller
-  private static void checkOneProperty(Map<String, List<String>> props, String key)
-      throws IOException {
-    if (props.get(key).size() != 1) {
-      String message = "invalid credential file (should have one property named '" + key + "')";
-      throw new IOException(message);
-    }
-  }
-
-  // taken from RemoteApiInstaller
-  private static Map<String, List<String>> parseProperties(String serializedCredentials) {
-    Map<String, List<String>> props = new HashMap<>();
-    for (String line : serializedCredentials.split("\n")) {
-      line = line.trim();
-      if (!line.startsWith("#") && line.contains("=")) {
-        int firstEqual = line.indexOf('=');
-        String key = line.substring(0, firstEqual);
-        String value = line.substring(firstEqual + 1);
-        List<String> values = props.get(key);
-        if (values == null) {
-          values = new ArrayList<>();
-          props.put(key, values);
+        int port = 443;
+        try {
+            if (props.containsKey("port")) {
+                checkOneProperty(props, "port");
+                port = Integer.parseInt(props.get("port").get(0));
+            }
+        } catch (NumberFormatException e) {
+            logger.log(Level.SEVERE, "error while parsing port", e);
+            throw new RuntimeException("error while parsing port");
         }
-        values.add(value);
-      }
+
+        return new RemoteApiOptions()
+                .server(host, port)
+                .reuseCredentials(email, serialized);
     }
-    return props;
-  }
+
+    // taken from RemoteApiInstaller
+    private static void checkOneProperty(Map<String, List<String>> props, String key)
+            throws IOException {
+        if (props.get(key).size() != 1) {
+            String message = "invalid credential file (should have one property named '" + key + "')";
+            throw new IOException(message);
+        }
+    }
+
+    // taken from RemoteApiInstaller
+    private static Map<String, List<String>> parseProperties(String serializedCredentials) {
+        Map<String, List<String>> props = new HashMap<>();
+        for (String line : serializedCredentials.split("\n")) {
+            line = line.trim();
+            if (!line.startsWith("#") && line.contains("=")) {
+                int firstEqual = line.indexOf('=');
+                String key = line.substring(0, firstEqual);
+                String value = line.substring(firstEqual + 1);
+                List<String> values = props.get(key);
+                if (values == null) {
+                    values = new ArrayList<>();
+                    props.put(key, values);
+                }
+                values.add(value);
+            }
+        }
+        return props;
+    }
 }
