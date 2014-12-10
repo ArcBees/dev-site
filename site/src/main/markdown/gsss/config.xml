@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder>
+<folder title="GSSS"
+        description="GSS on Steroids"
+        style="gsss">
     <toc>
         <entries>
             <entry name="mixins/" displayName="Mixins" description="Mixins"></entry>

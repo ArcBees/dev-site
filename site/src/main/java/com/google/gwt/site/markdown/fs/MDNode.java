@@ -14,16 +14,18 @@
 package com.google.gwt.site.markdown.fs;
 
 public class MDNode {
+    protected String displayName;
+
     private final String name;
     private final MDParent parent;
     private final String path;
-
-    private String description;
     private final int depth;
     private final String relativePath;
 
-    protected String displayName;
-
+    private String title;
+    private String description;
+    private String image;
+    private String style;
     private boolean excludeFromToc;
 
     public MDNode(MDParent parent, String name, String path, int depth, String relativePath) {
@@ -98,5 +100,29 @@ public class MDNode {
 
     public boolean isExcludeFromToc() {
         return excludeFromToc;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 }
