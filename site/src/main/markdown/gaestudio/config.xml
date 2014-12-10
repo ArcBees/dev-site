@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder href="index">
+<folder href="index"
+        title="GAE Studio"
+        description="GAE Studio"
+        style="gaestudio">
     <toc>
         <entries>
             <entry name="Getting started" displayName="Getting started" description="Getting started"></entry>

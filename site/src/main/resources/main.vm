@@ -1,13 +1,27 @@
+#* @vtlvariable name="node" type="com.google.gwt.site.markdown.fs.MDNode" *#
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta property="og:type" content="website">
 
-        <title>GWT Project</title>
+#if (${node.description})
+        <meta property="description" content="${node.description}"/>
+        <meta property="og:description" content="${node.description}">
+#end
+#if (${node.title})
+        <meta property="og:title" content="${node.title}">
+        <title>${node.title}</title>
+#end
+#if (${node.image})
+        <meta property="og:image" content="${node.image}">
+        <meta property="og:image:width" content="120">
+        <meta property="og:image:height" content="120">
+#end
 
-        <link rel="stylesheet" href="assets/build/css/style.css">
+        <link rel="stylesheet" href="assets/build/css/style.min.css">
         <link rel="stylesheet" href="assets/build/fonts/icons/icons.css">
         <link rel="stylesheet" href="assets/build/fonts/geometria/geometria.css">
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
@@ -27,7 +41,7 @@
         </script>
     </head>
 
-    <body class="jukito">
+    <body>
 
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -36,7 +50,7 @@
         <nav role="navigation" id="nav" class="closed">
             <div class="wrapper">
                 <ul>
-                    <li class="logo"><a href="/">GWT homepage</a></li>
+                    <li class="image"><a href="/">GWT homepage</a></li>
                     <li><a href="gaestudio/GettingStarted.html"><i class="icon_menu"></i>GAE Studio</a></li>
                     <li><a href="jukito/Home.html"><i class="icon_menu"></i>Jukito</a></li>
                     <li><a href="gsss/index.html"><i class="icon_menu"></i>GSS on Steroids</a></li>
@@ -44,13 +58,13 @@
             </div>
         </nav>
 
-        <div class="holder">
+        <div id="holder" class="${node.style}">
             <aside id="submenu">
-                <div class="logo">
+                <div class="image">
 
                 </div>
                 <nav>
-                    $toc
+                    ${toc}
                 </nav>
             </aside>
 
@@ -59,7 +73,7 @@
             <div class="menu-button">Menu</div>
 
             <nav id="nav-mobile" class="flexnav">
-                $toc
+                ${toc}
             </nav>
 
             <div id="search">
@@ -72,7 +86,7 @@
             <div id="content" role="main">
                 <div class="container">
 
-                    $content
+                    ${content}
 
                 </div>
             </div>
