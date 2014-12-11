@@ -95,12 +95,16 @@
                 <executions>
                     <execution>
                         <id>copy doc resources</id>
-                        <!-- here the phase you need -->
                         <phase>prepare-package</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
+                            <nonFilteredFileExtensions>
+                                <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+                                <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+                                <nonFilteredFileExtension>eot</nonFilteredFileExtension>
+                            </nonFilteredFileExtensions>
                             <outputDirectory>${basedir}/target/generated-site</outputDirectory>
                             <resources>
                                 <resource>

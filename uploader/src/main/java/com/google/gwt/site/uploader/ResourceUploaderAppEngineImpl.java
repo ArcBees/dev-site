@@ -219,8 +219,8 @@ public class ResourceUploaderAppEngineImpl implements ResourceUploader {
 
     private boolean isBinaryFile(String path) {
         return path.endsWith(".png") || path.endsWith(".jpg") || path.endsWith(".jpeg")
-                || path.endsWith(".gif") || path.endsWith(".eot") || path.endsWith(".svg")
-                || path.endsWith(".ttf") || path.endsWith(".woff");
+                || path.endsWith(".gif") || path.endsWith(".eot") || path.endsWith(".ttf")
+                || path.endsWith(".woff");
     }
 
     private void throwIfNotInitialized() {
