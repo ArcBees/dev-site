@@ -135,7 +135,8 @@ public class ContentServlet extends HttpServlet {
 
     private boolean isBinaryFile(String path) {
         return path.endsWith(".png") || path.endsWith(".jpg") || path.endsWith(".jpeg")
-                || path.endsWith(".gif");
+                || path.endsWith(".gif") || path.endsWith(".woff") || path.endsWith(".eot")
+                || path.endsWith(".ttf");
     }
 
     private String normalizePath(String fullPath) {
