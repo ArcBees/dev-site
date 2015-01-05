@@ -20,14 +20,14 @@ import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
 
 public class MyServletModule extends ServletModule {
-  @Override
-  protected void configureServlets() {
-    bind(RemoteApiServlet.class).in(Singleton.class);
-    bind(ContentServlet.class).in(Singleton.class);
-    bind(HashServlet.class).in(Singleton.class);
+    @Override
+    protected void configureServlets() {
+        bind(RemoteApiServlet.class).in(Singleton.class);
+        bind(ContentServlet.class).in(Singleton.class);
+        bind(HashServlet.class).in(Singleton.class);
 
-    serve("/remote_api").with( RemoteApiServlet.class);
-    serve("/hash").with( HashServlet.class);
-    serve("/*").with( ContentServlet.class);
-  }
+        serve("/remote_api").with(RemoteApiServlet.class);
+        serve("/hash").with(HashServlet.class);
+        serveRegex("/(?!_ah).*").with(ContentServlet.class);
+    }
 }

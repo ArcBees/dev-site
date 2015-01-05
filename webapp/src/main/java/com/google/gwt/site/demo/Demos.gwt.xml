@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit//EN"
+        "http://google-web-toolkit.googlecode.com/svn/trunk/distro-source/core/src/gwt-module.dtd">
+<module rename-to="gwtproject">
+    <inherits name="com.google.gwt.query.Query"/>
+
+    <!-- GSSS Demo -->
+    <inherits name="com.google.common.collect.Collect"/>
+    <inherits name="com.arcbees.gsss.grid.Grid"/>
+    <inherits name="com.arcbees.gsss.mixin.Mixin"/>
+
+    <set-configuration-property name="CssResource.enableGss" value="true"/>
+
+    <source path=""/>
+</module>

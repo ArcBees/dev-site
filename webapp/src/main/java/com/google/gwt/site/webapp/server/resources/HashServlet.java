@@ -35,48 +35,48 @@ import com.google.appengine.api.datastore.Query;
 
 public class HashServlet extends HttpServlet {
 
-  private static final long serialVersionUID = -8648249883829261848L;
+    private static final long serialVersionUID = -8648249883829261848L;
 
-  @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
-      IOException {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+            IOException {
 
-    int count;
-    try {
-      count = Integer.parseInt(req.getParameter("count"));
-    } catch (NumberFormatException e) {
-      throw new ServletException(e);
+        int count;
+        try {
+            count = Integer.parseInt(req.getParameter("count"));
+        } catch (NumberFormatException e) {
+            throw new ServletException(e);
+        }
+
+        if (count < 0) {
+            throw new ServletException("invalid value count " + count);
+        }
+
+        JSONObject root = new JSONObject();
+
+        DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+
+        PreparedQuery pq = ds.prepare(new Query("DocHash"));
+
+        List<Entity> asList = pq.asList(FetchOptions.Builder.withOffset(count).limit(1000));
+        JSONArray array = new JSONArray();
+
+        try {
+            root.put("hashes", array);
+            for (Entity entity : asList) {
+                count++;
+                String key = entity.getKey().getName();
+                String hash = (String) entity.getProperty("hash");
+
+                JSONObject docHash = new JSONObject();
+                docHash.put("key", key);
+                docHash.put("hash", hash);
+                array.put(docHash);
+            }
+
+            resp.getWriter().write(root.toString());
+        } catch (JSONException e) {
+            throw new ServletException(e);
+        }
     }
-
-    if (count < 0) {
-      throw new ServletException("invalid value count " + count);
-    }
-
-    JSONObject root = new JSONObject();
-
-    DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-
-    PreparedQuery pq = ds.prepare(new Query("DocHash"));
-
-    List<Entity> asList = pq.asList(FetchOptions.Builder.withOffset(count).limit(1000));
-    JSONArray array = new JSONArray();
-
-    try {
-      root.put("hashes", array);
-      for (Entity entity : asList) {
-        count++;
-        String key = entity.getKey().getName();
-        String hash = (String) entity.getProperty("hash");
-
-        JSONObject docHash = new JSONObject();
-        docHash.put("key", key);
-        docHash.put("hash", hash);
-        array.put(docHash);
-      }
-
-      resp.getWriter().write(root.toString());
-    } catch (JSONException e) {
-      throw new ServletException(e);
-    }
-  }
 }

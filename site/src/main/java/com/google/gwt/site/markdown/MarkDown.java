@@ -18,37 +18,36 @@ import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
 
 public class MarkDown {
 
-  public static void main(String[] args) throws MDHelperException, TranslaterException {
+    public static void main(String[] args) throws MDHelperException, TranslaterException {
 
-    if (args.length < 3) {
-      System.out.println("Usage MarkDown <sourceDir> <outputDir> <templateFile> [templateTOC]");
-      throw new IllegalArgumentException("Usage MarkDown <sourceDir> <outputDir> <templateFile> [templateTOC]");
+        if (args.length < 3) {
+            System.out.println("Usage MarkDown <sourceDir> <outputDir> <templateFile> [templateTOC]");
+            throw new IllegalArgumentException("Usage MarkDown <sourceDir> <outputDir> <templateFile> [templateTOC]");
+        }
+
+        String sourceDir = args[0];
+        System.out.println("source directory: '" + sourceDir + "'");
+
+        String outputDir = args[1];
+        System.out.println("output directory: '" + outputDir + "'");
+
+        String templateFile = args[2];
+        System.out.println("template file: '" + templateFile + "'");
+
+        String templateToc = args.length > 3 ? args[3] : null;
+        System.out.println("template TOC file: '" + templateToc + "'");
+
+        MDHelper helper = new MDHelper(new MarkdownToHtmlUtil());
+        try {
+            helper.setOutputDirectory(outputDir)
+                    .setSourceDirectory(sourceDir)
+                    .setTemplateFile(templateFile)
+                    .setTemplateToc(templateToc)
+                    .create()
+                    .translate();
+        } catch (MDHelperException | TranslaterException e) {
+            e.printStackTrace();
+            throw e;
+        }
     }
-
-    String sourceDir = args[0];
-    System.out.println("source directory: '" + sourceDir + "'");
-
-    String outputDir = args[1];
-    System.out.println("output directory: '" + outputDir + "'");
-
-    String templateFile = args[2];
-    System.out.println("template file: '" + templateFile + "'");
-
-    String templateToc = args.length > 3 ? args[3] : null;
-    System.out.println("template TOC file: '" + templateToc + "'");
-
-    MDHelper helper = new MDHelper(new MarkdownToHtmlUtil());
-    try {
-      helper.setOutputDirectory(outputDir)
-         .setSourceDirectory(sourceDir)
-         .setTemplateFile(templateFile)
-         .setTemplateToc(templateToc)
-         .create()
-         .translate();
-    } catch (MDHelperException | TranslaterException e) {
-      e.printStackTrace();
-      throw e;
-    }
-  }
-
 }

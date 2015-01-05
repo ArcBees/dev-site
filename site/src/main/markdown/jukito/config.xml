@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder href="index">
+<folder href="index"
+        title="Jukito"
+        description="Jukito DevSite"
+        image="assets/build/img/navLogoSmall.png"
+        style="jukito">
     <toc>
         <entries>
-            <entry name="@All" displayName="@All" description="@All annotation"></entry>
+            <entry name="@All" title="@All" displayName="@All" description="@All annotation"></entry>
             <entry name="@UseModules" displayName="@UseModules" description="@UseModules Annotation"></entry>
-            <entry name="Advantages-Over-Guiceberry" displayName="Advantages over Guiceberry" description="Advantages over Guiceberry"></entry>
-            <entry name="Advantages-Over-Vanilla-JUnit" displayName="Advantages over vanilla JUnit" description="Advantages over Vanilla JUnit"></entry>
+            <entry name="Advantages-Over-Guiceberry" displayName="Advantages over Guiceberry"
+                   description="Advantages over Guiceberry"></entry>
+            <entry name="Advantages-Over-Vanilla-JUnit" displayName="Advantages over vanilla JUnit"
+                   description="Advantages over Vanilla JUnit"></entry>
             <entry name="Maven" displayName="Maven" description="Maven"></entry>
-            <entry name="Releasing-Procedure" displayName="Releasing procedure" description="Releasing procedure"></entry>
+            <entry name="Releasing-Procedure" displayName="Releasing procedure"
+                   description="Releasing procedure"></entry>
         </entries>
     </toc>
 </folder>

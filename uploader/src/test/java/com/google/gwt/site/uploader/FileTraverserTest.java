@@ -31,44 +31,44 @@ import com.google.gwt.site.uploader.model.LocalResource;
  */
 public class FileTraverserTest {
 
-  private File baseDir;
-  private FileTraverserFileSystemImpl fileTraverser;
-  private HashCalculator hashCalculatorMock;
-  private ArrayList<LocalResource> expectedFiles;
+    private File baseDir;
+    private FileTraverserFileSystemImpl fileTraverser;
+    private HashCalculator hashCalculatorMock;
+    private ArrayList<LocalResource> expectedFiles;
 
-  @Before
-  public void setup() {
-    baseDir = new File(getClass().getResource("/com/google/gwt/site/uploader/").getFile());
-    hashCalculatorMock = Mockito.mock(HashCalculator.class);
-    fileTraverser = new FileTraverserFileSystemImpl(baseDir, hashCalculatorMock);
+    @Before
+    public void setup() {
+        baseDir = new File(getClass().getResource("/com/google/gwt/site/uploader/").getFile());
+        hashCalculatorMock = Mockito.mock(HashCalculator.class);
+        fileTraverser = new FileTraverserFileSystemImpl(baseDir, hashCalculatorMock);
 
-    expectedFiles = new ArrayList<>();
-    expectedFiles.add(new LocalResource("cssfile2.css", "1", new File(baseDir, "cssfile2.css")));
-    expectedFiles
-        .add(new LocalResource("htmlfile1.html", "2", new File(baseDir, "htmlfile1.html")));
-    expectedFiles.add(new LocalResource("newfile.html", "3", new File(baseDir, "newfile.html")));
-    expectedFiles.add(new LocalResource("folder1/cssfile1.css", "4", new File(baseDir,
-        "folder1/cssfile1.css")));
-    expectedFiles.add(new LocalResource("folder1/gwt-logo.png", "5", new File(baseDir,
-        "folder1/gwt-logo.png")));
-    expectedFiles.add(new LocalResource("folder1/htmlfile2.html", "6", new File(baseDir,
-        "folder1/htmlfile2.html")));
-    expectedFiles.add(new LocalResource("folder1/jsfile1.js", "7", new File(baseDir,
-        "folder1/jsfile1.js")));
-    expectedFiles.add(new LocalResource("package-list", "8", new File(baseDir, "package-list")));
-  }
-
-  @Test
-  public void testTraverse() throws IOException {
-
-    for (LocalResource resource : expectedFiles) {
-      Mockito.when(hashCalculatorMock.calculateHash(resource.getFile())).thenReturn(
-          resource.getHash());
+        expectedFiles = new ArrayList<>();
+        expectedFiles.add(new LocalResource("cssfile2.css", "1", new File(baseDir, "cssfile2.css")));
+        expectedFiles
+                .add(new LocalResource("htmlfile1.html", "2", new File(baseDir, "htmlfile1.html")));
+        expectedFiles.add(new LocalResource("newfile.html", "3", new File(baseDir, "newfile.html")));
+        expectedFiles.add(new LocalResource("folder1/cssfile1.css", "4", new File(baseDir,
+                "folder1/cssfile1.css")));
+        expectedFiles.add(new LocalResource("folder1/gwt-logo.png", "5", new File(baseDir,
+                "folder1/gwt-logo.png")));
+        expectedFiles.add(new LocalResource("folder1/htmlfile2.html", "6", new File(baseDir,
+                "folder1/htmlfile2.html")));
+        expectedFiles.add(new LocalResource("folder1/jsfile1.js", "7", new File(baseDir,
+                "folder1/jsfile1.js")));
+        expectedFiles.add(new LocalResource("package-list", "8", new File(baseDir, "package-list")));
     }
 
-    List<LocalResource> files = fileTraverser.getLocalResources();
+    @Test
+    public void testTraverse() throws IOException {
 
-    Assert.assertEquals(expectedFiles.size(), files.size());
-    Assert.assertTrue(files.containsAll(expectedFiles));
-  }
+        for (LocalResource resource : expectedFiles) {
+            Mockito.when(hashCalculatorMock.calculateHash(resource.getFile())).thenReturn(
+                    resource.getHash());
+        }
+
+        List<LocalResource> files = fileTraverser.getLocalResources();
+
+        Assert.assertEquals(expectedFiles.size(), files.size());
+        Assert.assertTrue(files.containsAll(expectedFiles));
+    }
 }

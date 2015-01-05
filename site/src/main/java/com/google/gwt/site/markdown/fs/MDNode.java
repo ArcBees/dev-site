@@ -14,89 +14,115 @@
 package com.google.gwt.site.markdown.fs;
 
 public class MDNode {
-  private final String name;
-  private final MDParent parent;
-  private final String path;
+    protected String displayName;
 
-  private String description;
-  private final int depth;
-  private final String relativePath;
+    private final String name;
+    private final MDParent parent;
+    private final String path;
+    private final int depth;
+    private final String relativePath;
 
-  protected String displayName;
+    private String title;
+    private String description;
+    private String image;
+    private String style;
+    private boolean excludeFromToc;
 
-  private boolean excludeFromToc;
+    public MDNode(MDParent parent, String name, String path, int depth, String relativePath) {
+        this.parent = parent;
+        this.name = name;
+        this.path = path;
+        this.depth = depth;
+        this.relativePath = relativePath;
+        this.description = "";
+    }
 
-  public MDNode(MDParent parent, String name, String path, int depth, String relativePath) {
-    this.parent = parent;
-    this.name = name;
-    this.path = path;
-    this.depth = depth;
-    this.relativePath = relativePath;
-    this.description = "";
-  }
+    public String getName() {
+        return name;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public MDParent getParent() {
+        return parent;
+    }
 
-  public MDParent getParent() {
-    return parent;
-  }
+    public String getPath() {
+        return path;
+    }
 
-  public String getPath() {
-    return path;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public int getDepth() {
+        return depth;
+    }
 
-  public int getDepth() {
-    return depth;
-  }
+    @Override
+    public String toString() {
+        return "MDNode [name=" + name + ", depth=" + depth + "]";
+    }
 
-  @Override
-  public String toString() {
-    return "MDNode [name=" + name + ", depth=" + depth + "]";
-  }
+    public String getRelativePath() {
+        return relativePath;
+    }
 
-  public String getRelativePath() {
-    return relativePath;
-  }
+    public boolean isFolder() {
+        return false;
+    }
 
-  public boolean isFolder() {
-    return false;
-  }
+    public MDParent asFolder() {
+        return (MDParent) this;
+    }
 
-  public MDParent asFolder() {
-    return (MDParent) this;
-  }
+    /**
+     * @param displayName the displayName to set
+     */
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
 
-  /**
-   * @param displayName the displayName to set
-   */
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
-  }
+    /**
+     * @return the displayName
+     */
+    public String getDisplayName() {
+        if (displayName == null)
+            return getName().substring(0, getName().length() - ".md".length());
+        return displayName;
+    }
 
-  /**
-   * @return the displayName
-   */
-  public String getDisplayName() {
-    if (displayName == null)
-      return getName().substring(0, getName().length() - ".md".length());
-    return displayName;
-  }
+    public void setExcludeFromToc(boolean excludeFromToc) {
+        this.excludeFromToc = excludeFromToc;
+    }
 
-  public void setExcludeFromToc(boolean excludeFromToc) {
-    this.excludeFromToc = excludeFromToc;
-  }
+    public boolean isExcludeFromToc() {
+        return excludeFromToc;
+    }
 
-  public boolean isExcludeFromToc() {
-    return excludeFromToc;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
 }

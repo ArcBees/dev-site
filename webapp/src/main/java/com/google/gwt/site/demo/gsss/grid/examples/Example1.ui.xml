@@ -1,0 +1,81 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="resources" type="com.google.gwt.site.demo.gsss.grid.resources.GridResources"/>
+
+    <g:HTMLPanel>
+
+        <h3>The Grid in action</h3>
+
+        <div class="{resources.grid.row} {resources.style.colored}">
+            <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_full}">
+                <span class="{resources.grid.col_t_hide}">
+                    .col_2
+                </span>
+                <span class="{resources.grid.col_hide} {resources.grid.col_t_show} {resources.grid.col_m_hide}">
+                    .col_t_3
+                </span>
+                <span class="{resources.grid.col_hide} {resources.grid.col_m_show}">
+                    .col_m_full
+                </span>
+            </div>
+            <div class="{resources.grid.col} {resources.grid.col_8} {resources.grid.col_t_6} {resources.grid.col_m_full}">
+                <span class="{resources.grid.col_t_hide}">
+                    .col_8
+                </span>
+                <span class="{resources.grid.col_hide} {resources.grid.col_t_show} {resources.grid.col_m_hide}">
+                    .col_t_6
+                </span>
+                <span class="{resources.grid.col_hide} {resources.grid.col_m_show}">
+                    .col_m_full
+                </span>
+            </div>
+            <div class="{resources.grid.col} {resources.grid.col_2} {resources.grid.col_t_3} {resources.grid.col_m_full}">
+                <span class="{resources.grid.col_t_hide}">
+                    .col_2
+                </span>
+                <span class="{resources.grid.col_hide} {resources.grid.col_t_show} {resources.grid.col_m_hide}">
+                    .col_t_3
+                </span>
+                <span class="{resources.grid.col_hide} {resources.grid.col_m_show}">
+                    .col_m_full
+                </span>
+            </div>
+        </div>
+
+        <h3>With custom settings using Padding instead of Gutter</h3>
+
+        <div class="{resources.gridSettings.row} {resources.style.colored}">
+            <div class="{resources.gridSettings.col} {resources.gridSettings.col_1_4} {resources.gridSettings.col_t_1_3} {resources.gridSettings.col_m_1_2}">
+                <span class="{resources.gridSettings.col_t_hide}">
+                    .col_1_4
+                </span>
+                <span class="{resources.gridSettings.col_hide} {resources.gridSettings.col_t_show} {resources.gridSettings.col_m_hide}">
+                    .col_t_1_3
+                </span>
+                <span class="{resources.gridSettings.col_hide} {resources.gridSettings.col_m_show}">
+                    .col_m_full
+                </span>
+            </div>
+            <div class="{resources.gridSettings.col} {resources.gridSettings.col_3_4} {resources.gridSettings.col_t_2_3} {resources.gridSettings.col_m_1_2}">
+                <span class="{resources.gridSettings.col_t_hide}">
+                    .col_3_4
+                </span>
+                <span class="{resources.gridSettings.col_hide} {resources.gridSettings.col_t_show} {resources.gridSettings.col_m_hide}">
+                    .col_t_2_3
+                </span>
+                <span class="{resources.gridSettings.col_hide} {resources.gridSettings.col_m_show}">
+                    .col_m_1_2
+                </span>
+            </div>
+        </div>
+
+        <p>
+            <em>See the
+                <strong>Grid Settings</strong>
+                section for more infos on how to use custom settings
+            </em>
+        </p>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

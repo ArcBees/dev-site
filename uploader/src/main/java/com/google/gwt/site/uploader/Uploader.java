@@ -25,41 +25,41 @@ import com.google.appengine.tools.remoteapi.RemoteApiOptions;
 
 public class Uploader {
 
-  private static final Logger logger = Logger.getLogger(Uploader.class.getName());
+    private static final Logger logger = Logger.getLogger(Uploader.class.getName());
 
-  public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
-    if (args.length != 2) {
-      System.out.println("Usage Uploader <filesDir> <credentialsFile>|localhost");
-      throw new IllegalArgumentException("Usage Uploader <filesDir> <credentialsFile>|localhost");
+        if (args.length != 2) {
+            System.out.println("Usage Uploader <filesDir> <credentialsFile>|localhost");
+            throw new IllegalArgumentException("Usage Uploader <filesDir> <credentialsFile>|localhost");
+        }
+
+        String filesDir = args[0];
+        logger.info("files directory: '" + filesDir + "'");
+
+        RemoteApiOptions credentials = loadCredentials(args[1]);
+
+        DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+        RemoteApiInstaller installer = new RemoteApiInstaller();
+
+        HashCalculator hashCalculator = new HashCalculatorSha1Impl();
+        FileTraverser fileTraverser =
+                new FileTraverserFileSystemImpl(new File(filesDir), hashCalculator);
+        ResourceUploader fileUploader =
+                new ResourceUploaderAppEngineImpl(ds, credentials, installer,
+                        new ResourceUploaderAppEngineImpl.KeyProviderImpl());
+
+        UploadController uploadController = new UploadController(fileTraverser, fileUploader);
+        uploadController.uploadOutdatedFiles();
     }
 
-    String filesDir = args[0];
-    logger.info("files directory: '" + filesDir + "'");
-
-    RemoteApiOptions credentials = loadCredentials(args[1]);
-
-    DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-    RemoteApiInstaller installer = new RemoteApiInstaller();
-
-    HashCalculator hashCalculator = new HashCalculatorSha1Impl();
-    FileTraverser fileTraverser =
-        new FileTraverserFileSystemImpl(new File(filesDir), hashCalculator);
-    ResourceUploader fileUploader =
-        new ResourceUploaderAppEngineImpl(ds, credentials, installer,
-            new ResourceUploaderAppEngineImpl.KeyProviderImpl());
-
-    UploadController uploadController = new UploadController(fileTraverser, fileUploader);
-    uploadController.uploadOutdatedFiles();
-  }
-
-  private static RemoteApiOptions loadCredentials(String fileOrLocalhost) throws IOException {
-    if (fileOrLocalhost.equals("localhost")) {
-      // special case for dev server
-      return new RemoteApiOptions().server("localhost", 8080).credentials("nobody@google.com", "ignored");
-    } else {
-      logger.info("credentials file: '" + fileOrLocalhost + "'");
-      return new CredentialsProvider().readCredentialsFromFile(fileOrLocalhost);
+    private static RemoteApiOptions loadCredentials(String fileOrLocalhost) throws IOException {
+        if (fileOrLocalhost.equals("localhost")) {
+            // special case for dev server
+            return new RemoteApiOptions().server("localhost", 8080).credentials("nobody@google.com", "ignored");
+        } else {
+            logger.info("credentials file: '" + fileOrLocalhost + "'");
+            return new CredentialsProvider().readCredentialsFromFile(fileOrLocalhost);
+        }
     }
-  }
 }

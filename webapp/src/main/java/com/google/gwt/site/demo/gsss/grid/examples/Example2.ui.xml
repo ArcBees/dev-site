@@ -1,0 +1,17 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with field="resources" type="com.google.gwt.site.demo.gsss.grid.resources.GridResources"/>
+
+    <g:HTMLPanel>
+
+        <h3>Push live example</h3>
+
+        <div class="{resources.grid.row} {resources.style.colored}">
+            <div class="{resources.grid.col} {resources.grid.col_6} {resources.grid.col_push_3}">
+                .col_6 with .col_push_3
+            </div>
+        </div>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

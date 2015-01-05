@@ -23,8 +23,8 @@ import com.google.gwt.site.uploader.model.LocalResource;
  * A FileTraverser gets all resources under a certain directory.
  */
 public interface FileTraverser {
-  /**
-   * Get all resources under a certain directory.
-   */
-  List<LocalResource> getLocalResources() throws IOException;
+    /**
+     * Get all resources under a certain directory.
+     */
+    List<LocalResource> getLocalResources() throws IOException;
 }

@@ -29,94 +29,93 @@ import com.google.gwt.site.uploader.model.ResourceKey;
  */
 public class UploadController {
 
-  private static final Logger logger = Logger.getLogger(UploadController.class.getName());
-  private ResourceUploader fileUploader;
-  private FileTraverser fileTraverser;
+    private static final Logger logger = Logger.getLogger(UploadController.class.getName());
+    private ResourceUploader fileUploader;
+    private FileTraverser fileTraverser;
 
-  public UploadController(FileTraverser fileTraverser, ResourceUploader fileUploader) {
-    this.fileTraverser = fileTraverser;
-    this.fileUploader = fileUploader;
-  }
-
-  /**
-   * Calculates, deletes and uploads changed resources.
-   */
-  public void uploadOutdatedFiles() {
-
-    try {
-      fileUploader.initialize();
-    } catch (InitializeException e) {
-      logger.log(Level.SEVERE, "could not initialize file uploader", e);
-      throw new RuntimeException("could not initialize file uploader", e);
+    public UploadController(FileTraverser fileTraverser, ResourceUploader fileUploader) {
+        this.fileTraverser = fileTraverser;
+        this.fileUploader = fileUploader;
     }
 
-    try {
+    /**
+     * Calculates, deletes and uploads changed resources.
+     */
+    public void uploadOutdatedFiles() {
 
-      Set<Resource> remoteResources = new HashSet<>(fileUploader.getRemoteHashes());
+        try {
+            fileUploader.initialize();
+        } catch (InitializeException e) {
+            logger.log(Level.SEVERE, "could not initialize file uploader", e);
+            throw new RuntimeException("could not initialize file uploader", e);
+        }
 
-      Set<LocalResource> localResources =
-          new HashSet<>(fileTraverser.getLocalResources());
+        try {
 
-      logger.log(Level.INFO, "found " + localResources.size() + "resources");
+            Set<Resource> remoteResources = new HashSet<>(fileUploader.getRemoteHashes());
 
-      Set<Resource> toBeRemovedOrChanged = new HashSet<>(remoteResources);
+            Set<LocalResource> localResources =
+                    new HashSet<>(fileTraverser.getLocalResources());
 
-      toBeRemovedOrChanged.removeAll(localResources);
+            logger.log(Level.INFO, "found " + localResources.size() + "resources");
 
-      Set<LocalResource> toBeUploaded = new HashSet<>(localResources);
+            Set<Resource> toBeRemovedOrChanged = new HashSet<>(remoteResources);
 
-      toBeUploaded.removeAll(remoteResources);
+            toBeRemovedOrChanged.removeAll(localResources);
 
-      Set<ResourceKey> toBeRemoved = copyResources(toBeRemovedOrChanged);
+            Set<LocalResource> toBeUploaded = new HashSet<>(localResources);
 
-      Set<ResourceKey> toBeUploadedKeys = copyResources(toBeUploaded);
+            toBeUploaded.removeAll(remoteResources);
 
-      toBeRemoved.removeAll(toBeUploadedKeys);
+            Set<ResourceKey> toBeRemoved = copyResources(toBeRemovedOrChanged);
 
-      if (logger.isLoggable(Level.INFO)) {
-        logger.log(Level.INFO, toBeUploaded.size() + " file(s) to upload and " + toBeRemoved.size()
-            + " files(s) to delete");
-      }
+            Set<ResourceKey> toBeUploadedKeys = copyResources(toBeUploaded);
 
-      uploadResources(toBeUploaded);
+            toBeRemoved.removeAll(toBeUploadedKeys);
 
-      removeResources(toBeRemoved);
+            if (logger.isLoggable(Level.INFO)) {
+                logger.log(Level.INFO, toBeUploaded.size() + " file(s) to upload and " + toBeRemoved.size()
+                        + " files(s) to delete");
+            }
 
-    } catch (IOException e) {
-      logger.log(Level.SEVERE, "can not upload files", e);
-      throw new RuntimeException("can not upload files", e);
-    } finally {
-      fileUploader.uninitialize();
+            uploadResources(toBeUploaded);
+
+            removeResources(toBeRemoved);
+        } catch (IOException e) {
+            logger.log(Level.SEVERE, "can not upload files", e);
+            throw new RuntimeException("can not upload files", e);
+        } finally {
+            fileUploader.uninitialize();
+        }
     }
-  }
 
-  private Set<ResourceKey> copyResources(Set<? extends Resource> toBeRemovedOrChanged) {
-    Set<ResourceKey> toBeRemoved = new HashSet<>();
-    for (Resource resource : toBeRemovedOrChanged) {
-      toBeRemoved.add(new ResourceKey(resource));
+    private Set<ResourceKey> copyResources(Set<? extends Resource> toBeRemovedOrChanged) {
+        Set<ResourceKey> toBeRemoved = new HashSet<>();
+        for (Resource resource : toBeRemovedOrChanged) {
+            toBeRemoved.add(new ResourceKey(resource));
+        }
+        return toBeRemoved;
     }
-    return toBeRemoved;
-  }
 
-  private void removeResources(Set<ResourceKey> toBeRemoved) throws IOException {
-    int count = 1;
-    for (ResourceKey resource : toBeRemoved) {
-      if (count % 10 == 1  && logger.isLoggable(Level.INFO)) {
-        logger.info("uploading file " + count + " of " + toBeRemoved.size());
-      }
-      count++;
-      fileUploader.deleteResource(resource.getResource().getKey());
+    private void removeResources(Set<ResourceKey> toBeRemoved) throws IOException {
+        int count = 1;
+        for (ResourceKey resource : toBeRemoved) {
+            if (count % 10 == 1 && logger.isLoggable(Level.INFO)) {
+                logger.info("uploading file " + count + " of " + toBeRemoved.size());
+            }
+            count++;
+            fileUploader.deleteResource(resource.getResource().getKey());
+        }
     }
-  }
 
-  private void uploadResources(Set<LocalResource> toBeUploaded) throws IOException {
-    int count = 1;
-    for (LocalResource r : toBeUploaded) {
-      if (count % 10 == 1  && logger.isLoggable(Level.INFO)) {
-        logger.info("uploading file " + count + " of " + toBeUploaded.size());
-      }
-      count++;
-      fileUploader.uploadResource(r.getKey(), r.getHash(), r.getFile());
+    private void uploadResources(Set<LocalResource> toBeUploaded) throws IOException {
+        int count = 1;
+        for (LocalResource r : toBeUploaded) {
+            if (count % 10 == 1 && logger.isLoggable(Level.INFO)) {
+                logger.info("uploading file " + count + " of " + toBeUploaded.size());
+            }
+            count++;
+            fileUploader.uploadResource(r.getKey(), r.getHash(), r.getFile());
+        }
     }
-  }
 }

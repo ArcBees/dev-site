@@ -16,40 +16,40 @@ package com.google.gwt.site.uploader.model;
 
 public class ResourceKey {
 
-  private final Resource resource;
+    private final Resource resource;
 
-  public ResourceKey(Resource resource) {
+    public ResourceKey(Resource resource) {
 
-    if (resource == null) {
-      throw new IllegalArgumentException("key cannot be null");
+        if (resource == null) {
+            throw new IllegalArgumentException("key cannot be null");
+        }
+
+        this.resource = resource;
     }
 
-    this.resource = resource;
-  }
+    public Resource getResource() {
+        return resource;
+    }
 
-  public Resource getResource() {
-    return resource;
-  }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + resource.getKey().hashCode();
+        return result;
+    }
 
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + resource.getKey().hashCode();
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (!(obj instanceof ResourceKey))
-      return false;
-    ResourceKey other = (ResourceKey) obj;
-    if (!resource.getKey().equals(other.resource.getKey()))
-      return false;
-    return true;
-  }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof ResourceKey))
+            return false;
+        ResourceKey other = (ResourceKey) obj;
+        if (!resource.getKey().equals(other.resource.getKey()))
+            return false;
+        return true;
+    }
 }
