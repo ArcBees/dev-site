@@ -26,22 +26,22 @@ public class HeadingWithIdNode extends SuperNode {
     private final int level;
     private final String id;
 
-    public int getLevel() {
-        return level;
-    }
-
     public HeadingWithIdNode(int level, String id, List<Node> children) {
         super(children);
         this.level = level;
         this.id = id;
     }
 
-    @Override
-    public void accept(Visitor visitor) {
-        visitor.visit((Node) this);
+    public int getLevel() {
+        return level;
     }
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit((Node) this);
     }
 }
