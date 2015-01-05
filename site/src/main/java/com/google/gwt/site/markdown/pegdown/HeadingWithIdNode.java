@@ -16,24 +16,32 @@
 
 package com.google.gwt.site.markdown.pegdown;
 
+import java.util.List;
+
 import org.pegdown.ast.Node;
 import org.pegdown.ast.SuperNode;
 import org.pegdown.ast.Visitor;
 
-public class DivWithIdNode extends SuperNode {
+public class HeadingWithIdNode extends SuperNode {
+    private final int level;
     private final String id;
 
-    public DivWithIdNode(String id) {
-        this.id = id;
+    public int getLevel() {
+        return level;
     }
 
-    public String getId() {
-        return id;
+    public HeadingWithIdNode(int level, String id, List<Node> children) {
+        super(children);
+        this.level = level;
+        this.id = id;
     }
 
     @Override
     public void accept(Visitor visitor) {
-        // Need to cast to Node to triggers correct ToHtmlSerializerPlugin call
         visitor.visit((Node) this);
+    }
+
+    public String getId() {
+        return id;
     }
 }
