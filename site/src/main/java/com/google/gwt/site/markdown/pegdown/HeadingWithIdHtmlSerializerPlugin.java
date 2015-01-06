@@ -21,23 +21,24 @@ import org.pegdown.ast.Node;
 import org.pegdown.ast.Visitor;
 import org.pegdown.plugins.ToHtmlSerializerPlugin;
 
-public class DivWithIdHtmlSerializerPlugin implements ToHtmlSerializerPlugin {
+public class HeadingWithIdHtmlSerializerPlugin implements ToHtmlSerializerPlugin {
     @Override
     public boolean visit(Node node, Visitor visitor, Printer printer) {
-        boolean canVisit = node instanceof DivWithIdNode;
+        boolean canVisit = node instanceof HeadingWithIdNode;
 
         if (canVisit) {
-            DivWithIdNode idNode = (DivWithIdNode) node;
+            HeadingWithIdNode idNode = (HeadingWithIdNode) node;
 
-            printer.print('<').print("div");
-            printAttribute(printer, "id", idNode.getId());
-            printer.print('>').print("</div>");
+            String id = idNode.getId();
+
+            String tag = "h" + idNode.getLevel();
+            printer.print('<').print(tag).print(' ').print("id=\"" + id + "\"").print('>');
+            for (Node child : node.getChildren()) {
+                child.accept(visitor);
+            }
+            printer.print('<').print('/').print(tag).print('>');
         }
 
         return canVisit;
-    }
-
-    private void printAttribute(Printer printer, String name, String value) {
-        printer.print(' ').print(name).print('=').print('"').print(value).print('"');
     }
 }

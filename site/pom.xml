@@ -27,6 +27,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <jdk.version>1.7</jdk.version>
+        <assertj-core.version>1.7.0</assertj-core.version>
     </properties>
 
     <repositories>
@@ -247,6 +248,13 @@
             <artifactId>checkstyle</artifactId>
             <version>${build-tools.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj-core.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

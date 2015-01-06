@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 ArcBees Inc.
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -17,16 +17,17 @@
 package com.google.gwt.site.markdown.pegdown;
 
 import org.parboiled.Action;
-import org.parboiled.BaseParser;
 import org.parboiled.Context;
 import org.parboiled.Rule;
 import org.pegdown.plugins.BlockPluginParser;
 
-public class DivWithIdParserPlugin extends BaseParser<Object> implements BlockPluginParser {
+public class DivWithIdParserPlugin extends CommonParser<Object> implements BlockPluginParser {
     private final Action createDivAction = new Action() {
         @Override
         public boolean run(Context context) {
-            return push(new DivWithIdNode(match()));
+            String id = match();
+
+            return push(new DivWithIdNode(id));
         }
     };
 
@@ -34,26 +35,8 @@ public class DivWithIdParserPlugin extends BaseParser<Object> implements BlockPl
     public Rule[] blockPluginRules() {
         return toRules(
                 Sequence("$[",
-                        Sequence(
-                                Letters(),
-                                OneOrMore(FirstOf(Letters(), Number(), AnyOf("-_:.")))),
+                        Id(),
                         createDivAction,
                         "]"));
-    }
-
-    Rule Letters() {
-        return OneOrMore(FirstOf(UpperCaseCharacter(), LowerCaseCharacter()));
-    }
-
-    Rule UpperCaseCharacter() {
-        return CharRange('A', 'Z');
-    }
-
-    Rule LowerCaseCharacter() {
-        return CharRange('a', 'z');
-    }
-
-    Rule Number() {
-        return CharRange('0', '9');
     }
 }
