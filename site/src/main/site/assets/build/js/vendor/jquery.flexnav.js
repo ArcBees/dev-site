@@ -104,7 +104,7 @@
     };
     $(settings['buttonSelector']).data('navEl', $nav);
     touch_selector = '.item-with-ul, ' + settings['buttonSelector'];
-    $(touch_selector).append('<span class="touch-button"><i class="navicon icon_submenu"></i></span>');
+    $(touch_selector).append('<span class="touch-button"><i class="navicon icon_menuArrow"></i></span>');
     toggle_selector = settings['buttonSelector'] + ', ' + settings['buttonSelector'] + ' .touch-button';
     $(toggle_selector).on('click', function(e) {
       var $btnParent, $thisNav, bs;
