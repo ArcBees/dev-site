@@ -76,13 +76,6 @@
                 ${toc}
             </nav>
 
-            <div id="search">
-                <form action="#">
-                    <input type="text"/>
-                    <button type="submit"><i class="icon_search"></i> <span>Search</span></button>
-                </form>
-            </div>
-
             <div id="content" role="main">
                 <div class="container">
 
