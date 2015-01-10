@@ -2,9 +2,10 @@
 <folder href="index" title="ArcBees" description="ArcBees DevSite">
     <toc>
         <entries>
-            <entry name="index" displayName="Home" description="Home"></entry>
-            <entry name="jukito/" displayName="Jukito" description="Jukito"></entry>
-            <entry name="gsss/" displayName="GSS on Steroids" description="GSSS"></entry>
+            <entry name="index" displayName="Home"></entry>
+            <entry name="gaestudio/" displayName="GAE Studio"></entry>
+            <entry name="jukito/" displayName="Jukito"></entry>
+            <entry name="gsss/" displayName="GSS on Steroids"></entry>
         </entries>
     </toc>
 </folder>

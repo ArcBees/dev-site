@@ -20,4 +20,8 @@ public class Strings {
     public static String nullToEmpty(String value) {
         return value == null ? "" : value;
     }
+
+    public static boolean isNullOrEmpty(String string) {
+        return string == null || string.isEmpty();
+    }
 }

@@ -174,9 +174,12 @@ public class GWTProjectEntryPoint implements EntryPoint {
         $(body).on("click", "a", new Function() {
             @Override
             public boolean f(Event e) {
+                boolean containsHash = $(e).attr("href").contains("#");
+
                 if (shouldEnhanceLink($(e)) &&
                         // Is it a normal click (not ctrl/cmd/shift/right/middle click) ?
-                        clickHelper.handleAsClick(e)) {
+                        clickHelper.handleAsClick(e) &&
+                        !containsHash) {
 
                     // In mobile, if menu is visible, close it
                     $("#submenu.show").removeClass("show");

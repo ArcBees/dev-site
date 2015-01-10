@@ -9,7 +9,7 @@
  [Apache Maven](http://maven.apache.org) 3.0 or greater, and JDK 6+ in order to run.
 
 - Before building the project you may need gwt-site packaged file.
-  Go to the gwt-site folder and run:
+  Go to the site folder and run:
   $ mvn install
 
 - To build and check the app, run
@@ -29,7 +29,7 @@
   $ mvn appengine:devserver
 
   You might upload the gwt stuff to the dev server, just open another terminal, 
-  go to the gwt-site-uploader folder project and run:
+  go to the uploader folder project and run:
   $ sh upload.sh localhost
 
   For further information about GAE, consult the [Java App Engine](https://developers.google.com/appengine/docs/java/overview) documentation.

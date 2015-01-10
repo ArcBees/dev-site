@@ -1,6 +1,6 @@
 # Grid documentation
 
-## How to install
+## How to install {how-to-install}
 
 Add the grid settings `com/arcbees/gsss/grid/client/gridsettings.gss` and the grid `com/arcbees/gsss/grid/client/grid.gss` in a `@Source` annotation.
 
@@ -11,7 +11,7 @@ GridResources.Grid grid();
 
 You can now use the grid in your project.
 
-## The default structure
+## The default structure {default-structure}
 
 The grid is working on a 12 columns system. Group of columns are wrapped inside a row.
 
@@ -31,10 +31,10 @@ Start by adding a `row` element. Inside of it, add the desired columns using `co
     </g:HTMLPanel>
 </ui:UiBinder>
 ```
-    
+
 $[gsss-grid-1]
 
-## Grid breakpoints
+## Grid breakpoints {grid-breakpoints}
 
 The grid is supporting 3 sizes of viewport :
 
@@ -42,11 +42,11 @@ The grid is supporting 3 sizes of viewport :
 *   Tablet _(default : for screens width ranging between 650px to 979px)_
 *   Mobile _(default : for screens width up to 649px)_
 
-## Columns size
+## Columns size {columns-size}
 
 Start adjusting for desktop, and then fine tune for tablet and mobile if required, as style applied to larger resolutions will cascade through lower resolutions.
 
-### Default
+### Default {default}
 
 Default style, will also be applied to Tablet and Mobile if not overwritten
 
@@ -66,7 +66,7 @@ Default style, will also be applied to Tablet and Mobile if not overwritten
 .col_hide:              Hidden
 ```
 
-### Tablet
+### Tablet {tablet}
 
 Tablet style, will also be applied to Mobile if not overwritten
 
@@ -86,7 +86,7 @@ Tablet style, will also be applied to Mobile if not overwritten
 .col_t_hide:                Hidden
 ```
 
-### Mobile
+### Mobile {mobile}
 
 Mobile style
 
@@ -106,7 +106,7 @@ Mobile style
 .col_m_hide:                Hidden
 ```
 
-## Push
+## Push {push}
 
 You can push a column using the push class. It will do the same as creating an empty column of the specified size on the left of the current column.
 
@@ -129,10 +129,10 @@ You can also overwrite a push with push_0 :
 ```
 .col_m_push_0:      No push for Mobile only
 ```
-    
+
 $[gsss-grid-2]
 
-## Grid Settings
+## Grid Settings {grid-settings}
 
 In order to change the Grid settings, you will need to duplicate the file `gridsettings.gss` file into you own resources directory and link to it instead of the default file.
 
@@ -141,16 +141,16 @@ In order to change the Grid settings, you will need to duplicate the file `grids
 GridResources.Grid grid();
 ```
 
-### Min and Max sizes of viewports
+### Min and Max sizes of viewports {viewports-sizes}
 
 Min and Max define the minimum and maximum size of the different viewports
 
 **Note:** In the current version of GSS, it is impossible to use a variable inside the `@media()` and, therefore, these variables are useless for now. We will update the code once it is possible to do so.
 
-### Padding
+### Padding {padding}
 
 Padding is added inside of columns.
 
-### Gutter
+### Gutter {gutter}
 
 Gutter is added outside of columns.
