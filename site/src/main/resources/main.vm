@@ -51,7 +51,7 @@
 <nav role="navigation" id="nav" class="closed">
     <div class="wrapper">
         <ul>
-            <li class="image">
+            <li class="logo">
                 <a href="/">
                     <i class="icon_signCode"></i>
                     ARCBEES

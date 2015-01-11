@@ -60,7 +60,7 @@
 
     .transition();
 
-    &.image {
+    &.logo {
       font-size: 2rem;
       text-align: center;
 
@@ -121,54 +121,6 @@
         position: relative;
         top: 1px;
         vertical-align: baseline;
-      }
-    }
-
-    &.logo a {
-      background: url('../img/navLogoBig.png') no-repeat;
-      text-align: center;
-      text-indent: -9999px;
-
-      display: block;
-      width: 160px;
-      height: 149px;
-      margin: 0 auto 40px;
-
-      &::after {
-        content: "\e601";
-        font-family: @f-icons;
-
-        display: block;
-        width: 24px;
-        height: 17px;
-
-        position: absolute;
-        top: 20px;
-        left: 8px;
-
-        .transition();
-        .opacity(0);
-      }
-    }
-
-    &.sep {
-      margin-bottom: 25px;
-
-      position: relative;
-
-      &::after {
-        content: "";
-
-        display: block;
-        width: 22px;
-        height: 3px;
-        background-color: @c-secondary-dark;
-
-        position: absolute;
-        bottom: -14px;
-        left: 35px;
-
-        .transition();
       }
     }
 
@@ -431,25 +383,6 @@ a#logo-mobile {
   }
 }
 
-//a#logo-mobile {
-//  display: none;
-//
-//  @media (@mobile) {
-//    background: url('../img/gaeLogo.png') no-repeat;
-//    -webkit-background-size: contain;
-//    background-size: contain;
-//    text-indent: -9999px;
-//
-//    display: block;
-//    width: 80px;
-//    height: 80px;
-//
-//    position: relative;
-//    top: 14px;
-//    left: 2.2%;
-//  }
-//}
-
 .menu-button {
   top: 16px;
 }
@@ -679,24 +612,6 @@ nav#nav-mobile {
         .next::before,
         .next::after {
           background-color: #fff;
-        }
-
-        &::after {
-          content: " ";
-          background: url('../img/logoBig.png') no-repeat;
-
-          display: block;
-          width: 1429px;
-          height: 1549px;
-
-          position: absolute;
-          bottom: 0;
-          right: 0;
-          z-index: 1000;
-
-          @media(@mobile) {
-            display: none;
-          }
         }
       }
     }
