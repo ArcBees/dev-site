@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--Todo: JASON: find better description-->
 <folder title="GSSS"
         description="GSS on Steroids"
         style="gsss">
     <toc>
         <entries>
-            <entry name="mixins/" displayName="Mixins" description="Mixins"></entry>
-            <entry name="grid/" displayName="Grid" description="Grid"></entry>
-            <entry name="animation/" displayName="Animation" description="Animation"></entry>
+            <entry name="mixins/" displayName="Mixins"></entry>
+            <entry name="grid/" displayName="Grid"></entry>
+            <entry name="animation/" displayName="Animation"></entry>
         </entries>
     </toc>
 </folder>

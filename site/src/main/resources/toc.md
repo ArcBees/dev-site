@@ -1,5 +1,5 @@
-  - [GAE Studio](gaestudio/GettingStarted.html)
-  - [Jukito](jukito/Home.html)
+  - [GAE Studio](gaestudio/)
+  - [Jukito](jukito/)
       - [@All](jukito/@All.html)
       - [@UseModules](jukito/@UseModules.html)
       - [Advantages over Guiceberry](jukito/Advantages-Over-Guiceberry.html)

@@ -1,6 +1,6 @@
 # Mixins documentation
 
-## How to install
+## How to install {how-to-install}
 
 Add `com/arcbees/gsss/mixin/client/mixin.gss` and your Gss file path in a `@Source` annotation.
 
@@ -8,12 +8,12 @@ Add `com/arcbees/gsss/mixin/client/mixin.gss` and your Gss file path in a `@Sour
 @Source({"com/arcbees/gsss/mixin/client/mixins.gss", "style.gss"})
 public Style style();
 ```
-    
+
 Add a `@require 'mixins';` at the beginning of your Gss file that uses the mixins. This will force the compiler to check at compile time that the source is well imported.
 
 You can now use any mixins in your style.gss file.
 
-## Border radius
+## Border radius {border-radius}
 
 ### Params
 
@@ -34,15 +34,15 @@ You can now use any mixins in your style.gss file.
 ```
 @mixin borderradius(15px, 0, 30px, 5px);
 ```
-    
+
 $[gsss-mixins-1]
 
 #### rounded(SIZE)
-    
+
 ```
 @mixin rounded(15px);
 ```
-    
+
 $[gsss-mixins-2]
 
 #### borderradius_t(TOP)
@@ -109,7 +109,7 @@ $[gsss-mixins-9]
 
 $[gsss-mixins-10]
 
-## Box sizing
+## Box sizing {box-sizing}
 
 ### Mixins
 
@@ -119,7 +119,7 @@ $[gsss-mixins-10]
 @mixin boxsizing();
 ```
 
-## Gradient
+## Gradient {gradient}
 
 ### Params
 
@@ -170,7 +170,7 @@ $[gsss-mixins-14]
 
 $[gsss-mixins-15]
 
-## Opacity
+## Opacity {opacity}
 
 ### Params
 
@@ -186,7 +186,7 @@ $[gsss-mixins-15]
 
 $[gsss-mixins-16]
 
-## Outline
+## Outline {outline}
 
 ### Params
 
@@ -205,7 +205,7 @@ $[gsss-mixins-16]
 
 $[gsss-mixins-17]
 
-## Shadow
+## Shadow {shadow}
 
 ### Params
 
@@ -223,7 +223,7 @@ $[gsss-mixins-17]
 ```
 @mixin shadow(5px, 5px, 3px, 0.3);
 ```
-    
+
 $[gsss-mixins-18]
 
 #### shadow_color(HORIZONTAL, VERTICAL, BLUR, SPREAD, COLOR)
@@ -231,7 +231,7 @@ $[gsss-mixins-18]
 ```
 @mixin shadow_color(5px, 5px, 10px, 2px, #22ee22);
 ```
-    
+
 $[gsss-mixins-19]
 
 #### shadow_inner(HORIZONTAL, VERTICAL, BLUR, ALPHA)
@@ -239,7 +239,7 @@ $[gsss-mixins-19]
 ```
 @mixin shadow_inner(0, 7px, 5px, 0.4);
 ```
-    
+
 $[gsss-mixins-20]
 
 #### shadow_inner_color(HORIZONTAL, VERTICAL, BLUR, SPREAD, COLOR)
@@ -247,7 +247,7 @@ $[gsss-mixins-20]
 ```
 @mixin shadow_inner_color(0, 7px, 5px, 2px, rgba(0, 0, 255, 0.4));
 ```
-    
+
 $[gsss-mixins-21]
 
 #### shadow_text(HORIZONTAL, VERTICAL, BLUR, ALPHA)
@@ -255,7 +255,7 @@ $[gsss-mixins-21]
 ```
 @mixin shadow_text(2px, 2px, 1px, 0.5);
 ```
-    
+
 $[gsss-mixins-22]
 
 #### shadow_text_color(HORIZONTAL, VERTICAL, BLUR, COLOR)
@@ -263,7 +263,7 @@ $[gsss-mixins-22]
 ```
 @mixin shadow_text_color(0, 5px, 2px, #11ff66);
 ```
-    
+
 $[gsss-mixins-23]
 
 #### shadow_none()
@@ -272,7 +272,7 @@ $[gsss-mixins-23]
 @mixin shadow_none();
 ```
 
-## Transform
+## Transform {transform}
 
 ### Params
 
@@ -289,7 +289,7 @@ $[gsss-mixins-23]
 ```
 @mixin flip_horizontal();
 ```
-    
+
 $[gsss-mixins-24]
 
 #### flip_vertical()
@@ -297,7 +297,7 @@ $[gsss-mixins-24]
 ```
 @mixin flip_vertical();
 ```
-    
+
 $[gsss-mixins-25]
 
 ### Rotate
@@ -307,7 +307,7 @@ $[gsss-mixins-25]
 ```
 @mixin rotate(45deg);
 ```
-    
+
 $[gsss-mixins-26]
 
 #### rotate_180_cw()
@@ -315,7 +315,7 @@ $[gsss-mixins-26]
 ```
 @mixin rotate_180_cw();
 ```
-    
+
 $[gsss-mixins-27]
 
 #### rotate_180_ccw()
@@ -331,7 +331,7 @@ $[gsss-mixins-27]
 ```
 @mixin scale(1.5, 1);
 ```
-    
+
 $[gsss-mixins-28]
 
 ### Translate
@@ -341,10 +341,10 @@ $[gsss-mixins-28]
 ```
 @mixin translate(10px, 20px);
 ```
-    
+
 $[gsss-mixins-29]
 
-## Transition
+## Transition {transition}
 
 ### Params
 

@@ -14,8 +14,10 @@
 
 package com.google.gwt.site.uploader;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.repackaged.com.google.common.io.Files;
@@ -34,11 +36,6 @@ public class SaveCredentials {
     }
 
     public static void run() throws IOException {
-        if (System.console() == null) {
-            System.out.println("System.console not available. Please re-run from a shell.");
-            System.exit(1);
-        }
-
         File f = new File("credentials");
         if (!f.exists()) {
             p("Expected a file named 'credentials' to exist.");
@@ -53,11 +50,21 @@ public class SaveCredentials {
 
         p("Please enter your gwtproject.org credentials.");
 
-        String email = System.console().readLine("Email: ");
-        char[] password = System.console().readPassword("Password: ");
+        String email;
+        String password;
+
+        if (System.console() != null) {
+            email = System.console().readLine("Email: ");
+            password = new String(System.console().readPassword("Password: "));
+        } else  {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            String[] strings = new String(reader.readLine().toCharArray()).split("#");
+            email = strings[0];
+            password = strings[1];
+        }
 
         RemoteApiOptions options =
-                new RemoteApiOptions().server("docs-site.appspot.com", 443).credentials(email, new String(password));
+                new RemoteApiOptions().server("docs-site.appspot.com", 443).credentials(email, password);
         RemoteApiInstaller installer = new RemoteApiInstaller();
         installer.install(options);
         // test the connection
