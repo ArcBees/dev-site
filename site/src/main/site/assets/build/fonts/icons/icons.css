@@ -39,3 +39,43 @@
 .icon_arrow:before {
     content: "\e600";
 }
+
+.icon_jukito:before {
+    content: "\e610";
+}
+
+.icon_gquery:before {
+    content: "\e62f";
+}
+
+.icon_chosen:before {
+    content: "\e607";
+}
+
+.icon_gwtp:before {
+    content: "\e60e";
+}
+
+.icon_gae:before {
+    content: "\e60b";
+}
+
+.icon_signCode:before {
+    content: "\e600";
+}
+
+.icon_optTime:before {
+    content: "\e627";
+}
+
+.icon_arcbees:before {
+    content: "\e601";
+}
+
+.icon_menuArrow:before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 9px 5px 0 5px;
+    border-color: #fff transparent transparent transparent;
+}
