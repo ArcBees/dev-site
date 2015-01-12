@@ -109,7 +109,7 @@ $[gsss-mixins-9]
 
 $[gsss-mixins-10]
 
-## Box sizing 2 {box-sizing}
+## Box sizing {box-sizing}
 
 ### Mixins
 
