@@ -264,7 +264,7 @@ public class FileSystemTraverser {
 
     private void setNodeValue(MDNode node, FieldAccessor<MDNode> accessor) {
         String value = accessor.getValue(node);
-        if (value != null) {
+        if (!Strings.isNullOrEmpty(value)) {
             accessor.setValue(node, value);
         } else {
             accessor.setValue(node, getParentNodeValue(node.getParent(), accessor));

@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <folder href="index"
         title="GAE Studio"
-        description="GAE Studio"
+        description="Running GAE Studio on AppEngine 1. Download the latest war of GAE Studio from our Drive folder 2. Extract the content of the war to your preferred location."
         style="gaestudio">
-    <toc>
-        <entries>
-            <entry name="Getting started" displayName="Getting started" description="Getting started"></entry>
-        </entries>
-    </toc>
 </folder>
