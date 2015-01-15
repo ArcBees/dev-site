@@ -27,18 +27,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
 
     <script type="text/javascript" src="/gwtproject/gwtproject.nocache.js"></script>
-    <script>
-        (function () {
-            var cx = '008698606704604874043:or32ypbnrfu';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                    '//www.google.com/cse/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-        })();
-    </script>
 </head>
 
 <body>
@@ -68,7 +56,7 @@
     </div>
 </nav>
 
-<div id="holder" class="${node.style}">
+<div id="holder" class="$!{node.style}">
     <aside id="submenu">
         <div class="logo">
 
@@ -87,9 +75,6 @@
     </nav>
 
     <div id="content" role="main">
-        <div class="iconDevTop">
-            <i class="icon_signCode"></i>
-        </div>
         <div class="container">
 
             ${content}

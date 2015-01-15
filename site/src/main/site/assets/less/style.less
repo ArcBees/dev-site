@@ -23,9 +23,7 @@
 // -- Styles ---------------------------------------------
 
 #nav {
-
   // -> Opened menu
-
   background-color: @c-secondary;
 
   min-height: 100%;
@@ -38,10 +36,6 @@
   top: 0;
   left: 0;
   z-index: 9900;
-
-  @media (@tablet) {
-    max-width: 200px;
-  }
 
   .transition();
 
@@ -141,6 +135,21 @@
 
         &:hover {
           background-color: @c-primary-dark;
+        }
+      }
+    }
+  }
+
+  @media (@tablet) {
+    max-width: 200px;
+
+    .wrapper {
+      width: 200px;
+
+      li,
+      li.logo {
+        a {
+          padding: 0 50px;
         }
       }
     }
@@ -289,6 +298,12 @@ aside#submenu {
 
   @media (@mobile) {
     display: none;
+  }
+}
+
+.gsss {
+  aside#submenu .logo {
+    background: url("../img/gsss.png") center 42px no-repeat @c-gsss;
   }
 }
 
@@ -447,32 +462,8 @@ nav#nav-mobile {
   }
 }
 
-#content {
-  padding: 8em 0 3em;
-  display: table-cell;
-
-  position: relative;
-
-  @media (@mobile) {
-    display: block;
-    padding-top: 3em;
-  }
-
-  .iconDevTop {
-    position: absolute;
-    top: 0;
-    left: 45px;
-
-    i {
-      font-size: 4.5rem;
-    }
-
-    @media (@mobile) {
-      display: none;
-    }
-  }
-
-  &.home {
+.home {
+  #content {
     padding-bottom: 0;
 
     h1 {
@@ -609,6 +600,48 @@ nav#nav-mobile {
         }
       }
     }
+
+    .intro {
+      margin-bottom: 3em;
+
+      p {
+        line-height: 0;
+
+        &:first-of-type {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  #submenu {
+    display: none;
+  }
+}
+
+#content {
+  padding: 8em 0 3em;
+  display: table-cell;
+
+  position: relative;
+
+  @media (@mobile) {
+    display: block;
+    padding-top: 3em;
+  }
+
+  .iconDevTop {
+    position: absolute;
+    top: 0;
+    left: 45px;
+
+    i {
+      font-size: 4.5rem;
+    }
+
+    @media (@mobile) {
+      display: none;
+    }
   }
 }
 
@@ -642,6 +675,8 @@ nav#nav-mobile {
       font-size: 2.5rem;
       line-height: 1em;
 
+      margin-top: 1em;
+
       @media (@tablet) {
         font-size: 2rem;
       }
@@ -649,6 +684,10 @@ nav#nav-mobile {
 
     h3 span {
       display: block;
+    }
+
+    .wrapper {
+      margin: 0 auto;
     }
   }
 
@@ -666,6 +705,10 @@ nav#nav-mobile {
       width: 90%;
       padding: 0;
       margin: 0 auto;
+    }
+
+    &.codeIconWrapper {
+      max-width: 90%;
     }
 
     .codeIcon {

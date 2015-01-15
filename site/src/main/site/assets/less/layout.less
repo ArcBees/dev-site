@@ -67,7 +67,7 @@ body {
 }
 
 .home .container {
-  padding: 0;
+  padding-right: 0;
   max-width: 100%;
 
   @media(@mobile) {
@@ -239,18 +239,19 @@ ol li {
 }
 
 code {
+  background-color: @c-background-dark;
   font-size: 1.5rem;
 
+  padding: 4px;
   margin-bottom: 1em;
-}
-
-p > code {
-  background-color: #fff;
-
-  display: block;
-  padding: 10px;
 
   .box-sizing();
+}
+
+pre > code {
+  display: block;
+
+  padding: 10px;
 }
 
 a {

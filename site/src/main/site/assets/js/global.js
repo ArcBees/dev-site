@@ -3,10 +3,10 @@ var isSameOriginRexp = new RegExp("^(?!(#|[a-z#]+:))(?!.*(|/)javadoc/)(?!.*\\.(j
 
 $(function () {
     $("body")
-        .on("mouseenter", "> #nav:not(.alwaysOpen)", function () {
+        .on("mouseenter", "> #nav", function () {
             $(this).removeClass("closed");
         })
-        .on("mouseleave", "> #nav:not(.alwaysOpen)", function () {
+        .on("mouseleave", "> #nav", function () {
             $(this).addClass("closed");
         });
 
