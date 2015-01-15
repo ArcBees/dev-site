@@ -221,6 +221,11 @@ public class GWTProjectEntryPoint implements EntryPoint {
                 return false;
             }
         });
+
+        $("#submenu li")
+                .not(".open")
+                .children("ul")
+                .slideUp(0);
     }
 
     private void enhanceLink(GQuery link) {
