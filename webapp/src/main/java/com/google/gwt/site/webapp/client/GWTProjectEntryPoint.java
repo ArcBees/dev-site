@@ -172,7 +172,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         }
 
         // Use Ajax instead of default behaviour
-        $(body).on("click", "a", new Function() {
+        $(body).on("click", "a:not([href^=\"http\"])", new Function() {
             @Override
             public boolean f(Event e) {
                 GQuery $e = $(e);

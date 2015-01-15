@@ -146,10 +146,13 @@
     .wrapper {
       width: 200px;
 
-      li,
-      li.logo {
+      li {
+        &.logo a {
+          padding: 0 51px;
+        }
+
         a {
-          padding: 0 50px;
+          padding: 0 0 0 51px;
         }
       }
     }
@@ -303,7 +306,7 @@ aside#submenu {
 
 .gsss {
   aside#submenu .logo {
-    background: url("../img/gsss.png") center 42px no-repeat @c-gsss;
+    background: url("../img/gsssLogo.png") center 42px no-repeat @c-gsss;
   }
 }
 
