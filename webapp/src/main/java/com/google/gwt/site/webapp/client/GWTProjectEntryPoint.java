@@ -116,10 +116,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
                 String relativeLocation = Window.Location.getPath() + Window.Location.getHash();
                 GQuery item = $("#submenu a[href$=\"" + relativeLocation + "\"]").eq(0);
 
-                // Only collapse unrelated entries in mobile
-                if ($("#nav-mobile").isVisible()) {
-                    hideUnrelatedBranches(item);
-                }
+                hideUnrelatedBranches(item);
 
                 showBranch(item);
 
@@ -170,7 +167,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         // Do not continue enhancing if Ajax is disabled
         if (!ajaxEnabled) {
             // Select current item from the URL info
-            loadPage(null);
+            loadPage(null, true);
             return;
         }
 
@@ -185,12 +182,12 @@ public class GWTProjectEntryPoint implements EntryPoint {
                 if (shouldEnhanceLink($e) &&
                         // Is it a normal click (not ctrl/cmd/shift/right/middle click) ?
                         clickHelper.handleAsClick(e)) {
-                    if (!containsHash || !Window.Location.getPath().equals($e.prop("pathname"))) {
+                    if (!containsHash) {
                         // In mobile, if menu is visible, close it
                         $("#submenu.show").removeClass("show");
 
                         // Load the page using Ajax
-                        loadPage(href);
+                        loadPage(href, !$e.parents("#nav").isEmpty());
                         return false;
                     } else {
                         openMenu();
@@ -205,7 +202,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         $(window).on("popstate", new Function() {
             @Override
             public void f() {
-                loadPage(null);
+                loadPage(null, true);
             }
         });
     }
@@ -267,7 +264,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
     /*
      * Change URL via pushState and load the page via Ajax.
      */
-    private void loadPage(String pageUrl) {
+    private void loadPage(String pageUrl, boolean replaceMenu) {
         if (!currentPage.equals(pageUrl)) {
             if (pageUrl != null) {
                 // Preserve QueryString, useful for the gwt.codesvr parameter in dev-mode.
@@ -280,7 +277,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
             if (!currentPage.equals(pageUrl)) {
                 updateMenusForPage(pageUrl);
 
-                ajaxLoad(pageUrl);
+                ajaxLoad(pageUrl, replaceMenu);
             } else {
                 scrollToHash();
             }
@@ -289,7 +286,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         }
     }
 
-    private void ajaxLoad(final String url) {
+    private void ajaxLoad(final String url, final boolean replaceMenu) {
         Ajax.Settings settings = Ajax.createSettings();
         settings.setUrl(url);
         settings.setDataType("html");
@@ -302,7 +299,10 @@ public class GWTProjectEntryPoint implements EntryPoint {
                 String pageStyle = content.find("#holder").attr("class");
                 $("#holder").attr("class", pageStyle);
 
-                $("#holder #submenu").replaceWith($(content).find("#holder #submenu"));
+                if (replaceMenu) {
+                    $("#holder #submenu").replaceWith($(content).find("#holder #submenu"));
+                    enhanceMenu();
+                }
 
                 $("#content").empty().append(content.find("#content > div"));
 
@@ -319,8 +319,6 @@ public class GWTProjectEntryPoint implements EntryPoint {
     }
 
     private void onPageLoaded(String pageUrl) {
-        enhanceMenu();
-
         if (shouldTrackAnalytics()) {
             trackPageView(pageUrl);
         }
