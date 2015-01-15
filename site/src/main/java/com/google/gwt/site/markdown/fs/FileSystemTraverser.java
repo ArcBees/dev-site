@@ -39,91 +39,6 @@ import com.google.gwt.site.markdown.TranslaterException;
 public class FileSystemTraverser {
     public static final String CONFIG_XML = "config.xml";
 
-    private static class FolderConfig {
-        private final String folderHref;
-        private final String title;
-        private final String description;
-        private final String style;
-        private final String logo;
-        private final List<String> excludeList;
-        private final List<Entry> folderEntries;
-
-        public FolderConfig(
-                String folderHref,
-                String title,
-                String description,
-                String style,
-                String logo,
-                List<String> excludeList,
-                List<Entry> folderEntries) {
-            this.folderHref = folderHref;
-            this.title = title;
-            this.description = description;
-            this.style = style;
-            this.logo = logo;
-            this.excludeList = excludeList;
-            this.folderEntries = folderEntries;
-        }
-
-        public String getFolderHref() {
-            return folderHref;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public List<String> getExcludeList() {
-            return excludeList;
-        }
-
-        public List<Entry> getFolderEntries() {
-            return folderEntries;
-        }
-
-        public String getStyle() {
-            return style;
-        }
-
-        public String getLogo() {
-            return logo;
-        }
-    }
-
-    private static class Entry {
-        private final String name;
-        private final String title;
-        private final String displayName;
-        private final String description;
-
-        public Entry(String name, String displayName, String title, String description) {
-            this.name = name;
-            this.displayName = displayName;
-            this.title = title;
-            this.description = description;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-    }
-
     private static interface FieldAccessor<T> {
         void setValue(T object, String value);
 
@@ -187,9 +102,14 @@ public class FileSystemTraverser {
     private void readConfig(MDParent current) throws TranslaterException {
         if (current.getConfigFile() != null) {
             FolderConfig config = parseConfig(current.getConfigFile());
+            current.setConfig(config);
 
             if (config.getFolderHref() != null && !config.getFolderHref().trim().equals("")) {
                 current.setHref(config.getFolderHref());
+            }
+
+            if (current.getDisplayName() == null) {
+                current.setDisplayName(config.getDisplayName());
             }
 
             current.setTitle(config.getTitle());
@@ -212,7 +132,7 @@ public class FileSystemTraverser {
             if (config.getFolderEntries() == null) {
                 sortChildrenAlphaBetically(current.getChildren());
             } else {
-                for (Entry e : config.getFolderEntries()) {
+                for (FolderConfig.Entry e : config.getFolderEntries()) {
 
                     if (e.getName() == null) {
                         // TODO log warning
@@ -340,7 +260,9 @@ public class FileSystemTraverser {
             if (file.getName().equals(CONFIG_XML)) {
                 parent.setConfigFile(file);
             } else {
-                MDNode mdNode = new MDNode(parent, file.getName(), file.getAbsolutePath(), depth,
+                String name = file.getName();
+
+                MDNode mdNode = new MDNode(parent, name, file.getAbsolutePath(), depth,
                         path + changeExtension(file.getName()));
                 parent.addChild(mdNode);
             }
@@ -354,8 +276,9 @@ public class FileSystemTraverser {
         DocumentBuilder builder;
         List<String> excludeList = new LinkedList<>();
 
-        List<Entry> folderEntries = new LinkedList<>();
+        List<FolderConfig.Entry> folderEntries = new LinkedList<>();
 
+        String displayName;
         String href;
         String title;
         String description;
@@ -373,6 +296,7 @@ public class FileSystemTraverser {
                         "the file '" + file.getAbsolutePath() + "' does not contain a folder tag");
             }
 
+            displayName = parseAttribute(documentElement, "displayName");
             href = parseAttribute(documentElement, "href");
             title = parseAttribute(documentElement, "title");
             description = parseAttribute(documentElement, "description");
@@ -416,15 +340,15 @@ public class FileSystemTraverser {
             throw new TranslaterException("can not read file", e);
         }
 
-        return new FolderConfig(href, title, description, style, logo, excludeList, folderEntries);
+        return new FolderConfig(displayName, href, title, description, style, logo, excludeList, folderEntries);
     }
 
     private String parseAttribute(Element element, String attribute) {
         return element.hasAttribute(attribute) ? element.getAttribute(attribute) : null;
     }
 
-    private List<Entry> parseFolderEntries(Element entriesNode) {
-        List<Entry> list = new LinkedList<>();
+    private List<FolderConfig.Entry> parseFolderEntries(Element entriesNode) {
+        List<FolderConfig.Entry> list = new LinkedList<>();
 
         NodeList childNodes = entriesNode.getChildNodes();
         for (int i = 0; i < childNodes.getLength(); i++) {
@@ -435,15 +359,12 @@ public class FileSystemTraverser {
             }
             Element entryNode = (Element) node;
 
-            if (entryNode.getChildNodes().getLength() != 1) {
-                // TODO error
-            }
-
             String name = entryNode.getAttribute("name");
             String displayName = entryNode.getAttribute("displayName");
             String title = entryNode.getAttribute("title");
             String description = entryNode.getAttribute("description");
-            list.add(new Entry(name, displayName, title, description));
+            list.add(new FolderConfig.Entry(name, displayName, title, description,
+                    parseFolderEntries(entryNode)));
         }
         return list;
     }
@@ -499,12 +420,12 @@ public class FileSystemTraverser {
         });
     }
 
-    private void sortChildren(List<Entry> entries, MDParent node) {
+    private void sortChildren(List<FolderConfig.Entry> entries, MDParent node) {
         List<MDNode> children = node.getChildren();
 
         List<MDNode> sortedChildren = new LinkedList<>();
         Set<MDNode> set = new HashSet<>(children);
-        for (Entry entry : entries) {
+        for (FolderConfig.Entry entry : entries) {
             String nodeName = entry.getName();
             boolean isFolder = nodeName.endsWith("/");
             if (isFolder) {

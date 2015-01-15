@@ -6,19 +6,21 @@
         style="jukito">
     <toc>
         <entries>
+            <entry name="index" title="Overview" displayName="Overview"></entry>
             <entry name="@All" title="@All" displayName="@All"
-                    description="The @All annotation is a powerful feature of Jukito which allows to execute the same test multiple times with a different input in each execution."></entry>
+                   description="The @All annotation is a powerful feature of Jukito which allows to execute the same test multiple times with a different input in each execution."></entry>
             <entry name="@UseModules" title="@UseModules" displayName="@UseModules"
-                    description="@UseModules annotation can be used to inherit bindings from an already existing module."></entry>
+                   description="@UseModules annotation can be used to inherit bindings from an already existing module."></entry>
             <entry name="Advantages-Over-Guiceberry" title="Advantages over Guiceberry"
-                    displayName="Advantages over Guiceberry"
-                    description="Guiceberry is meant for full integration tests, whereas Jukito was devised for unit tests, keeping in mind the ability to scale all the way to full integration tests."></entry>
-            <entry name="Advantages-Over-Vanilla-JUnit" title="Advantages over vanilla JUnit" displayName="Advantages over vanilla JUnit"
-                    description="Compared to vanilla JUnit tests, Jukito has a number of advantages: Greatly reduces boilerplate via automocking, leading to easier to read tests, leads to tests that are more resilient to API changes in the tested objects"></entry>
+                   displayName="Advantages over Guiceberry"
+                   description="Guiceberry is meant for full integration tests, whereas Jukito was devised for unit tests, keeping in mind the ability to scale all the way to full integration tests."></entry>
+            <entry name="Advantages-Over-Vanilla-JUnit" title="Advantages over vanilla JUnit"
+                   displayName="Advantages over vanilla JUnit"
+                   description="Compared to vanilla JUnit tests, Jukito has a number of advantages: Greatly reduces boilerplate via automocking, leading to easier to read tests, leads to tests that are more resilient to API changes in the tested objects"></entry>
             <entry name="Maven" title="Maven" displayName="Maven"
-                    description="Jukito is released on Maven central. If you use Maven you can configure add this dependency: &lt;dependency&gt; &lt;groupId&gt;org.jukito&lt;/groupId&gt; &lt;artifactId&gt;jukito&lt;/artifactId&gt;"></entry>
+                   description="Jukito is released on Maven central. If you use Maven you can configure add this dependency: &lt;dependency&gt; &lt;groupId&gt;org.jukito&lt;/groupId&gt; &lt;artifactId&gt;jukito&lt;/artifactId&gt;"></entry>
             <entry name="Releasing-Procedure" title="Releasing procedure" displayName="Releasing procedure"
-                    description="This page describes the procedure to follow when releasing Jukito. It is targeted to project owners and contributors."></entry>
+                   description="This page describes the procedure to follow when releasing Jukito. It is targeted to project owners and contributors."></entry>
         </entries>
     </toc>
 </folder>

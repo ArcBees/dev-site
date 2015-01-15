@@ -71,6 +71,7 @@
         font-family: geometria-light;
         color: @c-text-light;
         text-transform: none;
+        outline: 0;
 
         padding: 0;
       }
@@ -93,6 +94,7 @@
     a {
       color: @c-primary-light;
       text-decoration: none;
+      outline: 0;
       font-size: 14px;
       font-size: 1.4rem;
       font-family: geometria-bold;
@@ -247,6 +249,7 @@ aside#submenu {
   a {
     color: @c-text-light;
     text-decoration: none;
+    outline: 0;
     font-size: 14px;
     font-size: 1.4rem;
 
@@ -259,7 +262,7 @@ aside#submenu {
     .box-sizing();
     .transition();
 
-    &:hover {
+    &:hover, &.selected {
       background-color: @c-background;
       color: @c-text;
     }

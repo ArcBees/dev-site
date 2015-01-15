@@ -83,7 +83,6 @@
                                 <argument>${basedir}/src/main/markdown/</argument>
                                 <argument>${basedir}/target/generated-site</argument>
                                 <argument>/main.vm</argument>
-                                <argument>${basedir}/src/main/resources/toc.md</argument>
                             </arguments>
                         </configuration>
                     </execution>

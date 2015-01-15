@@ -39,7 +39,7 @@ module.exports = function (grunt) {
             },
             scripts: {
                 files: ['src/main/site/assets/js/*.js'],
-                tasks: ['concat', 'uglify'],
+                tasks: ['uglify'],
                 options: {
                     spawn: false
                 }

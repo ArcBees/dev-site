@@ -78,9 +78,8 @@ function handleMenu() {
             enhanceLink(link);
         }
     });
-
     var submenu = $("#submenu");
-    var item = submenu.find("a[href='" + window.location.pathname + "']").first();
+    var item = submenu.find("a[href$='" + window.location.pathname + window.location.hash + "']").first();
 
     submenu.find("li ul").hide();
 
