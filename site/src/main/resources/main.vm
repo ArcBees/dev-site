@@ -56,6 +56,14 @@
     </div>
 </nav>
 
+<div class="menuToggle">
+    <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+</div>
+
 <div id="holder" class="$!{node.style}">
     <aside id="submenu">
         <div class="logo">

@@ -608,7 +608,7 @@ nav#nav-mobile {
       margin-bottom: 3em;
 
       p {
-        line-height: 0;
+        margin: 0;
 
         &:first-of-type {
           margin-bottom: 0;
@@ -766,6 +766,48 @@ nav#nav-mobile {
 .nodesktop {
   @media (@desktop) {
     display: none;
+  }
+}
+
+#nav:hover ~ .menuToggle,
+#nav:not(.closed) ~ .menuToggle {
+  left: -40px;
+}
+
+.menuToggle {
+  position: fixed;
+  top: 46px;
+  left: 15px;
+  z-index: 10000;
+
+  .transition-property(left, .2s);
+
+  @media (@mobile) {
+    display: none;
+  }
+
+  a {
+    text-decoration: none;
+
+    position: relative;
+
+    .transition-property(top, .3s);
+  }
+
+  span {
+    content: "";
+    background-color: #525252;
+
+    display: block;
+    width: 20px;
+    height: 3px;
+    margin-top: 3px;
+
+    position: relative;
+    top: 2px;
+    left: 0;
+
+    .transition(.3s);
   }
 }
 
