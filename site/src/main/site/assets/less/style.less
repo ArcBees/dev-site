@@ -632,20 +632,6 @@ nav#nav-mobile {
     display: block;
     padding-top: 3em;
   }
-
-  .iconDevTop {
-    position: absolute;
-    top: 0;
-    left: 45px;
-
-    i {
-      font-size: 4.5rem;
-    }
-
-    @media (@mobile) {
-      display: none;
-    }
-  }
 }
 
 .stripe {
@@ -720,6 +706,32 @@ nav#nav-mobile {
   }
 }
 
+#holder {
+  &.home .iconDevTop {
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 115px;
+
+    i {
+      font-size: 4.5rem;
+    }
+
+    @media (@tablet) {
+      top: 16px;
+      left: 88px;
+    }
+
+    @media (@mobile) {
+      display: none;
+    }
+  }
+
+  .iconDevTop {
+    display: none;
+  }
+}
+
 .footer {
   background-color: #000;
   color: #fff;
@@ -776,7 +788,7 @@ nav#nav-mobile {
 
 .menuToggle {
   position: fixed;
-  top: 46px;
+  top: 31px;
   left: 15px;
   z-index: 10000;
 
@@ -784,6 +796,10 @@ nav#nav-mobile {
 
   @media (@mobile) {
     display: none;
+  }
+
+  @media (@tablet) {
+    top: 34px;
   }
 
   a {
