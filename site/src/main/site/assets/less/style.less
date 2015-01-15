@@ -12,7 +12,6 @@
  *
  * Created by @jasonlemay
  */
-
 @import 'normalize.less';
 @import 'grid.less';
 @import 'colors.less';
@@ -40,7 +39,7 @@
   left: 0;
   z-index: 9900;
 
-  @media(@tablet) {
+  @media (@tablet) {
     max-width: 200px;
   }
 
@@ -208,14 +207,14 @@
         margin-left: -122px;
         height: 30px;
 
-        @media(@tablet) {
+        @media (@tablet) {
           margin-left: -123px;
         }
       }
     }
   }
 
-  @media(@mobile) {
+  @media (@mobile) {
     display: none;
   }
 }
@@ -230,11 +229,11 @@ aside#submenu {
 
   z-index: 9999;
 
-  @media(@tablet) {
+  @media (@tablet) {
     width: 160px;
   }
 
-  @media(@mobile) {
+  @media (@mobile) {
     display: block;
   }
 
@@ -262,7 +261,8 @@ aside#submenu {
     .box-sizing();
     .transition();
 
-    &:hover, &.selected {
+    &:hover,
+    &.selected {
       background-color: @c-background;
       color: @c-text;
     }
@@ -287,7 +287,7 @@ aside#submenu {
     }
   }
 
-  @media(@mobile) {
+  @media (@mobile) {
     display: none;
   }
 }
@@ -323,7 +323,7 @@ aside#submenu {
 }
 
 a#logo-mobile {
-  @media(@mobile) {
+  @media (@mobile) {
     text-indent: -9999px;
 
     display: block;
@@ -338,7 +338,7 @@ a#logo-mobile {
 
 .gaestudio {
   a#logo-mobile {
-    @media(@mobile) {
+    @media (@mobile) {
       background: url('../img/gaeLogo.png') 1rem 1rem no-repeat @c-gae;
       -webkit-background-size: contain;
       background-size: contain;
@@ -348,7 +348,7 @@ a#logo-mobile {
 
 .gwtChosen {
   a#logo-mobile {
-    @media(@mobile) {
+    @media (@mobile) {
       background: url('../img/chosenLogo.png') center 1.5rem no-repeat @c-chosen;
       -webkit-background-size: contain;
       background-size: contain;
@@ -358,7 +358,7 @@ a#logo-mobile {
 
 .gquery {
   a#logo-mobile {
-    @media(@mobile) {
+    @media (@mobile) {
       background: url('../img/gqueryLogo.png') center 1.5rem no-repeat @c-gquery;
       -webkit-background-size: contain;
       background-size: contain;
@@ -368,7 +368,7 @@ a#logo-mobile {
 
 .jukito {
   a#logo-mobile {
-    @media(@mobile) {
+    @media (@mobile) {
       background: url('../img/jukitoLogo.png') center 1.5rem no-repeat @c-jukito;
       -webkit-background-size: contain;
       background-size: contain;
@@ -378,7 +378,7 @@ a#logo-mobile {
 
 .gwtp {
   a#logo-mobile {
-    @media(@mobile) {
+    @media (@mobile) {
       background: url('../img/gwtpLogo.png') center 1.5rem no-repeat @c-gwtp;
       -webkit-background-size: contain;
       background-size: contain;
@@ -393,7 +393,7 @@ a#logo-mobile {
 nav#nav-mobile {
   display: none;
 
-  @media(@mobile) {
+  @media (@mobile) {
     display: block;
 
     position: relative;
@@ -420,7 +420,7 @@ nav#nav-mobile {
 
     .border-radius(0, 0, 3px, 0);
 
-    @media(@mobile) {
+    @media (@mobile) {
       display: inline-block;
     }
   }
@@ -453,7 +453,7 @@ nav#nav-mobile {
 
   position: relative;
 
-  @media(@mobile) {
+  @media (@mobile) {
     display: block;
     padding-top: 3em;
   }
@@ -467,7 +467,7 @@ nav#nav-mobile {
       font-size: 4.5rem;
     }
 
-    @media(@mobile) {
+    @media (@mobile) {
       display: none;
     }
   }
@@ -482,12 +482,12 @@ nav#nav-mobile {
 
       margin: 0 0 0.5em;
 
-      @media(@tablet) {
+      @media (@tablet) {
         font-size: 40px;
         font-size: 4rem;
       }
 
-      @media(@mobile) {
+      @media (@mobile) {
         font-size: 30px;
         font-size: 3rem;
       }
@@ -504,12 +504,12 @@ nav#nav-mobile {
 
         display: block;
 
-        @media(@tablet) {
+        @media (@tablet) {
           font-size: 120px;
           font-size: 12rem;
         }
 
-        @media(mobile) {
+        @media (mobile) {
           font-size: 100px;
           font-size: 10rem;
         }
@@ -527,7 +527,7 @@ nav#nav-mobile {
 
       margin: 0.2em 0 0.9em;
 
-      @media(@mobile) {
+      @media (@mobile) {
         font-size: 24px;
         font-size: 2.4rem;
       }
@@ -550,7 +550,7 @@ nav#nav-mobile {
       left: 50%;
       z-index: 9900;
 
-      @media(@mobile) {
+      @media (@mobile) {
         margin-left: -10px;
       }
 
@@ -625,7 +625,7 @@ nav#nav-mobile {
       font-size: 16rem;
       line-height: 1em;
 
-      @media(@tablet) {
+      @media (@tablet) {
         font-size: 11rem;
       }
     }
@@ -633,7 +633,7 @@ nav#nav-mobile {
     i::before {
       margin-top: -5rem;
 
-      @media(@tablet) {
+      @media (@tablet) {
         margin: 0;
       }
     }
@@ -656,13 +656,13 @@ nav#nav-mobile {
     max-width: 880px;
     padding: 0 50px 0 50px;
 
-    @media(@tablet) {
+    @media (@tablet) {
       padding: 0;
       margin: 0 auto;
       width: 90%;
     }
 
-    @media(@mobile) {
+    @media (@mobile) {
       width: 90%;
       padding: 0;
       margin: 0 auto;
@@ -689,13 +689,13 @@ nav#nav-mobile {
     max-width: 880px;
     padding: 0 50px 0 50px;
 
-    @media(@tablet) {
+    @media (@tablet) {
       padding: 0;
       margin: 0 auto;
       width: 90%;
     }
 
-    @media(@mobile) {
+    @media (@mobile) {
       width: 90%;
       padding: 0;
       margin: 0 auto;
@@ -719,7 +719,7 @@ nav#nav-mobile {
 }
 
 .nodesktop {
-  @media(@desktop) {
+  @media (@desktop) {
     display: none;
   }
 }
