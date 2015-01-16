@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder title="GWTP"
+        href="index"
+        description="GWTP">
+    <toc>
+        <entries>
+            <entry name="index" title="Best Practices" displayName="Best Practices"></entry>
+            <entry name="Resources" title="Resources" displayName="Resources"></entry>
+            <entry name="GIN-Binding" title="GIN Binding" displayName="GIN Binding"></entry>
+            <entry name="Events" title="Events" displayName="Events"></entry>
+            <entry name="Website-Embedding" title="Website Embedding" displayName="Website Embedding"></entry>
+            <entry name="Layout-Panels" title="Layout Panels" displayName="Layout Panels"></entry>
+            <entry name="Boilerplate-Generation" title="Boilerplate Generation" displayName="Boilerplate Generation"></entry>
+            <entry name="Unit-Testing-Cookbook" title="Unit Testing Cookbook"
+                    displayName="Unit Testing Cookbook"></entry>
+        </entries>
+    </toc>
+</folder>
