@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder title="GWTP"
+        href="index"
+        description="GWTP">
+    <toc>
+        <entries>
+            <entry name="index" title="Contributing" displayName="Contributing"></entry>
+            <entry name="Compiling-and-Debugging" title="Compiling and Debugging"
+                    displayName="Compiling and Debugging"></entry>
+            <entry name="Contributing-Guidelines" title="Contributing Guidelines"
+                    displayName="Contributing Guidelines"></entry>
+        </entries>
+    </toc>
+</folder>

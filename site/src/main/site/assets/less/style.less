@@ -146,10 +146,13 @@
     .wrapper {
       width: 200px;
 
-      li,
-      li.logo {
+      li {
+        &.logo a {
+          padding: 0 51px;
+        }
+
         a {
-          padding: 0 50px;
+          padding: 0 0 0 51px;
         }
       }
     }
@@ -303,7 +306,7 @@ aside#submenu {
 
 .gsss {
   aside#submenu .logo {
-    background: url("../img/gsss.png") center 42px no-repeat @c-gsss;
+    background: url("../img/gsssLogo.png") center 42px no-repeat @c-gsss;
   }
 }
 
@@ -605,7 +608,7 @@ nav#nav-mobile {
       margin-bottom: 3em;
 
       p {
-        line-height: 0;
+        margin: 0;
 
         &:first-of-type {
           margin-bottom: 0;
@@ -628,20 +631,6 @@ nav#nav-mobile {
   @media (@mobile) {
     display: block;
     padding-top: 3em;
-  }
-
-  .iconDevTop {
-    position: absolute;
-    top: 0;
-    left: 45px;
-
-    i {
-      font-size: 4.5rem;
-    }
-
-    @media (@mobile) {
-      display: none;
-    }
   }
 }
 
@@ -717,6 +706,32 @@ nav#nav-mobile {
   }
 }
 
+#holder {
+  &.home .iconDevTop {
+    display: block;
+    position: absolute;
+    top: 7px;
+    left: 115px;
+
+    i {
+      font-size: 4.5rem;
+    }
+
+    @media (@tablet) {
+      top: 16px;
+      left: 88px;
+    }
+
+    @media (@mobile) {
+      display: none;
+    }
+  }
+
+  .iconDevTop {
+    display: none;
+  }
+}
+
 .footer {
   background-color: #000;
   color: #fff;
@@ -763,6 +778,52 @@ nav#nav-mobile {
 .nodesktop {
   @media (@desktop) {
     display: none;
+  }
+}
+
+#nav:hover ~ .menuToggle,
+#nav:not(.closed) ~ .menuToggle {
+  left: -40px;
+}
+
+.menuToggle {
+  position: fixed;
+  top: 31px;
+  left: 15px;
+  z-index: 10000;
+
+  .transition-property(left, .2s);
+
+  @media (@mobile) {
+    display: none;
+  }
+
+  @media (@tablet) {
+    top: 34px;
+  }
+
+  a {
+    text-decoration: none;
+
+    position: relative;
+
+    .transition-property(top, .3s);
+  }
+
+  span {
+    content: "";
+    background-color: #525252;
+
+    display: block;
+    width: 20px;
+    height: 3px;
+    margin-top: 3px;
+
+    position: relative;
+    top: 2px;
+    left: 0;
+
+    .transition(.3s);
   }
 }
 

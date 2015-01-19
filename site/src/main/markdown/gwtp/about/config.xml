@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder title="GWTP"
+        href="index"
+        description="GWTP">
+    <toc>
+        <entries>
+            <entry name="index" title="Overview of the library" displayName="Overview of the library"></entry>
+            <entry name="License" title="License" displayName="License"></entry>
+        </entries>
+    </toc>
+</folder>
