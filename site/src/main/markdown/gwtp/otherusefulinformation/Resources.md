@@ -18,14 +18,15 @@ The properties, images and css file types are located in the resources folder. T
 Loading resources is as simple as binding a eager singleton in the ClientModule.
 
 * Example of binding resource loader in the client module. [ClientModule](https://github.com/ArcBees/GWTP-Samples/blob/master/gwtp-samples/gwtp-sample-tab/src/main/java/com/gwtplatform/samples/tab/client/gin/ClientModule.java)
-```java
+
+```
 public class ClientModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
         install(new DefaultModule(DefaultPlaceManager.class));
         install(new ApplicationModule());
         //...
-        
+
         // Load and inject CSS resources
         bind(ResourceLoader.class).asEagerSingleton();
     }
@@ -33,13 +34,14 @@ public class ClientModule extends AbstractPresenterModule {
 ```
 
 * Example of the ResourceLoader class using `ensureInjected()`: [ResourceLoader](https://github.com/ArcBees/GWTP-Samples/blob/master/gwtp-samples/gwtp-sample-tab/src/main/java/com/gwtplatform/samples/tab/client/gin/ResourceLoader.java)
-```java
+
+```
 public class ResourceLoader {
     @Inject
     ResourceLoader(AppResources resources) {
         resources.styles().ensureInjected();
         resources.sprites().ensureInjected();
-        
+
         //... Inject more css into the document here on boot
     }
 }
@@ -47,7 +49,8 @@ public class ResourceLoader {
 
 ###Demo Css Injection
 * And Resources might be used like this: [HomeNewsView](https://github.com/ArcBees/GWTP-Samples/blob/master/gwtp-samples/gwtp-sample-tab/src/main/java/com/gwtplatform/samples/tab/client/application/homenews/HomeNewsView.java)
-```java
+
+```
 //...
     @UiField(provided = true)
     AppResources resources;
@@ -58,8 +61,8 @@ public class ResourceLoader {
     private final AppMessages appMessages;
 
     @Inject
-    HomeNewsView(Binder uiBinder, 
-                 AppResources resources, 
+    HomeNewsView(Binder uiBinder,
+                 AppResources resources,
                  AppConstants appConstants,
                  AppMessages appMessages) {
         this.resources = resources;
@@ -71,45 +74,48 @@ public class ResourceLoader {
 //...
 ```
 * Example of using resources in UiBinder: [HomeNewsView.ui.xml](https://github.com/ArcBees/GWTP-Samples/blob/master/gwtp-samples/gwtp-sample-tab/src/main/java/com/gwtplatform/samples/tab/client/application/homenews/HomeNewsView.ui.xml)
-```xml
+
+```
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
-    
-    <ui:with field="resources" 
+
+    <ui:with field="resources"
              type="com.gwtplatform.samples.tab.client.resources.AppResources"/>
 
     <g:HTMLPanel>
         <!-- Resource Examples Below -->
         <div>Example use of Messages:</div>
         <g:HTML ui:field="orderText"/>
-        
+
         <div>Example use of Constants:</div>
         <g:HTML ui:field="gwtpTitle"/>
-        
+
         <div>Example use of ImageResource:</div>
         <g:Image resource="{resources.logo}" styleName="{resources.styles.logo}"/>
-        
+
         <div class="{resources.styles.divBorder}">Example use of Css Resource:</div>
     </g:HTMLPanel>
-</ui:UiBinder> 
+</ui:UiBinder>
 ```
 
 ###Demo AppMessages
 * AppMessages might be setup like this: [AppMessages](https://github.com/ArcBees/GWTP-Samples/blob/master/gwtp-samples/gwtp-sample-tab/src/main/java/com/gwtplatform/samples/tab/client/resources/AppMessages.java)
-```java
+
+```
 @LocalizableResource.DefaultLocale("en")
 public interface AppMessages extends Messages {
      String iWillOrderNumberOf(Integer number);
 }
 ```
 * And AppMessages might be used like this: [HomeNewsView](https://github.com/ArcBees/GWTP-Samples/blob/master/gwtp-samples/gwtp-sample-tab/src/main/java/com/gwtplatform/samples/tab/client/application/homenews/HomeNewsView.java)
-```java
+
+```
 //...
     private final AppConstants appConstants;
     private final AppMessages appMessages;
 
     @Inject
     HomeNewsView(Binder uiBinder,
-                 AppResources resources, 
+                 AppResources resources,
                  AppConstants appConstants,
                  AppMessages appMessages) {
         this.resources = resources;

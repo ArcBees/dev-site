@@ -6,22 +6,24 @@ Deploying an application to PhoneGap can be challenging while using GWTP-Dispatc
 
 ## How to setup
 
-The first thing to do is to create a .gwt.xml for your Phonegap config to be used only when you want to build for phonegap. 
+The first thing to do is to create a .gwt.xml for your Phonegap config to be used only when you want to build for phonegap.
 
 ### GWT-RPC
 If you use the GWT-RPC dispatcher, you will then need to bind the RemoteServerUrl constant in your Gin Phonegap module as well as to bind the right DispatchAsyncModule:
-```java
+
+```
 protected void configure() {
     bindConstant().annotatedWith(RemoteServerUrl.class)
         .to("http://gwtp-carstore.appspot.com/");
-    
+
     install(new PhoneGapDispatchAsyncModule());
 }
 ```
 
 ### REST
 If you use the REST dispatcher, you simply need to bind the RestApplicationPath to your remote url instead of relative path in your Gin Phonegap module:
-```java
+
+```
 protected void configure() {
     bindConstant().annotatedWith(RestApplicationPath.class)
         .to("http://gwtp-carstore.appspot.com/rest");

@@ -7,13 +7,15 @@ GWTP has a few different ways to setup presenters, but each presenter type uses 
 The nested or layout presenters direct the application layout as in the header, footer and content. Layout presenters which can be nested in many different ways communicate via the Eventbus. The `@NameToken` can be used with the PlaceManager to handle url navigation.
 
 * Layout presenters initialize the slot by using the @ContentSlot annotation.
-```java
+
+```
 @ContentSlot
 public static final Type<RevealContentHandler<?>> SLOT_MAIN_CONTENT = new Type<RevealContentHandler<?>>();
 ```
 
 * See how it is used [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationPresenter.java).
-```java
+
+```
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
     public interface MyView extends View {
     }
@@ -50,7 +52,8 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 The child presenters are children of the layout presenters. Setting up a child presenter requires a slot name which is referenced in the view.
 
 * Example of a child presenter. Set the slot name and use a slot method to render the presenter in the view.
-```java
+
+```
 // slot name
 public static final Object LOGIN_SLOT = new Object();
 
@@ -63,7 +66,8 @@ protected void onBind() {
 ```
 
 * See how it is used [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header/HeaderPresenter.java).
-```java
+
+```
 public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView>
         implements HeaderUiHandlers {
     public interface MyView extends View, HasUiHandlers<HeaderUiHandlers> {
@@ -103,7 +107,8 @@ The Popup Presenter skips the view's slot methods all together. When it is used 
 requests displays in the center or location selected. See more on [Popup Presenter][pp] here.
 
 * Example of rendering a popup presenter.
-```java
+
+```
 addToPopupSlot(popupPresenter);
 ```
 
@@ -113,7 +118,8 @@ addToPopupSlot(popupPresenter);
 Add presenter with in a presenter, define the presenter slot in the parent presenter and override the view's slot method `addToSlot(...)` so that when the slot is added.
 
 * Example of `addToSlot(presenter)` in the presenter:
-```java
+
+```
 // In the Presenter
 // Define a slot name for presenter
 private Object MY_PRESENTER_SLOT = new Object();
@@ -128,7 +134,8 @@ private void displayMyPresenter() {
 ```
 
 * Example of the `addToSlot(presenter)` in the view:
-```java
+
+```
 // In the view
 @Override
 public void addToSlot(Object slot, IsWidget content) {
@@ -144,7 +151,8 @@ public void addToSlot(Object slot, IsWidget content) {
 When removing a presenter.
 
 * Example in of `removeFromSlot(presenter)` in the presenter:
-```java
+
+```
 // In the Presenter
 // Define a slot name for presenter
 private Object MY_PRESENTER_SLOT = new Object();
@@ -159,7 +167,8 @@ private void displayMyPresenter() {
 ```
 
 * Example of `removeFromSlot(presenter)` in the view:
-```java
+
+```
 @Override
 public void removeFromSlot(Object slot, IsWidget content) {
     if (slot == ApplicationPresenter.MY_PRESENTER_SLOT) {
@@ -174,7 +183,8 @@ public void removeFromSlot(Object slot, IsWidget content) {
 `setInSlot()` is a method used by GWTP in it's lifecycle to set the widget hierarchy that has to be shown to the user. Each time setInSlot is called, it will replace the previous presenter that was assigned to that slot. When a presenter is "replaced", it means that it's removed from the presenter child hierarchy and no lifecycle methods will be called on this removed presenter.
 
 * Example of `setInSlot(presenter)` in the presenter:
-```java
+
+```
 // In the Presenter
 // Define a slot name for presenter
 private Object MY_PRESENTER_SLOT = new Object();
@@ -188,7 +198,8 @@ private void displayMyPresenter() {
 ```
 
 * Example of `setInSlot(presenter)` in the view:
-```java
+
+```
 // In the view
 @Override
 public void setInSlot(Object slot, IsWidget content) {
@@ -206,7 +217,8 @@ Clear a child or nested presenter call `clearSlot(slot)`. Remember that calling 
 * clearSlot is rarely used and ask yourself the question if the scenario you're in isn't something where a addToSlot and removeFromSlot would be more appropriate.
 
 * Call `clearSlot(presenter)` in the presenter:
-```java
+
+```
 // In the presenter
 // Name of the slot
 private Object MY_ITEMS_SLOT = new Object();
@@ -219,7 +231,8 @@ private void clearChildPresenter() {
 ```
 
 * And add the `slot == Presenter && content == null` in the view:
-```java
+
+```
 // In the view
 @Override
 public void setInSlot(Object slot, IsWidget content) {

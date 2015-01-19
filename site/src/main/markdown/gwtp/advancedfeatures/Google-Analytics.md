@@ -3,10 +3,10 @@
 #Introduction
 We worked on the seamless integration of your presenter-based application with Google Analytics. This new feature will automatically track any navigation event and presenter change provided you add the following bindings to your gin module:
 
-```java
-  bind(GoogleAnalytics.class).to(GoogleAnalyticsImpl.class).in(Singleton.class);
-  bindConstant().annotatedWith(GaAccount.class).to("UA-XXXXXXX-X");
-  bind(GoogleAnalyticsNavigationTracker.class).asEagerSingleton();
+```
+bind(GoogleAnalytics.class).to(GoogleAnalyticsImpl.class).in(Singleton.class);
+bindConstant().annotatedWith(GaAccount.class).to("UA-XXXXXXX-X");
+bind(GoogleAnalyticsNavigationTracker.class).asEagerSingleton();
 ```
 
 IMPORTANT NOTE, If you install the default module, GoogleAnalytics.class will already be bound.
@@ -15,9 +15,9 @@ The first line let's you bind the various google Analytics function to our imple
 
 ##Tracking events
 
-It is also possible to tracks event by injecting `GoogleAnalytics` in whereever you want and by calling manually `googleAnalytics.trackEvent(category, action);` where category is a string name you supply for the group of objects you want to track and action is a string that is uniquely paired with each category, and commonly used to define the type of user interaction for the web object. 
+It is also possible to tracks event by injecting `GoogleAnalytics` in whereever you want and by calling manually `googleAnalytics.trackEvent(category, action);` where category is a string name you supply for the group of objects you want to track and action is a string that is uniquely paired with each category, and commonly used to define the type of user interaction for the web object.
 
-You can also call the methods with two additionnal arguments: 
+You can also call the methods with two additionnal arguments:
  * optLabel An string to provide additional dimensions to the event data;
  * optValue An integer that you can use to provide numerical data about the user event.
 

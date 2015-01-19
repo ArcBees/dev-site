@@ -10,7 +10,7 @@ For those who want to download the dependencies manually, this can be most easil
 * Create a Java project
 * Install Maven in your IDE, if necessary.
 * Download this: [pom.xml](https://gist.github.com/4666272)
-* Run 'mvn package' in the pom.xml directory.
+* Run `mvn package` in the pom.xml directory.
 * Copy the jars you want from the target/project/WEB-INF/lib directory to the desired location.
 
 ##Archetypes
@@ -22,67 +22,70 @@ Quickly start up a project with an GWTP Archetype or project template. Find them
 To enable GWTP in your pom.xml, add the dependencies below. For more information on the available components, see [library overview](https://github.com/ArcBees/GWTP/wiki/Overview-of-the-library). Define the `${gwtp.version}` property in your POM `<properties>`.
 
 * Properties:
-```xml
+
+```
 <properties>
     <gwtp.version>1.2.1</gwtp.version>
 </properties>
 ```
 
 * Dependencies:
-```xml
-   <!-- MVP component -->
-   <dependency>
-     <groupId>com.gwtplatform</groupId>
-     <artifactId>gwtp-mvp-client</artifactId>
-     <version>${gwtp.version}</version>
-     <scope>provided</scope>
-   </dependency>
 
-   <!-- Dispatch component -->
-   <dependency>
-     <groupId>com.gwtplatform</groupId>
-     <artifactId>gwtp-dispatch-client</artifactId>
-     <version>${gwtp.version}</version>
-     <scope>provided</scope>
-   </dependency>
+```
+<!-- MVP component -->
+<dependency>
+    <groupId>com.gwtplatform</groupId>
+    <artifactId>gwtp-mvp-client</artifactId>
+    <version>${gwtp.version}</version>
+    <scope>provided</scope>
+</dependency>
 
-   <dependency>
-     <groupId>com.gwtplatform</groupId>
-     <artifactId>gwtp-dispatch-server-guice</artifactId>
-     <!-- Or, if you use spring:
-     <artifactId>gwtp-dispatch-server-spring</artifactId> -->
-     <version>${gwtp.version}</version>
-   </dependency>
+<!-- Dispatch component -->
+<dependency>
+    <groupId>com.gwtplatform</groupId>
+    <artifactId>gwtp-dispatch-client</artifactId>
+    <version>${gwtp.version}</version>
+    <scope>provided</scope>
+</dependency>
 
-   <!-- Crawler component -->
-   <dependency>
-     <groupId>com.gwtplatform</groupId>
-     <artifactId>gwtp-crawler</artifactId>
-     <version>${gwtp.version}</version>
-   </dependency>
+<dependency>
+    <groupId>com.gwtplatform</groupId>
+    <artifactId>gwtp-dispatch-server-guice</artifactId>
+    <!-- Or, if you use spring:
+    <artifactId>gwtp-dispatch-server-spring</artifactId> -->
+    <version>${gwtp.version}</version>
+</dependency>
 
-   <!-- Annotation component -->
-   <dependency>
-     <groupId>com.gwtplatform</groupId>
-     <artifactId>gwtp-processors</artifactId>
-     <version>${gwtp.version}</version>
-     <scope>provided</scope>
-   </dependency>
+<!-- Crawler component -->
+<dependency>
+    <groupId>com.gwtplatform</groupId>
+    <artifactId>gwtp-crawler</artifactId>
+    <version>${gwtp.version}</version>
+</dependency>
 
-   <!-- Tester component -->
-   <dependency>
-     <groupId>com.gwtplatform</groupId>
-     <artifactId>gwtp-tester</artifactId>
-     <version>${gwtp.version}</version>
-     <scope>test</scope>
-   </dependency>
+<!-- Annotation component -->
+<dependency>
+    <groupId>com.gwtplatform</groupId>
+    <artifactId>gwtp-processors</artifactId>
+    <version>${gwtp.version}</version>
+    <scope>provided</scope>
+</dependency>
+
+<!-- Tester component -->
+<dependency>
+    <groupId>com.gwtplatform</groupId>
+    <artifactId>gwtp-tester</artifactId>
+    <version>${gwtp.version}</version>
+    <scope>test</scope>
+</dependency>
 ```
 
 ## Snapshots
 Snapshots of the current version are regularly deployed. If you want to experiment with bleeding edge, evolving versions of the platform, feel free to collaborate in use of these snapshot dependencies.
 
 * Here's how you use the snapshot dependencies. Get the lastest snapshot version from [here](https://github.com/ArcBees/GWTP).
-```xml
+
+```
 <properties>
     <gwtp.version>1.3-SNAPSHOT</gwtp.version>
 </properties>
@@ -105,7 +108,8 @@ The purpose of this configuration is to skip over GWT Test when running `mvn tes
 Note that it's far faster to use the GWT Test Suite for multiple tests, so switching out the the GWT plugin configuration as noted below will speed up testing.
 
 * Plugin configuration to skip GWT tests during Junit testing.
-```xml
+
+```
 <plugins>
     <!-- JUnit Testing - skip *.GwtTest cases -->
     <!-- 'mvn test' - runs the Jukito tests -->
@@ -136,7 +140,8 @@ Setting up the GWT Maven plugin can be done using the configuration described be
 * Heap space errors often occur with large projects with many dependencies. Below the configuration allows for larger dependency collections by increasing the heap. The default is 512m.
 
 * GWT properties needed for configuration
-```xml
+
+```
 <properties>
     <gwt.version>2.6.1</gwt.version>
     <gwt.style>OBF</gwt.style>
@@ -156,7 +161,8 @@ Setting up the GWT Maven plugin can be done using the configuration described be
 ```
 
 * GWT Plugin with in the pom.xml `<build/>` element.
-```xml
+
+```
 <plugins>
     <plugin>
         <groupId>org.codehaus.mojo</groupId>
@@ -208,7 +214,8 @@ The Google App Engine plugin can automatically run App Engine and deploy it to A
 * `mvn gae:unpack` will setup the library directory. This is a need for first time users!
 
 * For automatic deployments the username and password can be stored in the ~/.m2/settings.xml file.
-```xml
+
+```
 <!-- Appengine Credentials -->
 <server>
     <id>appengine-credentials</id>
@@ -218,7 +225,8 @@ The Google App Engine plugin can automatically run App Engine and deploy it to A
 ```
 
 * Google App Engine configuration with in the pom `<build/>` element.
-```xml
+
+```
 <plugins>
     <!-- Google App Engine Deployment -->
     <plugin>
@@ -257,7 +265,8 @@ The Google App Engine plugin can automatically run App Engine and deploy it to A
 When putting files into the resources directory the resources will need to be defined in the pom.xml.
 
 * Describe the resource directories something like this:
-```xml
+
+```
 <build>
     <resources>
         <resource>
@@ -282,7 +291,8 @@ Configuring maven to generate the @annotated classes for the boilerplate generat
 over this features uses.
 
 * Configure the resources:
-```xml
+
+```
 <build>
     <resources>
         <resource>
@@ -299,7 +309,8 @@ over this features uses.
 ```
 
 * Add the processor dependency:
-```xml
+
+```
 <dependency>
     <groupId>com.gwtplatform</groupId>
     <artifactId>gwtp-processors</artifactId>
@@ -309,7 +320,8 @@ over this features uses.
 ```
 
 * Wire up the annotation processor plugin to run when `mvn clean generate-sources` is ran. Or use `mvn clean package`.
-```xml
+
+```
 <plugins>
      <!-- Run annotation processors on src/home/java sources -->
     <plugin>
@@ -365,7 +377,8 @@ To generate the resources simply run `mvn clean generate-resources` or `mvn clea
 For the Eclipse users the lifecycle mapping plugin has to be added to the pom.xml. This will allow the Eclipse builder to automatically build the annotated resources when the project builds, although the project may need to be refreshed so that the class shows up. If this plugin is used selecting Project > Clean will update the resources directory. During the first project setup, Maven Update may need to be applied twice so the generated source directories link up automatically.
 
 * Include this in the pom for Eclipse workspace building to update resources. *Refresh* by right clicking on project.
-```xml
+
+```
 <build>
     <pluginManagement>
         <plugins>

@@ -14,7 +14,8 @@ See the [Route-Place-Tokens][rpt] page for details on using these URL's.
 When the PlaceManager navigates to the presenter the prepareFromRequest(PlaceRequest request) is called. This is the time to get the url parameters.
 
 * Example:
-```java
+
+```
 @Override
 public void prepareFromRequest(PlaceRequest request) {
   super.prepareFromRequest(request);
@@ -23,7 +24,8 @@ public void prepareFromRequest(PlaceRequest request) {
 ```
 
 * Example:
-```java
+
+```
 @Override
 public void prepareFromRequest(PlaceRequest placeRequest) {
   super.prepareFromRequest(placeRequest);
@@ -59,7 +61,8 @@ See the [Revealing a Presenter: Hyperlink](https://github.com/ArcBees/GWTP/wiki/
 This describes how to setup a PlaceRequest with URL Parameters and then navigate to it using the PlaceManager.
 
 * First inject the PlaceManager into the constructor and assign it to a class field.
-```java
+
+```
 private final PlaceManager placeManager;
 
 @Inject
@@ -75,7 +78,8 @@ HomePagePresenter(EventBus eventBus,
 ```
 
 * Then create a request using the `PlaceRequest` Builder with a mandatory NameToken and add parameters using `.with`.
-```java
+
+```
 private void goSomeWhere() {
     PlaceRequest request = new PlaceRequest.Builder().
         .nameToken("nameToken")
@@ -87,7 +91,8 @@ private void goSomeWhere() {
 ```
 
 * Sometimes you already have an existing `PlaceRequest` at hand and only want to add some additional parameters before revealing the place.
-```java
+
+```
 private void goSomeWhereElse() {
     PlaceRequest request = placeManager.getCurrentPlaceRequest();
     PlaceRequest newRequest = new PlaceRequest.Builder(request)

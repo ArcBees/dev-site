@@ -1,9 +1,10 @@
-Creating events fired on the `EventBus`. This helps decouple widgets and presenters. 
+Creating events fired on the `EventBus`. This helps decouple widgets and presenters.
 
 ###Global event without a data member.
 
 * Example of a `GlobalEvent` without a data member:
-```java
+
+```
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
@@ -44,14 +45,16 @@ public class GlobalEvent extends GwtEvent<GlobalEvent.GlobalHandler> {
 }
 ```
 * Fire the `GlobalEvent` from any presenter like this:
-```java
+
+```
 GlobalEvent.fire(this);
 ```
 
 ###Global event with a data member
 
 * Example of a `GlobalDataEvent` with a data member:
-```java
+
+```
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
@@ -74,9 +77,9 @@ public class GlobalDataEvent extends GwtEvent<GlobalDataEvent.GlobalDataHandler>
     }
 
     private static final Type<GlobalDataHandler> TYPE = new Type<GlobalDataHandler>();
-    
+
     private String data;
-    
+
     public GlobalDataEvent(String data) {
         this.data = data;
     }
@@ -101,7 +104,8 @@ public class GlobalDataEvent extends GwtEvent<GlobalDataEvent.GlobalDataHandler>
 }
 ```
 * Fire the `GlobalDataEvent` from any presenter like this:
-```java
+
+```
 String data = "Sending some data with the event";
 GlobalDataEvent.fire(this, data);
 ```
@@ -110,7 +114,8 @@ GlobalDataEvent.fire(this, data);
 Setting the source on fireEvent with your own objects.
 
 * Example of sending the source of the event with the event:
-```java
+
+```
 public abstract class MyCustomCallback<T> implements AsyncCallback<T>, HasHandlers {
   @Inject
   private static EventBus eventBus;
@@ -139,7 +144,8 @@ Registering handlers can be tightly integrated into the presenter. The handler t
 * Add `addRegisteredHandler(GlobalDataEvent.getType(), this);` to onBind.
 
 * Example of registering a `GlobalDataEvent`:
-```java
+
+```
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> implements GlobalDataHandler {
     public interface MyView extends View {
     }
@@ -171,7 +177,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
         super.onBind();
 
         setInSlot(TYPE_HeaderPresenter, headerPresenter);
-        
+
         addRegisteredHandler(GlobalDataEvent.getType(), this);
     }
 }
@@ -183,21 +189,22 @@ Sometimes several presenters listen to a same event. But you may want that when 
 
 The onBind method of the example above becomes :
 
-```java
-    @Override
-    protected void onBind() {
-        super.onBind();
 
-        setInSlot(TYPE_HeaderPresenter, headerPresenter);
-        
-        addVisibleHandler(GlobalDataEvent.getType(), this);
-    }
+```
+@Override
+protected void onBind() {
+    super.onBind();
+
+    setInSlot(TYPE_HeaderPresenter, headerPresenter);
+
+    addVisibleHandler(GlobalDataEvent.getType(), this);
+}
 ```
 
 #The Observer
 
 ##Grouped Events Observing
-Setting up a `SimpleEventBus` to Observe a specific set of events which can be grouped together and they can be subscribed to by injecting the Observer, registering the event type and adding the handler. For instance this can be useful in a deep child presenter widget in which it wants to fire an menu change event and the menu observes for that event. In the examples below, I took snippets of a Archetype directory widgets in which a selection list item selection causes a display event to happen.  
+Setting up a `SimpleEventBus` to Observe a specific set of events which can be grouped together and they can be subscribed to by injecting the Observer, registering the event type and adding the handler. For instance this can be useful in a deep child presenter widget in which it wants to fire an menu change event and the menu observes for that event. In the examples below, I took snippets of a Archetype directory widgets in which a selection list item selection causes a display event to happen.
 
 * Setting up an observer takes a few steps which are listed below:
  * Setup the Observer with annotated `EventBus`.
@@ -205,9 +212,10 @@ Setting up a `SimpleEventBus` to Observe a specific set of events which can be g
  * Create some events for the Observer to use.
  * Fire an event.
  * Handle an event.
- 
+
 * Example of the Observer with annotated `EventBus`:
-```java
+
+```
 public class ArchetypeObserver {
   private final EventBus eventBus;
 
@@ -235,7 +243,8 @@ public class ArchetypeObserver {
 ```
 
 * Example of instantiating the Observer through binding:
-```java
+
+```
 public class EventsModule extends AbstractPresenterModule {
   @Override
   protected void configure() {
@@ -246,7 +255,8 @@ public class EventsModule extends AbstractPresenterModule {
 ```
 
 * Example of a event used in the Observer:
-```java
+
+```
 public class ArchetypeDisplayEvent extends GwtEvent<ArchetypeDisplayEvent.DisplayArchetypeHandler> {
   public interface DisplayArchetypeHandler extends EventHandler {
       void onDisplay(ArchetypeDisplayEvent event);
@@ -281,7 +291,8 @@ public class ArchetypeDisplayEvent extends GwtEvent<ArchetypeDisplayEvent.Displa
 ```
 
 * Example of firing the `ArchetypeDisplayEvent`:
-```java
+
+```
 public class ArchetypeListPresenter extends PresenterWidget<ArchetypeListPresenter.MyView> implements
     ArchtypeListUiHandlers {
   //...
@@ -291,7 +302,7 @@ public class ArchetypeListPresenter extends PresenterWidget<ArchetypeListPresent
   ArchetypeListPresenter(EventBus eventBus, MyView view, ArchetypeObserver archetypeObserver,
       LoginPresenter loginPresenter, ArchetypeJsoDao archetypeJsoDao) {
     super(eventBus, view);
-    
+
     this.archetypeObserver = archetypeObserver;
     this.archetypeJsoDao = archetypeJsoDao;
 
@@ -301,7 +312,7 @@ public class ArchetypeListPresenter extends PresenterWidget<ArchetypeListPresent
 
   @Override
   public void gotoEdit(ArchetypeJso selectedArchetype) {
-    // Fire the event 
+    // Fire the event
     archetypeObserver.display(selectedArchetype);
   }
   //...
@@ -309,13 +320,14 @@ public class ArchetypeListPresenter extends PresenterWidget<ArchetypeListPresent
 ```
 
 * Example of handling the `ArchetypeDisplayEvent`:
-```java
+
+```
 // Implement `ArchetypeDisplayEvent.DisplayArchetypeHandler` handler.
 public class ArchetypeDisplayPresenter extends PresenterWidget<ArchetypeDisplayPresenter.MyView> implements
     ArchetypeDisplayUiHandlers, ArchetypeDisplayEvent.DisplayArchetypeHandler {
   public interface MyView extends View, HasUiHandlers<ArchetypeDisplayUiHandlers> {
   }
-  
+
   private final ArchetypeObserver archetypeObserver;
   private final ArchetypeJsoDao archetypeJsoDao;
 
@@ -334,7 +346,7 @@ public class ArchetypeDisplayPresenter extends PresenterWidget<ArchetypeDisplayP
   @Override
   protected void onBind() {
     super.onBind();
-    
+
     // Register the event
     registerHandler(archetypeObserver.addHandler(ArchetypeDisplayEvent.getType(), this));
   }
@@ -342,7 +354,7 @@ public class ArchetypeDisplayPresenter extends PresenterWidget<ArchetypeDisplayP
   // Event Handler for the event.
   @Override
   public void onDisplay(ArchetypeDisplayEvent event) {
-    // TODO do something  
+    // TODO do something
   }
 }
 ```
