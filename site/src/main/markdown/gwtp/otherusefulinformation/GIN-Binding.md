@@ -1,3 +1,5 @@
+# GIN Binding
+
 Using GIN dependency injection allows for a loosely decoupled application.
 
 ##Reference

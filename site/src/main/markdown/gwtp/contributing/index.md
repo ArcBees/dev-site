@@ -1,3 +1,5 @@
+# Contributing
+
 How to help make this project better...
 
 ##Reference

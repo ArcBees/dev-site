@@ -1,3 +1,5 @@
+# Resources
+
 This explains bootstrapping and using resources. This goes over resource types Messages, Constants, CSS and Images.
 
 ##Reference

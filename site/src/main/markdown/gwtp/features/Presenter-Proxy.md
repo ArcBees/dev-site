@@ -1,3 +1,5 @@
+# Presenter Proxy
+
 At that point you're probably thinking "Do I really have to create three classes for every page in my application?" Fear not! Chances are you will never have to write a proxy class. That's because most of the time proxys can be created automatically by GWT's generators. All you have to do is use special annotations above your MyProxy interface.
 
 The first annotation you will need is either `@ProxyStandard` or `@ProxyCodeSplit`, depending whether or not you want your presenter and view to sit behind a split point (see [here](http://code.google.com/webtoolkit/doc/latest/DevGuideCodeSplitting.html) for details on GWT's code splitting feature). That's right, using code splitting is that simple! (Although there are some gotchas, see for example [Provider bundles](http://code.google.com/p/gwt-platform/wiki/GettingStarted#Provider_bundles ) below.)

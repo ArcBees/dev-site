@@ -1,4 +1,4 @@
-#Introduction
+# Action Validators
 GWTP makes it possible to link each of your `ActionHandler`s with a server-side `ActionValidator` that determines whether or not the current client can execute the action. Validation logic is up to you and is not limited to inspecting the users, for example you could use it to deny access to some actions at certain times of the day. In this document, however, we focus to the most frequent use case of session-based validation.
 
 ##Changes from gwt-dispatch

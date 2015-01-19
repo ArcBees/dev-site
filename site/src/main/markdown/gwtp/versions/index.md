@@ -1,3 +1,5 @@
+# Release Notes
+
 #Version 1.3.1 (08/25/2014)
 ## GWTP
 * Optimized version checking

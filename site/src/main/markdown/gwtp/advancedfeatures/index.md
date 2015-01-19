@@ -2,7 +2,7 @@
 
 Formfactors are a powerful feature but will add complexity to your project.  Formfactors will continue to be supported but we recommend you use [responsive design](http://en.wikipedia.org/wiki/Responsive_web_design) in your projects instead.  Making one view adapt to the screen size is easier than creating and maintaining 3 different design targets.
 
-# Introduction
+# Form Factors
 Building web applications for multiple devices while reusing most of the business logic you already have build for your desktop application can be challenging. Adopting good development practices as well as harnessing the power of dependency injection can help you achieve that with success and efficiency. Since GWTP is all about adopting good development practices, we found that we could make your live as developers a little bit easier by adding native form factors support.
 
 Before going any further, you may be wondering what are form factors? Form factors are permutations of your application to specific devices and/or systems. Here's a couple of examples:

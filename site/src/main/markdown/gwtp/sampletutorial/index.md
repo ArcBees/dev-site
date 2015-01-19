@@ -1,13 +1,11 @@
-#Simple Nested Sample
+#Sample tutorial
+The goal of this tutorial is to help you get a complete overview using GWTP's Model-View-Presenter architecture. Part one will focus mainly on nested presenters. For a complete example on how to use GWTP in Ecplise, take a look at the GettingStarted tutorial.
+
+After reading this guide, you should get a better understanding of nested presenters and history management.  We also cover presenter lifecycles in more detail.
 
 ##Reference
 * [Nested Presenter Slots](https://github.com/ArcBees/GWTP/wiki/Presenter-%22Slots%22)
 * [Nested Sample](https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-nested)
-
-#Introduction
-The goal of this tutorial is to help you get a complete overview using GWTP's Model-View-Presenter architecture. Part one will focus mainly on nested presenters. For a complete example on how to use GWTP in Ecplise, take a look at the GettingStarted tutorial.
-
-After reading this guide, you should get a better understanding of nested presenters and history management.  We also cover presenter lifecycles in more detail.
 
 ##Getting the sample application
 The sample application for this tutorial can be <a href="http://code.google.com/p/gwt-platform/source/browse/#hg%2Fgwtp-samples%2Fgwtp-sample-nested%2Fsrc%2Fmain%2Fjava%2Fcom%2Fgwtplatform%2Fsamples%2Fnested%2Fclient">found here</a>. You can get it if you install the examples as explained in the [Getting Started](http://code.google.com/p/gwt-platform/wiki/GettingStarted#Getting_the_sample_applications) page.<br />

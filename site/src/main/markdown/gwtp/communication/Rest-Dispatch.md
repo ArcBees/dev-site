@@ -1,3 +1,5 @@
+# Rest Dispatch
+
 REST Dispatch is a GWT client library introduced in GWTP 1.0. It allows your client code to send HTTP requests in a REST fashion to any server. It aims to support JSR-311 (or JAX-RS) annotations.
 
 *Only JSON serialization is supported!*

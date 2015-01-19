@@ -1,3 +1,5 @@
+#Bootstrapping or Application Initialization
+
 GWTP reduces the amount of code needed in order to get started with the MVP modules.
 The `Ginjector` and `ProviderBundle`'s are no longer required to be created and updated by hand, all that needed to do is point GWTP to the [Gin](http://code.google.com/p/google-gin/) modules.
 

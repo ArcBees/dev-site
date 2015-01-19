@@ -1,6 +1,4 @@
-#Compiling and Debugging
-
-#Introduction
+# Compiling and Debugging
 
 This page is meant for GWTP contributors and details all the steps needed to build and debug GWTP comfortably within Eclipse. If you're only interested in running the samples, check out RunningGwtpSamples.
 
@@ -59,13 +57,13 @@ gwtp-core/gwtp-mvp-client/target/gwtp-mvp-client-[version].jar
 ```
 See the DescriptionOfIndividualJars for more details on each of these jars.
 
-In most cases, you don't really care about optimizing the size of the jars. In such situations you can simply grab the compound jar that includes all of the above. 
+In most cases, you don't really care about optimizing the size of the jars. In such situations you can simply grab the compound jar that includes all of the above.
 To create the compound jar, package the `gwtp-all` module. From a terminal window type:
 ```
 > cd gwtp-core/gwtp-all
 > mvn package
 ```
-and look for the compound artifact in the target directory: 
+and look for the compound artifact in the target directory:
 ```
 gwtp-core/gwtp-all/target/gwtp-all-[version].jar
 ```

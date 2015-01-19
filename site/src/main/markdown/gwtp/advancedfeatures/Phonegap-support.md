@@ -1,3 +1,5 @@
+# Phonegap Support
+
 Deploying an application to PhoneGap can be challenging while using GWTP-Dispatch since it's configured by default so that the web page used is from the same origin than the server. To help you design applications that can be deployed to a phonegap build, we introduced two new things in GWTP. The first is the ability to prepare a service by changed the serviceEntryPoint just before the call is executed. This is done through prepareService from the DefaultDispatchAsync. The second thing is the addition of PhoneGapDispatchAsync that use that new extension point added to DefaultDispatchAsync.
 
 ##Reference

@@ -1,3 +1,5 @@
+#Migrating from v. 0.7 to 1.0
+
 Migrating from v. 0.7 to 1.0, and summary of changes.
 
 Before attempting migration, we recommend sample an archetype showcasing the latest and greatest additions to GWTP. This guide should help give you a feel for how things fit together. Most of the changes regard how the defaults are set up, making it easier to get off the ground quicker without affecting preexisting application designs.

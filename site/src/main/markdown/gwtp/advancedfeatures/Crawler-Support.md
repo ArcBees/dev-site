@@ -1,4 +1,4 @@
-##Introduction
+# Crawler Support
 Since version 0.6, GWTP makes it easy for your website to be crawlable by search engines that follow Google's [AJAX crawling](http://code.google.com/web/ajaxcrawling/) specification, so they can be well-indexed by search engines. This page details how you can do this.
 
 ##Before you begin...

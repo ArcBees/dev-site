@@ -1,4 +1,4 @@
-#Contributor Guidelines
+# Contributing Guidelines
 If you are interested in understanding the internals of GWT-Platform (GWTP), building from source, or contributing ideas or modifications to the project, then this document is for you.
 
 #Licensing

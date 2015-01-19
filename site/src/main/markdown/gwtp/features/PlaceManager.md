@@ -1,3 +1,5 @@
+# PlaceManager
+
 ##Builtin DefaultPlaceManager
 Binding the `DefaultModule()` will initialize the `DefaultPlaceManager`. But it's important to note that the default places have to be bound for `@DefaultPlace`, `@ErrorPlace` and `@UnauthorizedPlace` depending on use of them.
 

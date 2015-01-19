@@ -1,3 +1,5 @@
+# Presenter View Creation
+
 A typical view could consist of two classes, one UiBinder and maybe one gin module.
 
 * A package might look something like [this](https://github.com/ArcBees/ArcBees-tools/tree/master/archetypes/gwtp-appengine-basic/src/main/java/com/arcbees/project/client/application/home):
@@ -10,7 +12,7 @@ HomePageView.java
 HomePageView.ui.xml
 ```
 
-###Creating a View
+### Creating a View
 A view is considered to be a place or page in which a user can go in the application. Creating a view takes 3 parts or Presenter-Proxy-View triplet. In this example I'll reference the classes from the created Archetype. [Source](https://github.com/ArcBees/ArcBees-tools/tree/master/archetypes/gwtp-appengine-basic/src/main/java/com/arcbees/project/client/application/home)
 
 * Start by creating the UiBinder [HomePageView.ui.xml](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-basic/src/main/java/com/arcbees/project/client/application/home/HomePageView.ui.xml) resource for the widget.
@@ -46,7 +48,7 @@ public class HomePageView extends ViewImpl implements HomePagePresenter.MyView {
 }
 ```
 
-###Creating the Presenter
+### Creating the Presenter
 Create the presenter in which its purpose is to display the view.
 
 * Create a basic presenter like [this](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-basic/src/main/java/com/arcbees/project/client/application/home/HomePagePresenter.java):
