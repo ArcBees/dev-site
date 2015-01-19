@@ -5,7 +5,6 @@ To add a new documentation page, you have to:
 
 * Create a `.md` file under the corresponding project
 * Edit the `config.xml` file of the project to add an entry of your new page
-* Update the `resources/toc.md` file to add your new page in the general table of content
 
 ##Reference
 * Markdown processor: https://github.com/sirthias/pegdown
