@@ -1,5 +1,6 @@
 var speed = 200;
 var isSameOriginRexp = new RegExp("^(?!(#|[a-z#]+:))(?!.*(|/)javadoc/)(?!.*\\.(jpe?g|png|mpe?g|mp[34]|avi)$)", "i");
+var backTopArrowAppear = 200;
 
 $(function () {
     $("body")
@@ -15,7 +16,7 @@ $(function () {
 
     $(function () {
         $(window).scroll(function(){
-            if ($(this).scrollTop() > 200) {
+            if ($(this).scrollTop() > backTopArrowAppear) {
                 $('#backToTop').fadeIn('slow');
             } else {
                 $('#backToTop').fadeOut('slow');
