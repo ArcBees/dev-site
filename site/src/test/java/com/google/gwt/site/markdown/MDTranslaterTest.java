@@ -15,11 +15,8 @@
 package com.google.gwt.site.markdown;
 
 import org.junit.Test;
-import org.pegdown.Extensions;
 
 import static org.junit.Assert.assertEquals;
-import static org.pegdown.Extensions.FENCED_CODE_BLOCKS;
-import static org.pegdown.Extensions.WIKILINKS;
 
 /**
  * Test class for MDTranslate
@@ -34,23 +31,6 @@ public class MDTranslaterTest {
                 ini + "<" + tag + " " + attr + "='" + match + "' foo='bar'><" + tag + "/>" + end;
         String actual = md.adjustRelativePath(html, relativePath);
         assertEquals(expected, actual);
-    }
-
-    @Test
-    public void bitTest() {
-        int a = FENCED_CODE_BLOCKS;
-        System.out.println(a);
-        int b = WIKILINKS;
-        System.out.println(b);
-
-        int opt = WIKILINKS + FENCED_CODE_BLOCKS;
-        System.out.println(opt);
-        System.out.println(ext(opt, FENCED_CODE_BLOCKS));
-        System.out.println(ext(opt, WIKILINKS));
-    }
-
-    public boolean ext(int opt, int extension) {
-        return (opt & extension) > 0;
     }
 
     @Test
