@@ -304,42 +304,6 @@ aside#submenu {
   }
 }
 
-.gsss {
-  aside#submenu .logo {
-    background: url("../img/gsssLogo.png") center 42px no-repeat @c-gsss;
-  }
-}
-
-.jukito {
-  aside#submenu .logo {
-    background: url("../img/jukitoLogo.png") center 42px no-repeat @c-jukito;
-  }
-}
-
-.gaestudio {
-  aside#submenu .logo {
-    background: url("../img/gaeLogo.png") center 42px no-repeat @c-gae;
-  }
-}
-
-.gwtChosen {
-  aside#submenu .logo {
-    background: url("../img/chosenLogo.png") center 42px no-repeat @c-chosen;
-  }
-}
-
-.gquery {
-  aside#submenu .logo {
-    background: url("../img/gqueryLogo.png") center 42px no-repeat @c-gquery;
-  }
-}
-
-.gwtp {
-  aside#submenu .logo {
-    background: url("../img/gwtpLogo.png") center 42px no-repeat @c-gwtp;
-  }
-}
-
 a#logo-mobile {
   @media (@mobile) {
     text-indent: -9999px;
@@ -355,6 +319,18 @@ a#logo-mobile {
 }
 
 .gaestudio {
+  aside#submenu .logo {
+    background: url("../img/gaeLogo.png") center 42px no-repeat @c-gae;
+  }
+
+  a {
+    color: @c-gae;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
   a#logo-mobile {
     @media (@mobile) {
       background: url('../img/gaeLogo.png') 1rem 1rem no-repeat @c-gae;
@@ -365,6 +341,18 @@ a#logo-mobile {
 }
 
 .gwtChosen {
+  aside#submenu .logo {
+    background: url("../img/chosenLogo.png") center 42px no-repeat @c-chosen;
+  }
+
+  a {
+    color: @c-chosen;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
   a#logo-mobile {
     @media (@mobile) {
       background: url('../img/chosenLogo.png') center 1.5rem no-repeat @c-chosen;
@@ -375,6 +363,18 @@ a#logo-mobile {
 }
 
 .gquery {
+  aside#submenu .logo {
+    background: url("../img/gqueryLogo.png") center 42px no-repeat @c-gquery;
+  }
+
+  a {
+    color: @c-gquery;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
   a#logo-mobile {
     @media (@mobile) {
       background: url('../img/gqueryLogo.png') center 1.5rem no-repeat @c-gquery;
@@ -385,6 +385,18 @@ a#logo-mobile {
 }
 
 .jukito {
+  aside#submenu .logo {
+    background: url("../img/jukitoLogo.png") center 42px no-repeat @c-jukito;
+  }
+
+  a {
+    color: @c-jukito;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
   a#logo-mobile {
     @media (@mobile) {
       background: url('../img/jukitoLogo.png') center 1.5rem no-repeat @c-jukito;
@@ -395,9 +407,43 @@ a#logo-mobile {
 }
 
 .gwtp {
+  aside#submenu .logo {
+    background: url("../img/gwtpLogo.png") center 42px no-repeat @c-gwtp;
+  }
+
+  a {
+    color: @c-gwtp;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
   a#logo-mobile {
     @media (@mobile) {
       background: url('../img/gwtpLogo.png') center 1.5rem no-repeat @c-gwtp;
+      -webkit-background-size: contain;
+      background-size: contain;
+    }
+  }
+}
+
+.gsss {
+  aside#submenu .logo {
+    background: url("../img/gsssLogo.png") center 42px no-repeat @c-gsss;
+  }
+
+  a {
+    color: @c-gsss;
+
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+
+  a#logo-mobile {
+    @media (@mobile) {
+      background: url('../img/gsssLogo.png') center 1.5rem no-repeat @c-gsss;
       -webkit-background-size: contain;
       background-size: contain;
     }
