@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <folder href="index"
         title="GWTP"
-        description="GWTP">
+        description="GWTP"
+        style="gwtp">
     <toc>
         <entries>
             <entry name="index" title="Overview" displayName="Overview"></entry>
