@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder title="GWTP"
+        href="index"
+        description="GWTP">
+    <toc>
+        <entries>
+            <entry name="index" title="Presenter View Creation" displayName="Presenter View Creation"></entry>
+            <entry name="UiHandlers" title="UiHandlers" displayName="UiHandlers"></entry>
+            <entry name="Presenter-Lifecycle" title="Presenter Lifecycle" displayName="Presenter Lifecycle"></entry>
+            <entry name="Presenter-Proxy" title="Presenter Proxy" displayName="Presenter Proxy"></entry>
+            <entry name="Presenter-Slots" title="Presenter Slots" displayName="Presenter Slots"></entry>
+            <entry name="Presenter-Widget" title="Presenter Widget" displayName="Presenter Widget"></entry>
+            <entry name="Popup-Presenter" title="Popup Presenter" displayName="Popup Presenter"></entry>
+            <entry name="Tabbed-Presenters" title="Tabbed Presenters" displayName="Tabbed Presenters"></entry>
+            <entry name="PlaceManager" title="PlaceManager" displayName="PlaceManager"></entry>
+            <entry name="URL-Parameters" title="URL Parameters" displayName="URL Parameters"></entry>
+            <entry name="Route-Place-Tokens" title="Route Place Tokens" displayName="Route Place Tokens"></entry>
+            <entry name="Navigation-Confirmation" title="Navigation Confirmation"
+                    displayName="Navigation Confirmation"></entry>
+            <entry name="Presenter-Gatekeeper" title="Presenter Gatekeeper" displayName="Presenter Gatekeeper"></entry>
+            <entry name="Presenter-Manual-Reveal" title="Presenter Manual Reveal"
+                    displayName="Presenter Manual Reveal"></entry>
+        </entries>
+    </toc>
+</folder>

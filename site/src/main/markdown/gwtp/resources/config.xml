@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder>
+    <toc>
+        <entries>
+            <entry name="index" title="Maven Configuration"
+                    displayName="Maven Configuration"></entry>
+            <entry name="Migrating-from-07-to-10" title="Migrating from v. 0.7 to 1.0"
+                    displayName="Migrating from v. 0.7 to 1.0"></entry>
+            <entry name="Migrating-from-11-to-12" title="Migrating from v. 1.1 to 1.2"
+                    displayName="Migrating from v. 1.1 to 1.2"></entry>
+        </entries>
+    </toc>
+</folder>
