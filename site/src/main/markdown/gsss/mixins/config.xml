@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Todo: JASON: find better description-->
 <folder href="index" title="Mixins" description="Mixins">
+    <toc>
+        <entries>
+            <entry name="#how-to-install" displayName="How to install"></entry>
+            <entry name="#border-radius" displayName="Border radius"></entry>
+            <entry name="#box-sizing" displayName="Box sizing"></entry>
+            <entry name="#gradient" displayName="Gradient"></entry>
+            <entry name="#opacity" displayName="Opacity"></entry>
+            <entry name="#outline" displayName="Outline"></entry>
+            <entry name="#shadow" displayName="Shadow"></entry>
+            <entry name="#transform" displayName="Transform"></entry>
+            <entry name="#transition" displayName="Transition"></entry>
+        </entries>
+    </toc>
 </folder>

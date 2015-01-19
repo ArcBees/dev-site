@@ -18,14 +18,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MDParent extends MDNode {
+    private FolderConfig config;
+    private List<MDNode> children = new LinkedList<>();
+    private String href;
+    private File configFile;
 
     public MDParent(MDParent parent, String name, String path, int depth, String relativePath) {
         super(parent, name, path, depth, relativePath);
     }
-
-    private List<MDNode> children = new LinkedList<>();
-    private String href;
-    private File configFile;
 
     @Override
     public String toString() {
@@ -70,5 +70,13 @@ public class MDParent extends MDNode {
 
     public File getConfigFile() {
         return configFile;
+    }
+
+    public void setConfig(FolderConfig config) {
+        this.config = config;
+    }
+
+    public FolderConfig getConfig() {
+        return config;
     }
 }

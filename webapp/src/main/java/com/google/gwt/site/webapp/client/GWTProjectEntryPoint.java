@@ -19,7 +19,10 @@ import com.arcbees.analytics.shared.Analytics;
 import com.google.common.base.MoreObjects;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.query.client.Properties;
@@ -30,6 +33,7 @@ import com.google.gwt.site.demo.ContentLoadedEvent;
 import com.google.gwt.site.demo.gsss.grid.GSSSGridDemos;
 import com.google.gwt.site.demo.gsss.mixins.GSSSMixinsDemos;
 import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.impl.HyperlinkImpl;
 import com.google.web.bindery.event.shared.EventBus;
@@ -73,6 +77,13 @@ public class GWTProjectEntryPoint implements EntryPoint {
         registerDemos();
 
         enhancePage();
+
+        History.addValueChangeHandler(new ValueChangeHandler<String>() {
+            @Override
+            public void onValueChange(ValueChangeEvent<String> event) {
+                openMenu();
+            }
+        });
     }
 
     private void createAnalytics() {
@@ -99,27 +110,30 @@ public class GWTProjectEntryPoint implements EntryPoint {
      * Open the branch and select the item corresponding to the current url.
      */
     private void openMenu() {
-        GQuery item = $("#submenu a[href='" + Window.Location.getPath() + "']").eq(0);
-
-        // Only collapse unrelated entries in mobile
-        if ($("#nav-mobile").isVisible()) {
-            hideUnrelatedBranches(item);
-        }
-
-        showBranch(item);
-
-        $("#submenu a.selected").removeClass("selected");
-        item.addClass("selected");
-
-        // Replace relative paths in anchors by absolute ones
-        // exclude all anchors in the content area.
-        $("a").not($("#content a")).each(new Function() {
+        Scheduler.get().scheduleDeferred(new Scheduler.ScheduledCommand() {
             @Override
-            public void f(Element e) {
-                GQuery link = $(e);
-                if (shouldEnhanceLink(link)) {
-                    enhanceLink(link);
-                }
+            public void execute() {
+                String relativeLocation = Window.Location.getPath() + Window.Location.getHash();
+                GQuery item = $("#submenu a[href$=\"" + relativeLocation + "\"]").eq(0);
+
+                hideUnrelatedBranches(item);
+
+                showBranch(item);
+
+                $("#submenu a.selected").removeClass("selected");
+                item.addClass("selected");
+
+                // Replace relative paths in anchors by absolute ones
+                // exclude all anchors in the content area.
+                $("a").not($("#content a")).each(new Function() {
+                    @Override
+                    public void f(Element e) {
+                        GQuery link = $(e);
+                        if (shouldEnhanceLink(link)) {
+                            enhanceLink(link);
+                        }
+                    }
+                });
             }
         });
     }
@@ -128,20 +142,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
      * Enhance the page adding handlers and replacing relative by absolute urls
      */
     private void enhancePage() {
-
-        // We add a span with the +/- icon so as the click area is well defined
-        // this span is not rendered in server side because it is only needed
-        // for enhancing the page.
-        GQuery parentItems = $("#submenu li").has("ul").prepend("<span/>");
-
-        // Toggle the branch when clicking on the arrow or anchor without content
-        $(parentItems).children("span, a[href='#']").on("click", new Function() {
-            @Override
-            public boolean f(Event e) {
-                toggleMenu($(e).parent());
-                return false;
-            }
-        });
+        enhanceMenu();
 
         // Replace relative paths in anchors by absolute ones
         // exclude all anchors in the content area.
@@ -166,28 +167,33 @@ public class GWTProjectEntryPoint implements EntryPoint {
         // Do not continue enhancing if Ajax is disabled
         if (!ajaxEnabled) {
             // Select current item from the URL info
-            loadPage(null);
+            loadPage(null, true);
             return;
         }
 
         // Use Ajax instead of default behaviour
-        $(body).on("click", "a", new Function() {
+        $(body).on("click", "a:not([href^=\"http\"])", new Function() {
             @Override
             public boolean f(Event e) {
-                boolean containsHash = $(e).attr("href").contains("#");
+                GQuery $e = $(e);
+                String href = $e.attr("href");
+                boolean containsHash = href.contains("#");
 
-                if (shouldEnhanceLink($(e)) &&
+                if (shouldEnhanceLink($e) &&
                         // Is it a normal click (not ctrl/cmd/shift/right/middle click) ?
-                        clickHelper.handleAsClick(e) &&
-                        !containsHash) {
+                        clickHelper.handleAsClick(e)) {
+                    if (!containsHash) {
+                        // In mobile, if menu is visible, close it
+                        $("#submenu.show").removeClass("show");
 
-                    // In mobile, if menu is visible, close it
-                    $("#submenu.show").removeClass("show");
-
-                    // Load the page using Ajax
-                    loadPage($(e));
-                    return false;
+                        // Load the page using Ajax
+                        loadPage(href, !$e.parents("#nav").isEmpty());
+                        return false;
+                    } else {
+                        openMenu();
+                    }
                 }
+
                 return true;
             }
         });
@@ -196,9 +202,30 @@ public class GWTProjectEntryPoint implements EntryPoint {
         $(window).on("popstate", new Function() {
             @Override
             public void f() {
-                loadPage(null);
+                loadPage(null, true);
             }
         });
+    }
+
+    private void enhanceMenu() {
+        // We add a span with the +/- icon so as the click area is well defined
+        // this span is not rendered in server side because it is only needed
+        // for enhancing the page.
+        GQuery parentItems = $("#submenu li").has("ul").prepend("<span/>");
+
+        // Toggle the branch when clicking on the arrow or anchor without content
+        $(parentItems).children("span, a[href=\"#\"]").on("click", new Function() {
+            @Override
+            public boolean f(Event e) {
+                toggleMenu($(e).parent());
+                return false;
+            }
+        });
+
+        $("#submenu li")
+                .not(".open")
+                .children("ul")
+                .slideUp(0);
     }
 
     private void enhanceLink(GQuery link) {
@@ -242,9 +269,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
     /*
      * Change URL via pushState and load the page via Ajax.
      */
-    private void loadPage(GQuery link) {
-        String pageUrl = link == null ? null : link.<String>prop("pathname");
-
+    private void loadPage(String pageUrl, boolean replaceMenu) {
         if (!currentPage.equals(pageUrl)) {
             if (pageUrl != null) {
                 // Preserve QueryString, useful for the gwt.codesvr parameter in dev-mode.
@@ -255,11 +280,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
             pageUrl = Window.Location.getPath();
             if (!currentPage.equals(pageUrl)) {
-                $("#spinner").show();
-
-                updateMenusForPage(pageUrl);
-
-                ajaxLoad(pageUrl);
+                ajaxLoad(pageUrl, replaceMenu);
             } else {
                 scrollToHash();
             }
@@ -268,7 +289,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         }
     }
 
-    private void ajaxLoad(final String url) {
+    private void ajaxLoad(final String url, final boolean replaceMenu) {
         Ajax.Settings settings = Ajax.createSettings();
         settings.setUrl(url);
         settings.setDataType("html");
@@ -280,6 +301,11 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
                 String pageStyle = content.find("#holder").attr("class");
                 $("#holder").attr("class", pageStyle);
+
+                if (replaceMenu) {
+                    $("#holder #submenu").replaceWith($(content).find("#holder #submenu"));
+                    enhanceMenu();
+                }
 
                 $("#content").empty().append(content.find("#content > div"));
 
@@ -303,11 +329,12 @@ public class GWTProjectEntryPoint implements EntryPoint {
         ContentLoadedEvent.fire(eventBus);
         openMenu();
         scrollToHash();
-        $("#spinner").hide();
+
+        updateMenusForPage(pageUrl);
     }
 
-    private void updateMenusForPage(String pageUrl) {
-        if ("/".equals(pageUrl)) {
+    private void updateMenusForPage(final String pageUrl) {
+        if ("/".equals(pageUrl) || "".equals(pageUrl)) {
             lockMenus();
         } else {
             unlockMenus();
@@ -315,13 +342,11 @@ public class GWTProjectEntryPoint implements EntryPoint {
     }
 
     private void unlockMenus() {
-        $("#content").removeClass("home");
-        $("#nav").attr("class", "closed");
+        $("#holder").removeClass("home");
     }
 
     private void lockMenus() {
-        $("#content").addClass("home");
-        $("#nav").attr("class", "alwaysOpen");
+        $("#holder").addClass("home");
     }
 
     /*
@@ -329,7 +354,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
      */
     private void scrollToHash() {
         String hash = Window.Location.getHash();
-        GQuery anchor = hash.length() > 1 ? $(hash + ", [name='" + hash.substring(1) + "']") : $();
+        GQuery anchor = hash.length() > 1 ? $(hash + ", [name=\"" + hash.substring(1) + "\"]") : $();
         if (anchor.isEmpty()) {
             Window.scrollTo(0, 0);
         } else {

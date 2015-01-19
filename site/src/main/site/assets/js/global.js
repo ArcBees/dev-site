@@ -3,10 +3,10 @@ var isSameOriginRexp = new RegExp("^(?!(#|[a-z#]+:))(?!.*(|/)javadoc/)(?!.*\\.(j
 
 $(function () {
     $("body")
-        .on("mouseenter", "> #nav:not(.alwaysOpen)", function () {
+        .on("mouseenter", "> #nav", function () {
             $(this).removeClass("closed");
         })
-        .on("mouseleave", "> #nav:not(.alwaysOpen)", function () {
+        .on("mouseleave", "> #nav", function () {
             $(this).addClass("closed");
         });
 
@@ -78,9 +78,8 @@ function handleMenu() {
             enhanceLink(link);
         }
     });
-
     var submenu = $("#submenu");
-    var item = submenu.find("a[href='" + window.location.pathname + "']").first();
+    var item = submenu.find("a[href$='" + window.location.pathname + window.location.hash + "']").first();
 
     submenu.find("li ul").hide();
 

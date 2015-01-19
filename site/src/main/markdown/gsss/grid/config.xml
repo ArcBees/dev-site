@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Todo: JASON: find better description-->
 <folder href="index" title="Grid" description="Grid">
+    <toc>
+        <entries>
+            <entry name="#how-to-install" displayName="How to install"></entry>
+            <entry name="#default-structure" displayName="Default structure"></entry>
+            <entry name="#grid-breakpoints" displayName="Grid breakpoints"></entry>
+            <entry name="#columns-size" displayName="Columns size">
+                <entry name="#default" displayName="Default"></entry>
+                <entry name="#tablet" displayName="Tablet"></entry>
+                <entry name="#mobile" displayName="Mobile"></entry>
+            </entry>
+            <entry name="#push" displayName="Push"></entry>
+            <entry name="#grid-settings" displayName="Grid settings">
+                <entry name="#viewports-sizes" displayName="Min and max sizes of viewports"></entry>
+                <entry name="#padding" displayName="Padding"></entry>
+                <entry name="#gutter" displayName="Gutter"></entry>
+            </entry>
+        </entries>
+    </toc>
 </folder>
