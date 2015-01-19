@@ -48,7 +48,11 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 
 ### POM file modifications
 * Add a property : `<gae-studio.version>1.0-RC1</gae-studio.version>`
-* In the **maven-war-plugin** configuration, add : `<packagingExcludes>%regex[.*?gae-studio-webapp-${gae-studio.version}.*],**/gaestudio/**</packagingExcludes>`
+* In the **maven-war-plugin** configuration, add :
+
+        <packagingExcludes>
+            %regex[.*?gae-studio-webapp-${gae-studio.version}.*],**/gaestudio/**
+        </packagingExcludes>
 * Add the **appengine-maven-plugin** if you're not already using it
 
         <plugin>
@@ -86,7 +90,9 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                             <version>5</version>
                             <generateApplicationXml>false</generateApplicationXml>
                             <defaultLibBundleDir>lib</defaultLibBundleDir>
-                            <packagingIncludes>META-INF/**, %regex[.*?\.war/.*]</packagingIncludes>
+                            <packagingIncludes>
+                                META-INF/**, %regex[.*?\.war/.*]
+                            </packagingIncludes>
                             <unpackTypes>war</unpackTypes>
                         </configuration>
                     </plugin>

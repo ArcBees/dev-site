@@ -172,7 +172,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         }
 
         // Use Ajax instead of default behaviour
-        $(body).on("click", "a", new Function() {
+        $(body).on("click", "a:not([href^=\"http\"])", new Function() {
             @Override
             public boolean f(Event e) {
                 GQuery $e = $(e);
@@ -221,6 +221,11 @@ public class GWTProjectEntryPoint implements EntryPoint {
                 return false;
             }
         });
+
+        $("#submenu li")
+                .not(".open")
+                .children("ul")
+                .slideUp(0);
     }
 
     private void enhanceLink(GQuery link) {
@@ -275,8 +280,6 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
             pageUrl = Window.Location.getPath();
             if (!currentPage.equals(pageUrl)) {
-                updateMenusForPage(pageUrl);
-
                 ajaxLoad(pageUrl, replaceMenu);
             } else {
                 scrollToHash();
@@ -326,10 +329,12 @@ public class GWTProjectEntryPoint implements EntryPoint {
         ContentLoadedEvent.fire(eventBus);
         openMenu();
         scrollToHash();
+
+        updateMenusForPage(pageUrl);
     }
 
-    private void updateMenusForPage(String pageUrl) {
-        if ("/".equals(pageUrl)) {
+    private void updateMenusForPage(final String pageUrl) {
+        if ("/".equals(pageUrl) || "".equals(pageUrl)) {
             lockMenus();
         } else {
             unlockMenus();
@@ -337,13 +342,11 @@ public class GWTProjectEntryPoint implements EntryPoint {
     }
 
     private void unlockMenus() {
-        $("#content").removeClass("home");
-        $("#nav").attr("class", "closed");
+        $("#holder").removeClass("home");
     }
 
     private void lockMenus() {
-        $("#content").addClass("home");
-        $("#nav").attr("class", "alwaysOpen");
+        $("#holder").addClass("home");
     }
 
     /*

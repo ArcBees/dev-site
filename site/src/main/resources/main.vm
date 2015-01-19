@@ -27,18 +27,6 @@
         <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
 
     <script type="text/javascript" src="/gwtproject/gwtproject.nocache.js"></script>
-    <script>
-        (function () {
-            var cx = '008698606704604874043:or32ypbnrfu';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                    '//www.google.com/cse/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-        })();
-    </script>
 </head>
 
 <body>
@@ -59,19 +47,26 @@
                 </a>
             </li>
             <li><a href="gaestudio/"/><i class="icon_gae"></i>GAE Studio</a></li>
-##            <li><a href="gwtp/"><i class="icon_gwtp"></i>gwtp</a></li>
+            <li><a href="gwtp/"><i class="icon_gwtp"></i>GWTP</a></li>
             <li><a href="jukito/"><i class="icon_jukito"></i>Jukito</a></li>
-##            <li><a href="chosen/"><i class="icon_chosen"></i>gwt chosen</a></li>
-##            <li><a href="gquery/"><i class="icon_gquery"></i>gquery</a></li>
-            <li><a href="gsss/mixins/"><i class="icon_menu"></i>GSSS</a></li>
+            <li><a href="https://code.google.com/p/gwtquery/" target="_blank"><i class="icon_gquery"></i>GQuery</a></li>
+            <li><a href="http://arcbees.github.io/gwtchosen/" target="_blank"><i class="icon_chosen"></i>GWT-Chosen</a></li>
+            <li><a href="gsss/mixins/"><i class="icon_gsss"></i>GSSS</a></li>
         </ul>
     </div>
 </nav>
 
-<div id="holder" class="${node.style}">
+<div class="menuToggle">
+    <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+</div>
+
+<div id="holder" class="$!{node.style}">
     <aside id="submenu">
         <div class="logo">
-
         </div>
         <nav>
             ${toc}
@@ -86,14 +81,13 @@
         ${toc}
     </nav>
 
+    <div class="iconDevTop">
+        <i class="icon_signCode"></i>
+    </div>
+
     <div id="content" role="main">
-        <div class="iconDevTop">
-            <i class="icon_signCode"></i>
-        </div>
         <div class="container">
-
             ${content}
-
         </div>
     </div>
 </div>

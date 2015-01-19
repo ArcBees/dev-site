@@ -16,7 +16,8 @@ In order to do so all inputs must be configured in the TestModule of the test cl
             }
         }
 
-        @Test print(@All String s) {
+        @Test
+        public void print(@All String s) {
             System.out.println(s);
         }
     }
@@ -40,7 +41,8 @@ In this case the types are bound directly instead of concrete instances.
             }
         }
 
-        @Test print(@All MyInterface x) {
+        @Test
+        public void print(@All MyInterface x) {
             System.out.println(x.getClass().getSimpleName());
         }
     }
@@ -59,7 +61,8 @@ Tests are not limited to a single parameter. It is possible to annotated more th
             }
         }
 
-        @Test print(@All String s, @All Integer i) {
+        @Test
+        public void print(@All String s, @All Integer i) {
             System.out.println(s + i);
         }
     }
@@ -81,11 +84,13 @@ Sometimes it is desirable to have different groups of bindings of the same class
             }
         }
 
-        @Test printEven(@All("even") Integer i) {
+        @Test
+        public void printEven(@All("even") Integer i) {
             System.out.println("even " + i);
         }
 
-        @Test printOdd(@All("odd") Integer i) {
+        @Test
+        public void printOdd(@All("odd") Integer i) {
             System.out.println("odd " + i);
         }
     }
