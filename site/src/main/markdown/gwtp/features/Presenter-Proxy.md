@@ -21,7 +21,7 @@ If you'd like to notify the user when an asynchronous request is performed by GW
 For example, you can display a `Loading...` message when the first event is handled, and clear it when one of the other two is received. Check out the events javadoc for details.
 
 ##Custom Proxy
-See more on the [[Custom Proxy Class]] here.
+See more on the [Custom Proxy Class][cpc] here.
 
 ## Attaching events to proxies
 It is often useful to let a presenter respond to custom events even before it has been initialized. To do this it is necessary for the proxy to listen to the events. Then, whenever the proxy receives the event, it should initialize its presenter and forward the call. To make this entire process simple, GWTP provides the `@ProxyEvent` annotation. To use this feature, first define your custom `GwtEvent` class, for example:
@@ -29,14 +29,14 @@ It is often useful to let a presenter respond to custom events even before it ha
 public class RevealDefaultLinkColumnEvent extends GwtEvent<RevealDefaultLinkColumnHandler> {
 
   private static final Type<RevealDefaultLinkColumnHandler> TYPE = new Type<RevealDefaultLinkColumnHandler>();
-  
+
   public static Type<RevealDefaultLinkColumnHandler> getType() {
       return TYPE;
   }
 
   public static void fire(HasEventBus source) {
-    source.fireEvent(new RevealDefaultLinkColumnEvent());  
-  }  
+    source.fireEvent(new RevealDefaultLinkColumnEvent());
+  }
 
   public RevealDefaultLinkColumnEvent() {
   }
@@ -68,3 +68,5 @@ Make sure that this interface has a single method and that the method accepts on
   }
 ```
 Calling `forceReveal()` in this way should only be done for leaf presenters that do not have a name token. In the case where the presenter is associated to a place, use a method from the `PlaceManager` instead.
+
+[cpc]: gwtp/advancedfeatures/Custom-Proxy-Class.html "Custom Proxy Class"

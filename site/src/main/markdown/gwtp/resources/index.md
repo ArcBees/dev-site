@@ -278,7 +278,8 @@ When putting files into the resources directory the resources will need to be de
 ```
 
 ##Annotation Processor
-Configuring maven to generate the @annotated classes for the boilerplate generation. [[Boilerplate-Generation]] goes over this features uses.
+Configuring maven to generate the @annotated classes for the boilerplate generation. [Boilerplate-Generation][bg] goes
+over this features uses.
 
 * Configure the resources:
 ```xml
@@ -398,3 +399,5 @@ For the Eclipse users the lifecycle mapping plugin has to be added to the pom.xm
     </pluginManagement>
 </build>
 ```
+
+[bg]: gwtp/otherusefulinformation/Boilerplate-Generation.html "Boilerplate Generation"

@@ -4,7 +4,8 @@ Using GIN dependency injection allows for a loosely decoupled application.
 [Google GIN](http://code.google.com/p/google-gin/)
 
 ## Application Module Bootstrapping
-See more about [[Bootstrapping or Application Initialization]]. The application starts by bootstrapping the first gin module. Then the other modules can be chained from from it.
+See more about [Bootstrapping or Application Initialization][boot]. The application starts by bootstrapping the first
+gin module. Then the other modules can be chained from from it.
 
 * Example of ClientModule. See an example [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/gin/ClientModule.java).
 ```java
@@ -60,10 +61,12 @@ Notice how the presenter knows nothing about its view's implementation. This is 
 public class MyModule extends AbstractPresenterModule {
   @Override
   protected void configure() {
-    bindPresenter(MainPagePresenter.class, 
-        MainPagePresenter.MyView.class, 
-        MainPageView.class, 
+    bindPresenter(MainPagePresenter.class,
+        MainPagePresenter.MyView.class,
+        MainPageView.class,
         MainPagePresenter.MyProxy.class);
   }
 }
 ```
+
+[boot]: gwtp/basicfeatures/Bootstrapping-or-Application-Initialization.html "Bootstrapping or Application Initialization"

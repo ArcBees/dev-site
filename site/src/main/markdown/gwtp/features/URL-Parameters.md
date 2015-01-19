@@ -8,7 +8,7 @@ The parameters are encoded like this `#nameToken(;key=value)*` and might look li
 ##Restful URL Parameter Encoding
 While more fragile to upgrades because parameter order changes could break old links/bookmarks, it is possible to use more Restful URLs such as `http://domain.tld/#/search/iphone/`.
 
-See the [[Route-Place-Tokens]] page for details on using these URL's.
+See the [Route-Place-Tokens][rpt] page for details on using these URL's.
 
 ##Getting URL Parameters
 When the PlaceManager navigates to the presenter the prepareFromRequest(PlaceRequest request) is called. This is the time to get the url parameters.
@@ -56,16 +56,16 @@ public void prepareFromRequest(PlaceRequest placeRequest) {
 See the [Revealing a Presenter: Hyperlink](https://github.com/ArcBees/GWTP/wiki/Presenter-Lifecycle) example.
 
 ##Creating a PlaceManager Request
-This describes how to setup a PlaceRequest with URL Parameters and then navigate to it using the PlaceManager. 
+This describes how to setup a PlaceRequest with URL Parameters and then navigate to it using the PlaceManager.
 
 * First inject the PlaceManager into the constructor and assign it to a class field.
 ```java
 private final PlaceManager placeManager;
 
 @Inject
-HomePagePresenter(EventBus eventBus, 
+HomePagePresenter(EventBus eventBus,
                   MyView view, MyProxy proxy,
-                  RestDispatch dispatcher, 
+                  RestDispatch dispatcher,
                   PlaceManager placeManager) {
     super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
 
@@ -96,3 +96,5 @@ private void goSomeWhereElse() {
     placeManager.revealPlace(newRequest);
 }
 ```
+
+[rpt]: gwtp/features/Route-Place-Tokens.html "Route Place Tokens"

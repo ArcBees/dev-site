@@ -13,7 +13,9 @@ Before going any further, you may be wondering what are form factors? Form facto
 
 Not only that, we could have permutations for Wordpress, Facebook and even more!
 
-Before going deeper into form factors, it is important that you use the application controller wich is used to generate the ginjector and all the required behind the scene goodies needed to be able to use the full power of this new feature. I invite you to read [[Bootstrapping-or-Application-Initialization]] before going any further.
+Before going deeper into form factors, it is important that you use the application controller wich is used to
+generate the ginjector and all the required behind the scene goodies needed to be able to use the full power of this
+new feature. I invite you to read [Bootstrapping or Application Initialization][bs] before going any further.
 
 ##Reference
 * [GWTP Mobile Sample Project](https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-mobile)
@@ -40,7 +42,7 @@ Depending on the the browser user agent used and browser screen size, it will us
 Permuting the view is really easy, but it's not as obvious with presenters that has proxies. If you don't pay attention, you could end up by adding each permutation of your presenters to each Ginjector generated for your application. To avoid that, you must create an abstract presenter that will share the same proxy for each of your presenter.
 ```java
 public abstract class AbstractApplicationPresenter
-        extends Presenter<AbstractApplicationPresenter.MyView, 
+        extends Presenter<AbstractApplicationPresenter.MyView,
                           AbstractApplicationPresenter.MyProxy> {
     @ProxyCodeSplit
     @NameToken(NameTokens.homePage)
@@ -63,7 +65,7 @@ public abstract class AbstractApplicationPresenter
 
 Then your real implementation can extend this newly create abstraction:
 ```java
-public class ApplicationDesktopPresenter 
+public class ApplicationDesktopPresenter
         extends AbstractApplicationPresenter implements ApplicationUiHandlers {
     private PlaceManager placeManager;
 
@@ -95,4 +97,8 @@ TODO: In RC3 of GWTP there will be a convenience method to do all this for you.
 
 ## Going further
 Now that you know how to use the new form factor feature, you can see it in action in our [mobile sample]
-(https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-mobile) which is also displaying how to use the [[Phonegap support]] to export your mobile web application to a native mobile application.
+(https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-mobile) which is also displaying how to
+ use the [Phonegap support][ps] to export your mobile web application to a native mobile application.
+
+[bs]: gwtp/basicfeatures/Bootstrapping-or-Application-Initialization.html "Bootstrapping or Application Initialization"
+[ps]: gwtp/advancedfeatures/Phonegap-support.html

@@ -22,7 +22,9 @@ The rest of this document describes how to create a GWTP project manually step-b
 
 ## <a id="gettingSample"></a>Getting the sample applications
 
-A good way to learn advanced GWTP features is to look at the included sample applications. Getting and compiling them, either from the command line or from Eclipse, is described in details in [[Running GWTP samples]]. These samples are partly meant to test GWTP so they are a bit hard to setup to run comfortably within Eclipse and their configuration files are a bit complex. Your first GWTP projects can be much simpler, and this is what this page guides you though.
+A good way to learn advanced GWTP features is to look at the included sample applications. Getting and compiling
+them, either from the command line or from Eclipse, is described in details in [Running GWTP samples][rs]. These
+samples are partly meant to test GWTP so they are a bit hard to setup to run comfortably within Eclipse and their configuration files are a bit complex. Your first GWTP projects can be much simpler, and this is what this page guides you though.
 
 ## <a id="externalExamples"></a>External examples
 
@@ -39,13 +41,19 @@ Another example of web-page-like applications built with GWTP is [ArcBees websit
 This section explains how to setup your first GWTP project within Eclipse. If you're only interested in browsing the sample source code, [http://code.google.com/p/gwt-platform/wiki/GettingStarted#Using_GWTP skip right to the next section] where we take you on a step-by-step journey through the basic features of GWTP.
 
 ## <a id="create"></a>Creating a GWTP project
-Find the [[Project Creation]] notes for both IntelliJ IDEA and Eclipse [here](https://github.com/ArcBees/GWTP/wiki/Project-Creation).
+Find the [Project Creation][pc] notes for both IntelliJ IDEA and Eclipse [here](https://github
+.com/ArcBees/GWTP/wiki/Project-Creation).
 
 ## <a id="gettingGWTP"></a>Getting GWTP
-You can get the current release of GWTP from the [download section](https://github.com/ArcBees/GWTP/tree/master/distribution/downloads), the latest snapshot is available on our [continuous integration server](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt225&tab=buildTypeStatusDiv), simply create an account and get it from the artifact column. You can also get the latest release or snapshot with [[Maven|Using Gwtp with Maven]],  or you can elect to [clone out git repository](https://github.com/ArcBees/GWTP).
+You can get the current release of GWTP from the [download section](https://github
+.com/ArcBees/GWTP/tree/master/distribution/downloads), the latest snapshot is available on our [continuous
+integration server](http://teamcity.codebetter.com/viewType.html?buildTypeId=bt225&tab=buildTypeStatusDiv), simply
+create an account and get it from the artifact column. You can also get the latest release or snapshot with
+[Maven Configuration][mc],  or you can elect to [clone out git repository](https://github.com/ArcBees/GWTP).
 
 ## <a id="requiredLibraries"></a>Required libraries
-Any GWTP project depends on a couple of libraries. The rest of this section lists these and explains how to obtain them. If your project is using Maven then all the dependencies will be taken care of automatically. See [[Using Gwtp with Maven]] for more details. For the complete dependency hierarchy take a look at DependencyHierarchy.
+Any GWTP project depends on a couple of libraries. The rest of this section lists these and explains how to obtain
+them. If your project is using Maven then all the dependencies will be taken care of automatically. See [Maven Configuration][mc] for more details. For the complete dependency hierarchy take a look at DependencyHierarchy.
 
 ### Gin and Guice
 
@@ -59,7 +67,9 @@ Add the jars to your build path by doing the following:
 
 Naturally, you will need GWTP itself. Simply copy GWTP's compound jar `gwtp-all-1.0.jar` into your project's `war/WEB-INF/lib` directory and add it to your build path, as explained above.
 
-If you want to minimize the size of your jars it's possible to cherry-pick the components you want from GWTP. See the [[Description of individual Jars]] for details. This comes in handy when using AppEngine, to keep cold start-up time to a minimum.
+If you want to minimize the size of your jars it's possible to cherry-pick the components you want from GWTP. See the
+ [Overview of the library][ol] for details. This comes in handy when using AppEngine, to keep cold start-up time to a
+ minimum.
 
 [Back to top](#top)
 
@@ -68,19 +78,19 @@ If you want to minimize the size of your jars it's possible to cherry-pick the c
 At this point, your application should compile without build errors and you should be able to run it. It's time to start writing code!
 
 ## Your first View
-To create a the first view visit [[Presenter View Creation]].
+To create a the first view visit [Presenter View Creation][pv].
 
 ## Your first Presenter
-See more on [[Layout Presenter]]
+See more on [Layout Presenter][lpr]
 
 ## Your first Proxy
-See more on [[Presenter-Proxy]]
+See more on [Presenter-Proxy][pproxy]
 
 ## Default page
 See more on [place manager](PlaceManager)
 
 ## Binding everything together
-See more on [[GIN Binding]]
+See more on [GIN Binding][gb]
 
 ## Setting the entry point
 See more on [bootstrapping](Bootstrapping-or-Application-Initialization)
@@ -95,38 +105,37 @@ See more on [bootstrapping](Bootstrapping-or-Application-Initialization)
 This section presents a number of advanced features of GWTP. You will need many of these when building a complete GWTP application.
 
 ## Presenter lifecycle
-[[Presenter Lifecycle]]
+[Presenter Lifecycle][pl]
 
 ## Using URL parameters
-[[URL Parameters]]
+[URL Parameters][up]
 
 ## Revealing a presenter
-See more on [[Presenter Lifecycle]]
+See more on [Presenter Lifecycle][pl]
 
 ## Nested presenters
-See more on [[Presenter "Slots"]]
+See more on [Presenter "Slots"][ps]
 
 ## Tabbed presenters
-See more on [[Tabbed Presenters]]
+See more on [Tabbed Presenters][tp]
 
 ## Presenter widgets
-See more on [[Presenter Widget]]
+See more on [Presenter Widget][pw]
 
 ## Dialog box and popup panels
-See more on [[Popup Presenter]]
+See more on [Popup Presenter][pp]
 
 ## Navigation confirmation
-See more on [[Navigation Confirmation]]
+See more on [Navigation Confirmation][nc]
 
 ## Blocking some presenters
-See more on [[Presenter Gatekeeper]]
+See more on [Presenter Gatekeeper][pg]
 
 ## Using layout panels
-See more on [[Layout Panels]]
-
+See more on [Layout Panels][lp]
 
 ## Delegate some actions from the view to the presenter
-See how to use [[UiHandlers]]
+See how to use [UiHandlers][uh]
 
 ## Why Proxies?
 
@@ -139,3 +148,22 @@ Provider bundles are an advanced way to optimize code splitting in your applicat
 ## Automatic boilerplate generation
 
 GWTP offers some annotation processors to reduce the burden of creating simple classes, like events. Check out the BoilerplateGeneration page for more details.
+
+[rs]: gwtp/Running-GWTP-samples.html
+[pc]: gwtp/basicfeatures/ "Project Creation"
+[mc]: gwtp/resources/index.html "Maven Configuration"
+[pl]: gwtp/features/Presenter-Lifecycle.html "Presenter Lifecycle"
+[up]: gwtp/features/URL-Parameters.html "URL Parameters"
+[ps]: gwtp/features/Presenter-Slots.html "Presenter Slots"
+[tp]: gwtp/features/Tabbed-Presenters.html "Tabbed Presenters"
+[pw]: gwtp/features/Presenter-Widget.html "Presenter Widget"
+[pp]: gwtp/features/Popup-Presenter.html "Popup Presenter"
+[nc]: gwtp/features/Navigation-Confirmation.html "Navigation Confirmation"
+[pg]: gwtp/features/Presenter-Gatekeeper.html "Presenter Gatekeeper"
+[lp]: gwtp/otherusefulinformation/Layout-Panels.html "Layout Panels"
+[uh]: gwtp/features/UiHandlers.html "UiHandlers"
+[ol]: gwtp/about/ "Overview of the library"
+[pv]: gwtp/features/ "Presenter View Creation"
+[lpr]: gwtp/features/Layout-Presenter.html "Layout Presenter"
+[pproxy]: gwtp/features/Presenter-Proxy.html "Presenter Proxy"
+[gb]: gwtp/otherusefulinformation/GIN-Binding.html "GIN Binding"

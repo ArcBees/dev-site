@@ -4,9 +4,9 @@ The `Ginjector` and `ProviderBundle`'s are no longer required to be created and 
 ##Key Benefits
 * No entry point has to be created which cuts down on the entry boilerplate code.
 * Simply define the first gin module in `Project.gwt.xml` module.
-* Custom application initialization logic can be described and initialized by specifying a Bootrapper and/or a PreBootstraper. 
-* Initialization standardization helps keep focus on the business logic.  
-* Using code splitting to optimize large applications load time. 
+* Custom application initialization logic can be described and initialized by specifying a Bootrapper and/or a PreBootstraper.
+* Initialization standardization helps keep focus on the business logic.
+* Using code splitting to optimize large applications load time.
 
 ##Feature Availability
 The provided options below have been available since `0.8-beta-1` release.
@@ -18,9 +18,9 @@ The provided options below have been available since `0.8-beta-1` release.
 #Boostrapping Configuration Options
 
 ##Extending the generated Ginjector
-The generated ginjector can extend already existing ginjector interface by adding .extensions property. 
+The generated ginjector can extend already existing ginjector interface by adding .extensions property.
 ```xml
-<extend-configuration-property name="gin.ginjector.extensions" 
+<extend-configuration-property name="gin.ginjector.extensions"
      value="com.gwtplatform.mvp.client.gin.MyGinjector"/>
 ```
 
@@ -39,7 +39,7 @@ GWTP makes bootstrapping initialization even easier by taking care of the `Entry
 <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint'/>
 ```
 
-* `Project.gwt.xml` example. [Here's the actual file](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-basic/src/main/java/com/arcbees/project/Project.gwt.xml). 
+* `Project.gwt.xml` example. [Here's the actual file](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-basic/src/main/java/com/arcbees/project/Project.gwt.xml).
 ```xml
 <?xml version='1.0' encoding='UTF-8'?>
 <module rename-to='project'>
@@ -54,18 +54,18 @@ GWTP makes bootstrapping initialization even easier by taking care of the `Entry
 
     <!-- Other module inherits -->
     <inherits name='com.gwtplatform.dispatch.Dispatch' />
-    
+
     <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint' />
 
     <source path='client' />
     <source path='shared' />
 
-    <set-configuration-property name="gin.ginjector.modules"  
+    <set-configuration-property name="gin.ginjector.modules"
          value="com.arcbees.project.client.gin.ClientModule"/>
 </module>
 ```
 
-* For `Project.gwt.xml` manual `EntryPoint` configuration, inherit `com.gwtplatform.mvp.Mvp` add an entry-point element and add the `EntryPoint` class. 
+* For `Project.gwt.xml` manual `EntryPoint` configuration, inherit `com.gwtplatform.mvp.Mvp` add an entry-point element and add the `EntryPoint` class.
 ```xml
 <inherits name='com.gwtplatform.mvp.Mvp'/>
 <entry-point class='tld.domain.project.client.MyApplicationEntryPoint'/>
@@ -92,10 +92,10 @@ public void onModuleLoad() {
 ```
 
 ##Creating a Bootstrapper
-`Bootstrapper`'s are really useful if you want to do anything before the `PlaceManager` calls revealCurrentPlace(). By default, when you don't have any custom `Bootstrapper` defined, GWTP will simply use it's `DefaultBootstrapper` which does exactly that. If you don't want this to happen, you can provide a custom `Bootstrapper` by creating a class that implements the `Bootstrapper` interface. By setting     
+`Bootstrapper`'s are really useful if you want to do anything before the `PlaceManager` calls revealCurrentPlace(). By default, when you don't have any custom `Bootstrapper` defined, GWTP will simply use it's `DefaultBootstrapper` which does exactly that. If you don't want this to happen, you can provide a custom `Bootstrapper` by creating a class that implements the `Bootstrapper` interface. By setting
 ```xml
-<set-configuration-property name="gwtp.bootstrapper"  
-         value="com.arcbees.project.client.BootstrapperImpl"/> 
+<set-configuration-property name="gwtp.bootstrapper"
+         value="com.arcbees.project.client.BootstrapperImpl"/>
 ```
 GWTP will then substitute it's `DefaultBootstrapper` for your custom version. `Bootstrapper`'s can make use of [Gin's](http://code.google.com/p/google-gin/) dependency injection.
 
@@ -125,8 +125,8 @@ public class BootstrapperImpl implements Bootstrapper {
 A `PreBootstrapper` allows you to hook into the GWTP bootstrapping process right before it starts. This is particularly useful if you need something done before GWTP starts up. In general the use of a `Bootstrapper` is advised but there are cases where that is not enough, for example when setting up an `UncaughtExceptionHandler` for [gwt-log](http://code.google.com/p/gwt-log/wiki/GettingStarted#Setup_an_UncaughtExceptionHandler).
 
 ```xml
-<set-configuration-property name="gwtp.prebootstrapper"  
-         value="com.arcbees.project.client.PreBootstrapperImpl"/> 
+<set-configuration-property name="gwtp.prebootstrapper"
+         value="com.arcbees.project.client.PreBootstrapperImpl"/>
 ```
 
 * Example use of the PreBootstrapper class. It is important to note that **no dependency injection** is provided for `PreBootstrapper`'s.
@@ -149,7 +149,7 @@ public class PreBootstrapperImpl implements PreBootstrapper {
 
 For instance, if your application has an admin section, a normal user won't have access to it. There's no reason to load this admin page until it is needed. By using code splitting, we allow initial javascript payload reduction and decrease application load time making for a more enjoyable user experience. All you need to do is supply a string parameter to the `@ProxyCodeSplitBundle` annotation that identifies the bundle.
 
-* Example use of the @ProxyCodeSplitBundle annotation. Setup the bundle. 
+* Example use of the @ProxyCodeSplitBundle annotation. Setup the bundle.
 ```java
 @ProxyCodeSplitBundle("MyBundle1")
 public interface MyProxy extends ProxyPlace<Presenter1> {
@@ -204,7 +204,7 @@ static TabData getTabLabel(MyConstants constants, IsAdminGateKeeper gateKeeper) 
 ```
 
 ##Resources
-Injecting CSS and binding resources docs can be foud here: [[Resources]].
+Injecting CSS and binding resources docs can be foud here: [Resources][res].
 
 #FAQ
 
@@ -216,3 +216,5 @@ Injecting CSS and binding resources docs can be foud here: [[Resources]].
 * if the default `EntryPoint` is used or `GWT.create(ApplicationController.class)` is called, any value set for `gin.ginjector` is disregarded and it is assumed that the Ginjector should be generated
 * manual `ProviderBundle`'s may not be used in conjunction with the new bootstrapping process, generated `ProviderBundle`'s are mandatory
 * generated `ProviderBundle`'s imply the use of the new bootstrapping process, they may not be used without a call to `GWT.create(ApplicationController.class)` or the default `EntryPoint`
+
+[res]: gwtp/otherusefulinformation/Resources.html

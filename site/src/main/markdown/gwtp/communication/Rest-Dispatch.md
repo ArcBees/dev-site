@@ -60,24 +60,24 @@ To ensure the REST Dispatch can work properly, you need to install the `RestDisp
 public class DispatchModule extends AbstractGinModule {
     @Override
     protected void configure() {
-        RestDispatchAsyncModule.Builder dispatchBuilder = 
+        RestDispatchAsyncModule.Builder dispatchBuilder =
                 new RestDispatchAsyncModule.Builder();
         install(dispatchBuilder.build());
 
-        bindConstant().annotatedWith(RestApplicationPath.class).to("/api/v1");   
+        bindConstant().annotatedWith(RestApplicationPath.class).to("/api/v1");
     }
 }
 ```
 
 The `RestDispatchAsyncModuleBuilder` has the following configuration methods:
-* `addGlobalHeaderParam`: See [[Global Parameters|Rest-Dispatch#wiki-global-parameters]];
-* `addGlobalQueryParam`: See [[Global Parameters|Rest-Dispatch#wiki-global-parameters]];
-* `interceptorRegistry`: Needs some documentation, see [[Client Action Handlers]] in the meanwhile;
-* `exceptionHandler`: See [[Exception Handler]];
+* `addGlobalHeaderParam`: See [Global Parameters][gp];
+* `addGlobalQueryParam`: See [Global Parameters][gp];
+* `interceptorRegistry`: Needs some documentation, see [Client Action Handlers][ca] in the meanwhile;
+* `exceptionHandler`: See [Exception Handler][eh];
 * `requestTimeout`: The number of milliseconds to wait for a request to complete before throwing an exception. Defaults to _0 (no timeout)_;
 * `serialization`: The serialization implementation to use. Defaults to _JsonSerialization_;
 * `sessionAccessorType`: The class used to retrieve the value of your security cookie. Defaults to _DefaultSecurityCookieAccessor_;
-* `xsrfTokenHeaderName`: See [[CSRF Protection|Rest-Dispatch#wiki-csrf-protection]].
+* `xsrfTokenHeaderName`: See [CSRF Protection][csrf].
 
 ## Use REST Dispatch
 REST Dispatch tries to reduce the amount of boilerplate required by doing code generation. The customization is done through interfaces and annotations. Most annotations come from [JSR 311 (Jax RS)](https://jsr311.java.net/nonav/releases/1.0/javax/ws/rs/package-summary.html)'s packages.
@@ -91,10 +91,12 @@ You can create resources by following the steps below:
 * You _must_ annotate your resource with `@Path`. All methods under this resource will be prepended with this path.
 * Methods must have one of the following return type:
     * If the return type is an interface (excluding collections and maps), the method will return a sub-resource;
-    * If the return type is a `RestAction<R>`, the method will return and end-point. You will be able to pass the returned instance to [[RestDispatch|RestDispatch#Use your REST resources]]. The expected result is represented by the generic `R`.
+    * If the return type is a `RestAction<R>`, the method will return and end-point. You will be able to pass the
+    returned instance to [RestDispatch][use]. The expected result is represented by the generic `R`.
 
 ####Endpoints
-In [[RPC Dispatch]], you needed to create custom implementations for every single action. In REST Dispatch, you return a parameterized interface and the implementation will be generated at compile-time.
+In [RPC Dispatch][rpc], you needed to create custom implementations for every single action. In REST Dispatch, you
+return a parameterized interface and the implementation will be generated at compile-time.
 
 Following the steps below, you can create and customize your endpoints:
 * All methods can be annotated by `@Path("/anypath/{pathparam}")`. The string parameter will be appended to your resource's path. As demonstrated, you can optionally specify path parameters by enclosing them between `{`curly braces`}`. If a method is not annotated with `@Path`, the resource's path will be used directly.
@@ -141,7 +143,7 @@ Following the steps below, you can create and customize your endpoints:
 ####Sub-resources
 If a resource returns another resource interface, then the returned resource will be a sub-resource. Methods returning a resource accept the same annotations and parameters then end-points. They will be carried all the way down to your endpoints.
 
-###Use your REST resources
+###Use your REST resources {use-your-rest-resources}
 Using your resources is probably the most straight-forward step:
 
 1. You need to inject `RestDispatch` and your resource.
@@ -182,7 +184,7 @@ Using your resources is probably the most straight-forward step:
             });
     ```
 
-## CSRF Protection
+## CSRF Protection {csrf-protection}
 Rest-Dispatch offers a built-in way to secure your server calls from CSRF attacks through a security cookie. To enable CSRF protection, you must bind `@SecurityCookie` to the cookie name used to transport your security token.
 
 The second configurable option is *xsrfTokenHeaderName*. It allows you to change the header used to transport your security token. The default value is **X-CSRF-Token**.
@@ -212,9 +214,9 @@ will add this header for every `getMe()` request sent to the server: `Protection
 
 You can also disable CSRF protection for specific endpoints or resources by using `@NoXsrfHeader`. In the example above, all requests sent after calling `details()` will not include the CSRF protection header. This annotation can be applied to resources, sub-resource methods and endpoint methods.
 
-You can read [[CSRF Protection]] for more details.
+You can read [CSRF Protection][csrf] for more details.
 
-## Global Parameters
+## Global Parameters {global-parameters}
 If you have header or query parameters you wish to add to every requests, you can save up on the boilerplate by configuring them through `RestDispatchAsyncModuleBuilder.addGlobalHeaderParam(String key)` and `RestDispatchAsyncModuleBuilder.addGlobalQueryParam(String key)`.
 
 The builder also makes it possible to specify to which HTTP methods the configured parameters should be attached.
@@ -241,3 +243,10 @@ would configure the header `Pragma: NoCache` for all DELETE, POST and PUT reques
 [Resource Delegates](https://github.com/ArcBees/gwtp-extensions/tree/master/dispatch-rest-delegates) will allow your end-point methods to return the result type directly. This is very useful when you want to reuse your interfaces and the annotations on server implementations of those resources. The downside is that you will lose type safety from your callbacks.
 
 There are some extension points available through the dispatch code. You should not need them unless you have a very specific use case. If you do, feel free to browse the code: many classes are extendable and have protected methods that you can override to extend their functionality. The generators also support extensions.
+
+[gp]: gwtp/communication/Rest-Dispatch.html#global-parameters "Global Parameters"
+[ca]: gwtp/communication/Client-Action-Handlers.html "Client Action Handlers"
+[eh]: gwtp/communication/Exception-Handler.html "Exception handler"
+[csrf]: gwtp/communication/Rest-Dispatch.html#csrf-protection "CSRF Protection"
+[rpc]: gwtp/communication/RPC-Dispatch.html "RPC Dispatch"
+[use]: gwtp/communication/Rest-Dispatch.html#use-your-rest-resources "Use Your Rest Resources"

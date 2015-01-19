@@ -1,7 +1,7 @@
 How to help make this project better...
 
 ##Reference
-* [[Contributing Guidelines]]
+* [Contributing Guidelines][cg]
 
 #Cloning
 Cloning will download the entire project including all the large files we have messed around with in the past. There are some options to exclude the history to save on space and time to clone.
@@ -11,7 +11,7 @@ Cloning will download the entire project including all the large files we have m
 * run 'git clone git@github.com:ArcBees/GWTP.git' - include all history
 
 #IDE Setup
-We are using maven to setup the project for both eclipse and IntelliJ. 
+We are using maven to setup the project for both eclipse and IntelliJ.
 
 ##After IDE Setup
 1. run 'mvn generate-sources' - this will get the checkstyle working
@@ -29,10 +29,10 @@ TODO
 
 ##Eclipse Notes
 1. Don't run mvn eclipse:eclipse
-2. If you do run mvn eclipse:eclipse, run eclipse:clean, and then close projects and import them as maven projects. 
+2. If you do run mvn eclipse:eclipse, run eclipse:clean, and then close projects and import them as maven projects.
 
 #Unit Testing
-When you build new features please add build unit tests for it. If you have a problem with building unit tests reach out to one of the other contributors for help in the forum. 
+When you build new features please add build unit tests for it. If you have a problem with building unit tests reach out to one of the other contributors for help in the forum.
 
 ##Testing
 Be sure to test the project before pulling your code on github.
@@ -57,13 +57,13 @@ TODO
 ##Snapshot Release
 These steps build GWTP for Github downloads and release a snapshot
 
-1. run 'mvn clean integration-test' 
+1. run 'mvn clean integration-test'
 2. run 'mvn clean test'
 3. run 'mvn clean deploy -Prelease'
 4. run 'sh ./release-zip.sh /root/.m2/repository/com/gwtplatform'
 
 ##Sonatype Release
-To officially release the library to sonatype.org. 
+To officially release the library to sonatype.org.
 
 1. run 'mvn clean deploy'
 2. run 'mvn release:clean'
@@ -91,3 +91,5 @@ To see the release, go to Sonatype's Nexus at http://oss.sonatype.org/ and navig
 
 ##Zips Release
 * run 'sh ./release-zip.sh'
+
+[cg]: gwtp/contributing/Contributing-Guidelines.html "Contributing Guidelines"

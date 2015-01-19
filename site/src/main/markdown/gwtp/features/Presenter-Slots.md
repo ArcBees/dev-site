@@ -1,12 +1,12 @@
 Presenters in GWTP have a concept of slots. Slots are basically placeholder where the child presenters are put and associated to that parent presenter. GWTP is using setInSlot in it's hierarchy while revealing the presenters and a recursive strategy is used to call each lifecycle methods in the nested presenters hierarchy defined.
 
 #Presenter Types
-GWTP has a few different ways to setup presenters, but each presenter type uses the slot methods the same. 
+GWTP has a few different ways to setup presenters, but each presenter type uses the slot methods the same.
 
 ##Nested or Layout Presenters
-The nested or layout presenters direct the application layout as in the header, footer and content. Layout presenters which can be nested in many different ways communicate via the Eventbus. The `@NameToken` can be used with the PlaceManager to handle url navigation. 
+The nested or layout presenters direct the application layout as in the header, footer and content. Layout presenters which can be nested in many different ways communicate via the Eventbus. The `@NameToken` can be used with the PlaceManager to handle url navigation.
 
-* Layout presenters initialize the slot by using the @ContentSlot annotation. 
+* Layout presenters initialize the slot by using the @ContentSlot annotation.
 ```java
 @ContentSlot
 public static final Type<RevealContentHandler<?>> SLOT_MAIN_CONTENT = new Type<RevealContentHandler<?>>();
@@ -29,14 +29,14 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     private final HeaderPresenter headerPresenter;
 
     @Inject
-    ApplicationPresenter(EventBus eventBus, 
-                         MyView view, MyProxy proxy, 
+    ApplicationPresenter(EventBus eventBus,
+                         MyView view, MyProxy proxy,
                          HeaderPresenter headerPresenter) {
         super(eventBus, view, proxy, RevealType.Root);
 
         this.headerPresenter = headerPresenter;
     }
-    
+
     @Override
     protected void onBind() {
         super.onBind();
@@ -47,7 +47,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 ```
 
 ##Child Widget Presenters
-The child presenters are children of the layout presenters. Setting up a child presenter requires a slot name which is referenced in the view. 
+The child presenters are children of the layout presenters. Setting up a child presenter requires a slot name which is referenced in the view.
 
 * Example of a child presenter. Set the slot name and use a slot method to render the presenter in the view.
 ```java
@@ -56,7 +56,7 @@ public static final Object LOGIN_SLOT = new Object();
 
 @Override
 protected void onBind() {
-    super.onBind();        
+    super.onBind();
 
     setInSlot(LOGIN_SLOT, loginPresenter);
 }
@@ -64,18 +64,18 @@ protected void onBind() {
 
 * See how it is used [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header/HeaderPresenter.java).
 ```java
-public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView> 
+public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView>
         implements HeaderUiHandlers {
     public interface MyView extends View, HasUiHandlers<HeaderUiHandlers> {
     }
-    
+
     public static final Object LOGIN_SLOT = new Object();
-    
+
     private final LoginPresenter loginPresenter;
-    
+
     @Inject
-    HeaderPresenter(EventBus eventBus, 
-                    MyView view, 
+    HeaderPresenter(EventBus eventBus,
+                    MyView view,
                     LoginPresenter loginPresenter) {
         super(eventBus, view);
 
@@ -83,7 +83,7 @@ public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView>
 
         getView().setUiHandlers(this);
     }
-    
+
     @Override
     protected void onBind() {
         super.onBind();
@@ -99,9 +99,10 @@ public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView>
 ```
 
 ##Popup Presenters
-The Popup Presenter skips the view's slot methods all together. When it is used it adds directly to the DOM and requests displays in the center or location selected. See more on [[Popup Presenter]] here.
+The Popup Presenter skips the view's slot methods all together. When it is used it adds directly to the DOM and
+requests displays in the center or location selected. See more on [Popup Presenter][pp] here.
 
-* Example of rendering a popup presenter. 
+* Example of rendering a popup presenter.
 ```java
 addToPopupSlot(popupPresenter);
 ```
@@ -109,7 +110,7 @@ addToPopupSlot(popupPresenter);
 #Slot Methods
 
 ##addToSlot(presenter) - Adding Presenter
-Add presenter with in a presenter, define the presenter slot in the parent presenter and override the view's slot method `addToSlot(...)` so that when the slot is added. 
+Add presenter with in a presenter, define the presenter slot in the parent presenter and override the view's slot method `addToSlot(...)` so that when the slot is added.
 
 * Example of `addToSlot(presenter)` in the presenter:
 ```java
@@ -140,7 +141,7 @@ public void addToSlot(Object slot, IsWidget content) {
 ```
 
 ##removeFromSlot(presenter) - Removing Presenter
-When removing a presenter. 
+When removing a presenter.
 
 * Example in of `removeFromSlot(presenter)` in the presenter:
 ```java
@@ -231,3 +232,5 @@ public void setInSlot(Object slot, IsWidget content) {
     }
 }
 ```
+
+[pp]: gwtp/features/Popup-Presenter.html "Popup Presenter"

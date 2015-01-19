@@ -18,7 +18,7 @@ public class ClientModule extends AbstractPresenterModule {
 ```
 
 ##Custom PlaceManager
-Setting up a custom `PlaceManager` can be done by setting up the `DefaultModule` with the application's `PlaceManager.class`. 
+Setting up a custom `PlaceManager` can be done by setting up the `DefaultModule` with the application's `PlaceManager.class`.
 
 * Example extending `PlaceManagerImpl` to build the application's `PlaceManager`:
 ```java
@@ -35,7 +35,7 @@ public class PlaceManager extends PlaceManagerImpl {
     private final PlaceRequest defaultPlaceRequest;
 
     @Inject
-    PlaceManager(EventBus eventBus, 
+    PlaceManager(EventBus eventBus,
                  TokenFormatter tokenFormatter,
                  @DefaultPlace String defaultPlaceNameToken) {
         super(eventBus, tokenFormatter);
@@ -88,14 +88,14 @@ Installing the `DefaultModule` saves you from having to perform all the followin
 ```
 
 ##Creating a PlaceManager Request
-See [[URL Parameters]]
+See [URL Parameters][up]
 
 #Annotations
 The `DefaultPlaceManager` has three default annotations that are setup by default. Be sure to
  setup presenters for these places to land.
 
 ##@DefaultPlace
-The `@DefaultPlace` has been built into the `DefaultPlaceManager`. This will tell the the PlaceManager the first presenter to reveal on initialization. 
+The `@DefaultPlace` has been built into the `DefaultPlaceManager`. This will tell the the PlaceManager the first presenter to reveal on initialization.
 
 * The `@DefaultPlace` can be set like this:
 ```java
@@ -105,15 +105,17 @@ bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.home);
 ##@ErrorPlace
 This is the landing place when a 404 occurs.
 
-* The `@ErrorPlace` can be set like this: 
+* The `@ErrorPlace` can be set like this:
 ```java
 bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.error);
 ```
 
 ##@UnauthorizedPlace
-The `@UnauthorizedPlace` is the landing place for unauthorized users. 
+The `@UnauthorizedPlace` is the landing place for unauthorized users.
 
 * The `@UnauthorizedPlace` can be set like this:
 ```java
 bindConstant().annotatedWith(UnauthorizedPlace.class).to(NameTokens.unauthorized);
 ```
+
+[up]: gwtp/features/URL-Parameters.html "URL Parameters"
