@@ -145,6 +145,19 @@
   transition: all @duration @ease;
 }
 
+/* - Transition property
+ *
+ * Sets the transition duration and effect to use for
+ * transitions on property
+ */
+
+.transition-property(@property:all, @duration:0.2s, @ease:ease-out) {
+  -webkit-transition: @property @duration @ease;
+  -moz-transition: @property @duration @ease;
+  -o-transition: @property @duration @ease;
+  transition: @property @duration @ease;
+}
+
 /* - Transition duration
  *
  * Sets a transition-duration (time it takes to do things like 

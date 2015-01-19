@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder href="index"
+        title="GWTP"
+        description="GWTP">
+    <toc>
+        <entries>
+            <entry name="index" title="Overview" displayName="Overview"></entry>
+            <entry name="about/" displayName="About"></entry>
+            <entry name="resources/" displayName="Resources"></entry>
+            <entry name="basicfeatures/" displayName="Basic Features"></entry>
+            <entry name="features/" displayName="Features"></entry>
+            <entry name="communication/" displayName="Communication"></entry>
+            <entry name="advancedfeatures/" displayName="Advanced Features"></entry>
+            <entry name="otherusefulinformation/" displayName="Other useful information"></entry>
+            <entry name="sampletutorial/" displayName="Sample tutorial"></entry>
+            <entry name="versions/" displayName="Versions"></entry>
+            <entry name="contributing/" displayName="Contributing"></entry>
+        </entries>
+    </toc>
+</folder>

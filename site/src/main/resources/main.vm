@@ -47,7 +47,7 @@
                 </a>
             </li>
             <li><a href="gaestudio/"/><i class="icon_gae"></i>GAE Studio</a></li>
-            <li><a href="https://github.com/ArcBees/GWTP/wiki" target="_blank"><i class="icon_gwtp"></i>GWTP</a></li>
+            <li><a href="gwtp/"><i class="icon_gwtp"></i>GWTP</a></li>
             <li><a href="jukito/"><i class="icon_jukito"></i>Jukito</a></li>
             <li><a href="https://code.google.com/p/gwtquery/" target="_blank"><i class="icon_gquery"></i>GQuery</a></li>
             <li><a href="http://arcbees.github.io/gwtchosen/" target="_blank"><i class="icon_chosen"></i>GWT-Chosen</a></li>
@@ -56,10 +56,17 @@
     </div>
 </nav>
 
+<div class="menuToggle">
+    <a href="#">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+</div>
+
 <div id="holder" class="$!{node.style}">
     <aside id="submenu">
         <div class="logo">
-
         </div>
         <nav>
             ${toc}
@@ -74,11 +81,13 @@
         ${toc}
     </nav>
 
+    <div class="iconDevTop">
+        <i class="icon_signCode"></i>
+    </div>
+
     <div id="content" role="main">
         <div class="container">
-
             ${content}
-
         </div>
     </div>
 </div>
