@@ -22,17 +22,17 @@ The following example shows you how to build a basic custom proxy that is also a
 public class MyPresenterProxyPlaceImpl extends ProxyPlace<MyPresenter>
 implements MyPresenter.MyProxy {
 
-  public static class WrappedProxy extends ProxyImpl<MyPresenter> {
-    @Inject
-    public WrappedProxy( AsyncProvider<MyPresenter> presenter ) {
-      this.presenter = new CodeSplitProvider<MyPresenter>(presenter);
+    public static class WrappedProxy extends ProxyImpl<MyPresenter> {
+        @Inject
+        public WrappedProxy( AsyncProvider<MyPresenter> presenter ) {
+            this.presenter = new CodeSplitProvider<MyPresenter>(presenter);
+        }
     }
-  }
 
-  @Inject
-  public MainPagePresenterMyProxyImpl( WrappedProxy proxy ) {
-    this.proxy = proxy;
-    place = new PlaceImpl( "myToken" );
-  }
+    @Inject
+    public MainPagePresenterMyProxyImpl( WrappedProxy proxy ) {
+        this.proxy = proxy;
+        place = new PlaceImpl( "myToken" );
+    }
 }
 ```

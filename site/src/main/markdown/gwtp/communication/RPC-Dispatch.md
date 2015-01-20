@@ -23,19 +23,19 @@ First of, you can start by reading Guice's [Getting Started](https://code.google
 Basice Guice setup with web.xml
 
 ```
-    <listener>
-        <listener-class>some.project.server.guice.GuiceServletConfig</listener-class>
-    </listener>
+<listener>
+    <listener-class>some.project.server.guice.GuiceServletConfig</listener-class>
+</listener>
 
-    <filter>
-        <filter-name>guiceFilter</filter-name>
-        <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
-    </filter>
+<filter>
+    <filter-name>guiceFilter</filter-name>
+    <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+</filter>
 
-    <filter-mapping>
-        <filter-name>guiceFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+<filter-mapping>
+    <filter-name>guiceFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
 ```
 
 GuiceServletConfig

@@ -94,81 +94,81 @@ All methods should be sorted alphabetically. Sorting is optional but recommended
 
 ```
 public abstract class Foo {
-  // Type declarations.
-  public class FooBaz {
-  }
+    // Type declarations.
+    public class FooBaz {
+    }
 
-  private class FooBar {
-  }
+    private class FooBar {
+    }
 
-  // Static field declarations.
-  // Remember, fields do NOT need to be sorted.
-  static String B;
-  static String A;
+    // Static field declarations.
+    // Remember, fields do NOT need to be sorted.
+    static String B;
+    static String A;
 
-  // Static initializer declarations.
-  static {
-  }
+    // Static initializer declarations.
+    static {
+    }
 
-  // Static methods declarations.
-  // Remember, methods do need to be sorted.
-  static void aStatic() {
-  }
+    // Static methods declarations.
+    // Remember, methods do need to be sorted.
+    static void aStatic() {
+    }
 
-  static void bStatic() {
-  }
+    static void bStatic() {
+    }
 
-  // Instance field declaration.
-  String bField;
-  String aField;
+    // Instance field declaration.
+    String bField;
+    String aField;
 
-  // Instance Initializer declarations.
-  {
-  }
+    // Instance Initializer declarations.
+    {
+    }
 
-  // Constructors declaration.
-  public Foo() {
-  }
+    // Constructors declaration.
+    public Foo() {
+    }
 
-  protected Foo(String s) {
-  }
+    protected Foo(String s) {
+    }
 
-  Foo(int i) {
-  }
+    Foo(int i) {
+    }
 
-  private Foo(boolean b) {
-  }
+    private Foo(boolean b) {
+    }
 
-  // Instance method declaration.
-  public void b() {
-  }
+    // Instance method declaration.
+    public void b() {
+    }
 
-  public void c() {
-  }
+    public void c() {
+    }
 
-  protected void a() {
-  }
+    protected void a() {
+    }
 
-  protected void d() {
-  }
+    protected void d() {
+    }
 
-  protected void e() {
-  }
+    protected void e() {
+    }
 
-  protected void f() {
-  }
+    protected void f() {
+    }
 
-  String h() {
-  }
+    String h() {
+    }
 
-  // The "abstract" keyword does not modify the position of the method.
-  abstract String i();
+    // The "abstract" keyword does not modify the position of the method.
+    abstract String i();
 
-  void j() {
-  }
+    void j() {
+    }
 
-  private void g() {
-  }
+    private void g() {
+    }
 }
 ```
 
@@ -186,7 +186,7 @@ and this is not correct (2 spaces after the newline):
 
 ```
 Instrument i =
-  new Instrument();
+    new Instrument();
 ```
 
 ###Imports

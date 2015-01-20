@@ -48,7 +48,7 @@ You need to add an inherits clause to your project's **gwt.xml** file
 
 ```
 <set-configuration-property name="gin.ginjector.modules"
-        value="com.gwtplatform.carstore.client.gin.SharedModule"/>
+    value="com.gwtplatform.carstore.client.gin.SharedModule"/>
 ```
 You need to change `set-configuration-property` to `extend-configuration-property`
 
@@ -69,7 +69,7 @@ public class DispatchModule extends AbstractGinModule {
     @Override
     protected void configure() {
         RestDispatchAsyncModule.Builder dispatchBuilder =
-                new RestDispatchAsyncModule.Builder();
+            new RestDispatchAsyncModule.Builder();
         install(dispatchBuilder.build());
 
         bindConstant().annotatedWith(RestApplicationPath.class).to("/api/v1");
@@ -128,7 +128,7 @@ Following the steps below, you can create and customize your endpoints:
 
     ```
     RestAction<List<Car>> getCars(@QueryParam("start") int start,
-            @QueryParam("length") int length);
+        @QueryParam("length") int length);
     ```
 
     * You can specify path parameters to your request URI via the `@PathParam` annotation. Your path must contain a parameter identical (case-sensitive) to the one given to `@PathParam`. The following example will replace the `{id}` parameter in your path by the specified id (`/cars/5`).
@@ -143,7 +143,7 @@ Following the steps below, you can create and customize your endpoints:
 
     ```
     RestAction<Void> login(@FormParam("username") String username,
-            @FormParam("password") String password);
+        @FormParam("password") String password);
     ```
 
     * Or you can provide a single object without any annotation and it will be serialized and sent as your request body.
@@ -180,29 +180,29 @@ CarPresenter(
 
 ```
 dispatcher.execute(carsResource.car(mycarId).delete()
-        new AsyncCallback<Car>() {
-            @Override
-            public void onSuccess(Void nothing) { /* snip */ }
+    new AsyncCallback<Car>() {
+        @Override
+        public void onSuccess(Void nothing) { /* snip */ }
 
-            @Override
-            public void onFailure(Throwable caught) { /* snip */ }
-        });
+        @Override
+        public void onFailure(Throwable caught) { /* snip */ }
+    });
 ```
 
 Additionally, you can retrieve the raw [Response](http://www.gwtproject.org/javadoc/latest/com/google/gwt/http/client/Response.html) object received from the server. To do so, pass a `RestCallback` instead of an `AsyncCallback`. You will have to implement an additional `setResponse()` method. This method will be called before `onSuccess` or `onFailure`. Your endpoint call would then look like:
 
 ```
 dispatcher.execute(carsResource.car(mycarId).delete()
-        new RestCallback<Car>() {
-            @Override
-            public void setResponse(Response response) { /* snip */ }
+    new RestCallback<Car>() {
+        @Override
+        public void setResponse(Response response) { /* snip */ }
 
-            @Override
-            public void onSuccess(Void nothing) { /* snip */ }
+        @Override
+        public void onSuccess(Void nothing) { /* snip */ }
 
-            @Override
-            public void onFailure(Throwable caught) { /* snip */ }
-        });
+        @Override
+        public void onFailure(Throwable caught) { /* snip */ }
+    });
 ```
 
 ## CSRF Protection {csrf-protection}
@@ -217,8 +217,8 @@ protected GinModule extends AbstractGinModule {
     @Override
     protected void configure() {
         install(new RestDispatchAsyncModuleBuilder()
-                .xsrfTokenHeaderName("Protection-Token")
-                .build());
+            .xsrfTokenHeaderName("Protection-Token")
+            .build());
         bindConstant().annotatedWith(SecurityCookie.class).to("JSESSIONID");
     }
 }
@@ -251,13 +251,13 @@ public class MyModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
         install(new RestDispatchAsyncModuleBuilder()
-                .addGlobalHeaderParam("Pragma")
-                    .toHttpMethods(DELETE, POST, PUT)
-                    .withValue("NoCache")
-                .addGlobalQueryParam("format")
-                    .toHttpMethods(GET)
-                    .withValue("xml")
-                .build());
+            .addGlobalHeaderParam("Pragma")
+                .toHttpMethods(DELETE, POST, PUT)
+                .withValue("NoCache")
+            .addGlobalQueryParam("format")
+                .toHttpMethods(GET)
+                .withValue("xml")
+            .build());
     }
 }
 ```

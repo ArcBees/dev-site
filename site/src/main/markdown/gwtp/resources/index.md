@@ -325,7 +325,7 @@ over this features uses.
 
 ```
 <plugins>
-     <!-- Run annotation processors on src/home/java sources -->
+    <!-- Run annotation processors on src/home/java sources -->
     <plugin>
         <groupId>org.bsc.maven</groupId>
         <artifactId>maven-processor-plugin</artifactId>

@@ -8,17 +8,17 @@ Say you have a standard HTML page and want the GWTP to appear within the `mainCo
 ```
 public class MyRootPresenter extends RootPresenter {
 
-  public static final class MyRootView extends RootView {
-    @Override
-    public void setInSlot(Object slot, IsWidget widget) {
-      RootPanel.get("mainContent").add(widget);
+    public static final class MyRootView extends RootView {
+        @Override
+        public void setInSlot(Object slot, IsWidget widget) {
+            RootPanel.get("mainContent").add(widget);
+        }
     }
-  }
 
-  @Inject
-  MyRootPresenter(EventBus eventBus, MyRootView myRootView) {
-    super( eventBus, myRootView );
-  }
+    @Inject
+    MyRootPresenter(EventBus eventBus, MyRootView myRootView) {
+        super( eventBus, myRootView );
+    }
 }
 ```
 

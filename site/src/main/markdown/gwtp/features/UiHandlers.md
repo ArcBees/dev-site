@@ -14,7 +14,7 @@ This has also been [advocated by Google](http://code.google.com/webtoolkit/artic
 
 ```
 public interface UserProfileUiHandlers extends UiHandlers {
-  void onSave();
+    void onSave();
 }
 ```
 
@@ -25,12 +25,12 @@ It would be nice to define this class directly within UserProfileView and call i
 ```
 public class UserProfilePresenter extends Presenter<UserProfilePresenter.MyView, UserProfilePresenter.MyProxy>
     implements UserProfileUiHandlers {
-  //...
-  @Override
-  public void onSave() {
-    doSomething();
-  }
-  //...
+    //...
+    @Override
+    public void onSave() {
+        doSomething();
+    }
+    //...
 }
 ```
 
@@ -39,17 +39,17 @@ public class UserProfilePresenter extends Presenter<UserProfilePresenter.MyView,
 ```
 public class UserProfilePresenter extends Presenter<UserProfilePresenter.MyView, UserProfilePresenter.MyProxy>
     implements UserProfileUiHandlers {
-  public interface MyView extends View, HasUiHandlers<UserProfileUiHandlers>{
-  }
+    public interface MyView extends View, HasUiHandlers<UserProfileUiHandlers>{
+    }
 
-  @Inject
-  ExamplePresenter(EventBus eventBus,
-                   MyView view,
-                   MyProxy proxy) {
-    super(eventBus, view, proxy);
-    getView().setUiHandlers(this);
-  }
-  //...
+    @Inject
+    ExamplePresenter(EventBus eventBus,
+                     MyView view,
+                     MyProxy proxy) {
+        super(eventBus, view, proxy);
+        getView().setUiHandlers(this);
+    }
+    //...
 }
 ```
 
@@ -59,13 +59,13 @@ Be careful: since the view is instantiated before the presenter, the setUiHandle
 
 ```
 public class ExampleView extends ViewWithUiHandlers<UserProfileUiHandlers> implements MyView {
-  //...
-  @UiHandler("saveButton")
-  void onSaveButtonClicked(ClickEvent event) {
-    if (getUiHandlers() != null) {
-      getUiHandlers().onSave();
+    //...
+    @UiHandler("saveButton")
+    void onSaveButtonClicked(ClickEvent event) {
+        if (getUiHandlers() != null) {
+            getUiHandlers().onSave();
+        }
     }
-  }
 ```
 
 ##More Information

@@ -32,7 +32,7 @@ Extend the `gin.ginjector.modules` property in your `*.gwt.xml` module to tell G
 
 ```
 <extend-configuration-property name="gin.ginjector.modules"
-     value="com.gwtplatform.samples.basic.client.gin.ClientModule"/>
+    value="com.gwtplatform.samples.basic.client.gin.ClientModule"/>
 ```
 
 ##EntryPoint
@@ -105,7 +105,7 @@ public void onModuleLoad() {
 
 ```
 <set-configuration-property name="gwtp.bootstrapper"
-         value="com.arcbees.project.client.BootstrapperImpl"/>
+    value="com.arcbees.project.client.BootstrapperImpl"/>
 ```
 
 GWTP will then substitute it's `DefaultBootstrapper` for your custom version. `Bootstrapper`'s can make use of [Gin's](http://code.google.com/p/google-gin/) dependency injection.
@@ -128,7 +128,7 @@ public class BootstrapperImpl implements Bootstrapper {
     }
 
     private void doSomeCustomLogic() {
-       // ...
+        // ...
     }
 }
 ```
@@ -138,7 +138,7 @@ A `PreBootstrapper` allows you to hook into the GWTP bootstrapping process right
 
 ```
 <set-configuration-property name="gwtp.prebootstrapper"
-         value="com.arcbees.project.client.PreBootstrapperImpl"/>
+    value="com.arcbees.project.client.PreBootstrapperImpl"/>
 ```
 
 * Example use of the PreBootstrapper class. It is important to note that **no dependency injection** is provided for `PreBootstrapper`'s.
@@ -190,16 +190,16 @@ With large bundles keeping all the id's and bundle sizes in order can be quite h
 
 ```
 public class MyPresenterBundle extends ProviderBundle {
-   public final static int ID_PRESENTER1 = 0;
-   public final static int ID_PRESENTER2 = 1;
-   public final static int BUNDLE_SIZE = 2;
+    public final static int ID_PRESENTER1 = 0;
+    public final static int ID_PRESENTER2 = 1;
+    public final static int BUNDLE_SIZE = 2;
 
-   @Inject
-   MyPresenterBundle(Provider<Presenter1> presenter1Provider, Provider<Presenter2> presenter2Provider) {
-     super(BUNDLE_SIZE);
-     providers[ID_PRESENTER1] = presenter1Provider;
-     providers[ID_PRESENTER2] = presenter2Provider;
-   }
+    @Inject
+    MyPresenterBundle(Provider<Presenter1> presenter1Provider, Provider<Presenter2> presenter2Provider) {
+        super(BUNDLE_SIZE);
+        providers[ID_PRESENTER1] = presenter1Provider;
+        providers[ID_PRESENTER2] = presenter2Provider;
+    }
 }
 ```
 

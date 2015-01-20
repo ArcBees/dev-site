@@ -28,8 +28,8 @@ public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView> imp
 
     @Inject
     HeaderPresenter(EventBus eventBus,
-                           MyView view,
-                           LoginPresenter loginPresenter) {
+                    MyView view,
+                    LoginPresenter loginPresenter) {
         super(eventBus, view);
 
         this.loginPresenter = loginPresenter;

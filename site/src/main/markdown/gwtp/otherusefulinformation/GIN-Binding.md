@@ -40,7 +40,7 @@ public class ApplicationModule extends AbstractPresenterModule {
         install(new WidgetModule());
 
         bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class,
-                ApplicationPresenter.MyProxy.class);
+                      ApplicationPresenter.MyProxy.class);
     }
 }
 ```
@@ -65,13 +65,13 @@ Notice how the presenter knows nothing about its view's implementation. This is 
 
 ```
 public class MyModule extends AbstractPresenterModule {
-  @Override
-  protected void configure() {
-    bindPresenter(MainPagePresenter.class,
-        MainPagePresenter.MyView.class,
-        MainPageView.class,
-        MainPagePresenter.MyProxy.class);
-  }
+    @Override
+    protected void configure() {
+        bindPresenter(MainPagePresenter.class,
+            MainPagePresenter.MyView.class,
+            MainPageView.class,
+            MainPagePresenter.MyProxy.class);
+    }
 }
 ```
 

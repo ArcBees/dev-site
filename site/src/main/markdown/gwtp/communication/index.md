@@ -21,19 +21,19 @@ Here's a little trick that will let you automatically build urls of the form `"d
 
 ```
 public abstract class AbstractAction<R extends Result> implements Action<R> {
-  @Override
-  public String getServiceName() {
-    String className = this.getClass().getName();
-    int namePos = className.lastIndexOf(".") + 1;
-    className = ActionImpl.DEFAULT_SERVICE_NAME + className.substring(namePos);
+    @Override
+    public String getServiceName() {
+        String className = this.getClass().getName();
+        int namePos = className.lastIndexOf(".") + 1;
+        className = ActionImpl.DEFAULT_SERVICE_NAME + className.substring(namePos);
 
-    return className;
-  }
+        return className;
+    }
 
-  @Override
-  public boolean isSecured() {
-    return true;
-  }
+    @Override
+    public boolean isSecured() {
+        return true;
+    }
 }
 ```
 
@@ -47,11 +47,11 @@ public class GetProducts extends AbstractAction<GetProductsResult> {
     public GetProducts() {}
 
     public GetProducts(final String categoryId) {
-      this.categoryId = categoryId;
+        this.categoryId = categoryId;
     }
 
     public String getCategoryId() {
-      return categoryId;
+        return categoryId;
     }
 }
 ```
@@ -82,10 +82,10 @@ An action that can be executed by all users, logged-in or not, will be bound to 
 
 ```
 public class PublicActionValidator implements ActionValidator  {
-  @Override
-  public boolean isValid(Action<? extends Result> action) {
-    return true;
-  }
+    @Override
+    public boolean isValid(Action<? extends Result> action) {
+        return true;
+    }
 }
 ```
 
@@ -95,12 +95,12 @@ You never have to write such a trivial `PublicActionValidator`, however, since t
 
 ```
 public class AdminActionValidator implements ActionValidator  {
-  @Override
-  public boolean isValid(Action<? extends Result> action) {
-    UserService user = UserServiceFactory.getUserService();
+    @Override
+    public boolean isValid(Action<? extends Result> action) {
+        UserService user = UserServiceFactory.getUserService();
 
-    return user.isUserAdmin();
-  }
+        return user.isUserAdmin();
+    }
 }
 ```
 
