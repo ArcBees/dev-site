@@ -786,9 +786,15 @@ nav#nav-mobile {
   font-size: 1.2rem;
   text-transform: uppercase;
 
-  padding: 2em;
+  width: 100%;
+  padding: 2em 0;
 
-  position: relative;
+  position: absolute;
+  bottom: 0;
+
+  @media (@tablet) {
+    position: relative;;
+  }
 
   .wrapper {
     max-width: 880px;
@@ -800,17 +806,16 @@ nav#nav-mobile {
       width: 90%;
     }
 
-    @media (@mobile) {
-      padding: 0;
-      width: 90%;
-    }
-
     .backTop {
       width: 100%;
 
       position: absolute;
       top: -30px;
       left: 0;
+
+      @media (@tablet) {
+        display: none;
+      }
 
       #backToTop {
         display: block;
