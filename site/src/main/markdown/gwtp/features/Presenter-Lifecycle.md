@@ -15,8 +15,8 @@ When the presenter is bound the onBind() is called. This is a great place to reg
 ```
 @Override
 protected void onBind() {
-  super.onBind();
-  //... do something in presenter
+    super.onBind();
+    //... do something in presenter
 }
 ```
 
@@ -28,8 +28,8 @@ When the Presenter's unbound the onUnbind() is called. This is a good place to d
 ```
 @Override
 protected void onUnbind() {
-  super.onUnbind();
-  //... do something in presenter
+    super.onUnbind();
+    //... do something in presenter
 }
 ```
 
@@ -41,8 +41,8 @@ When the Presenter is about to be revealed the onReveal() is called. Another way
 ```
 @Override
 protected void onReveal() {
-  super.onReveal();
-  //... do something in presenter
+    super.onReveal();
+    //... do something in presenter
 }
 ```
 
@@ -54,8 +54,8 @@ When the Presenter is about to be hidden the onHide() is called.
 ```
 @Override
 protected void onHide() {
-  super.onHide();
-  //... do something in presenter
+    super.onHide();
+    //... do something in presenter
 }
 ```
 
@@ -67,8 +67,8 @@ When any Presenter with in the Presenter's hierarchy has used onReveal() the onR
 ```
 @Override
 protected void onReset() {
-  super.onReset();
-  //... do something in presenter
+    super.onReset();
+    //... do something in presenter
 }
 ```
 

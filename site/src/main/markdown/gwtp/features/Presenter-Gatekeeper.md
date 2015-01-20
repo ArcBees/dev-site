@@ -6,17 +6,17 @@ Blocking some presenters using the gatekeeper.
 
 ```
 public class LoggedInGatekeeper implements Gatekeeper {
-  private final CurrentUser currentUser;
+    private final CurrentUser currentUser;
 
-  @Inject
-  LoggedInGatekeeper(CurrentUser currentUser) {
-    this.currentUser = currentUser;
-  }
+    @Inject
+    LoggedInGatekeeper(CurrentUser currentUser) {
+        this.currentUser = currentUser;
+    }
 
-  @Override
-  public boolean canReveal() {
-    return currentUser.isLoggedIn();
-  }
+    @Override
+    public boolean canReveal() {
+        return currentUser.isLoggedIn();
+    }
 }
 ```
 
@@ -58,17 +58,17 @@ public class ManufacturerPresenter extends Presenter<MyView, MyProxy>
     public interface MyProxy extends ProxyPlace<ManufacturerPresenter> {
     }
 
-   private final MyGatekeeper gatekeeper;
+    private final MyGatekeeper gatekeeper;
 
-   @Inject
-   ManufacturerPresenter(MyGatekeeper gatekeeper) {
-      this.gatekeeper = gatekeeper;
-   }
+    @Inject
+    ManufacturerPresenter(MyGatekeeper gatekeeper) {
+        this.gatekeeper = gatekeeper;
+    }
 
-   // should be restricted
-   @Override
-   public void setRating(int value) {
-      if(gatekeeper.canReveal()) { /* ... */ }
-   }
+    // should be restricted
+    @Override
+    public void setRating(int value) {
+        if(gatekeeper.canReveal()) { /* ... */ }
+    }
 }
 ```

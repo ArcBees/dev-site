@@ -25,6 +25,6 @@ mvn archetype:generate -DarchetypeGroupId=com.arcbees.archetypes \
 Choose an IDE to import the Maven project for easy modification and debugging.
 
 * Import the created project into an IDE.
-  * [IntelliJ IDEA Import Instructions](http://c.gwt-examples.com/home/maven/ide-import/intellij-idea)
-  * [Eclipse Import Instructions](http://c.gwt-examples.com/home/maven/ide-import/eclipse)
+    * [IntelliJ IDEA Import Instructions](http://c.gwt-examples.com/home/maven/ide-import/intellij-idea)
+    * [Eclipse Import Instructions](http://c.gwt-examples.com/home/maven/ide-import/eclipse)
 * Once the project is imported, be sure to setup the debugger and test it runs in hosted mode.

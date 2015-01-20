@@ -3,8 +3,8 @@
 Now that you have a View, you can start working on an associated Presenter. Create `MainPagePresenter` with `Presenter<MainPagePresenter.MyView, MainPagePresenter.MyProxy>` as a superclass. This means you have to define the inner interfaces `MyView` and `MyProxy`. We'll look at the proxy in more details later, but for now just add this to your class:
 
 ```
-  public interface MyView extends View {}
-  public interface MyProxy extends ProxyPlace<MainPagePresenter> {}
+public interface MyView extends View {}
+public interface MyProxy extends ProxyPlace<MainPagePresenter> {}
 ```
 
 Again, add an injectable constructor (with the `@Inject` annotation) that simply forward its parameters to the superclass.
@@ -16,18 +16,18 @@ The presenter class should now look like this:
 ```
 public class MainPagePresenter extends
 Presenter<MainPagePresenter.MyView, MainPagePresenter.MyProxy> {
-  public interface MyView extends View {}
+    public interface MyView extends View {}
 
-  public interface MyProxy extends ProxyPlace<MainPagePresenter> {}
+    public interface MyProxy extends ProxyPlace<MainPagePresenter> {}
 
-  @Inject
-  public MainPagePresenter(EventBus eventBus, MyView view, MyProxy proxy) {
-    super(eventBus, view, proxy);
-  }
+    @Inject
+    public MainPagePresenter(EventBus eventBus, MyView view, MyProxy proxy) {
+        super(eventBus, view, proxy);
+    }
 
-  @Override
-  protected void revealInParent() {
-    RevealRootContentEvent.fire( this, this );
-  }
+    @Override
+    protected void revealInParent() {
+        RevealRootContentEvent.fire( this, this );
+    }
 }
 ```

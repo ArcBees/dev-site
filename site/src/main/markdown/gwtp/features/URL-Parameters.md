@@ -20,8 +20,8 @@ When the PlaceManager navigates to the presenter the prepareFromRequest(PlaceReq
 ```
 @Override
 public void prepareFromRequest(PlaceRequest request) {
-  super.prepareFromRequest(request);
-  String id = request.getParameter("id", "");
+    super.prepareFromRequest(request);
+    String id = request.getParameter("id", "");
 }
 ```
 
@@ -30,29 +30,29 @@ public void prepareFromRequest(PlaceRequest request) {
 ```
 @Override
 public void prepareFromRequest(PlaceRequest placeRequest) {
-  super.prepareFromRequest(placeRequest);
+    super.prepareFromRequest(placeRequest);
 
-  // In the next call, "view" is the default value,
-  // returned if "action" is not found on the URL.
-  String actionString = placeRequest.getParameter("action", "view");
-  action = INVALID_ACTION;
-  if( actionString.equals("view") )
-    action = ACTION_VIEW;
-  else if( actionString.equals("edit") )
-    action = ACTION_EDIT;
-  else if( actionString.equals("new") )
-    action = ACTION_NEW;
+    // In the next call, "view" is the default value,
+    // returned if "action" is not found on the URL.
+    String actionString = placeRequest.getParameter("action", "view");
+    action = INVALID_ACTION;
+    if( actionString.equals("view") )
+        action = ACTION_VIEW;
+    else if( actionString.equals("edit") )
+        action = ACTION_EDIT;
+    else if( actionString.equals("new") )
+        action = ACTION_NEW;
 
-  try {
-    id = Long.valueOf( placeRequest.getParameter("id", null) );
-  } catch( NumberFormatException e ) {
-    id = INVALID_ID;
-  }
+    try {
+        id = Long.valueOf( placeRequest.getParameter("id", null) );
+    } catch( NumberFormatException e ) {
+        id = INVALID_ID;
+    }
 
-  if( action == INVALID_ACTION || id == INVALID_ID && action != ACTION_NEW ) {
-    placeManager.revealErrorPlace( placeRequest.getNameToken() );
-    return;
-  }
+    if( action == INVALID_ACTION || id == INVALID_ID && action != ACTION_NEW ) {
+        placeManager.revealErrorPlace( placeRequest.getNameToken() );
+        return;
+    }
 }
 ```
 

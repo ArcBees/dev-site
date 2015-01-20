@@ -12,8 +12,8 @@ The `@GenEvent` will generate an `Event` class and an `EventHandler` interface.
 ```
 @GenEvent
 public class FooChanged {
-  @Order(1) Foo foo;
-  @Order(2) boolean originator;
+    @Order(1) Foo foo;
+    @Order(2) boolean originator;
 }
 ```
 
@@ -25,9 +25,9 @@ The `@GenDispatch` will generate `Action` and `Result` classes.
 ```
 @GenDispatch
 public class RetrieveFoo {
-  @In(1) Key<Foo> fooKey;
-  @Out(1) Foo foo;
-  @Out(2) boolean bar;
+    @In(1) Key<Foo> fooKey;
+    @Out(1) Foo foo;
+    @Out(2) boolean bar;
 }
 ```
 
@@ -40,8 +40,8 @@ The `@GenDto` annotation will generate simple Data Transfer Object (DTO) classes
 ```
 @GenDto
 public class LineItem {
-  @Order(1) Key<Product> productKey;
-  @Order(2) int quantity;
+    @Order(1) Key<Product> productKey;
+    @Order(2) int quantity;
 }
 ```
 
@@ -51,9 +51,9 @@ The above example will generate a `LineItemDto` class that could be used on the 
 ```
 @GenDispatch
 public class CreateInvoice {
-  @In Key<Customer> customerKey;
-  @In LineItemDto[] lineItems;
-  @Out Invoice invoice;
+    @In Key<Customer> customerKey;
+    @In LineItemDto[] lineItems;
+    @Out Invoice invoice;
 }
 ```
 
@@ -72,11 +72,11 @@ The `@GenProxy` will generate `EntityProxy` or `ValueProxy` interfaces. The gene
 ```
 @GenProxy
 public class Person {
-  String id;
-  @UseProxyName("com.gwtplatform.dispatch.annotation.AddressProxy")
-  Address address;
-  @UseProxy(DetailProxy.class)
-  Detail detail;
+    String id;
+    @UseProxyName("com.gwtplatform.dispatch.annotation.AddressProxy")
+    Address address;
+    @UseProxy(DetailProxy.class)
+    Detail detail;
 }
 ```
 The above example will generate `PersonProxy`.
@@ -92,9 +92,9 @@ Normally two constructors are created with either all or only non-optionals. In 
 ```
 @GenEvent
 public class FooChanged {
-  @Order(1) @Optional Foo foo;
-  @Order(2) int bar;
-  @Order(3) @Optional boolean originator;
+    @Order(1) @Optional Foo foo;
+    @Order(2) int bar;
+    @Order(3) @Optional boolean originator;
 }
 ```
 
@@ -103,14 +103,14 @@ The following constructor and fire methods will be generated:
 
 ```
 public class FooChangedEvent {
-  ...
-  protected FooChangedEvent() { ...
-  public FooChangedEvent(int bar){ ...
-  public FooChangedEvent(Foo foo, int bar, boolean originator) { ...
-  ...
-  public static void fire(HasEventBus source, int bar) { ...
-  public static void fire(HasEventBus source, Foo foo, int bar, boolean originator) { ...
-  ...
+    ...
+    protected FooChangedEvent() { ...
+    public FooChangedEvent(int bar){ ...
+    public FooChangedEvent(Foo foo, int bar, boolean originator) { ...
+    ...
+    public static void fire(HasEventBus source, int bar) { ...
+    public static void fire(HasEventBus source, Foo foo, int bar, boolean originator) { ...
+    ...
 }
 ```
 
@@ -124,21 +124,21 @@ The following code snippet shows a more complex example using the `@GenEvent` an
 ```
 @GenEvent
 public class FireAnswerOfLife {
-  public static final String ANSWER = "42";
-  public final boolean REALLY = true;
+    public static final String ANSWER = "42";
+    public final boolean REALLY = true;
 
-  @SuppressWarnings("unused")
-  private final long TIME_TO_ANSWER = 99999999L;
+    @SuppressWarnings("unused")
+    private final long TIME_TO_ANSWER = 99999999L;
 
-  @Order(1) @Optional public String myName;
-  @Order(2) String myQuestion;
-  @Order(3) @Optional public int myAge;
-  @Order(4) @Optional HairColor myHairColor;
-  @Order(5) protected Boolean doIReallyNeedAnotherField;
-  @SuppressWarnings("unused")
-  @Order(6) private HashMap<Project, Role> yep;
-  @SuppressWarnings("unused")
-  @Order(7) private @Optional Boolean questionHasASense;
+    @Order(1) @Optional public String myName;
+    @Order(2) String myQuestion;
+    @Order(3) @Optional public int myAge;
+    @Order(4) @Optional HairColor myHairColor;
+    @Order(5) protected Boolean doIReallyNeedAnotherField;
+    @SuppressWarnings("unused")
+    @Order(6) private HashMap<Project, Role> yep;
+    @SuppressWarnings("unused")
+    @Order(7) private @Optional Boolean questionHasASense;
 }
 ```
 

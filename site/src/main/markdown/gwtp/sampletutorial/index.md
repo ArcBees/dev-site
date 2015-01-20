@@ -70,52 +70,52 @@ This annotation is used inside our `PlaceManager` implementation to link the def
 
 ```
 public class GwtpnestedsamplePlaceManager extends PlaceManagerImpl {
-  private final PlaceRequest defaultPlaceRequest;
+    private final PlaceRequest defaultPlaceRequest;
 
-  @Inject
-  public GwtpnestedsamplePlaceManager(
-                    final EventBus eventBus,
-                    final TokenFormatter tokenFormatter,
-                    @DefaultPlace String defaultNameToken) {
-    super(eventBus, tokenFormatter);
+    @Inject
+    public GwtpnestedsamplePlaceManager(
+                        final EventBus eventBus,
+                        final TokenFormatter tokenFormatter,
+                        @DefaultPlace String defaultNameToken) {
+        super(eventBus, tokenFormatter);
 
-    this.defaultPlaceRequest = new PlaceRequest.Builder().nameToken(defaultNameToken).build();
-  }
+        this.defaultPlaceRequest = new PlaceRequest.Builder().nameToken(defaultNameToken).build();
+    }
 
-  @Override
-  public void revealDefaultPlace() {
-    revealPlace( defaultPlaceRequest );
-  }
+    @Override
+    public void revealDefaultPlace() {
+        revealPlace( defaultPlaceRequest );
+    }
 }
 ```
 
 We'll use this class to tell which presenter to load by default. By default, when an error occurs while requesting a new place, this page will be displayed. If we want to change for a custom error page, we could create another annotation and link it to an error presenter, or use other scheme as needed. Then you override this method :
 
 ```
-  @Override
-  public void revealErrorPlace(String invalidHistoryToken) {
-    super.revealErrorPlace(invalidHistoryToken);
-  }
+@Override
+    public void revealErrorPlace(String invalidHistoryToken) {
+        super.revealErrorPlace(invalidHistoryToken);
+    }
 ```
 
 `class com.gwtplatform.samples.nested.client.NameTokens`:
 
 ```
 public class NameTokens {
-  public static final String homePage = "!homePage";
-  public static String getHomePage() {
-    return homePage;
-  }
+    public static final String homePage = "!homePage";
+    public static String getHomePage() {
+        return homePage;
+    }
 
-  public static final String aboutUsPage = "!aboutUsPage";
-  public static String getAboutUsPage() {
-    return aboutUsPage;
-  }
+    public static final String aboutUsPage = "!aboutUsPage";
+    public static String getAboutUsPage() {
+        return aboutUsPage;
+    }
 
-  public static final String contactPage = "!contactPage";
-  public static String getContactPage() {
-    return contactPage;
-  }
+    public static final String contactPage = "!contactPage";
+    public static String getContactPage() {
+        return contactPage;
+    }
 }
 ```
 
@@ -125,20 +125,20 @@ You're probably asking yourself why we're defining both a `getHomePage` method a
 
 ```
 public class ClientModule extends AbstractPresenterModule {
-  @Override
-  protected void configure() {
-    //Singletons
-    install(new DefaultModule(GwtpnestedsamplePlaceManager.class));
+    @Override
+    protected void configure() {
+        //Singletons
+        install(new DefaultModule(GwtpnestedsamplePlaceManager.class));
 
-    //Constants
-    bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.homePage);
+        //Constants
+        bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.homePage);
 
-    //Presenters
-    bindPresenter(MainPagePresenter.class, MainPagePresenter.MyView.class, MainPageView.class, MainPagePresenter.MyProxy.class);
-    bindPresenter(HomePresenter.class, HomePresenter.MyView.class, HomeView.class, HomePresenter.MyProxy.class);
-    bindPresenter(AboutUsPresenter.class, AboutUsPresenter.MyView.class, AboutUsView.class, AboutUsPresenter.MyProxy.class);
-    bindPresenter(ContactPresenter.class, ContactPresenter.MyView.class, ContactView.class, ContactPresenter.MyProxy.class);
-  }
+        //Presenters
+        bindPresenter(MainPagePresenter.class, MainPagePresenter.MyView.class, MainPageView.class, MainPagePresenter.MyProxy.class);
+        bindPresenter(HomePresenter.class, HomePresenter.MyView.class, HomeView.class, HomePresenter.MyProxy.class);
+        bindPresenter(AboutUsPresenter.class, AboutUsPresenter.MyView.class, AboutUsView.class, AboutUsPresenter.MyProxy.class);
+        bindPresenter(ContactPresenter.class, ContactPresenter.MyView.class, ContactView.class, ContactPresenter.MyProxy.class);
+    }
 }
 ```
 
@@ -151,12 +151,12 @@ I've written a simple menu widget and since there's no complex logic at all I go
 
 ```
 public class MainMenu extends Composite {
-  private static MainMenuUiBinder uiBinder = GWT.create(MainMenuUiBinder.class);
-  interface MainMenuUiBinder extends UiBinder<Widget, MainMenu> {}
+    private static MainMenuUiBinder uiBinder = GWT.create(MainMenuUiBinder.class);
+    interface MainMenuUiBinder extends UiBinder<Widget, MainMenu> {}
 
-  public MainMenu() {
-    initWidget(uiBinder.createAndBindUi(this));
-  }
+    public MainMenu() {
+        initWidget(uiBinder.createAndBindUi(this));
+    }
 }
 ```
 
@@ -168,12 +168,12 @@ Simple, it's the default template when you create a !UiBinder class.
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
     xmlns:g="urn:import:com.google.gwt.user.client.ui">
-  <ui:with type="com.gwtplatform.samples.nested.client.NameTokens" field="nameTokens"></ui:with>
-  <g:HTMLPanel>
-    <g:InlineHyperlink targetHistoryToken="{nameTokens.getHomePage}">Home</g:InlineHyperlink> |
-    <g:InlineHyperlink targetHistoryToken="{nameTokens.getAboutUsPage}">About Us</g:InlineHyperlink> |
-    <g:InlineHyperlink targetHistoryToken="{nameTokens.getContactPage}">Contact</g:InlineHyperlink>
-  </g:HTMLPanel>
+    <ui:with type="com.gwtplatform.samples.nested.client.NameTokens" field="nameTokens"></ui:with>
+    <g:HTMLPanel>
+        <g:InlineHyperlink targetHistoryToken="{nameTokens.getHomePage}">Home</g:InlineHyperlink> |
+        <g:InlineHyperlink targetHistoryToken="{nameTokens.getAboutUsPage}">About Us</g:InlineHyperlink> |
+        <g:InlineHyperlink targetHistoryToken="{nameTokens.getContactPage}">Contact</g:InlineHyperlink>
+    </g:HTMLPanel>
 </ui:UiBinder>
 ```
 
@@ -186,27 +186,27 @@ Now is the time to create our presenters and views. Since `ContactPresenter`,`Ab
 
 ```
 public class MainPagePresenter extends Presenter<MainPagePresenter.MyView, MainPagePresenter.MyProxy> {
-  /**
-   * Child presenters can fire a RevealContentEvent with TYPE_SetMainContent to set themselves
-   * as children of this presenter.
-   */
-  @ContentSlot
-  public static final Type<RevealContentHandler<?>> TYPE_SetMainContent = new Type<RevealContentHandler<?>>();
+    /**
+    * Child presenters can fire a RevealContentEvent with TYPE_SetMainContent to set themselves
+    * as children of this presenter.
+    */
+    @ContentSlot
+    public static final Type<RevealContentHandler<?>> TYPE_SetMainContent = new Type<RevealContentHandler<?>>();
 
-  public interface MyView extends View {}
+    public interface MyView extends View {}
 
-  @ProxyStandard
-  public interface MyProxy extends Proxy<MainPagePresenter> {}
+    @ProxyStandard
+    public interface MyProxy extends Proxy<MainPagePresenter> {}
 
-  @Inject
-  public MainPagePresenter(final EventBus eventBus, final MyView view, final MyProxy proxy) {
-    super(eventBus, view, proxy);
-  }
+    @Inject
+    public MainPagePresenter(final EventBus eventBus, final MyView view, final MyProxy proxy) {
+        super(eventBus, view, proxy);
+    }
 
-  @Override
-  protected void revealInParent() {
-    RevealRootContentEvent.fire(this, this);
-  }
+    @Override
+    protected void revealInParent() {
+        RevealRootContentEvent.fire(this, this);
+    }
 }
 ```
 
@@ -216,23 +216,23 @@ Simple and easy. `@ContentSlot` is used to define a type to use in child present
 
 ```
 public class MainPageView extends ViewImpl implements MyView {
-  private static MainPageViewUiBinder uiBinder = GWT.create(MainPageViewUiBinder.class);
-  interface MainPageViewUiBinder extends UiBinder<Widget, MainPageView> {}
+    private static MainPageViewUiBinder uiBinder = GWT.create(MainPageViewUiBinder.class);
+    interface MainPageViewUiBinder extends UiBinder<Widget, MainPageView> {}
 
-  @UiField SimplePanel mainContentPanel;
+    @UiField SimplePanel mainContentPanel;
 
-  public MainPageView() {
-    initWidget(uiBinder.createAndBindUi(this));
-  }
-
-  @Override
-  public void setInSlot(Object slot, IsWidget content) {
-    if (slot == MainPagePresenter.TYPE_SetMainContent) {
-      mainContentPanel.setWidget(content);
-    } else {
-      super.setInSlot(slot, content);
+    public MainPageView() {
+        initWidget(uiBinder.createAndBindUi(this));
     }
-  }
+
+    @Override
+    public void setInSlot(Object slot, IsWidget content) {
+        if (slot == MainPagePresenter.TYPE_SetMainContent) {
+            mainContentPanel.setWidget(content);
+        } else {
+            super.setInSlot(slot, content);
+        }
+    }
 }
 ```
 
@@ -245,11 +245,11 @@ GWTP will call `setInSlot` when a child presenter asks to be added under this vi
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
     xmlns:g="urn:import:com.google.gwt.user.client.ui"
     xmlns:npui="urn:import:com.gwtplatform.samples.nested.client.ui">
-  <g:HTMLPanel>
-    <npui:MainMenu />
-        <g:SimplePanel ui:field="mainContentPanel" />
-    <npui:MainMenu />
-  </g:HTMLPanel>
+    <g:HTMLPanel>
+        <npui:MainMenu />
+            <g:SimplePanel ui:field="mainContentPanel" />
+        <npui:MainMenu />
+    </g:HTMLPanel>
 </ui:UiBinder>
 ```
 
@@ -259,24 +259,24 @@ As you can see, I used my `MainMenu` twice here. This is not a problem, since `M
 
 ```
 public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> {
-  public interface MyView extends View {}
+    public interface MyView extends View {}
 
-  @ProxyCodeSplit
-  @NameToken(NameTokens.homePage)
-  public interface MyProxy extends ProxyPlace<HomePresenter>  {}
+    @ProxyCodeSplit
+    @NameToken(NameTokens.homePage)
+    public interface MyProxy extends ProxyPlace<HomePresenter>  {}
 
-  @Inject
-  public HomePresenter(
-      final EventBus eventBus,
-      final MyView view,
-      final MyProxy proxy) {
-    super(eventBus, view, proxy);
-  }
+    @Inject
+    public HomePresenter(
+        final EventBus eventBus,
+        final MyView view,
+        final MyProxy proxy) {
+      super(eventBus, view, proxy);
+    }
 
-  @Override
-  protected void revealInParent() {
-    RevealContentEvent.fire(this, MainPagePresenter.TYPE_SetMainContent, this);
-  }
+    @Override
+    protected void revealInParent() {
+        RevealContentEvent.fire(this, MainPagePresenter.TYPE_SetMainContent, this);
+    }
 }
 ```
 
@@ -286,12 +286,12 @@ We added two new annotations, `@ProxyCodeSplit`, used by GWTP proxy generator to
 
 ```
 public class HomeView extends ViewImpl implements MyView {
-  private static HomeViewUiBinder uiBinder = GWT.create(HomeViewUiBinder.class);
-  interface HomeViewUiBinder extends UiBinder<Widget, HomeView> {}
+    private static HomeViewUiBinder uiBinder = GWT.create(HomeViewUiBinder.class);
+    interface HomeViewUiBinder extends UiBinder<Widget, HomeView> {}
 
-  public HomeView() {
-    initWidget(uiBinder.createAndBindUi(this));
-  }
+    public HomeView() {
+        initWidget(uiBinder.createAndBindUi(this));
+    }
 }
 ```
 

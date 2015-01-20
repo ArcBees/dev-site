@@ -255,8 +255,8 @@ public void getApples_success_displaysApples(ApplesPresenter applesPresenter,
     // given
     List<Apple> apples = createSomeApples();
     AsyncStubber.callSuccessWith(apples)
-                    .when(appleService)
-                    .getApples((AsyncCallback) any());
+                .when(appleService)
+                .getApples((AsyncCallback) any());
 
     // when
     applesPresenter.onReveal();

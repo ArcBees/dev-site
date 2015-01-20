@@ -142,7 +142,7 @@ public class ClientModule extends AbstractPresenterModule {
     protected void configure() {
         install(new DefaultModule());
         install(new ApplicationModule());
-//        install(new DispatchAsyncModule()); // Remove GWTP's default dispatch module
+//          install(new DispatchAsyncModule()); // Remove GWTP's default dispatch module
         install(new ClientDispatchModule()); // Use our own dispatch module (that uses ClientActionHandlers)
 
         // It's vitally important to bind GWTP's cache interface in a singleton
@@ -213,7 +213,7 @@ public class TestMyPresenter {
             @SuppressWarnings("unchecked")
             public Object answer(InvocationOnMock invocation) {
                 AsyncCallback<MyNonGwtRpcResult> callback = (AsyncCallback<MyNonGwtRpcResult>) invocation.getArguments()
-             [1];
+            [1];
                 callback.onSuccess(result);
                 return null;
             }
@@ -264,76 +264,76 @@ public class Point {
  */
 public class GeocodeAddressClientActionHandler extends
     AbstractClientActionHandler<GeocodeAddressAction, GeocodeAddressResult> {
-  private final AsyncProvider<Geocoder> geocoderProvider;
+    private final AsyncProvider<Geocoder> geocoderProvider;
 
-  @Inject
-  protected GeocodeAddressClientActionHandler(
-      AsyncProvider<Geocoder> geocoderProvider) {
-    super(GeocodeAddressAction.class);
-    this.geocoderProvider = geocoderProvider;
-  }
+    @Inject
+    protected GeocodeAddressClientActionHandler(
+        AsyncProvider<Geocoder> geocoderProvider) {
+        super(GeocodeAddressAction.class);
+        this.geocoderProvider = geocoderProvider;
+    }
 
-  @Override
-  public void execute(GeocodeAddressAction action,
-      final AsyncCallback<GeocodeAddressResult> resultCallback,
-      ClientDispatchRequest request,
-      ExecuteCommand<GeocodeAddressAction, GeocodeAddressResult> dispatch) {
+    @Override
+    public void execute(GeocodeAddressAction action,
+        final AsyncCallback<GeocodeAddressResult> resultCallback,
+        ClientDispatchRequest request,
+        ExecuteCommand<GeocodeAddressAction, GeocodeAddressResult> dispatch) {
 
-    final GeocoderRequest geocodeRequest = new GeocoderRequest();
-    geocodeRequest.setAddress(action.getAddress());
-    geocodeRequest.setRegion(action.getRegion());
+        final GeocoderRequest geocodeRequest = new GeocoderRequest();
+        geocodeRequest.setAddress(action.getAddress());
+        geocodeRequest.setRegion(action.getRegion());
 
-    this.geocoderProvider.get(new AsyncCallback<Geocoder>() {
+        this.geocoderProvider.get(new AsyncCallback<Geocoder>() {
 
-      @Override
-      public void onSuccess(Geocoder geocoder) {
-        geocoder.geocode(geocodeRequest, new GeocoderCallback() {
+        @Override
+        public void onSuccess(Geocoder geocoder) {
+            geocoder.geocode(geocodeRequest, new GeocoderCallback() {
 
-          @SuppressWarnings("deprecation")
-          @Override
-          public void callback(List<HasGeocoderResult> responses,
-              String status) {
-            if (status.equals("OK")) {
+                @SuppressWarnings("deprecation")
+                @Override
+                public void callback(List<HasGeocoderResult> responses,
+                    String status) {
+                    if (status.equals("OK")) {
 
-              PlacemarkDto[] placemarks =
-                  new PlacemarkDto[responses.size()];
-              for (int i = 0; i < responses.size(); i++) {
-                HasGeocoderResult response = responses.get(i);
-                HasLatLng location =
-                    response.getGeometry().getLocation();
-                placemarks[i] =
-                    new PlacemarkDto(
-                        response.getFormattedAddress(),
-                        new PointDto(
-                            location.getLatitude(),
-                            location.getLongitude()));
-              }
+                    PlacemarkDto[] placemarks =
+                        new PlacemarkDto[responses.size()];
+                    for (int i = 0; i < responses.size(); i++) {
+                        HasGeocoderResult response = responses.get(i);
+                        HasLatLng location =
+                            response.getGeometry().getLocation();
+                        placemarks[i] =
+                            new PlacemarkDto(
+                                response.getFormattedAddress(),
+                                new PointDto(
+                                    location.getLatitude(),
+                                    location.getLongitude()));
+                    }
 
-              resultCallback.onSuccess(new GeocodeAddressResult(
-                  placemarks));
-            } else if (status.equals("ZERO_RESULTS")) {
-              resultCallback.onSuccess(new GeocodeAddressResult());
-            } else {
-              resultCallback.onFailure(new Exception("Geocoder: "
-                  + status));
-            }
-          }
-        });
-      }
+                    resultCallback.onSuccess(new GeocodeAddressResult(
+                        placemarks));
+                    } else if (status.equals("ZERO_RESULTS")) {
+                        resultCallback.onSuccess(new GeocodeAddressResult());
+                    } else {
+                        resultCallback.onFailure(new Exception("Geocoder: "
+                            + status));
+                    }
+                }
+            });
+        }
 
-      @Override
-      public void onFailure(Throwable caught) {
-        resultCallback.onFailure(caught);
-      }
-    });
-  }
+        @Override
+        public void onFailure(Throwable caught) {
+            resultCallback.onFailure(caught);
+        }
+      });
+    }
 
-  @Override
-  public void undo(GeocodeAddressAction action, GeocodeAddressResult result,
-      AsyncCallback<Void> callback, ClientDispatchRequest request,
-      UndoCommand<GeocodeAddressAction, GeocodeAddressResult> dispatch) {
-    // do nothing
-  }
+    @Override
+    public void undo(GeocodeAddressAction action, GeocodeAddressResult result,
+        AsyncCallback<Void> callback, ClientDispatchRequest request,
+        UndoCommand<GeocodeAddressAction, GeocodeAddressResult> dispatch) {
+        // do nothing
+    }
 }
 ```
 
@@ -342,95 +342,95 @@ public class GeocodeAddressClientActionHandler extends
 ```
 @RunWith(MockitoJUnitRunner.class)
 public class MyTest {
-  @Mock
-  private CreateEmployeeView view;
+    @Mock
+    private CreateEmployeeView view;
 
-  //...
+    //...
 
-  private final LocalServiceTestHelper helper = new LocalServiceTestHelper();
+    private final LocalServiceTestHelper helper = new LocalServiceTestHelper();
 
-  //...
+    //...
 
-  private CreateEmployeePresenterImpl;
+    private CreateEmployeePresenterImpl;
 
-  @Mock
-  private GeocodeAddressClientActionHandler geocodeAddressClientActionHandler;
+    @Mock
+    private GeocodeAddressClientActionHandler geocodeAddressClientActionHandler;
 
-  @Before
-  public void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
 
-    helper.setUp();
+        helper.setUp();
 
-    Injector injector =
-        Guice.createInjector(new DispatchHandlerModule(),
-            new MockHandlerModule() {
-              @Override
-              protected void configureMockHandlers() {
+        Injector injector =
+            Guice.createInjector(new DispatchHandlerModule(),
+                new MockHandlerModule() {
+                    @Override
+                    protected void configureMockHandlers() {
 
-                bindMockClientActionHandler(
-                    GeocodeAddressAction.class,
-                    geocodeAddressClientActionHandler);
-              }
-            });
+                        bindMockClientActionHandler(
+                            GeocodeAddressAction.class,
+                            geocodeAddressClientActionHandler);
+                    }
+                });
 
-    DispatchAsync dispatcher = injector.getInstance(DispatchAsync.class);
+        DispatchAsync dispatcher = injector.getInstance(DispatchAsync.class);
 
-    // ... pass dispatcher to wizard
-    presenter = new CreateEmployeePresenterImpl(null, view,
-        proxy, null, null, null, dispatcher);
-  }
+        // ... pass dispatcher to wizard
+        presenter = new CreateEmployeePresenterImpl(null, view,
+            proxy, null, null, null, dispatcher);
+    }
 
-  @After
-  public void tearDown() throws Exception {
-  }
+    @After
+    public void tearDown() throws Exception {
+    }
 
-  @Test
-  public void testGeocode() throws ActionException, ServiceException {
+    @Test
+    public void testGeocode() throws ActionException, ServiceException {
 
-    doAnswer(new Answer<Object>() {
-      @SuppressWarnings("unchecked")
-      public Object answer(InvocationOnMock invocation) {
-        AsyncCallback<GeocodeAddressResult> callback = (AsyncCallback<GeocodeAddressResult>) invocation.getArguments()[1];
-        callback.onSuccess(new GeocodeAddressResult(null));
-        return null;
-      }
-    }).when(geocodeAddressClientActionHandler)
-      .execute(
-          eq(new GeocodeAddressAction("1 Google Way, New Zealand",
-              "nz")), any(AsyncCallback.class),
-          any(ClientDispatchRequest.class), any(ExecuteCommand.class));
+        doAnswer(new Answer<Object>() {
+            @SuppressWarnings("unchecked")
+            public Object answer(InvocationOnMock invocation) {
+                AsyncCallback<GeocodeAddressResult> callback = (AsyncCallback<GeocodeAddressResult>) invocation.getArguments()[1];
+                callback.onSuccess(new GeocodeAddressResult(null));
+                return null;
+            }
+        }).when(geocodeAddressClientActionHandler)
+            .execute(
+                eq(new GeocodeAddressAction("1 Google Way, New Zealand",
+                    "nz")), any(AsyncCallback.class),
+                any(ClientDispatchRequest.class), any(ExecuteCommand.class));
 
-    wizard.getAddresses("1 Google Way, New Zealand");
-    verify(view).setError("Not found.");
+        wizard.getAddresses("1 Google Way, New Zealand");
+        verify(view).setError("Not found.");
 
-    doAnswer(new Answer<Object>() {
-      @SuppressWarnings("unchecked")
-      public Object answer(InvocationOnMock invocation) {
-        AsyncCallback<GeocodeAddressResult> callback = (AsyncCallback<GeocodeAddressResult>) invocation.getArguments()[1];
-        PlacemarkDto[] placemarks = new PlacemarkDto[2];
-        placemarks[0] =
-            new PlacemarkDto("2 Google Way, Auckland, New Zealand",
-                new PointDto(-36.84, 174.73));
-        placemarks[1] =
-            new PlacemarkDto("2 Google Way, Wellington, New Zealand",
-                new PointDto(-41.29, 174.78));
-        callback.onSuccess(new GeocodeAddressResult(placemarks));
-        return null;
-      }
-    }).when(geocodeAddressClientActionHandler)
-      .execute(
-          eq(new GeocodeAddressAction("2 Google Way, New Zealand",
-              "nz")), any(AsyncCallback.class),
-          any(ClientDispatchRequest.class), any(ExecuteCommand.class));
+        doAnswer(new Answer<Object>() {
+            @SuppressWarnings("unchecked")
+            public Object answer(InvocationOnMock invocation) {
+                AsyncCallback<GeocodeAddressResult> callback = (AsyncCallback<GeocodeAddressResult>) invocation.getArguments()[1];
+                PlacemarkDto[] placemarks = new PlacemarkDto[2];
+                placemarks[0] =
+                    new PlacemarkDto("2 Google Way, Auckland, New Zealand",
+                        new PointDto(-36.84, 174.73));
+                placemarks[1] =
+                    new PlacemarkDto("2 Google Way, Wellington, New Zealand",
+                        new PointDto(-41.29, 174.78));
+                callback.onSuccess(new GeocodeAddressResult(placemarks));
+                return null;
+            }
+        }).when(geocodeAddressClientActionHandler)
+            .execute(
+                eq(new GeocodeAddressAction("2 Google Way, New Zealand",
+                    "nz")), any(AsyncCallback.class),
+                any(ClientDispatchRequest.class), any(ExecuteCommand.class));
 
-    wizard.getAddresses("2 Google Way, New Zealand");
+        wizard.getAddresses("2 Google Way, New Zealand");
 
-    String[] addresses =
-        new String[] {
-            "2 Google Way, Auckland, New Zealand",
-            "2 Google Way, Wellington, New Zealand"};
-    verify(view).setSearchResults(addresses);
-    verify(view).setMapLocation(-36.84, 174.73);
-  }
+        String[] addresses =
+            new String[] {
+                "2 Google Way, Auckland, New Zealand",
+                "2 Google Way, Wellington, New Zealand"};
+        verify(view).setSearchResults(addresses);
+        verify(view).setMapLocation(-36.84, 174.73);
+    }
 }
 ```

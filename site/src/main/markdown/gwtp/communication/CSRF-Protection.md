@@ -41,7 +41,7 @@ The cookie should contain a session-dependent random number that cannot be easil
 If you don't want to use the "JSESSIONID" cookie, say because you don't want to enable it on AppEngine, then you can add either HttpSessionSecurityCookieFilter or RandomSessionSecurityCookieFilter to your list of filters. To do so, add the following line at the top of your configureServlets method:
 
 ```
- filter("/*").through( HttpSessionSecurityCookieFilter.class );
+filter("/*").through( HttpSessionSecurityCookieFilter.class );
 ```
 
 Note if you are using appengine all your host pages must be .jsp for the filter to work because appengine serves .html files statically.

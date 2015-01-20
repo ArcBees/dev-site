@@ -9,15 +9,15 @@ The starting point is the [Sonatype OSS Maven Repository User Guide](https://doc
 ##Specifying your Google Code credentials
 The various deployment steps need Maven to know your Google Code credentials. You specify them on your local machine by adding the following to Maven's settings.xml:
 
-    <servers>
-      ...
-      <server>
+<servers>
+    ...
+    <server>
         <id>github.com</id>
         <username>philippe.beaudoin</username>
         <password>0123456789ABCD</password>
-      </server>
-      ...
-    </servers>
+    </server>
+    ...
+</servers>
 
 ##Deploying a snapshot
 **Important!** Make sure you quit Eclipse before doing that, so that there is no interference between Eclipse automatic building and Maven.

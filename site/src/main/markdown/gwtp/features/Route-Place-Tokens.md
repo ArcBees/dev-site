@@ -72,12 +72,12 @@ public void prepareFromRequest(final PlaceRequest placeRequest) {
     String itemId = request.getParameter("id", "");
 
     if(itemId.isEmpty()) {
-      // Display blank form for item editing
-      ...
+        // Display blank form for item editing
+        ...
     }
     else {
-      // Fetch item DTO and populate form
-      ...
+        // Fetch item DTO and populate form
+        ...
     }
 }
 ```

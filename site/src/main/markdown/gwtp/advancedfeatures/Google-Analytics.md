@@ -17,8 +17,8 @@ The first line let's you bind the various google Analytics function to our imple
 It is also possible to track event by injecting `GoogleAnalytics` in wherever you want and by calling manually `googleAnalytics.trackEvent(category, action);` where category is a string name you supply for the group of objects you want to track and action is a string that is uniquely paired with each category, and commonly used to define the type of user interaction for the web object.
 
 You can also call the methods with two additionnal arguments:
- * optLabel An string to provide additional dimensions to the event data;
- * optValue An integer that you can use to provide numerical data about the user event.
+* optLabel An string to provide additional dimensions to the event data;
+* optValue An integer that you can use to provide numerical data about the user event.
 
 ##Adding multiple Google Analytics account
 

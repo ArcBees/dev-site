@@ -10,7 +10,7 @@ GWT 2.0 offers new and very interesting [layout panels](http://code.google.com/w
 ```
 @Override
 protected void revealInParent() {
-  RevealRootLayoutContentEvent.fire( eventBus, this );
+    RevealRootLayoutContentEvent.fire( eventBus, this );
 }
 ```
 

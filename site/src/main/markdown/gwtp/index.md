@@ -45,9 +45,9 @@ For example, adding history management and code splitting to your presenter is a
 to your class:
 
 ```
-  @ProxyCodeSplit
-  @NameToken("myToken")
-  public interface MyProxy extends ProxyPlace<MyPresenter> {}
+@ProxyCodeSplit
+@NameToken("myToken")
+public interface MyProxy extends ProxyPlace<MyPresenter> {}
 ```
 
 ##Goals

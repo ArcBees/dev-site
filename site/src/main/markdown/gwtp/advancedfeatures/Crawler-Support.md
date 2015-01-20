@@ -26,11 +26,11 @@ It's easy to roll out your own personalized crawl service. Simply take a look at
 
 ```
 public class MyCrawlerModule extends AbstractModule {
-  @Override
-  protected void configure() {
-    bindConstant().annotatedWith(ServiceKey.class).to("123456");
-    install(new CrawlServiceModule());
-  }
+    @Override
+    protected void configure() {
+        bindConstant().annotatedWith(ServiceKey.class).to("123456");
+        install(new CrawlServiceModule());
+    }
 }
 ```
 

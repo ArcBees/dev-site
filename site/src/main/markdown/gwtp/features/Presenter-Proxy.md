@@ -9,18 +9,18 @@ The second annotation you might want to use is the @NameToken( "MyPlaceName" ), 
 * In the end, this is how the MyProxy interface should be defined in your presenter:
 
 ```
-  @ProxyCodeSplit
-  @NameToken("main")
-  public interface MyProxy extends ProxyPlace<MainPagePresenter> {}
+@ProxyCodeSplit
+@NameToken("main")
+public interface MyProxy extends ProxyPlace<MainPagePresenter> {}
 ```
 
 ## Notifying the user of code split requests
 If you'd like to notify the user when an asynchronous request is performed by GWTP as a result of code splitting, you can do so easily simply by listening to the following events:
 
 ```
-  AsyncCallStartEvent
-  AsyncCallSuccessEvent
-  AsyncCallFailEvent
+AsyncCallStartEvent
+AsyncCallSuccessEvent
+AsyncCallFailEvent
 ```
 For example, you can display a `Loading...` message when the first event is handled, and clear it when one of the other two is received. Check out the events javadoc for details.
 
@@ -33,28 +33,28 @@ It is often useful to let a presenter respond to custom events even before it ha
 ```
 public class RevealDefaultLinkColumnEvent extends GwtEvent<RevealDefaultLinkColumnHandler> {
 
-  private static final Type<RevealDefaultLinkColumnHandler> TYPE = new Type<RevealDefaultLinkColumnHandler>();
+    private static final Type<RevealDefaultLinkColumnHandler> TYPE = new Type<RevealDefaultLinkColumnHandler>();
 
-  public static Type<RevealDefaultLinkColumnHandler> getType() {
-      return TYPE;
-  }
+    public static Type<RevealDefaultLinkColumnHandler> getType() {
+        return TYPE;
+    }
 
-  public static void fire(HasEventBus source) {
-    source.fireEvent(new RevealDefaultLinkColumnEvent());
-  }
+    public static void fire(HasEventBus source) {
+        source.fireEvent(new RevealDefaultLinkColumnEvent());
+    }
 
-  public RevealDefaultLinkColumnEvent() {
-  }
+    public RevealDefaultLinkColumnEvent() {
+    }
 
-  @Override
-  protected void dispatch( RevealDefaultLinkColumnHandler handler ) {
-    handler.onRevealDefaultLinkColumn( this );
-  }
+    @Override
+    protected void dispatch( RevealDefaultLinkColumnHandler handler ) {
+        handler.onRevealDefaultLinkColumn( this );
+    }
 
-  @Override
-  public Type<RevealDefaultLinkColumnHandler> getAssociatedType() {
-    return getType();
-  }
+    @Override
+    public Type<RevealDefaultLinkColumnHandler> getAssociatedType() {
+        return getType();
+    }
 }
 ```
 
@@ -62,19 +62,19 @@ You will need to provide a static `getType` method in order for the `@ProxyEvent
 
 ```
 public interface RevealDefaultLinkColumnHandler extends EventHandler {
-  void onRevealDefaultLinkColumn( RevealDefaultLinkColumnEvent event );
+    void onRevealDefaultLinkColumn( RevealDefaultLinkColumnEvent event );
 }
 ```
 
 Make sure that this interface has a single method and that the method accepts only one parameter: the event. Armed with these classes, you can have your presenter handle the event simply by having it implement the `RevealDefaultLinkColumnHandler` interface and by defining the handler method in this way:
 
 ```
-  @ProxyEvent
-  @Override
-  public void onRevealDefaultLinkColumn(RevealDefaultLinkColumnEvent event) {
+@ProxyEvent
+@Override
+public void onRevealDefaultLinkColumn(RevealDefaultLinkColumnEvent event) {
     // Do anything you want in there. If you want to reveal the presenter:
     forceReveal();
-  }
+}
 ```
 
 Calling `forceReveal()` in this way should only be done for leaf presenters that do not have a name token. In the case where the presenter is associated to a place, use a method from the `PlaceManager` instead.

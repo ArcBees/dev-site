@@ -119,18 +119,18 @@ Setting the source on fireEvent with your own objects.
 
 ```
 public abstract class MyCustomCallback<T> implements AsyncCallback<T>, HasHandlers {
-  @Inject
-  private static EventBus eventBus;
+    @Inject
+    private static EventBus eventBus;
 
-  @Override
-  public void onFailure(Throwable caught) {
-      ShowMessageEvent.fire(this, "Oops! Something went wrong!");
-  }
+    @Override
+    public void onFailure(Throwable caught) {
+        ShowMessageEvent.fire(this, "Oops! Something went wrong!");
+    }
 
-  @Override
-  public void fireEvent(GwtEvent<?> event) {
-      eventBus.fireEvent(this, event);
-  }
+    @Override
+    public void fireEvent(GwtEvent<?> event) {
+        eventBus.fireEvent(this, event);
+    }
 }
 ```
 
@@ -219,28 +219,28 @@ Setting up a `SimpleEventBus` to Observe a specific set of events which can be g
 
 ```
 public class ArchetypeObserver {
-  private final EventBus eventBus;
+    private final EventBus eventBus;
 
-  @Inject
-  ArchetypeObserver(@Named("ArchetypeEventBus") EventBus eventBus) {
-    this.eventBus = eventBus;
-  }
+    @Inject
+    ArchetypeObserver(@Named("ArchetypeEventBus") EventBus eventBus) {
+        this.eventBus = eventBus;
+    }
 
-  public void fireEvent(GwtEvent<?> event) {
-    eventBus.fireEventFromSource(event, this);
-  }
+    public void fireEvent(GwtEvent<?> event) {
+        eventBus.fireEventFromSource(event, this);
+    }
 
-  public final <H extends EventHandler> HandlerRegistration addHandler(GwtEvent.Type<H> type, H handler) {
-    return eventBus.addHandler(type, handler);
-  }
+    public final <H extends EventHandler> HandlerRegistration addHandler(GwtEvent.Type<H> type, H handler) {
+        return eventBus.addHandler(type, handler);
+    }
 
-  public EventBus getEventBus() {
-    return eventBus;
-  }
+    public EventBus getEventBus() {
+        return eventBus;
+    }
 
-  public void display(ArchetypeJso archetypeJso) {
-    eventBus.fireEvent(new ArchetypeDisplayEvent(archetypeJso));
-  }
+    public void display(ArchetypeJso archetypeJso) {
+        eventBus.fireEvent(new ArchetypeDisplayEvent(archetypeJso));
+    }
 }
 ```
 
@@ -248,11 +248,11 @@ public class ArchetypeObserver {
 
 ```
 public class EventsModule extends AbstractPresenterModule {
-  @Override
-  protected void configure() {
-    bind(ArchetypeObserver.class).in(Singleton.class);
-   bind(EventBus.class).annotatedWith(Names.named("ArchetypeEventBus")).to(SimpleEventBus.class).in(Singleton.class);
-  }
+    @Override
+    protected void configure() {
+        bind(ArchetypeObserver.class).in(Singleton.class);
+        bind(EventBus.class).annotatedWith(Names.named("ArchetypeEventBus")).to(SimpleEventBus.class).in(Singleton.class);
+    }
 }
 ```
 
@@ -260,35 +260,35 @@ public class EventsModule extends AbstractPresenterModule {
 
 ```
 public class ArchetypeDisplayEvent extends GwtEvent<ArchetypeDisplayEvent.DisplayArchetypeHandler> {
-  public interface DisplayArchetypeHandler extends EventHandler {
-      void onDisplay(ArchetypeDisplayEvent event);
-  }
+    public interface DisplayArchetypeHandler extends EventHandler {
+        void onDisplay(ArchetypeDisplayEvent event);
+    }
 
-  private static final Type<DisplayArchetypeHandler> TYPE = new Type<DisplayArchetypeHandler>();
+    private static final Type<DisplayArchetypeHandler> TYPE = new Type<DisplayArchetypeHandler>();
 
-  private final ArchetypeJso archetype;
+    private final ArchetypeJso archetype;
 
-  public static Type<DisplayArchetypeHandler> getType() {
-    return TYPE;
-  }
+    public static Type<DisplayArchetypeHandler> getType() {
+        return TYPE;
+    }
 
-  public ArchetypeDisplayEvent(final ArchetypeJso archetypeJso) {
-    this.archetype = archetypeJso;
-  }
+    public ArchetypeDisplayEvent(final ArchetypeJso archetypeJso) {
+        this.archetype = archetypeJso;
+    }
 
-  public ArchetypeJso get() {
-    return archetype;
-  }
+    public ArchetypeJso get() {
+        return archetype;
+    }
 
-  @Override
-  public Type<DisplayArchetypeHandler> getAssociatedType() {
-    return TYPE;
-  }
+    @Override
+    public Type<DisplayArchetypeHandler> getAssociatedType() {
+        return TYPE;
+    }
 
-  @Override
-  protected void dispatch(DisplayArchetypeHandler handler) {
-    handler.onDisplay(this);
-  }
+    @Override
+    protected void dispatch(DisplayArchetypeHandler handler) {
+        handler.onDisplay(this);
+    }
 }
 ```
 
@@ -297,27 +297,27 @@ public class ArchetypeDisplayEvent extends GwtEvent<ArchetypeDisplayEvent.Displa
 ```
 public class ArchetypeListPresenter extends PresenterWidget<ArchetypeListPresenter.MyView> implements
     ArchtypeListUiHandlers {
-  //...
+    //...
 
-  // Inject the Observer
-  @Inject
-  ArchetypeListPresenter(EventBus eventBus, MyView view, ArchetypeObserver archetypeObserver,
-      LoginPresenter loginPresenter, ArchetypeJsoDao archetypeJsoDao) {
-    super(eventBus, view);
+    // Inject the Observer
+    @Inject
+    ArchetypeListPresenter(EventBus eventBus, MyView view, ArchetypeObserver archetypeObserver,
+        LoginPresenter loginPresenter, ArchetypeJsoDao archetypeJsoDao) {
+        super(eventBus, view);
 
-    this.archetypeObserver = archetypeObserver;
-    this.archetypeJsoDao = archetypeJsoDao;
+        this.archetypeObserver = archetypeObserver;
+        this.archetypeJsoDao = archetypeJsoDao;
 
-    getView().setUiHandlers(this);
-  }
-  //...
+        getView().setUiHandlers(this);
+    }
+    //...
 
-  @Override
-  public void gotoEdit(ArchetypeJso selectedArchetype) {
-    // Fire the event
-    archetypeObserver.display(selectedArchetype);
-  }
-  //...
+    @Override
+    public void gotoEdit(ArchetypeJso selectedArchetype) {
+        // Fire the event
+        archetypeObserver.display(selectedArchetype);
+    }
+    //...
 }
 ```
 
@@ -327,36 +327,36 @@ public class ArchetypeListPresenter extends PresenterWidget<ArchetypeListPresent
 // Implement `ArchetypeDisplayEvent.DisplayArchetypeHandler` handler.
 public class ArchetypeDisplayPresenter extends PresenterWidget<ArchetypeDisplayPresenter.MyView> implements
     ArchetypeDisplayUiHandlers, ArchetypeDisplayEvent.DisplayArchetypeHandler {
-  public interface MyView extends View, HasUiHandlers<ArchetypeDisplayUiHandlers> {
-  }
+    public interface MyView extends View, HasUiHandlers<ArchetypeDisplayUiHandlers> {
+    }
 
-  private final ArchetypeObserver archetypeObserver;
-  private final ArchetypeJsoDao archetypeJsoDao;
+    private final ArchetypeObserver archetypeObserver;
+    private final ArchetypeJsoDao archetypeJsoDao;
 
-  // Inject the Observer
-  @Inject
-  ArchetypeDisplayPresenter(EventBus eventBus, MyView view, ArchetypeObserver archetypeObserver,
-      LoginPresenter loginPresenter, final ArchetypeJsoDao archetypeJsoDao) {
-    super(eventBus, view);
+    // Inject the Observer
+    @Inject
+    ArchetypeDisplayPresenter(EventBus eventBus, MyView view, ArchetypeObserver archetypeObserver,
+        LoginPresenter loginPresenter, final ArchetypeJsoDao archetypeJsoDao) {
+        super(eventBus, view);
 
-    this.archetypeObserver = archetypeObserver;
-    this.archetypeJsoDao = archetypeJsoDao;
+        this.archetypeObserver = archetypeObserver;
+        this.archetypeJsoDao = archetypeJsoDao;
 
-    getView().setUiHandlers(this);
-  }
+        getView().setUiHandlers(this);
+    }
 
-  @Override
-  protected void onBind() {
-    super.onBind();
+    @Override
+    protected void onBind() {
+        super.onBind();
 
-    // Register the event
-    registerHandler(archetypeObserver.addHandler(ArchetypeDisplayEvent.getType(), this));
-  }
+        // Register the event
+        registerHandler(archetypeObserver.addHandler(ArchetypeDisplayEvent.getType(), this));
+    }
 
-  // Event Handler for the event.
-  @Override
-  public void onDisplay(ArchetypeDisplayEvent event) {
-    // TODO do something
-  }
+    // Event Handler for the event.
+    @Override
+    public void onDisplay(ArchetypeDisplayEvent event) {
+        // TODO do something
+    }
 }
 ```

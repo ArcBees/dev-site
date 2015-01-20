@@ -10,7 +10,7 @@ Manual reveal gives you greater control over the precise moment at which your pr
 ```
 @Override
 public boolean useManualReveal() {
-  return true;
+    return true;
 }
 ```
 
@@ -22,18 +22,18 @@ This will allow the callback to reveal the presenter when the callback happens.
 ```
 @Override
 public void prepareFromRequest(PlaceRequest request) {
-  super.prepareFromRequest(request);
-  dispatcher.execute( new DelayAction(), ManualRevealCallback.create(this,
-      new AsyncCallback<NoResult>() {
-        @Override
-        public void onSuccess(NoResult result) {
-          // Do something with the data
-        }
-        @Override
-        public void onFailure(Throwable caught) {
-          // Display an error message
-        }
-      } ) );
+    super.prepareFromRequest(request);
+    dispatcher.execute( new DelayAction(), ManualRevealCallback.create(this,
+        new AsyncCallback<NoResult>() {
+            @Override
+            public void onSuccess(NoResult result) {
+                // Do something with the data
+            }
+            @Override
+            public void onFailure(Throwable caught) {
+                // Display an error message
+            }
+        } ) );
 }
 ```
 
@@ -45,20 +45,20 @@ Alternatively, you can directly call `ProxyPlace.manualReveal()` or `ProxyPlace.
 ```
 @Override
 public void prepareFromRequest(PlaceRequest request) {
-  super.prepareFromRequest(request);
-  dispatcher.execute( new DelayAction(),
-      new AsyncCallback<NoResult>() {
-        @Override
-        public void onSuccess(NoResult result) {
-          // Do something with the data
-          getProxy().manualReveal(this);
-        }
-        @Override
-        public void onFailure(Throwable caught) {
-          // Display an error message
-          getProxy().manualRevealFailed();
-        }
-      } );
+    super.prepareFromRequest(request);
+    dispatcher.execute( new DelayAction(),
+        new AsyncCallback<NoResult>() {
+            @Override
+            public void onSuccess(NoResult result) {
+                // Do something with the data
+                getProxy().manualReveal(this);
+            }
+            @Override
+            public void onFailure(Throwable caught) {
+                // Display an error message
+                getProxy().manualRevealFailed();
+            }
+        } );
 }
 ```
 

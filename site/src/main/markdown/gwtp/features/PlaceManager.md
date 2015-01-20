@@ -7,16 +7,16 @@ Binding the `DefaultModule()` will initialize the `DefaultPlaceManager`. But it'
 
 ```
 public class ClientModule extends AbstractPresenterModule {
-  @Override
-  protected void configure() {
-    // DefaultModule initializes the DefaultPlaceManger
-    install(new DefaultModule());
-    install(new ApplicationModule());
+    @Override
+    protected void configure() {
+        // DefaultModule initializes the DefaultPlaceManger
+        install(new DefaultModule());
+        install(new ApplicationModule());
 
-    bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.home);
-    bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.error);
-    bindConstant().annotatedWith(UnauthorizedPlace.class).to(NameTokens.unauthorized);
-  }
+        bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.home);
+        bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.error);
+        bindConstant().annotatedWith(UnauthorizedPlace.class).to(NameTokens.unauthorized);
+    }
 }
 ```
 
@@ -87,11 +87,11 @@ Installing the `DefaultModule` saves you from having to perform all the followin
 
 
 ```
-  bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
-  bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(Singleton.class);
-  bind(RootPresenter.class).asEagerSingleton();
-  bind(PlaceManager.class).to(MyPlaceManager.class).in(Singleton.class);
-  bind(GoogleAnalytics.class).to(GoogleAnalyticsImpl.class).in(Singleton.class);
+bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
+bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(Singleton.class);
+bind(RootPresenter.class).asEagerSingleton();
+bind(PlaceManager.class).to(MyPlaceManager.class).in(Singleton.class);
+bind(GoogleAnalytics.class).to(GoogleAnalyticsImpl.class).in(Singleton.class);
 ```
 
 ##Creating a PlaceManager Request
