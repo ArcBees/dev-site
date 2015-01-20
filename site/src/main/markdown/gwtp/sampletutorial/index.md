@@ -1,16 +1,17 @@
-#Sample tutorial
-The goal of this tutorial is to help you get a complete overview using GWTP's Model-View-Presenter architecture. Part one will focus mainly on nested presenters. For a complete example on how to use GWTP in Ecplise, take a look at the GettingStarted tutorial.
+# Sample tutorial
+The goal of this tutorial is to help you get a complete overview using GWTP's Model-View-Presenter architecture. Part
+ one will focus mainly on nested presenters. For a complete example on how to use GWTP in Ecplise, take a look at the Getting Started tutorial.
 
 After reading this guide, you should get a better understanding of nested presenters and history management.  We also cover presenter lifecycles in more detail.
 
-##Reference
+## Reference
 * [Nested Presenter Slots](https://github.com/ArcBees/GWTP/wiki/Presenter-%22Slots%22)
 * [Nested Sample](https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-nested)
 
-##Getting the sample application
+## Getting the sample application
 The sample application for this tutorial can be <a href="http://code.google.com/p/gwt-platform/source/browse/#hg%2Fgwtp-samples%2Fgwtp-sample-nested%2Fsrc%2Fmain%2Fjava%2Fcom%2Fgwtplatform%2Fsamples%2Fnested%2Fclient">found here</a>. You can get it if you install the examples as explained in the [Getting Started](http://code.google.com/p/gwt-platform/wiki/GettingStarted#Getting_the_sample_applications) page.<br />
 
-##Not using !AppEngine?
+## Not using !AppEngine?
 This sample is created with !AppEngine SDK but doesn't depend on it. If you don't need this feature, you can remove any !AppEngine SDK dependencies inside Eclipse, then remove those files :
 
 ```
@@ -20,10 +21,10 @@ gwtpnestedsample/war/WEB-INF/logging.properties
 
 If you're not using eclipse, don't forget to remove the dependency to !AppEngine from the build path.
 
-#Getting started
+# Getting started
 In this section, we're going to create a new skeleton project and do some minor structural preparations.
 
-##Initial setup
+## Initial setup
 Let's take a look at the project tree:
 
 As you can see, there's no server logic at this point. We're only focusing on simple nested presenter logic. Here is a brief description of the various packages:
@@ -34,9 +35,9 @@ As you can see, there's no server logic at this point. We're only focusing on si
 * `com.gwtplatform.samples.nested.client.ui` contains custom widgets without presenter and compatible with !UiBinder.
 * `com.gwtplatform.samples.nested.client.view` contains every presenter's view.
 
-#The sample
+# The sample
 
-##Step 1: Adding dependencies
+## Step 1: Adding dependencies
 Adding dependencies to `Gwtpnestedsamples.gwt.xml`
 
 Before starting to write anything, don't forget to add every dependencies we need inside `Gwtpnestedsamples.gwt.xml` :
@@ -50,7 +51,7 @@ Before starting to write anything, don't forget to add every dependencies we nee
 
 Those two lines are used by GWTP proxy generator.
 
-##Step 2: Setting things up
+## Step 2: Setting things up
 Adding navigation's logic classes and Gin classes definition.
 
 `class com.gwtplatform.samples.nested.client.gin.DefaultPlace`:
@@ -143,7 +144,7 @@ public class ClientModule extends AbstractPresenterModule {
 
 Time to bind everything. Presenters will be explained bellow. GWTP needs a couple of components bound in the `DefaultModule`. You can also see that we bind the `DefaultPlace` annotation we defined before, we're binding it to the constant `NameTokens.homePage` to indicate we want to reveal this page by default.
 
-##Step 3: Creating a custom widget
+## Step 3: Creating a custom widget
 I've written a simple menu widget and since there's no complex logic at all I got rid of the presenter. Try to keep it simple and rely on the powerful of !UiBinder.
 
 `class com.gwtplatform.samples.nested.client.ui.MainMenu`:
@@ -178,7 +179,7 @@ Simple, it's the default template when you create a !UiBinder class.
 
 And you can see now why we needed these static methods in the `NameTokens` class.
 
-##Step 4: Writing the presenters
+## Step 4: Writing the presenters
 Now is the time to create our presenters and views. Since `ContactPresenter`,`AboutUsPresenter` and `HomePresenter` are very similar, I'll only talk about `HomePresenter` and `MainPagePresenter` here.
 
 `class com.gwtplatform.samples.nested.client.presenter.MainPagePresenter`:
@@ -296,7 +297,7 @@ public class HomeView extends ViewImpl implements MyView {
 
 There's no need for `setInSlot` is this view, because we never insert another presenter inside it. `ViewImpl` is an abstract class that already implements empty versions of `setInSlot` and `addToSlot`, so if you don't override them.
 
-#Conclusion
+# Conclusion
 There's a lot of stuff and a lot more to dig in, this is only the beginning of your journey through GWTP. We'll update this tutorial to take into consideration your comments, so feel free to ask questions on the development forum.  Upcoming parts will include Dispatch, secure content and complex IDE-like applications with exchangeable components. We hope to cover every feature with as much informations as possible.
 
 [boot]: gwtp/basicfeatures/Bootstrapping-or-Application-Initialization.html "Bootstrapping or Application Initialization"

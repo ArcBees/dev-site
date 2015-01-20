@@ -1,4 +1,4 @@
-#Migrating from v. 1.1 to 1.2
+# Migrating from v. 1.1 to 1.2
 
 There is very little breaking changes between 1.1 and 1.2, but some classes got moved from one package to another.
 
