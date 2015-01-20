@@ -1,6 +1,4 @@
-![GWTP] (http://i.imgur.com/LHvTZ.png "GWTP goo-teepee") (Pronounced *goo-teepee*)
-
-A complete Model-View-Presenter framework to simplify your next GWT project.
+**A complete Model-View-Presenter framework to simplify your next GWT project.**
 
 ##Reference
 * [GWTP Custom Google Search](http://www.google.com/cse/home?cx=011138278718949652927:5yuja8xc600) - Search GWTP documentation, wiki and thread collections.
