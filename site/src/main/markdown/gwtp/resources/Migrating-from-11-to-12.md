@@ -1,3 +1,5 @@
+# Migrating from v. 1.1 to 1.2
+
 There is very little breaking changes between 1.1 and 1.2, but some classes got moved from one package to another.
 
 ## Moved classes
@@ -30,6 +32,7 @@ You will want to go through all your files and update your imports for the follo
 
 ## New mandatory GIN bindings
 If you don't install `DefaultModule` or `RestDispatchAsyncModule`, you will likely end up with missing binding issues. To fix them, add this line in one of your GIN module:
-```java
+
+```
 install(new CommonGinModule());
 ```

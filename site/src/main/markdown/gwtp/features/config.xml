@@ -12,6 +12,7 @@
             <entry name="Presenter-Widget" title="Presenter Widget" displayName="Presenter Widget"></entry>
             <entry name="Popup-Presenter" title="Popup Presenter" displayName="Popup Presenter"></entry>
             <entry name="Tabbed-Presenters" title="Tabbed Presenters" displayName="Tabbed Presenters"></entry>
+            <entry name="Layout-Presenter" title="Layout Presenter" displayName="Layout Presenter"></entry>
             <entry name="PlaceManager" title="PlaceManager" displayName="PlaceManager"></entry>
             <entry name="URL-Parameters" title="URL Parameters" displayName="URL Parameters"></entry>
             <entry name="Route-Place-Tokens" title="Route Place Tokens" displayName="Route Place Tokens"></entry>

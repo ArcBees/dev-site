@@ -1,3 +1,5 @@
+# Best Practices
+
 This page walks through some of Gwt-Platform best practices. Articles are usually hosted on our blog and we link them here for easy access.
 
 ##Gwt-Platform events

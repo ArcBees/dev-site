@@ -1,4 +1,4 @@
-#Introduction
+# Action Validators
 GWTP makes it possible to link each of your `ActionHandler`s with a server-side `ActionValidator` that determines whether or not the current client can execute the action. Validation logic is up to you and is not limited to inspecting the users, for example you could use it to deny access to some actions at certain times of the day. In this document, however, we focus to the most frequent use case of session-based validation.
 
 ##Changes from gwt-dispatch
@@ -18,13 +18,14 @@ If you want a custom url for your action, simply implement the `Action` interfac
 
 Here's a little trick that will let you automatically build urls of the form `"dispatch/MY_ACTION_CLASS"`, at the cost of some java reflexion:
 
-```java
+
+```
 public abstract class AbstractAction<R extends Result> implements Action<R> {
   @Override
   public String getServiceName() {
     String className = this.getClass().getName();
     int namePos = className.lastIndexOf(".") + 1;
-    className = ActionImpl.DEFAULT_SERVICE_NAME + className.substring(namePos); 
+    className = ActionImpl.DEFAULT_SERVICE_NAME + className.substring(namePos);
 
     return className;
   }
@@ -33,12 +34,13 @@ public abstract class AbstractAction<R extends Result> implements Action<R> {
   public boolean isSecured() {
     return true;
   }
-} 
+}
 ```
 
 Here's an example of an action built on this scheme, this action will use the `"dispatch/GetProducts"` url:
 
-```java
+
+```
 public class GetProducts extends AbstractAction<GetProductsResult> {
     private String categoryId;
 
@@ -51,65 +53,70 @@ public class GetProducts extends AbstractAction<GetProductsResult> {
     public String getCategoryId() {
       return categoryId;
     }
-} 
+}
 ```
 
 #Guice/gin configurations
-I will assume here that you're using the default. Advanced configurations will be discussed in another page. Just so you know, you can make your own `DispatchModule` with your own `ExceptionHandler` that will override `onFailure`. Anyway, gin configurations for dispatch almost always only need to add the default to your Ginjector class like this : 
+I will be assumed here that you're using the default. Advanced configurations will be discussed in another page. Just so
+ you know, you can make your own `DispatchModule` with your own `ExceptionHandler` that will override `onFailure`. Anyway, gin configurations for dispatch almost always only need to add the default to your Ginjector class like this :
 
 `@GinModules({ DispatchAsyncModule.class, YourClientModule.class})`
 
-Then don't forget to add a deffinition : 
+Then don't forget to add a deffinition :
 
 `DispatchAsync getDispatcher();`
 
 No big changes here.
 
 For guice
-The only change here is that we don't use hard coded dispatch string in your module that extends `ServletModule`. 
+The only change here is that we don't use hard coded dispatch string in your module that extends `ServletModule`.
 
 `serve("/yourappname/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(DispatchServiceImpl.class);`
 
 #!ActionValidators
 Here's the big change. `ActionValidators` are classes bound to an `ActionHandler` that evaluates if the action can or cannot be executed, typically using the user logged into the current session. They are server-side, secure and reusable.
 
-That change introduced a new overload of `bindHandler` : `bindHandler(action.class, actionHandler.class, actionValidator.class)`. 
+That change introduced a new overload of `bindHandler` : `bindHandler(action.class, actionHandler.class, actionValidator.class)`.
 
-An action that can be executed by all users, logged-in or not, will be bound to an `ActionValidator` of looking like this : 
-```java
+An action that can be executed by all users, logged-in or not, will be bound to an `ActionValidator` of looking like this :
+
+```
 public class PublicActionValidator implements ActionValidator  {
   @Override
   public boolean isValid(Action<? extends Result> action) {
     return true;
   }
-} 
+}
 ```
 
 The `isValid` method should return `true` when the user can execute the action, and `false` otherwise. The `Action` itself is also passed as a parameter so you can inspect it if needed.
 
 You never have to write such a trivial `PublicActionValidator`, however, since this is exactly what you will get by using the 2-parameter version of `bindHandler`: `bindHandler(action.class, actionHandler.class)`. Let's therefore look at a more interesting example that uses the `UserServiceFactory` of !AppEngine to determine whether the user is an admin:
-```java
+
+```
 public class AdminActionValidator implements ActionValidator  {
   @Override
   public boolean isValid(Action<? extends Result> action) {
     UserService user = UserServiceFactory.getUserService();
-    
+
     return user.isUserAdmin();
   }
-} 
+}
 ```
 
 Short and simple. Now only admin of your appdomain can use actions that are bound to this `AdminActionValidator`. You could also use action validators to check that a user is logged in, that he has some specific rights, that the action can only be accomplished at a given time of the day (i.e. for cleanup operations), etc.
 
 ##What happens when `isValid` returns false ?
 
-Dispatch will return a new service exception : 
-```java
+Dispatch will return a new service exception :
+
+```
 throw new ServiceException( actionValidator.getClass().getName() + actionValidatorMessage + action.getClass().getName() );
 ```
 
-and the message : 
-```java
+and the message :
+
+```
 private final static String actionValidatorMessage = " couldn't allow access to action : ";
 ```
 

@@ -1,3 +1,5 @@
+# Release Notes
+
 #Version 1.3.1 (08/25/2014)
 ## GWTP
 * Optimized version checking
@@ -125,26 +127,26 @@ Here's a list of changes for GWTP Spring:
 
 #Version 1.0 (6/11/2013)
  * Added new [visibility handler](https://github.com/ArcBees/GWTP/wiki/Events#registerhandler-in-presenters)
- * Added an experimental API [[Rest-Dispatch]] 
+ * Added an experimental API [Rest-Dispatch][rd]
  * Updated GinUiBinder to work with GWT 2.5+
  * Fixed https://github.com/ArcBees/GWTP/issues/252
  * Fixed https://github.com/ArcBees/GWTP/issues/243
 
 #Version 1.0-RC-3 (4/13/2013)
  * Testing application carstore was added
- * More documentation has been added. 
+ * More documentation has been added.
  * IsWidget support. This is breaking in overriding classes.
- * [[Route-Place-Tokens]]
+ * [Route-Place-Tokens][rpt]
  * Unlock place manager when async calls fail fix.
- * @Bootstrap replaced with property module. Breaking Change. https://groups.google.com/forum/?fromgroups=#!topic/gwt-platform/UUAUpnvjxkE - [[Bootstrapping]]
+ * @Bootstrap replaced with property module. Breaking Change. https://groups.google.com/forum/?fromgroups=#!topic/gwt-platform/UUAUpnvjxkE - [Bootstrapping or Application Initialization][boot]
 
 #Version 1.0-RC-2 (2/21/2013)
  * Updated default rpc dispatch path in ActionImpl, this simplifies using rpc dispatch defaults.
  * Phonegap build support added.
- * FormFactors for Mobile, Tablet, Desktop added. 
+ * FormFactors for Mobile, Tablet, Desktop added.
  * Removed a bug where the compiler would wrongly say that DefaultClientModule wasn't found.
- * More docs have been added and updated. 
- * Mobile sample updated and added Phonegap support to i. 
+ * More docs have been added and updated.
+ * Mobile sample updated and added Phonegap support to i.
 
 #Version 1.0-RC-1 (1/30/2013)
  * Code formatting to 4 spaces.
@@ -153,7 +155,7 @@ Here's a list of changes for GWTP Spring:
  * ViewImpl change, by adding widget to it. Allows for initWidget(widget...).
  * You can now use the DefaultPlaceManager instead of your own.
  * Default annotations added @DefaultPlace, @ErrorPlace, @UnauthorizedPlace.
- * [[Maven Configuration]] enhanced. 
+ * [Maven Configuration][mc] enhanced.
  * Ginjector collision fixed.
 
 #Version 0.8-beta-1,2
@@ -258,3 +260,8 @@ Here's a list of changes for GWTP Spring:
 
 #Version 0.0.1 Alpha (04/01/2010)
   * First library available outside !PuzzleBazar.
+
+[rd]: gwtp/communication/Rest-Dispatch.html "Rest Dispatch"
+[rpt]: gwtp/features/Route-Place-Tokens.html "Route Place Tokens"
+[boot]: gwtp/basicfeatures/Bootstrapping-or-Application-Initialization.html "Bootstrapping or Application Initialization"
+[mc]: gwtp/resources/index.html "Maven Configuration"

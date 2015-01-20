@@ -1,3 +1,5 @@
+# URL Parameters
+
 It's often useful to register part of the state of a presenter in the URL, so that a bookmark or navigation can return to the presenter in that given state. GWTP offers native support for such parameters which, by default, will lead to URLs looking like this: `http://domain.tld#!search;q=iphone`
 
 ##URL Parameters Encoding
@@ -8,13 +10,14 @@ The parameters are encoded like this `#nameToken(;key=value)*` and might look li
 ##Restful URL Parameter Encoding
 While more fragile to upgrades because parameter order changes could break old links/bookmarks, it is possible to use more Restful URLs such as `http://domain.tld/#/search/iphone/`.
 
-See the [[Route-Place-Tokens]] page for details on using these URL's.
+See the [Route-Place-Tokens][rpt] page for details on using these URL's.
 
 ##Getting URL Parameters
 When the PlaceManager navigates to the presenter the prepareFromRequest(PlaceRequest request) is called. This is the time to get the url parameters.
 
 * Example:
-```java
+
+```
 @Override
 public void prepareFromRequest(PlaceRequest request) {
   super.prepareFromRequest(request);
@@ -23,7 +26,8 @@ public void prepareFromRequest(PlaceRequest request) {
 ```
 
 * Example:
-```java
+
+```
 @Override
 public void prepareFromRequest(PlaceRequest placeRequest) {
   super.prepareFromRequest(placeRequest);
@@ -56,16 +60,17 @@ public void prepareFromRequest(PlaceRequest placeRequest) {
 See the [Revealing a Presenter: Hyperlink](https://github.com/ArcBees/GWTP/wiki/Presenter-Lifecycle) example.
 
 ##Creating a PlaceManager Request
-This describes how to setup a PlaceRequest with URL Parameters and then navigate to it using the PlaceManager. 
+This describes how to setup a PlaceRequest with URL Parameters and then navigate to it using the PlaceManager.
 
 * First inject the PlaceManager into the constructor and assign it to a class field.
-```java
+
+```
 private final PlaceManager placeManager;
 
 @Inject
-HomePagePresenter(EventBus eventBus, 
+HomePagePresenter(EventBus eventBus,
                   MyView view, MyProxy proxy,
-                  RestDispatch dispatcher, 
+                  RestDispatch dispatcher,
                   PlaceManager placeManager) {
     super(eventBus, view, proxy, ApplicationPresenter.TYPE_SetMainContent);
 
@@ -75,7 +80,8 @@ HomePagePresenter(EventBus eventBus,
 ```
 
 * Then create a request using the `PlaceRequest` Builder with a mandatory NameToken and add parameters using `.with`.
-```java
+
+```
 private void goSomeWhere() {
     PlaceRequest request = new PlaceRequest.Builder().
         .nameToken("nameToken")
@@ -87,7 +93,8 @@ private void goSomeWhere() {
 ```
 
 * Sometimes you already have an existing `PlaceRequest` at hand and only want to add some additional parameters before revealing the place.
-```java
+
+```
 private void goSomeWhereElse() {
     PlaceRequest request = placeManager.getCurrentPlaceRequest();
     PlaceRequest newRequest = new PlaceRequest.Builder(request)
@@ -96,3 +103,5 @@ private void goSomeWhereElse() {
     placeManager.revealPlace(newRequest);
 }
 ```
+
+[rpt]: gwtp/features/Route-Place-Tokens.html "Route Place Tokens"
