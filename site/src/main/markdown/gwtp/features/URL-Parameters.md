@@ -1,3 +1,5 @@
+# URL Parameters
+
 It's often useful to register part of the state of a presenter in the URL, so that a bookmark or navigation can return to the presenter in that given state. GWTP offers native support for such parameters which, by default, will lead to URLs looking like this: `http://domain.tld#!search;q=iphone`
 
 ##URL Parameters Encoding

@@ -1,3 +1,5 @@
+# Layout Panels
+
 Presenters can change the root layout using the `RevealRootLayoutContentEvent`.
 
 ## Using Layout Panels

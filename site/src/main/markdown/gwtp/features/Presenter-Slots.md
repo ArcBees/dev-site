@@ -1,3 +1,5 @@
+# Presenter Slots
+
 Presenters in GWTP have a concept of slots. Slots are basically placeholder where the child presenters are put and associated to that parent presenter. GWTP is using setInSlot in it's hierarchy while revealing the presenters and a recursive strategy is used to call each lifecycle methods in the nested presenters hierarchy defined.
 
 #Presenter Types

@@ -1,3 +1,5 @@
+# Presenter Manual Reveal
+
 It is frequent that a presenter requires to fetch information from the server before it can be used efficiently. The standard behavior of GWTP is to display the presenter right away, which will cause information received via RPC to appear with a delay. Sometimes, however, this does not lead to a pleasant user experience. For example, it is not natural to see an empty user information form being filled after some delay. In such situations you might want to use GWTP's manual reveal feature.
 
 ##Override useManualReveal

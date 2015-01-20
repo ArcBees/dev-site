@@ -1,3 +1,5 @@
+# Client Action Handlers
+
 Client action handlers or rpc-dispatch.
 
 #Introduction

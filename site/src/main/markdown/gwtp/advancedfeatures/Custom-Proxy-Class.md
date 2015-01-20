@@ -1,8 +1,6 @@
-#Custom Proxy Class
+# Custom Proxy Class
 
-#Introduction
-
-The GWTP annotation-based automatic proxies will work in almost every situations, but in very rare cases you may have specific needs that are not currently supported by annotations. In these cases, it might be useful to code your own custom `Proxy` class. 
+The GWTP annotation-based automatic proxies will work in almost every situations, but in very rare cases you may have specific needs that are not currently supported by annotations. In these cases, it might be useful to code your own custom `Proxy` class.
 
 Before you start implementing your own custom proxy, you should try to use the `@ProxyEvent` annotation to solve your problem. This annotation is described in more details [here](http://code.google.com/p/gwt-platform/wiki/GettingStarted#Using_custom_events).
 
@@ -21,16 +19,16 @@ To do a standard proxy...
 The following example shows you how to build a basic custom proxy that is also a place. This example uses code splitting, if you don't want this replace `AsyncProvider` with `Provider` and `CodeSplitProvider` with `StandardProvider`.
 
 ```
-public class MyPresenterProxyPlaceImpl extends ProxyPlace<MyPresenter> 
+public class MyPresenterProxyPlaceImpl extends ProxyPlace<MyPresenter>
 implements MyPresenter.MyProxy {
-  
+
   public static class WrappedProxy extends ProxyImpl<MyPresenter> {
     @Inject
     public WrappedProxy( AsyncProvider<MyPresenter> presenter ) {
       this.presenter = new CodeSplitProvider<MyPresenter>(presenter);
-    }    
+    }
   }
-  
+
   @Inject
   public MainPagePresenterMyProxyImpl( WrappedProxy proxy ) {
     this.proxy = proxy;

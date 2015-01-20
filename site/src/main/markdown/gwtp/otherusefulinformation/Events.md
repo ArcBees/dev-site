@@ -1,3 +1,5 @@
+# Events
+
 Creating events fired on the `EventBus`. This helps decouple widgets and presenters.
 
 ###Global event without a data member.

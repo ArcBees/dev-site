@@ -1,4 +1,4 @@
-# Introduction
+# CSRF Protection
 GWTP comes with built-in protection against [CSRF attacks](http://goo.gl/TJFBw). To protect your application against CSRF attacks, as described in [Security for GWT Applications](http://www.gwtproject.org/articles/security_for_gwt_applications.html) you need only follow these simple steps
 
 # Setup

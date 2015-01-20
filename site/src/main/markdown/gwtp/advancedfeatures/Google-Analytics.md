@@ -1,6 +1,5 @@
 # Google Analytics
 
-#Introduction
 We worked on the seamless integration of your presenter-based application with Google Analytics. This new feature will automatically track any navigation event and presenter change provided you add the following bindings to your gin module:
 
 ```

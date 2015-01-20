@@ -1,3 +1,5 @@
+# Presenter Widget
+
 Sometimes you will need a graphical object that can be instantiated multiple times (like a Widget) but that contain a lot of logic (like a Presenter). Implementing such an object as a Widget would force you to mix logic and UI code in the same class. Implementing it as a Presenter-Proxy-View triplet is not possible because a Presenter is a singleton: it's instantiated only once.
 
 In this case, what you need is PresenterWidget-View pair. PresenterWidgets are simplified Presenters: they have no proxy and they don't need to implement the `revealInParent()` method. As a result, the parent presenter of a PresenterWidget is responsible for creating it and adding it to its view.

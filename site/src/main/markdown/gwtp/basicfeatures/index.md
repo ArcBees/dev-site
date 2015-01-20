@@ -1,10 +1,10 @@
-#Project Creation
+# Project Creation
 Create a project by generating a template based on a Maven Archetype.
 
-##Reference
+## Reference
 [Find GWTP Archetypes Here](https://github.com/ArcBees/ArcBees-tools/tree/master/archetypes)
 
-##Using a Maven Archetype
+## Using a Maven Archetype
 
 * Start by editing two of the Archetype creation attributes below.
 * Replace `com.projectname` with your chosen domain.
@@ -21,7 +21,7 @@ mvn archetype:generate -DarchetypeGroupId=com.arcbees.archetypes \
 -DartifactId=new-project-name
 ```
 
-##IDE Project Import
+## IDE Project Import
 Choose an IDE to import the Maven project for easy modification and debugging.
 
 * Import the created project into an IDE.
