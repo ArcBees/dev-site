@@ -1,5 +1,6 @@
 var speed = 200;
 var isSameOriginRexp = new RegExp("^(?!(#|[a-z#]+:))(?!.*(|/)javadoc/)(?!.*\\.(jpe?g|png|mpe?g|mp[34]|avi)$)", "i");
+var backTopArrowAppear = 200;
 
 $(function () {
     $("body")
@@ -9,6 +10,23 @@ $(function () {
         .on("mouseleave", "> #nav", function () {
             $(this).addClass("closed");
         });
+
+    // Arrow back to top in the footer
+    $("#backToTop").hide();
+
+    $(function () {
+        $(window).scroll(function(){
+            if ($(this).scrollTop() > backTopArrowAppear) {
+                $('#backToTop').fadeIn('slow');
+            } else {
+                $('#backToTop').fadeOut('slow');
+            }
+        });
+        $('#backToTop').click(function(){
+            $("html, body").animate({ scrollTop: 0 }, 'slow');
+                return false;
+            });
+    });
 
     // FlexNav
     $(".flexnav").flexNav();

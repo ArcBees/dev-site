@@ -89,6 +89,19 @@
         <div class="container">
             ${content}
         </div>
+        <footer class="footer">
+            <div class="wrapper">
+                <div class="backTop">
+                    <a href="#" id="backToTop"><i class="icon_ArrowDown"></i></a>
+                </div>
+                <p>
+                    <i class="icon_arcbees">
+                        <span class="hidden">Arcbees</span>
+                    </i>
+                    Architects of simplicity
+                </p>
+            </div>
+        </footer>
     </div>
 </div>
 

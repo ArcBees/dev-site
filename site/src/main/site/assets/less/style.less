@@ -669,7 +669,7 @@ nav#nav-mobile {
 }
 
 #content {
-  padding: 8em 0 3em;
+  padding: 8em 0 0em;
   display: table-cell;
 
   position: relative;
@@ -729,6 +729,7 @@ nav#nav-mobile {
   .wrapper {
     max-width: 880px;
     padding: 0 50px 0 50px;
+    position: relative;
 
     @media (@tablet) {
       padding: 0;
@@ -802,6 +803,40 @@ nav#nav-mobile {
     @media (@mobile) {
       padding: 0;
       width: 90%;
+    }
+
+    .backTop {
+      width: 100%;
+
+      position: absolute;
+      top: -30px;
+      left: 0;
+
+      #backToTop {
+        display: block;
+        width: 30px;
+        height: 20px;
+
+        position: fixed;
+        bottom: 125px;
+        right: 10px;
+
+        opacity: 0.5;
+        outline:none !important;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      i {
+        font-size: 2.5rem;
+        color: #000;
+
+        display: inline-block;
+
+        cursor: pointer;
+      }
     }
   }
 

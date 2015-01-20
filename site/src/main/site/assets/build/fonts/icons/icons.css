@@ -91,3 +91,12 @@
 .icon_gsss:before {
     content: "\e635";
 }
+
+.icon_ArrowDown:before {
+    content: "\e631";
+
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
