@@ -252,4 +252,4 @@ Also, coordinate your submission with team members that are listed on the issue 
 Add your new http://codereview.appspot.com/ url to the issue tracker entry.
 
 ###GWTP Committers
-The current members of the `ArcBees` engineering team are the only committers at present.
+The current members of the `Arcbees` engineering team are the only committers at present.

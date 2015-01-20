@@ -14,7 +14,7 @@ The second annotation you might want to use is the @NameToken( "MyPlaceName" ), 
   public interface MyProxy extends ProxyPlace<MainPagePresenter> {}
 ```
 
-##Notifying the user of code split requests
+## Notifying the user of code split requests
 If you'd like to notify the user when an asynchronous request is performed by GWTP as a result of code splitting, you can do so easily simply by listening to the following events:
 
 ```
@@ -24,7 +24,7 @@ If you'd like to notify the user when an asynchronous request is performed by GW
 ```
 For example, you can display a `Loading...` message when the first event is handled, and clear it when one of the other two is received. Check out the events javadoc for details.
 
-##Custom Proxy
+## Custom Proxy
 See more on the [Custom Proxy Class][cpc] here.
 
 ## Attaching events to proxies

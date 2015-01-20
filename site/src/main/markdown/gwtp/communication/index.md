@@ -57,7 +57,8 @@ public class GetProducts extends AbstractAction<GetProductsResult> {
 ```
 
 #Guice/gin configurations
-I will assume here that you're using the default. Advanced configurations will be discussed in another page. Just so you know, you can make your own `DispatchModule` with your own `ExceptionHandler` that will override `onFailure`. Anyway, gin configurations for dispatch almost always only need to add the default to your Ginjector class like this :
+I will be assumed here that you're using the default. Advanced configurations will be discussed in another page. Just so
+ you know, you can make your own `DispatchModule` with your own `ExceptionHandler` that will override `onFailure`. Anyway, gin configurations for dispatch almost always only need to add the default to your Ginjector class like this :
 
 `@GinModules({ DispatchAsyncModule.class, YourClientModule.class})`
 

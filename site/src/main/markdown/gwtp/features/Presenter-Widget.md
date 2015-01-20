@@ -8,13 +8,13 @@ You can also use a PresenterWidget instead for a graphical object you do not pla
 
 Instantiating a PresenterWidget is the responsibility of its parent. One way to proceed is simply to inject the desired PresenterWidget in its parent presenter's constructor. Then, when this parent is revealed, you can call `setInSlot` passing this PresenterWidget and the slot you want to place it in. Calling `setInSlot` will make sure that this presenter widget's lifecycle methods are correctly called.
 
-##Reference
+## Reference
 * [Presenter Widget Example](https://github.com/ArcBees/ArcBees-tools/tree/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header)
 
-#Create a Presenter Widget
+# Create a Presenter Widget
 Below is a simple example of a `PresenterWidget`. Find the source [here](https://github.com/ArcBees/ArcBees-tools/tree/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header).
 
-##Presenter
+## Presenter
 
 ```
 public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView> implements
@@ -51,7 +51,7 @@ public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView> imp
 }
 ```
 
-##View
+## View
 
 ```
 public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements HeaderPresenter.MyView {
@@ -80,7 +80,7 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements 
 }
 ```
 
-##UiBinder
+## UiBinder
 
 ```
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
@@ -95,7 +95,7 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements 
 </ui:UiBinder>
 ```
 
-##UiHandlers
+## UiHandlers
 
 ```
 public interface HeaderUiHandlers extends UiHandlers {
