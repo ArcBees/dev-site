@@ -1,4 +1,4 @@
-#Contributor Guidelines
+# Contributing Guidelines
 If you are interested in understanding the internals of GWT-Platform (GWTP), building from source, or contributing ideas or modifications to the project, then this document is for you.
 
 #Licensing
@@ -9,12 +9,12 @@ All GWTP source and pre-built binaries are provided under the Apache 2.0 license
 The GWTP community exists primarily through mailing lists, the issue tracker and, to a lesser extent, the source control repository. You are definitely encouraged to contribute to the discussion and you can also help us to keep communications effective by following and promoting the guidelines listed here.
 
 ##Please Be Friendly
-We strongly encourage everyone participating in GWTP development to show courtesy and respect to others. Of course, being courteous should not prevent us from constructively disagreeing with each other. But if you are enumerating 42 technical reasons against a particular proposal, please don't make the criticism worse by ridiculing the person who proposed it. State your technical disagreement freely, but respect the person you disagree with. That person may be a great learner who soon will be making the best proposals of us all. 
+We strongly encourage everyone participating in GWTP development to show courtesy and respect to others. Of course, being courteous should not prevent us from constructively disagreeing with each other. But if you are enumerating 42 technical reasons against a particular proposal, please don't make the criticism worse by ridiculing the person who proposed it. State your technical disagreement freely, but respect the person you disagree with. That person may be a great learner who soon will be making the best proposals of us all.
 
 Respectful also doesn't mean "serious". Web application development may be hard work, but it's also a lot of fun! Being lighthearted and playful is welcome. Let's enjoy being one of the friendliest communities in the whole open source movement.
 
 ##Where to Discuss GWTP
-As always, discuss issues about using GWTP in the official [http://groups.google.com/group/gwt-platform GWT-Platform developer discussion group]. 
+As always, discuss issues about using GWTP in the official [http://groups.google.com/group/gwt-platform GWT-Platform developer discussion group].
 
 ##How to Report a Bug
 See [IssueTracking Issue Tracking].
@@ -27,7 +27,7 @@ Checking out GWTP source code is most useful if you plan to compile GWTP yoursel
 
 GWTP is hosted on Google Code project hosting, so you check out the source for GWTP using a Mercurial client as you would for any other project hosted on Google Code:
 ```
-hg clone https://gwt-platform.googlecode.com/hg/ gwt-platform 
+hg clone https://gwt-platform.googlecode.com/hg/ gwt-platform
 ```
 
 ##Building from source
@@ -56,13 +56,13 @@ Every file should have an Apache license header at the top, prefaced with a copy
 ```
 /**
  * Copyright 2010 ArcBees Inc.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -73,27 +73,31 @@ Every file should have an Apache license header at the top, prefaced with a copy
 
 ###Class Structure and Member Sort Order
 Java types should have the following member order:
-  # Nested Types (mixing inner and static classes is okay)
-  # Static Fields
-  # Static Initializers
-  # Static Methods
-  # Instance Fields
-  # Instance Initializers
-  # Constructors
-  # Instance Methods
+
+* Nested Types (mixing inner and static classes is okay)
+* Static Fields
+* Static Initializers
+* Static Methods
+* Instance Fields
+* Instance Initializers
+* Constructors
+* Instance Methods
 
 Members that fall into the same category (e.g. static methods) should also be sorted in this order based on visibility:
-  # public
-  # protected
-  # default
-  # private
+
+* public
+* protected
+* default
+* private
+
 All methods should be sorted alphabetically. Sorting is optional but recommended for fields. For example, the following class excerpt is correctly sorted:
+
 ```
 public abstract class Foo {
   // Type declarations.
   public class FooBaz {
   }
- 
+
   private class FooBar {
   }
 
@@ -172,11 +176,14 @@ public abstract class Foo {
 We use 2-space indents for blocks. No tabs at all, anywhere.
 
 We use 4-space indents after line wraps, including function calls and assignments. For example, this is correct (4 spaces after the newline):
+
 ```
 Instrument i =
     new Instrument();
 ```
+
 and this is not correct (2 spaces after the newline):
+
 ```
 Instrument i =
   new Instrument();
@@ -184,20 +191,23 @@ Instrument i =
 
 ###Imports
 The ordering of import statements is:
-  * GWT imports
-  * GWTP imports
-  * Imports from third parties (com, junit, net, org)
-  * java and javax
+
+* GWT imports
+* GWTP imports
+* Imports from third parties (com, junit, net, org)
+* java and javax
 
 To exactly match the IDE settings, the imports should be:
-  * Alphabetical within each grouping. Capital letters are considered to come before lower case letter (e.g. Z before a).
-  * There should be a blank line between each major grouping (google, com, junit, net, org, java, javax).
+
+* Alphabetical within each grouping. Capital letters are considered to come before lower case letter (e.g. Z before a).
+* There should be a blank line between each major grouping (google, com, junit, net, org, java, javax).
 
 ###Line Length and Wrapping
 Each line of text in your code should be at most 80 characters long. Use linefeed characters to break lines (Unix-style). There are some exceptions:
-  * Java identifiers referenced from within JSNI methods can get quite long and cannot be parsed if split across lines.
-  * Exception: If a comment line contains an example command or a literal URL longer than 80 characters, that line may be longer than 80  characters for ease of cut and paste.
-  * Exception: Import lines can go over the limit because humans rarely see them. This also simplifies tool writing. 
+
+* Java identifiers referenced from within JSNI methods can get quite long and cannot be parsed if split across lines.
+* Exception: If a comment line contains an example command or a literal URL longer than 80 characters, that line may be longer than 80  characters for ease of cut and paste.
+* Exception: Import lines can go over the limit because humans rarely see them. This also simplifies tool writing.
 
 ###Acronyms in names
 Treat acronyms and abbreviations as words. The names are much more readable:
@@ -235,11 +245,11 @@ Please do submit code. Here's what you need to do:
   # Decide which code you want to submit. A submission should be a set of changes that addresses one issue in the GWTP issue tracker. Please don't mix more than one logical change per submission, because it makes the history hard to follow. If you want to make a change that doesn't correspond to any issue currently listed in the issue tracker, please create one.
 
 Also, coordinate your submission with team members that are listed on the issue in question. This ensures that work isn't being duplicated, and communicating your plan early also generally leads to better patches.
-  * Ensure that your code adheres to the GWTP source code style.
-  * Ensure that there are unit tests for your code.
-  * Remember to hg add any new files, and then upload the patch (using [http://codereview.appspot.com/static/upload.py upload.py]) to the Rietveld instance at http://codereview.appspot.com/, Include the relevant issue tracker number in your Rietveld description.
+* Ensure that your code adheres to the GWTP source code style.
+* Ensure that there are unit tests for your code.
+* Remember to hg add any new files, and then upload the patch (using [http://codereview.appspot.com/static/upload.py upload.py]) to the Rietveld instance at http://codereview.appspot.com/, Include the relevant issue tracker number in your Rietveld description.
 
 Add your new http://codereview.appspot.com/ url to the issue tracker entry.
 
 ###GWTP Committers
-The current members of the `ArcBees` engineering team are the only committers at present.
+The current members of the `Arcbees` engineering team are the only committers at present.

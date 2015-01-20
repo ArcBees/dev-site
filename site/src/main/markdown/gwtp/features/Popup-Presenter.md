@@ -1,3 +1,5 @@
+# Popup Presenter
+
 A popup presenter is a standard presenter with a view that extends PopupView.
 
 ##Reference
@@ -8,12 +10,14 @@ A popup presenter is a standard presenter with a view that extends PopupView.
 The Popup Presenter skips the view's slot methods all together. When it is used it adds directly to the DOM and requests displays in the center or location selected.
 
 * Example of rendering a popup presenter.
-```java
+
+```
 addToPopupSlot(popupPresenter);
 ```
 
 * Removing a popup presenter. Calling either of these methods will hide the popup presenter and remove it from it's parent.
-```java
+
+```
 popupPresenter.removeFromParent();
 or
 popupPresenter.getView().hide();
@@ -22,7 +26,8 @@ popupPresenter.getView().hide();
 #Create a Popup Presenter
 
 ##Presenter
-```java
+
+```
 public class InfoPopupPresenterWidget extends PresenterWidget<InfoPopupPresenterWidget.MyView> {
     /**
      * {@link InfoPopupPresenterWidget}'s view.
@@ -31,7 +36,7 @@ public class InfoPopupPresenterWidget extends PresenterWidget<InfoPopupPresenter
     }
 
     @Inject
-    InfoPopupPresenterWidget(EventBus eventBus, 
+    InfoPopupPresenterWidget(EventBus eventBus,
                              MyView view) {
         super(eventBus, view);
     }
@@ -41,23 +46,25 @@ public class InfoPopupPresenterWidget extends PresenterWidget<InfoPopupPresenter
 ##View
 The view extends `PopupViewImpl` or `PopupViewWithUiHandlers<PresentersUiHandlers>`.
 
-```java
+
+```
 public class InfoPopupView extends PopupViewImpl implements InfoPopupPresenterWidget.MyView {
     public interface Binder extends UiBinder<PopupPanel, InfoPopupView> {
     }
 
     @Inject
-    InfoPopupView(Binder uiBinder, 
+    InfoPopupView(Binder uiBinder,
                   EventBus eventBus) {
         super(eventBus);
-        
+
         initWidget(uiBinder.createAndBindUi(this));
     }
 }
 ```
 
 ##UiBinder
-```xml
+
+```
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
     <ui:style>
         .popup {
@@ -69,7 +76,7 @@ public class InfoPopupView extends PopupViewImpl implements InfoPopupPresenterWi
 
     <g:PopupPanel autoHideOnHistoryEventsEnabled="true" autoHideEnabled="true" styleName="{style.popup}">
     </g:PopupPanel>
-</ui:UiBinder> 
+</ui:UiBinder>
 ```
 
 ## PopupPositioners

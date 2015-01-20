@@ -1,29 +1,15 @@
-<a id="top"></a>
-* [Introduction](#introduction)
-* [Using annotations to generate classes](#annotations)
- * [Generate Event and Event Handler](#genevent)
- * [Generate Action and Result](#gendispatch)
- * [Generate Data transfer objects](#gendto)
- * [Generate RequestFactory proxies](#genproxy)
- * [Declare optional fields](#optional)
- * [Modifiers and Constants](#modifiersconstants)
- * [Complex example](#complexexample)
-* [Configuring your build environment](#buildenvironment)
- * [Maven](#maven)
- * [Eclipse](#eclipse)
- * [Ant](#ant)
-
-# <a id="introduction"></a>Introduction
+# Boilerplate Generation
 GWTP provides annotation processors that reduce the effort of creating classes that primarily consist of [boilerplate code](http://en.wikipedia.org/wiki/Boilerplate_code). Annotation processors enable compiler-/IDE-driven generated-as-you-type code generation based on Java files in your project.
 
-# <a id="annotations"></a>Using annotations to generate classes
+# Using annotations to generate classes
 To generate the boilerplate code, configure your build environment and then create simple classes with specific annotations that specify the metadata.
 
 For full information refer to the javadoc of your `@GenEvent`, `@GenDispatch`, `@GenDTO` or `@GenProxy`.
 
-## <a id="genevent"></a>Generate Event and Event Handler
+## Generate Event and Event Handler
 The `@GenEvent` will generate an `Event` class and an `EventHandler` interface.
-```java
+
+```
 @GenEvent
 public class FooChanged {
   @Order(1) Foo foo;
@@ -33,9 +19,10 @@ public class FooChanged {
 
 The above example will generate `FooChangedEvent` and `FooChangedEventHandler`.
 
-## <a id="gendispatch"></a>Generate Action and Result
+## Generate Action and Result
 The `@GenDispatch` will generate `Action` and `Result` classes.
-```java
+
+```
 @GenDispatch
 public class RetrieveFoo {
   @In(1) Key<Foo> fooKey;
@@ -46,10 +33,11 @@ public class RetrieveFoo {
 
 The above example will generate `RetrieveFooAction` and `RetrieveFooResult`.
 
-## <a id="gendto"></a>Generate Data transfer objects
+## Generate Data transfer objects
 The `@GenDto` annotation will generate simple Data Transfer Object (DTO) classes to be used solely for transferring data between the client and the server.
 
-```java
+
+```
 @GenDto
 public class LineItem {
   @Order(1) Key<Product> productKey;
@@ -59,7 +47,8 @@ public class LineItem {
 
 The above example will generate a `LineItemDto` class that could be used on the following action when creating an invoice.
 
-```java
+
+```
 @GenDispatch
 public class CreateInvoice {
   @In Key<Customer> customerKey;
@@ -74,12 +63,13 @@ Using DTO classes is a better choice because:
   * The client cannot be trusted. The `LineItem` entity probably has fields that you want to populate on the server (i.e. `id` or `price`).
   * Sending the minimal amount of information lowers the bandwidth required for your operation.
 
-## <a id="genproxy"></a>Generate RequestFactory proxies
+## Generate RequestFactory proxies
 The `@GenProxy` will generate `EntityProxy` or `ValueProxy` interfaces. The generated interfaces equals the given examples on the offical [Getting Started with RequestFactory](https://developers.google.com/web-toolkit/doc/latest/DevGuideRequestFactory) guide.
 
 **Note:** You can embed other generated proxy interfaces (or even the same proxy) using @UseProxyName.
 
-```java
+
+```
 @GenProxy
 public class Person {
   String id;
@@ -91,14 +81,15 @@ public class Person {
 ```
 The above example will generate `PersonProxy`.
 
-## <a id="optional"></a>Declare optional fields
+## Declare optional fields
 You can use the `@Optional` annotation to specify optional fields in all classes that are involved in the generation process (except `@GenProxy`).
 
 Normally two constructors are created with either all or only non-optionals. In the second variant the optional annotated fields are not initialized and will contain their default value (i.e. objects will be initialized to null).
 
 **Note:** There is no way to declare optional fields while using the `@GenProxy` annotation. Instead, you can use the 'filterGetter' and/or 'filterSetter' property.
 
-```java
+
+```
 @GenEvent
 public class FooChanged {
   @Order(1) @Optional Foo foo;
@@ -109,7 +100,8 @@ public class FooChanged {
 
 The following constructor and fire methods will be generated:
 
-```java
+
+```
 public class FooChangedEvent {
   ...
   protected FooChangedEvent() { ...
@@ -122,13 +114,14 @@ public class FooChangedEvent {
 }
 ```
 
-## <a id="modifiersconstants"></a>Modifiers and Constants
+## Modifiers and Constants
 Since GWTP 0.5, the generation process will also consider modifiers and constant fields. If you want to use constants with `@GenDispatch`, do not forget to annotate them as well with `@In` or `@Out`.
 
-## <a id="complexexample"></a>Complex example
+## Complex example
 The following code snippet shows a more complex example using the `@GenEvent` annotation.
 
-```java
+
+```
 @GenEvent
 public class FireAnswerOfLife {
   public static final String ANSWER = "42";
@@ -149,16 +142,16 @@ public class FireAnswerOfLife {
 }
 ```
 
-# <a id="buildenvironment"></a>Configuring your build environment
+# Configuring your build environment
 Annotation processing is an accepted Java standard – the Pluggable Annotation Processing API (JSR 269) – and is part the Java Development Kit.
 
-##<a id="maven"></a>Maven
+## Maven
 Maven can easily generate the sources for the project.
 
 * [Maven Configuration][mc] - see maven configuration options on how to configure maven.
 * Then run `mvn generate-sources` to generate the sources.
 
-## <a id="eclipse"></a>Eclipse Annotation Processing
+## Eclipse Annotation Processing
 In Eclipse, the annotation processor kicks in as soon as you save the file you're working on and incrementally
 changes only the required files. Another method exists by using the Eclipse lifecycle mapping. If the lifecycle
 mapping is used, the annotation processor doesn't have to be setup. Find out more in the [Maven Configuration][mc] on
@@ -171,13 +164,15 @@ To enable GWTP annotation processing in eclipse:
 * Add the GWTP jar to the factory path.
 ![Add the GWTP jar to the factory path.](http://img295.imageshack.us/img295/9355/eclipsefactorypath.png)
 
-## <a id="ant"></a>Ant
+## Ant
 The latest version of ant automatically recognizes annotation processing. A good practice is to put the generated source in an alternate directory. To do this you will have to instruct ant to create that directory:
-```xml
+
+```
 <mkdir dir=".apt_generated" />
 ```
 And then, within your `javac` task, you specify that this directory should be used for generated source via the `-s` flag:
-```xml
+
+```
 <compilerarg value="-s" />
 <compilerarg path=".apt_generated" />
 ```

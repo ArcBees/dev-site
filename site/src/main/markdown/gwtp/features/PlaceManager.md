@@ -1,8 +1,11 @@
+# PlaceManager
+
 ##Builtin DefaultPlaceManager
 Binding the `DefaultModule()` will initialize the `DefaultPlaceManager`. But it's important to note that the default places have to be bound for `@DefaultPlace`, `@ErrorPlace` and `@UnauthorizedPlace` depending on use of them.
 
 * Example of setting up the `DefaultPlaceManger` through the `DefaultModule`
-```java
+
+```
 public class ClientModule extends AbstractPresenterModule {
   @Override
   protected void configure() {
@@ -21,7 +24,8 @@ public class ClientModule extends AbstractPresenterModule {
 Setting up a custom `PlaceManager` can be done by setting up the `DefaultModule` with the application's `PlaceManager.class`.
 
 * Example extending `PlaceManagerImpl` to build the application's `PlaceManager`:
-```java
+
+```
 package com.arcbees.project.client.place;
 
 import com.google.inject.Inject;
@@ -53,7 +57,8 @@ public class PlaceManager extends PlaceManagerImpl {
 ```
 
 * When using a custom `PlaceManager` instantiate the DefaultModule with the `PlaceManager.class` like `DefaultModue(PlaceManager.class)`.
-```java
+
+```
 public class ClientModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
@@ -72,14 +77,16 @@ public class ClientModule extends AbstractPresenterModule {
 To explain that how revealDefaultPlace works a bit more, a situation that could occur if `revealDefaultPlace` redirected the user and changed the URL would be to make it impossible for the user to go back to where he was before using the back button of his browser. That is, if you're at #!invalid and get redirected to `#!valid` then hitting back gets you back to #!invalid which redirects you again to `#!valid`. To make sure this doesn't happen we use the two parameter variant of revealPlace and pass false as a second parameter so that you get redirected to the page corresponding to `#!valid` but the browser's history is not updated and the URL stays at `#!invalid`.
 
 * Set to false:
-```java
+
+```
 revealPlace(defaultPlaceRequest, false);
 ```
 
 ###DefaultModule
 Installing the `DefaultModule` saves you from having to perform all the following bindings.
 
-```java
+
+```
   bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
   bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(Singleton.class);
   bind(RootPresenter.class).asEagerSingleton();
@@ -98,7 +105,8 @@ The `DefaultPlaceManager` has three default annotations that are setup by defaul
 The `@DefaultPlace` has been built into the `DefaultPlaceManager`. This will tell the the PlaceManager the first presenter to reveal on initialization.
 
 * The `@DefaultPlace` can be set like this:
-```java
+
+```
 bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.home);
 ```
 
@@ -106,7 +114,8 @@ bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.home);
 This is the landing place when a 404 occurs.
 
 * The `@ErrorPlace` can be set like this:
-```java
+
+```
 bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.error);
 ```
 
@@ -114,7 +123,8 @@ bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.error);
 The `@UnauthorizedPlace` is the landing place for unauthorized users.
 
 * The `@UnauthorizedPlace` can be set like this:
-```java
+
+```
 bindConstant().annotatedWith(UnauthorizedPlace.class).to(NameTokens.unauthorized);
 ```
 

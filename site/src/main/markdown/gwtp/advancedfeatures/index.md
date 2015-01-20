@@ -2,7 +2,7 @@
 
 Formfactors are a powerful feature but will add complexity to your project.  Formfactors will continue to be supported but we recommend you use [responsive design](http://en.wikipedia.org/wiki/Responsive_web_design) in your projects instead.  Making one view adapt to the screen size is easier than creating and maintaining 3 different design targets.
 
-# Introduction
+# Form Factors
 Building web applications for multiple devices while reusing most of the business logic you already have build for your desktop application can be challenging. Adopting good development practices as well as harnessing the power of dependency injection can help you achieve that with success and efficiency. Since GWTP is all about adopting good development practices, we found that we could make your live as developers a little bit easier by adding native form factors support.
 
 Before going any further, you may be wondering what are form factors? Form factors are permutations of your application to specific devices and/or systems. Here's a couple of examples:
@@ -23,11 +23,13 @@ new feature. I invite you to read [Bootstrapping or Application Initialization][
 
 ## Using FormFactors
 The first thing that you need to do in order to be able to use the new FormFactor functionality is to inherits from the gwt module:
-```xml
+
+```
 <inherits name="com.gwtplatform.mvp.MvpWithFormFactor" />
 ```
 Once it's done, you need to specify what are the form factor based modules:
-```xml
+
+```
 <!-- Form factor specific modules -->
 <set-configuration-property name="gin.ginjector.module.desktop"
                     value="com.gwtplatform.samples.mobile.client.gin.DesktopModule" />
@@ -40,7 +42,8 @@ Depending on the the browser user agent used and browser screen size, it will us
 
 ## Presenter permutations
 Permuting the view is really easy, but it's not as obvious with presenters that has proxies. If you don't pay attention, you could end up by adding each permutation of your presenters to each Ginjector generated for your application. To avoid that, you must create an abstract presenter that will share the same proxy for each of your presenter.
-```java
+
+```
 public abstract class AbstractApplicationPresenter
         extends Presenter<AbstractApplicationPresenter.MyView,
                           AbstractApplicationPresenter.MyProxy> {
@@ -64,7 +67,8 @@ public abstract class AbstractApplicationPresenter
 ```
 
 Then your real implementation can extend this newly create abstraction:
-```java
+
+```
 public class ApplicationDesktopPresenter
         extends AbstractApplicationPresenter implements ApplicationUiHandlers {
     private PlaceManager placeManager;
@@ -85,7 +89,8 @@ public class ApplicationDesktopPresenter
 ```
 
 And finally, you must bind the presenter in your gin module manually:
-```java
+
+```
 // Application Presenters
 bind(ApplicationDesktopPresenter.class).in(Singleton.class);
 bind(ApplicationDesktopView.class).in(Singleton.class);

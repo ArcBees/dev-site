@@ -1,3 +1,5 @@
+# GIN Binding
+
 Using GIN dependency injection allows for a loosely decoupled application.
 
 ##Reference
@@ -8,7 +10,8 @@ See more about [Bootstrapping or Application Initialization][boot]. The applicat
 gin module. Then the other modules can be chained from from it.
 
 * Example of ClientModule. See an example [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/gin/ClientModule.java).
-```java
+
+```
 public class ClientModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
@@ -28,7 +31,8 @@ public class ClientModule extends AbstractPresenterModule {
 ```
 
 * Example of a chained module. Find it [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationModule.java).
-```java
+
+```
 public class ApplicationModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
@@ -44,12 +48,13 @@ public class ApplicationModule extends AbstractPresenterModule {
 ###DefaultModule
 Installing the `DefaultModule` saves you from having to perform all the following bindings.
 
-```java
-  bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
-  bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(Singleton.class);
-  bind(RootPresenter.class).asEagerSingleton();
-  bind(PlaceManager.class).to(MyPlaceManager.class).in(Singleton.class);
-  bind(GoogleAnalytics.class).to(GoogleAnalyticsImpl.class).in(Singleton.class);
+
+```
+bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
+bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(Singleton.class);
+bind(RootPresenter.class).asEagerSingleton();
+bind(PlaceManager.class).to(MyPlaceManager.class).in(Singleton.class);
+bind(GoogleAnalytics.class).to(GoogleAnalyticsImpl.class).in(Singleton.class);
 ```
 
 ## AbstractPresenterModule
@@ -57,7 +62,8 @@ Notice how the presenter knows nothing about its view's implementation. This is 
 
 * The bindings need to appear in a class inheriting from AbstractPresenterModule. Here are the bindings you will need for our example.
 * However, if you want to replace some of the above by your own custom implementations, feel free to remove the call to install and bind everything manually.
-```java
+
+```
 public class MyModule extends AbstractPresenterModule {
   @Override
   protected void configure() {
