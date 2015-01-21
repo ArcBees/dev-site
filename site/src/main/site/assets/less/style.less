@@ -726,6 +726,120 @@ nav#nav-mobile {
     }
   }
 
+  &.products {
+    text-align: center;
+
+    @media (@mobile) {
+      display: none;
+    }
+
+    .wrapper {
+      width: 980px;
+      padding: 0;
+      margin: 0 auto;
+
+      @media (@tablet) {
+        width: 90%;
+      }
+    }
+
+    h2 + p span {
+      display: block;
+    }
+
+    .productsCarousel ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    .productsCarousel li {
+      line-height: 1em;
+
+      display: inline-block;
+      width: 19%;
+
+      vertical-align: middle;
+    }
+
+    .productsCarousel li p {
+      font-size: 14px;
+    }
+
+    .productsCarousel a {
+      color: transparent;
+      font-size: 100px;
+
+      display: block;
+      min-height: 220px;
+      padding-top: 55px;
+
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+
+      @media (@tablet) {
+        font-size: 90px;
+      }
+    }
+
+    .productsCarousel a h3 {
+      font-family: "geometria";
+      font-size: 40px;
+
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+    }
+
+    .productsCarousel a.active,
+    .productsCarousel a:hover {
+      font-size: 160px;
+      color: #231f20;
+
+      padding-top: 0;
+
+      -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+
+      @media (@tablet) {
+        font-size: 120px;
+      }
+    }
+
+    .productsCarousel a:before {
+      color: #eaebeb;
+    }
+
+    .productsCarousel a.gaestudio:hover:before,
+    .productsCarousel a.gaestudio.active:before {
+      color: @c-gae;
+    }
+
+    .productsCarousel a.jukito:hover:before,
+    .productsCarousel a.jukito.active:before {
+      color: @c-jukito;
+    }
+
+    .productsCarousel a.gwtp:hover:before,
+    .productsCarousel a.gwtp.active:before {
+      color: @c-gwtp;
+    }
+
+    .productsCarousel a.gwtChosen:hover:before,
+    .productsCarousel a.gwtChosen.active:before {
+      color: @c-chosen;
+    }
+
+    .productsCarousel a.gquery:hover:before,
+    .productsCarousel a.gquery.active:before {
+      color: @c-gquery;
+    }
+  }
+
   .wrapper {
     max-width: 880px;
     padding: 0 50px 0 50px;
