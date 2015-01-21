@@ -15,25 +15,23 @@ $(function () {
     $("#backToTop").hide();
 
     $(function () {
-        $(window).scroll(function(){
+        $(window).scroll(function () {
             if ($(this).scrollTop() > backTopArrowAppear) {
                 $('#backToTop').fadeIn('slow');
             } else {
                 $('#backToTop').fadeOut('slow');
             }
         });
-        $('#backToTop').click(function(){
+        $('#backToTop').click(function () {
             $("html, body").animate({ scrollTop: 0 }, 'slow');
-                return false;
-            });
+            return false;
+        });
     });
 
     // Product hover on home page
-    $(function () {
-        $('.productsCarousel a').on('mouseenter', function() {
-            $(".productsCarousel a").removeClass("active");
-            $(this).addClass("active");
-        });
+    $('.productsCarousel a').on('mouseenter', function () {
+        $(".productsCarousel a").removeClass("active");
+        $(this).addClass("active");
     });
 
     // FlexNav
@@ -140,7 +138,7 @@ function enhanceLink(link) {
 function shouldEnhanceLink(link) {
     // Enhance only local links
     return isSameOriginRexp.test(link.attr("href")) &&
-            // Do not load links that are marked as full page reload
+        // Do not load links that are marked as full page reload
         !link.attr("data-full-load");
 }
 
