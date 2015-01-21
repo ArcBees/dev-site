@@ -52,9 +52,7 @@ TODO
 [![Build Status](https://travis-ci.org/ArcBees/GWTP.svg?branch=master)](https://travis-ci.org/ArcBees/GWTP)
 
 ##Build Server
-* [TeamCity Build Server](http://teamcity.gonevertical.org) - Snapshots and releases building here
-* [CloudBees GWTP Build](https://buildhive.cloudbees.com/job/ArcBees/job/GWTP/) - Github Notifications
-* [Old TeamCity Buid Server](http://teamcity.codebetter.com/project.html?projectId=project92)
+* [TeamCity Build Server](http://teamcity.arcbees.com/) - Snapshots and releases building here
 
 ##Snapshot Release
 These steps build GWTP for Github downloads and release a snapshot
