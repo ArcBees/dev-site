@@ -28,6 +28,14 @@ $(function () {
             });
     });
 
+    // Product hover on home page
+    $(function () {
+        $('.productsCarousel a').on('mouseenter', function() {
+            $(".productsCarousel a").removeClass("active");
+            $(this).addClass("active");
+        });
+    });
+
     // FlexNav
     $(".flexnav").flexNav();
 
