@@ -49,7 +49,7 @@ TODO
 #Building
 
 ##Builds
-[![Build Status](https://buildhive.cloudbees.com/job/ArcBees/job/GWTP/badge/icon)](https://buildhive.cloudbees.com/job/ArcBees/job/GWTP/)
+[![Build Status](https://travis-ci.org/ArcBees/GWTP.svg?branch=master)](https://travis-ci.org/ArcBees/GWTP)
 
 ##Build Server
 * [TeamCity Build Server](http://teamcity.gonevertical.org) - Snapshots and releases building here
