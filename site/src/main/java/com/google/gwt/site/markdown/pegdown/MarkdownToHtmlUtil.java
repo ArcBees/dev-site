@@ -32,7 +32,8 @@ public class MarkdownToHtmlUtil {
     private final List<ToHtmlSerializerPlugin> plugins;
 
     public MarkdownToHtmlUtil() {
-        this(new PegDownProcessor(Extensions.FENCED_CODE_BLOCKS + Extensions.STRIKETHROUGH, Long.MAX_VALUE, getPlugins()));
+        this(new PegDownProcessor(Extensions.FENCED_CODE_BLOCKS + Extensions.STRIKETHROUGH + Extensions.TABLES,
+                Long.MAX_VALUE, getPlugins()));
     }
 
     private static PegDownPlugins getPlugins() {
