@@ -49,7 +49,7 @@ TODO
 #Building
 
 ##Builds
-[![Build Status](https://travis-ci.org/ArcBees/GWTP.svg?branch=master)](https://travis-ci.org/ArcBees/GWTP)
+[![Build Status](http://teamcity.arcbees.com/app/rest/builds/buildType:\(id:GwtPlatformGwtp_DeploySnapshot\)/statusIcon)](http://teamcity.arcbees.com/project.html?projectId=GwtPlatformGwtp)
 
 ##Build Server
 * [TeamCity Build Server](http://teamcity.arcbees.com/) - Snapshots and releases building here
