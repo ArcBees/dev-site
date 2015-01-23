@@ -49,12 +49,10 @@ TODO
 #Building
 
 ##Builds
-[![Build Status](https://buildhive.cloudbees.com/job/ArcBees/job/GWTP/badge/icon)](https://buildhive.cloudbees.com/job/ArcBees/job/GWTP/)
+[![Build Status](http://teamcity.arcbees.com/app/rest/builds/buildType:\(id:GwtPlatformGwtp_DeploySnapshot\)/statusIcon)](http://teamcity.arcbees.com/project.html?projectId=GwtPlatformGwtp)
 
 ##Build Server
-* [TeamCity Build Server](http://teamcity.gonevertical.org) - Snapshots and releases building here
-* [CloudBees GWTP Build](https://buildhive.cloudbees.com/job/ArcBees/job/GWTP/) - Github Notifications
-* [Old TeamCity Buid Server](http://teamcity.codebetter.com/project.html?projectId=project92)
+* [TeamCity Build Server](http://teamcity.arcbees.com/) - Snapshots and releases building here
 
 ##Snapshot Release
 These steps build GWTP for Github downloads and release a snapshot
