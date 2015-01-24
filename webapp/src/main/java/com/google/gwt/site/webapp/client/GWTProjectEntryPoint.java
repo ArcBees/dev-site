@@ -165,8 +165,8 @@ public class GWTProjectEntryPoint implements EntryPoint {
             public boolean f(Event e) {
                 GQuery $e = $(e);
                 String href = $e.attr("href");
-                boolean containsHash = href.contains("#") && (Window.Location.getPath()).equals(
-                        href.replaceAll("#.*", ""));
+                boolean containsHash = href.contains("#")
+                        && Window.Location.getPath().equals(href.replaceAll("#.*", ""));
 
                 if (shouldEnhanceLink($e) &&
                         // Is it a normal click (not ctrl/cmd/shift/right/middle click) ?
