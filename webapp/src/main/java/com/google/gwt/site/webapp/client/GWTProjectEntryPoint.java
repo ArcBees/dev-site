@@ -179,7 +179,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
                         $("#submenu.show").removeClass("show");
 
                         // Load the page using Ajax
-                        loadPage(href, !$e.parents("#nav").isEmpty());
+                        loadPage(href, !$e.parents("#nav", ".productsCarousel").isEmpty());
                         return false;
                     } else {
                         openMenu();
