@@ -111,8 +111,8 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
                 showBranch(item);
 
-                $("#submenu a.selected").removeClass("selected");
-                item.addClass("selected");
+                $("#submenu .selected").removeClass("selected");
+                item.parents(".folder").add(item).addClass("selected");
 
                 // Replace relative paths in anchors by absolute ones
                 // exclude all anchors in the content area.

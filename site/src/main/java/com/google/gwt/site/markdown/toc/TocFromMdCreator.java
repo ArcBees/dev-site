@@ -23,6 +23,8 @@ import com.google.gwt.site.markdown.fs.MDNode;
 import com.google.gwt.site.markdown.fs.MDParent;
 
 public class TocFromMdCreator implements TocCreator {
+    private static final String FOLDER = "folder";
+    private static final String FILE = "file";
 
     public String createTocForNode(MDParent root, MDNode node) {
         MDNode tmpNode = node;
@@ -68,9 +70,9 @@ public class TocFromMdCreator implements TocCreator {
             if (children.size() >= entries.size()) {
                 writeFromNodes(node, buffer, tocNode, margin, children);
             } else {
-                openNode("#", node.getDisplayName(), buffer, margin);
+                openNode("#", node.getDisplayName(), buffer, margin, true);
                 writeFromConfig(node, buffer, margin, entries);
-                closeNode(buffer, margin);
+                closeNode(buffer, margin, true);
             }
         } else {
             StringBuilder relativeUrl = new StringBuilder();
@@ -80,15 +82,12 @@ public class TocFromMdCreator implements TocCreator {
                 }
             }
 
-            StringBuilder absoluteUrl = new StringBuilder();
-            absoluteUrl.append("/");
             String htmlFileName = node.getParent().getHref() + ".html";
             String relativePath = node.getRelativePath().replace(htmlFileName, "");
-            absoluteUrl.append(relativePath);
 
             relativeUrl.append(relativePath);
 
-            buffer.append(margin).append("<li class='file'>");
+            buffer.append(margin).append("<li class='" + FILE + "'>");
             // TODO escape HTML
             buffer.append(
                     "<a href='" + relativeUrl.toString() + "' title='" + node.getDescription() + "'>"
@@ -125,9 +124,9 @@ public class TocFromMdCreator implements TocCreator {
                                 + entry.getDisplayName() + "</a>");
                 buffer.append("</li>\n");
             } else {
-                openNode("#", entry.getDisplayName(), buffer, margin);
+                openNode("#", entry.getDisplayName(), buffer, margin, true);
                 writeFromConfig(node, buffer, margin, entry.getSubEntries());
-                closeNode(buffer, margin);
+                closeNode(buffer, margin, true);
             }
         }
     }
@@ -144,7 +143,7 @@ public class TocFromMdCreator implements TocCreator {
 
         if (writeNode) {
             if (hasMoreThanOneChildren) {
-                openNode("#", node.getDisplayName(), buffer, margin);
+                openNode("#", node.getDisplayName(), buffer, margin, true);
             } else {
                 openNode(node, buffer, margin);
             }
@@ -157,12 +156,18 @@ public class TocFromMdCreator implements TocCreator {
         }
 
         if (writeNode) {
-            closeNode(buffer, margin);
+            closeNode(buffer, margin, hasMoreThanOneChildren);
         }
     }
 
-    private void closeNode(StringBuffer buffer, String margin) {
-        buffer.append(margin).append("  </ul>\n");
+    private void closeNode(
+            StringBuffer buffer,
+            String margin,
+            boolean hasChildren) {
+        if (hasChildren) {
+            buffer.append(margin).append("  </ul>\n");
+        }
+
         buffer.append(margin).append("</li>\n");
     }
 
@@ -175,14 +180,26 @@ public class TocFromMdCreator implements TocCreator {
             displayName = config.getDisplayName();
         }
 
-        openNode(node.getRelativePath(), displayName, buffer, margin);
+        openNode(node.getRelativePath(), displayName, buffer, margin, node.asFolder().getChildren().size() > 1);
     }
 
-    private void openNode(String relativePath, String displayName, StringBuffer buffer, String margin) {
-        buffer.append(margin).append("<li class='folder'>");
+    private void openNode(
+            String relativePath,
+            String displayName,
+            StringBuffer buffer,
+            String margin,
+            boolean hasChildren) {
+        buffer.append(margin).append("<li class='" + getStyle(hasChildren) + "'>");
         buffer.append("<a href='").append(relativePath).append("'>");
         buffer.append(displayName);
         buffer.append("</a>\n");
-        buffer.append(margin).append("  <ul>\n");
+
+        if (hasChildren) {
+            buffer.append(margin).append("  <ul>\n");
+        }
+    }
+
+    private String getStyle(boolean hasChildren) {
+        return hasChildren ? FOLDER : FILE;
     }
 }

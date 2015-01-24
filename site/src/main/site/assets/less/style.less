@@ -232,7 +232,7 @@
 }
 
 aside#submenu {
-  background-color: @c-secondary-dark;
+  background-color: @c-secondary-light;
 
   display: table-cell;
   width: 220px;
@@ -249,8 +249,30 @@ aside#submenu {
     display: block;
   }
 
+  .folder {
+    position: relative;
+
+    &.open::before {
+      .rotation(-90deg);
+    }
+
+    &::before {
+      content: "";
+
+      border: 6px solid transparent;
+      border-right: 11px solid #fff;
+      border-left-width: 0;
+
+      position: absolute;
+      right: 10px;
+      top: 9px;
+
+      .transition(.3s);
+    }
+  }
+
   .logo {
-    background-color: @c-secondary-dark;
+    background-color: @c-secondary-light;
 
     width: 100%;
     height: 165px;
@@ -297,6 +319,16 @@ aside#submenu {
         }
       }
     }
+
+    li {
+      &.selected > a {
+        font-weight: bold;
+      }
+
+      a.selected {
+        background-color: @c-background;
+      }
+    }
   }
 
   @media (@mobile) {
@@ -326,7 +358,7 @@ a#logo-mobile {
   a {
     color: @c-gae;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -348,7 +380,7 @@ a#logo-mobile {
   a {
     color: @c-chosen;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -370,7 +402,7 @@ a#logo-mobile {
   a {
     color: @c-gquery;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -392,7 +424,7 @@ a#logo-mobile {
   a {
     color: @c-jukito;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -414,7 +446,7 @@ a#logo-mobile {
   a {
     color: @c-gwtp;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -436,7 +468,7 @@ a#logo-mobile {
   a {
     color: @c-gsss;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -941,7 +973,7 @@ nav#nav-mobile {
         right: 10px;
 
         opacity: 0.5;
-        outline:none !important;
+        outline: none !important;
 
         &:hover {
           opacity: 1;
