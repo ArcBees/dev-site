@@ -23,7 +23,8 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
         <?xml version="1.0" encoding="UTF-8"?>
         <application xmlns="http://java.sun.com/xml/ns/javaee"
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd"
+                xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                    http://java.sun.com/xml/ns/javaee/application_5.xsd"
                 version="5">
 
             <description>${project.name}</description>
