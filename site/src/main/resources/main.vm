@@ -64,7 +64,7 @@
     </a>
 </div>
 
-<div id="holder" class="$!{node.style}">
+<div id="holder" style="display:none" class="$!{node.style}">
     <aside id="submenu">
         <div class="logo">
         </div>

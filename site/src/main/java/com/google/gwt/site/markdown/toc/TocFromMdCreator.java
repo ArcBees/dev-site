@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.parboiled.common.StringUtils;
 
+import com.google.gwt.site.markdown.Strings;
 import com.google.gwt.site.markdown.fs.FolderConfig;
 import com.google.gwt.site.markdown.fs.MDNode;
 import com.google.gwt.site.markdown.fs.MDParent;
@@ -67,7 +68,7 @@ public class TocFromMdCreator implements TocCreator {
             if (children.size() >= entries.size()) {
                 writeFromNodes(node, buffer, tocNode, margin, children);
             } else {
-                openNode(node, buffer, margin);
+                openNode("#", node.getDisplayName(), buffer, margin);
                 writeFromConfig(node, buffer, margin, entries);
                 closeNode(buffer, margin);
             }
@@ -139,12 +140,17 @@ public class TocFromMdCreator implements TocCreator {
             List<MDNode> children) {
 
         boolean writeNode = node.getDepth() > 1 || node.getDepth() == 1 && children.size() == 1;
+        boolean hasMoreThanOneChildren = children.size() > 1;
 
         if (writeNode) {
-            openNode(node, buffer, margin);
+            if (hasMoreThanOneChildren) {
+                openNode("#", node.getDisplayName(), buffer, margin);
+            } else {
+                openNode(node, buffer, margin);
+            }
         }
 
-        if (children.size() > 1) {
+        if (hasMoreThanOneChildren) {
             for (MDNode child : children) {
                 render(child, buffer, tocNode);
             }
@@ -161,7 +167,15 @@ public class TocFromMdCreator implements TocCreator {
     }
 
     private void openNode(MDNode node, StringBuffer buffer, String margin) {
-        openNode(node.getRelativePath(), node.getDisplayName(), buffer, margin);
+        FolderConfig config = node.asFolder().getConfig();
+        String displayName;
+        if (config == null || Strings.isNullOrEmpty(config.getDisplayName())) {
+            displayName = node.getDisplayName();
+        } else {
+            displayName = config.getDisplayName();
+        }
+
+        openNode(node.getRelativePath(), displayName, buffer, margin);
     }
 
     private void openNode(String relativePath, String displayName, StringBuffer buffer, String margin) {

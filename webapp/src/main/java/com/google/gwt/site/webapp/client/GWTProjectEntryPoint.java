@@ -21,8 +21,6 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.query.client.Properties;
@@ -33,7 +31,6 @@ import com.google.gwt.site.demo.ContentLoadedEvent;
 import com.google.gwt.site.demo.gsss.grid.GSSSGridDemos;
 import com.google.gwt.site.demo.gsss.mixins.GSSSMixinsDemos;
 import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.impl.HyperlinkImpl;
 import com.google.web.bindery.event.shared.EventBus;
@@ -66,8 +63,6 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private static String currentPage = Window.Location.getPath();
     private static EventBus eventBus = new SimpleEventBus();
 
-    private final RegExp titleTagMatcher = RegExp.compile("<title>(.*?)</title>");
-
     private Analytics analytics;
 
     @Override
@@ -77,13 +72,6 @@ public class GWTProjectEntryPoint implements EntryPoint {
         registerDemos();
 
         enhancePage();
-
-        History.addValueChangeHandler(new ValueChangeHandler<String>() {
-            @Override
-            public void onValueChange(ValueChangeEvent<String> event) {
-                openMenu();
-            }
-        });
     }
 
     private void createAnalytics() {
@@ -114,7 +102,10 @@ public class GWTProjectEntryPoint implements EntryPoint {
             @Override
             public void execute() {
                 String relativeLocation = Window.Location.getPath() + Window.Location.getHash();
-                GQuery item = $("#submenu a[href$=\"" + relativeLocation + "\"]").eq(0);
+                GQuery item = $("#submenu a[href$=\"" + relativeLocation + "\"]").last();
+                if (item.isEmpty()) {
+                    item = $("#submenu a[href*=\"" + Window.Location.getPath() + "\"]").eq(0);
+                }
 
                 hideUnrelatedBranches(item);
 
@@ -177,7 +168,8 @@ public class GWTProjectEntryPoint implements EntryPoint {
             public boolean f(Event e) {
                 GQuery $e = $(e);
                 String href = $e.attr("href");
-                boolean containsHash = href.contains("#");
+                boolean containsHash = href.contains("#") && (Window.Location.getPath()).equals(
+                        href.replaceAll("#.*", ""));
 
                 if (shouldEnhanceLink($e) &&
                         // Is it a normal click (not ctrl/cmd/shift/right/middle click) ?
@@ -203,6 +195,14 @@ public class GWTProjectEntryPoint implements EntryPoint {
             @Override
             public void f() {
                 loadPage(null, true);
+            }
+        });
+
+        openMenu();
+        $(body).delay(ANIMATION_TIME + 100, new Function() {
+            @Override
+            public void f() {
+                $("#holder").show();
             }
         });
     }
@@ -271,12 +271,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
      */
     private void loadPage(String pageUrl, boolean replaceMenu) {
         if (!currentPage.equals(pageUrl)) {
-            if (pageUrl != null) {
-                // Preserve QueryString, useful for the gwt.codesvr parameter in dev-mode.
-                pageUrl = pageUrl.replaceFirst("(#.*|)$", Window.Location.getQueryString() + "$1");
-                // Set the page to load in the URL
-                JsUtils.runJavascriptFunction(history, "pushState", null, null, pageUrl);
-            }
+            pushHistory(pageUrl);
 
             pageUrl = Window.Location.getPath();
             if (!currentPage.equals(pageUrl)) {
@@ -286,6 +281,19 @@ public class GWTProjectEntryPoint implements EntryPoint {
             }
 
             currentPage = pageUrl;
+        } else if (!(currentPage + Window.Location.getHash()).equals(pageUrl)) {
+            pushHistory(pageUrl);
+            scrollToHash();
+            openMenu();
+        }
+    }
+
+    private void pushHistory(String pageUrl) {
+        if (pageUrl != null) {
+            // Preserve QueryString, useful for the gwt.codesvr parameter in dev-mode.
+            pageUrl = pageUrl.replaceFirst("(#.*|)$", Window.Location.getQueryString() + "$1");
+            // Set the page to load in the URL
+            JsUtils.runJavascriptFunction(history, "pushState", null, null, pageUrl);
         }
     }
 
