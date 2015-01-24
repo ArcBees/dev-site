@@ -102,10 +102,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
             @Override
             public void execute() {
                 String relativeLocation = Window.Location.getPath() + Window.Location.getHash();
-                GQuery item = $("#submenu a[href$=\"" + relativeLocation + "\"]").last();
-                if (item.isEmpty()) {
-                    item = $("#submenu a[href*=\"" + Window.Location.getPath() + "\"]").eq(0);
-                }
+                GQuery item = $("#submenu a[href$=\"" + relativeLocation + "\"]").eq(0);
 
                 hideUnrelatedBranches(item);
 
