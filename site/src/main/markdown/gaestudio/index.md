@@ -1,4 +1,5 @@
-#Running GAE Studio on AppEngine
+#Getting Started
+##Running GAE Studio on AppEngine
 1. Download the latest war of GAE Studio from our Drive folder
 2. Extract the content of the war to your preferred location.
 3. Download the latest version of Google Appengine SDK for Java.
@@ -8,9 +9,9 @@
 
 GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 
-#Running GAE Studio locally (Java runtime) {running-gae-studio-locally}
-## Using MAVEN {using-maven}
-### App Engine configuration files
+##Running GAE Studio locally (Java runtime) {running-gae-studio-locally}
+### Using MAVEN {using-maven}
+#### App Engine configuration files
 
 * Create a file named `appengine-application.xml` in `/src/META-INF`
 
@@ -49,7 +50,7 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 
 * In your `appengine-web.xml` file, add `<module>default</module>`
 
-### POM file modifications
+#### POM file modifications
 * Add a property : `<gae-studio.version>1.0-RC1</gae-studio.version>`
 * In the **maven-war-plugin** configuration, add :
 
@@ -122,7 +123,7 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
         </profile>
 Simply run `mvn clean install appengine:devserver -Pgae-studio-ear`. This will start both your application and the GAE Studio module.
 
-## Using the App Engine SDK
+### Using the App Engine SDK
 Running in development mode implies converting your application to a module. Then, you need to create an EAR
 application containing your app and GAE Studio. The official App Engine documentation explains how to create the EAR application.
 GAE Studio is already declared as a module called 'gaestudio'.
@@ -130,8 +131,8 @@ You can run this EAR using the Java Appengine Tools (Google Appengine SDK for Ja
 The development server will start your app and GAE Studio on two different ports. They will be displayed in the
 console output. ie: INFO: Module instance gaestudio is running at http://localhost:8081/
 
-#Running GAE Studio locally (Python runtime)
+##Running GAE Studio locally (Python runtime)
 
-#Running GAE Studio locally (Go runtime)
+##Running GAE Studio locally (Go runtime)
 
-#Running GAE Studio locally (PHP runtime)
+##Running GAE Studio locally (PHP runtime)

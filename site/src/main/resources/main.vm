@@ -87,6 +87,9 @@
 
     <div id="content" role="main">
         <div class="container">
+            <span id="editLink" title="Edit this page on GitHub">
+                ${editLink}
+            </span>
             ${content}
         </div>
         <footer class="footer">
