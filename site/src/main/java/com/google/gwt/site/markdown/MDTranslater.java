@@ -104,11 +104,6 @@ public class MDTranslater {
     }
 
     private String getEditUrl(String path) {
-        // TODO you should support more than one template
-        if (path.endsWith("markdown/index.md")) {
-            return "";
-        }
-
         int index = path.indexOf(SEPARATOR + "src" + SEPARATOR);
         return "<a class=\"icon_editGithub\" href=\"" + GITHUB_URL
                 + path.substring(index + 1).replace(SEPARATOR, "/") + "\"></a>";
