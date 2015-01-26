@@ -186,7 +186,7 @@ and this is not correct (2 spaces after the newline):
 
 ```
 Instrument i =
-    new Instrument();
+  new Instrument();
 ```
 
 ###Imports
@@ -211,24 +211,31 @@ Each line of text in your code should be at most 80 characters long. Use linefee
 
 ###Acronyms in names
 Treat acronyms and abbreviations as words. The names are much more readable:
-||Good || Bad ||
-||`XmlHttpRequest` || `XMLHTTPRequest` ||
-||`getCustomerId` || `getCustomerID` ||
+
+|Good | Bad |
+|---|---|
+|`XmlHttpRequest` | `XMLHTTPRequest` |
+|`getCustomerId` | `getCustomerID` |
 
 This style rule also applies when an acronym or abbreviation is the entire name:
-||Good||Bad||
-||`class Html`||`class HTML`||
-||`String url;`||`String URL;`||
-||`long id;`||`long ID;`||
+
+|Good|Bad|
+|---|---|
+|`class Html`|`class HTML`|
+|`String url;`|`String URL;`|
+|`long id;`|`long ID;`|
+
 Note that much code in GWT violates this rule, but they have said "all new code should treat acronyms as words".
 For further justifications of this style rule, see Effective Java Item 56 (Item 38 in 1st edition) and Java Puzzlers Number 68.
 
 ###Parameterized type names
 Parameterized type names should be one capital letter. However, if readability demands longer names (particularly due to having multiple parameters), the name should be capitalized and have suffix "T". In a nutshell, prefer `<T>` or `<K, V>`, and devolve to `<KeyT, ValueT>` if necessary.
-||Good	||Bad||	Tolerable||
-||`Foo<T>`	||`Foo<FooClientType>`|| ||
-||`Bar<K, V>`	||`Bar<KeyType, ValueType>`|| ||
-||`Baz<V, E, X>`	||`Baz<EventType, ErrorType, ExpressionType>`	||`Baz<EventT, ErrorT, ExpressionT>`||
+
+|Good|Bad|Tolerable|
+|---|---|
+|`Foo<T>`|`Foo<FooClientType>`| |
+|`Bar<K, V>`|`Bar<KeyType, ValueType>`| |
+|`Baz<V, E, X>`|`Baz<EventType, ErrorType, ExpressionType>`|`Baz<EventT, ErrorT, ExpressionT>`|
 
 ###Unit Testing
 Unit tests are very important, and we strongly encourage submissions that include them, adding new unit tests for new functionality or updating existing unit tests for bug fixes.
