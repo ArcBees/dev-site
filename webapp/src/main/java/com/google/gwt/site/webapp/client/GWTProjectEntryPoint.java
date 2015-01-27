@@ -49,7 +49,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private static Properties history = JsUtils.prop(window, "history");
 
     // Visible for testing
-    // The absolute path to the url root (http://gwtproject.com)
+    // The absolute path to the url root
     static String origin = GWT.getModuleBaseForStaticFiles()
             .replaceFirst("^(\\w+://.+?)/.*", "$1").toLowerCase();
 
@@ -179,7 +179,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
                         $("#submenu.show").removeClass("show");
 
                         // Load the page using Ajax
-                        loadPage(href, !$e.parents("#nav").isEmpty());
+                        loadPage(href, !$e.parents("#nav", ".productsCarousel").isEmpty());
                         return false;
                     } else {
                         openMenu();
@@ -199,12 +199,21 @@ public class GWTProjectEntryPoint implements EntryPoint {
         });
 
         openMenu();
+        updateEditLink();
         $(body).delay(ANIMATION_TIME + 100, new Function() {
             @Override
             public void f() {
                 $("#holder").show();
             }
         });
+    }
+
+    private void updateEditLink() {
+        if (isRoot(currentPage)) {
+            $("#editLink").remove();
+        } else {
+            $("#editLink").appendTo("#content h1");
+        }
     }
 
     private void enhanceMenu() {
@@ -336,17 +345,22 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
         ContentLoadedEvent.fire(eventBus);
         openMenu();
+        updateEditLink();
         scrollToHash();
 
         updateMenusForPage(pageUrl);
     }
 
     private void updateMenusForPage(final String pageUrl) {
-        if ("/".equals(pageUrl) || "".equals(pageUrl)) {
+        if (isRoot(pageUrl)) {
             lockMenus();
         } else {
             unlockMenus();
         }
+    }
+
+    private boolean isRoot(String pageUrl) {
+        return "/".equals(pageUrl) || "".equals(pageUrl);
     }
 
     private void unlockMenus() {

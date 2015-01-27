@@ -27,7 +27,7 @@
   background-color: @c-secondary;
 
   min-height: 100%;
-  width: 260px;
+  width: 270px;
   padding: 0;
   border-top: 6px solid @c-primary;
   overflow-x: hidden;
@@ -224,6 +224,10 @@
         }
       }
     }
+
+    @media (@tablet) {
+      width: 40px;
+    }
   }
 
   @media (@mobile) {
@@ -237,12 +241,14 @@ aside#submenu {
   display: table-cell;
   width: 220px;
   height: 100%;
-  padding: 0 0 1em 40px;
+  padding: 0 0 1em 50px;
 
   z-index: 9999;
 
   @media (@tablet) {
     width: 160px;
+    min-width: 160px;
+    padding: 0 0 1em 40px;
   }
 
   @media (@mobile) {
@@ -288,7 +294,7 @@ aside#submenu {
 
     display: inline-block;
     width: 100%;
-    padding: 6px 25px;
+    padding: 6px 30px 6px 20px;
 
     position: relative;
 
@@ -1032,6 +1038,7 @@ nav#nav-mobile {
 
   @media (@tablet) {
     top: 34px;
+    left: 10px;
   }
 
   a {
@@ -1056,6 +1063,70 @@ nav#nav-mobile {
     left: 0;
 
     .transition(.3s);
+  }
+}
+
+#editLink {
+  position: relative;
+
+  a {
+    color: @c-secondary-light;
+  }
+
+  &:hover {
+    background-color: transparent;
+
+    a {
+      text-decoration: none;
+    }
+
+    &:before,
+    &:after {
+      opacity: 1;
+      visibility: visible;
+
+      .translate(10px);
+    }
+  }
+
+  &:before,
+  &:after {
+    left: 100%;
+    position: absolute;
+
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999999;
+
+    .box-sizing(content-box);
+
+    .transition(.1s, linear)
+  }
+
+  &:before {
+    content: '';
+
+    border: 6px solid transparent;
+    border-right-color: @c-primary;
+    margin-bottom: -10px;
+    margin-left: -10px;
+
+    bottom: 50%;
+  }
+
+  &:after {
+    content: attr(title);
+    font-size: 13px;
+    color: #ecf0f1;
+    background-color: @c-primary;
+    line-height: 11px;
+
+    height: 22px;
+    padding: 11px 11px 0 11px;
+    margin-top: 4px;
+    margin-left: 2px;
+
+    white-space: nowrap;
   }
 }
 
