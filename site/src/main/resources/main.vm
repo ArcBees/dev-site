@@ -64,7 +64,7 @@
     </a>
 </div>
 
-<div id="holder" class="$!{node.style}">
+<div id="holder" style="display:none" class="$!{node.style}">
     <aside id="submenu">
         <div class="logo">
         </div>
@@ -87,6 +87,9 @@
 
     <div id="content" role="main">
         <div class="container">
+            <span id="editLink" title="Edit this page on GitHub">
+                ${editLink}
+            </span>
             ${content}
         </div>
         <footer class="footer">

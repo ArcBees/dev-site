@@ -3,7 +3,7 @@
 <folder href="index" title="Mixins" description="Mixins">
     <toc>
         <entries>
-            <entry name="#how-to-install" displayName="How to install"></entry>
+            <entry name="" displayName="How to install"></entry>
             <entry name="#border-radius" displayName="Border radius"></entry>
             <entry name="#box-sizing" displayName="Box sizing"></entry>
             <entry name="#gradient" displayName="Gradient"></entry>

@@ -27,7 +27,7 @@
   background-color: @c-secondary;
 
   min-height: 100%;
-  width: 260px;
+  width: 270px;
   padding: 0;
   border-top: 6px solid @c-primary;
   overflow-x: hidden;
@@ -224,6 +224,10 @@
         }
       }
     }
+
+    @media (@tablet) {
+      width: 40px;
+    }
   }
 
   @media (@mobile) {
@@ -232,25 +236,49 @@
 }
 
 aside#submenu {
-  background-color: @c-secondary-dark;
+  background-color: @c-secondary-light;
 
   display: table-cell;
   width: 220px;
   height: 100%;
-  padding: 0 0 1em 40px;
+  padding: 0 0 1em 50px;
 
   z-index: 9999;
 
   @media (@tablet) {
     width: 160px;
+    min-width: 160px;
+    padding: 0 0 1em 40px;
   }
 
   @media (@mobile) {
     display: block;
   }
 
+  .folder {
+    position: relative;
+
+    &.open::before {
+      .rotation(-90deg);
+    }
+
+    &::before {
+      content: "";
+
+      border: 6px solid transparent;
+      border-right: 11px solid #fff;
+      border-left-width: 0;
+
+      position: absolute;
+      right: 10px;
+      top: 9px;
+
+      .transition(.3s);
+    }
+  }
+
   .logo {
-    background-color: @c-secondary-dark;
+    background-color: @c-secondary-light;
 
     width: 100%;
     height: 165px;
@@ -266,7 +294,7 @@ aside#submenu {
 
     display: inline-block;
     width: 100%;
-    padding: 6px 25px;
+    padding: 6px 30px 6px 20px;
 
     position: relative;
 
@@ -295,6 +323,16 @@ aside#submenu {
         a {
           padding-left: 55px;
         }
+      }
+    }
+
+    li {
+      &.selected > a {
+        font-weight: bold;
+      }
+
+      a.selected {
+        background-color: @c-background;
       }
     }
   }
@@ -326,7 +364,7 @@ a#logo-mobile {
   a {
     color: @c-gae;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -348,7 +386,7 @@ a#logo-mobile {
   a {
     color: @c-chosen;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -370,7 +408,7 @@ a#logo-mobile {
   a {
     color: @c-gquery;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -392,7 +430,7 @@ a#logo-mobile {
   a {
     color: @c-jukito;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -414,7 +452,7 @@ a#logo-mobile {
   a {
     color: @c-gwtp;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -436,7 +474,7 @@ a#logo-mobile {
   a {
     color: @c-gsss;
 
-    &:hover{
+    &:hover {
       text-decoration: underline;
     }
   }
@@ -941,7 +979,7 @@ nav#nav-mobile {
         right: 10px;
 
         opacity: 0.5;
-        outline:none !important;
+        outline: none !important;
 
         &:hover {
           opacity: 1;
@@ -1000,6 +1038,7 @@ nav#nav-mobile {
 
   @media (@tablet) {
     top: 34px;
+    left: 10px;
   }
 
   a {
@@ -1024,6 +1063,70 @@ nav#nav-mobile {
     left: 0;
 
     .transition(.3s);
+  }
+}
+
+#editLink {
+  position: relative;
+
+  a {
+    color: @c-secondary-light;
+  }
+
+  &:hover {
+    background-color: transparent;
+
+    a {
+      text-decoration: none;
+    }
+
+    &:before,
+    &:after {
+      opacity: 1;
+      visibility: visible;
+
+      .translate(10px);
+    }
+  }
+
+  &:before,
+  &:after {
+    left: 100%;
+    position: absolute;
+
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999999;
+
+    .box-sizing(content-box);
+
+    .transition(.1s, linear)
+  }
+
+  &:before {
+    content: '';
+
+    border: 6px solid transparent;
+    border-right-color: @c-primary;
+    margin-bottom: -10px;
+    margin-left: -10px;
+
+    bottom: 50%;
+  }
+
+  &:after {
+    content: attr(title);
+    font-size: 13px;
+    color: #ecf0f1;
+    background-color: @c-primary;
+    line-height: 11px;
+
+    height: 22px;
+    padding: 11px 11px 0 11px;
+    margin-top: 4px;
+    margin-left: 2px;
+
+    white-space: nowrap;
   }
 }
 

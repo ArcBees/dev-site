@@ -3,7 +3,7 @@
 <folder href="index" title="Animation" description="Animation">
     <toc>
         <entries>
-            <entry name="#how-to-install" displayName="How to install"></entry>
+            <entry name="" displayName="How to install"></entry>
             <entry name="#default-structure" displayName="Default structure"></entry>
             <entry name="#animations" displayName="Animations">
                 <entry name="#bounce" displayName="Bounce"></entry>
