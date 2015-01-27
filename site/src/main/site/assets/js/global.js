@@ -32,9 +32,6 @@ $(function () {
         $(this).addClass("active");
     });
 
-    // FlexNav
-    $(".flexnav").flexNav();
-
     $("#content").bind("DOMSubtreeModified", function () {
         // Homepage
         if ($('#content').hasClass('home')) {

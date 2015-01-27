@@ -23,9 +23,11 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
+import com.google.gwt.query.client.Predicate;
 import com.google.gwt.query.client.Properties;
 import com.google.gwt.query.client.js.JsUtils;
 import com.google.gwt.query.client.plugins.ajax.Ajax;
+import com.google.gwt.regexp.shared.MatchResult;
 import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.site.demo.ContentLoadedEvent;
 import com.google.gwt.site.demo.gsss.grid.GSSSGridDemos;
@@ -45,6 +47,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private static final int ANIMATION_TIME = 200;
 
     private static final HyperlinkImpl clickHelper = GWT.create(HyperlinkImpl.class);
+    private static final RegExp PRODUCT_PATH_REGEXP = RegExp.compile("(/.*?/).*?");
 
     private static Properties history = JsUtils.prop(window, "history");
 
@@ -147,8 +150,13 @@ public class GWTProjectEntryPoint implements EntryPoint {
         // In mobile have a link for opening/closing the menu
         $("#nav-mobile").on("click", new Function() {
             @Override
-            public void f() {
-                $("#submenu").toggleClass("show");
+            public boolean f(Event e) {
+                GQuery $e = $(e.getEventTarget());
+                if (!$e.is("span", "i") && !$e.parent().hasClass("item-with-ul")) {
+                    $("#nav-mobile").removeClass("flexnav-show");
+                }
+
+                return true;
             }
         });
 
@@ -158,6 +166,13 @@ public class GWTProjectEntryPoint implements EntryPoint {
             loadPage(null, true);
             return;
         }
+
+        // Copy root menu to mobile menu
+        $("#nav ul")
+                .clone()
+                .appendTo("#nav-mobile")
+                .find("li.logo")
+                .remove();
 
         // Use Ajax instead of default behaviour
         $(body).on("click", "a:not([href^=\"http\"])", new Function() {
@@ -176,7 +191,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
                         $("#submenu.show").removeClass("show");
 
                         // Load the page using Ajax
-                        loadPage(href, !$e.parents("#nav", ".productsCarousel").isEmpty());
+                        loadPage(href, !$e.parents("#nav", ".productsCarousel").isEmpty() || isRootMobileLink($e));
                         return false;
                     } else {
                         openMenu();
@@ -196,7 +211,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         });
 
         openMenu();
-        updateEditLink();
+        updateEditLinkAndMenu();
         $(body).delay(ANIMATION_TIME + 100, new Function() {
             @Override
             public void f() {
@@ -205,13 +220,51 @@ public class GWTProjectEntryPoint implements EntryPoint {
         });
     }
 
-    private void updateEditLink() {
+    private boolean isRootMobileLink(final GQuery $e) {
+        return !$("#nav-mobile > ul > li > a").filter(
+                new Predicate() {
+                    @Override
+                    public boolean f(Element e, int index) {
+                        return e.equals($e.get(0));
+                    }
+                })
+                .isEmpty();
+    }
+
+    private void updateEditLinkAndMenu() {
         if (isRoot(currentPage)) {
+            updateFlexNav();
             $("#editLink").remove();
         } else {
+            updateMobileMenu();
             $("#editLink").appendTo($("#content h1").first());
         }
     }
+
+    private void updateMobileMenu() {
+        MatchResult matchResult = PRODUCT_PATH_REGEXP.exec(Window.Location.getPath());
+        if (matchResult != null) {
+            $(".item-with-ul").removeClass("item-with-ul");
+            $("#nav-mobile ul > li ul, .touch-button").remove();
+
+            String productPath = matchResult.getGroup(1);
+            GQuery productItem = $("#nav-mobile ul > li a[href^=\"" + productPath + "\"]").parent();
+
+            $("#submenu nav > ul")
+                    .clone()
+                    .appendTo(productItem);
+            $("#nav-mobile > ul ul").removeAttr("style");
+
+            updateFlexNav();
+
+            productItem.children("ul").show().addClass("flexnav-show")
+                    .next().addClass("active");
+        }
+    }
+
+    private native void updateFlexNav() /*-{
+        $wnd.jQuery("#nav-mobile").flexNav();
+    }-*/;
 
     private void enhanceMenu() {
         // We add a span with the +/- icon so as the click area is well defined
@@ -342,7 +395,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
         ContentLoadedEvent.fire(eventBus);
         openMenu();
-        updateEditLink();
+        updateEditLinkAndMenu();
         scrollToHash();
 
         updateMenusForPage(pageUrl);
