@@ -40,6 +40,10 @@
     content: "\e600";
 }
 
+.icon_editGithub:before {
+    content: "\e60C";
+}
+
 .icon_jukito:before {
     content: "\e610";
 }

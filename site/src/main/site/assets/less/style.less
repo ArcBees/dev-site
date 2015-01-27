@@ -1066,6 +1066,70 @@ nav#nav-mobile {
   }
 }
 
+#editLink {
+  position: relative;
+
+  a {
+    color: @c-secondary-light;
+  }
+
+  &:hover {
+    background-color: transparent;
+
+    a {
+      text-decoration: none;
+    }
+
+    &:before,
+    &:after {
+      opacity: 1;
+      visibility: visible;
+
+      .translate(10px);
+    }
+  }
+
+  &:before,
+  &:after {
+    left: 100%;
+    position: absolute;
+
+    visibility: hidden;
+    opacity: 0;
+    z-index: 999999;
+
+    .box-sizing(content-box);
+
+    .transition(.1s, linear)
+  }
+
+  &:before {
+    content: '';
+
+    border: 6px solid transparent;
+    border-right-color: @c-primary;
+    margin-bottom: -10px;
+    margin-left: -10px;
+
+    bottom: 50%;
+  }
+
+  &:after {
+    content: attr(title);
+    font-size: 13px;
+    color: #ecf0f1;
+    background-color: @c-primary;
+    line-height: 11px;
+
+    height: 22px;
+    padding: 11px 11px 0 11px;
+    margin-top: 4px;
+    margin-left: 2px;
+
+    white-space: nowrap;
+  }
+}
+
 // -- Print ----------------------------------------------
 
 @import url('print.less');
