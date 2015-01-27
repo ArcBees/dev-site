@@ -1,5 +1,4 @@
-**A complete Model-View-Presenter framework to simplify your next GWT project.**
-
+#Overview
 ##Reference
 * [GWTP Custom Google Search](http://www.google.com/cse/home?cx=011138278718949652927:5yuja8xc600) - Search GWTP documentation, wiki and thread collections.
 * [GWTP Documentation](https://github.com/arcbees/gwtp/wiki) - Find out how to use GWT-Platform here.
