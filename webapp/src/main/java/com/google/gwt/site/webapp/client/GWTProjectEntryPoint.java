@@ -209,7 +209,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
         if (isRoot(currentPage)) {
             $("#editLink").remove();
         } else {
-            $("#editLink").appendTo("#content h1");
+            $("#editLink").appendTo($("#content h1").first());
         }
     }
 
