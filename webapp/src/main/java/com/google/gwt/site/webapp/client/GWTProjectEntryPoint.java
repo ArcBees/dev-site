@@ -21,8 +21,6 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.GQuery;
 import com.google.gwt.query.client.Properties;
@@ -33,7 +31,6 @@ import com.google.gwt.site.demo.ContentLoadedEvent;
 import com.google.gwt.site.demo.gsss.grid.GSSSGridDemos;
 import com.google.gwt.site.demo.gsss.mixins.GSSSMixinsDemos;
 import com.google.gwt.user.client.Event;
-import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.impl.HyperlinkImpl;
 import com.google.web.bindery.event.shared.EventBus;
@@ -52,7 +49,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private static Properties history = JsUtils.prop(window, "history");
 
     // Visible for testing
-    // The absolute path to the url root (http://gwtproject.com)
+    // The absolute path to the url root
     static String origin = GWT.getModuleBaseForStaticFiles()
             .replaceFirst("^(\\w+://.+?)/.*", "$1").toLowerCase();
 
@@ -66,8 +63,6 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private static String currentPage = Window.Location.getPath();
     private static EventBus eventBus = new SimpleEventBus();
 
-    private final RegExp titleTagMatcher = RegExp.compile("<title>(.*?)</title>");
-
     private Analytics analytics;
 
     @Override
@@ -77,13 +72,6 @@ public class GWTProjectEntryPoint implements EntryPoint {
         registerDemos();
 
         enhancePage();
-
-        History.addValueChangeHandler(new ValueChangeHandler<String>() {
-            @Override
-            public void onValueChange(ValueChangeEvent<String> event) {
-                openMenu();
-            }
-        });
     }
 
     private void createAnalytics() {
@@ -120,8 +108,8 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
                 showBranch(item);
 
-                $("#submenu a.selected").removeClass("selected");
-                item.addClass("selected");
+                $("#submenu .selected").removeClass("selected");
+                item.parents(".folder").add(item).addClass("selected");
 
                 // Replace relative paths in anchors by absolute ones
                 // exclude all anchors in the content area.
@@ -177,7 +165,8 @@ public class GWTProjectEntryPoint implements EntryPoint {
             public boolean f(Event e) {
                 GQuery $e = $(e);
                 String href = $e.attr("href");
-                boolean containsHash = href.contains("#");
+                boolean containsHash = href.contains("#")
+                        && Window.Location.getPath().equals(href.replaceAll("#.*", ""));
 
                 if (shouldEnhanceLink($e) &&
                         // Is it a normal click (not ctrl/cmd/shift/right/middle click) ?
@@ -187,7 +176,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
                         $("#submenu.show").removeClass("show");
 
                         // Load the page using Ajax
-                        loadPage(href, !$e.parents("#nav").isEmpty());
+                        loadPage(href, !$e.parents("#nav", ".productsCarousel").isEmpty());
                         return false;
                     } else {
                         openMenu();
@@ -205,6 +194,23 @@ public class GWTProjectEntryPoint implements EntryPoint {
                 loadPage(null, true);
             }
         });
+
+        openMenu();
+        updateEditLink();
+        $(body).delay(ANIMATION_TIME + 100, new Function() {
+            @Override
+            public void f() {
+                $("#holder").show();
+            }
+        });
+    }
+
+    private void updateEditLink() {
+        if (isRoot(currentPage)) {
+            $("#editLink").remove();
+        } else {
+            $("#editLink").appendTo("#content h1");
+        }
     }
 
     private void enhanceMenu() {
@@ -271,12 +277,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
      */
     private void loadPage(String pageUrl, boolean replaceMenu) {
         if (!currentPage.equals(pageUrl)) {
-            if (pageUrl != null) {
-                // Preserve QueryString, useful for the gwt.codesvr parameter in dev-mode.
-                pageUrl = pageUrl.replaceFirst("(#.*|)$", Window.Location.getQueryString() + "$1");
-                // Set the page to load in the URL
-                JsUtils.runJavascriptFunction(history, "pushState", null, null, pageUrl);
-            }
+            pushHistory(pageUrl);
 
             pageUrl = Window.Location.getPath();
             if (!currentPage.equals(pageUrl)) {
@@ -286,6 +287,19 @@ public class GWTProjectEntryPoint implements EntryPoint {
             }
 
             currentPage = pageUrl;
+        } else if (!(currentPage + Window.Location.getHash()).equals(pageUrl)) {
+            pushHistory(pageUrl);
+            scrollToHash();
+            openMenu();
+        }
+    }
+
+    private void pushHistory(String pageUrl) {
+        if (pageUrl != null) {
+            // Preserve QueryString, useful for the gwt.codesvr parameter in dev-mode.
+            pageUrl = pageUrl.replaceFirst("(#.*|)$", Window.Location.getQueryString() + "$1");
+            // Set the page to load in the URL
+            JsUtils.runJavascriptFunction(history, "pushState", null, null, pageUrl);
         }
     }
 
@@ -328,17 +342,22 @@ public class GWTProjectEntryPoint implements EntryPoint {
 
         ContentLoadedEvent.fire(eventBus);
         openMenu();
+        updateEditLink();
         scrollToHash();
 
         updateMenusForPage(pageUrl);
     }
 
     private void updateMenusForPage(final String pageUrl) {
-        if ("/".equals(pageUrl) || "".equals(pageUrl)) {
+        if (isRoot(pageUrl)) {
             lockMenus();
         } else {
             unlockMenus();
         }
+    }
+
+    private boolean isRoot(String pageUrl) {
+        return "/".equals(pageUrl) || "".equals(pageUrl);
     }
 
     private void unlockMenus() {

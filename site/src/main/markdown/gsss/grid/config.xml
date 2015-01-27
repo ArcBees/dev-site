@@ -3,7 +3,7 @@
 <folder href="index" title="Grid" description="Grid">
     <toc>
         <entries>
-            <entry name="#how-to-install" displayName="How to install"></entry>
+            <entry name="" displayName="How to install"></entry>
             <entry name="#default-structure" displayName="Default structure"></entry>
             <entry name="#grid-breakpoints" displayName="Grid breakpoints"></entry>
             <entry name="#columns-size" displayName="Columns size">

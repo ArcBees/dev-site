@@ -26,6 +26,8 @@ import com.google.gwt.site.markdown.velocity.VelocityWrapper;
 import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
 
 public class MDTranslater {
+    private static final String SEPARATOR = File.separator;
+    private static final String GITHUB_URL = "https://github.com/arcbees/dev-site/edit/master/site/";
 
     private final MarkdownToHtmlUtil markdownToHtmlUtil = new MarkdownToHtmlUtil();
     private final TocCreator tocCreator;
@@ -96,8 +98,15 @@ public class MDTranslater {
         velocityWrapper.put("content", html);
         velocityWrapper.put("toc", toc);
         velocityWrapper.put("node", node);
+        velocityWrapper.put("editLink", getEditUrl(node.getPath()));
 
         return velocityWrapper.generate();
+    }
+
+    private String getEditUrl(String path) {
+        int index = path.indexOf(SEPARATOR + "src" + SEPARATOR);
+        return "<a class=\"icon_editGithub\" href=\"" + GITHUB_URL
+                + path.substring(index + 1).replace(SEPARATOR, "/") + "\"></a>";
     }
 
     protected String adjustRelativePath(String html, String relativePath) {
