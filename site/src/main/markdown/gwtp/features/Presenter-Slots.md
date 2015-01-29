@@ -6,58 +6,59 @@ Presenters in GWTP have a concept of slots. Slots are basically placeholder wher
 GWTP has a few different ways to setup presenters, but each presenter type uses the slot methods the same.
 
 ##Nested or Layout Presenters
-The nested or layout presenters direct the application layout as in the header, footer and content. Layout presenters which can be nested in many different ways communicate via the Eventbus. The `@NameToken` can be used with the PlaceManager to handle url navigation.
+The nested or layout presenters direct the application layout as in the header, footer and content. Layout presenters which can be nested in many different ways communicate via the Eventbus. The `@NameToken` can be used with the PlaceManager to handle url navigation. Please note that both parent and child presenters in this case are `com.gwtplatform.mvp.client.Presenter`
 
-* Layout presenters initialize the slot by using the @ContentSlot annotation.
+* Layout presenters (parent) initialize the slot by using the @ContentSlot annotation. See how it is used [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationPresenter.java).
 
 ```
 @ContentSlot
 public static final Type<RevealContentHandler<?>> SLOT_MAIN_CONTENT = new Type<RevealContentHandler<?>>();
 ```
 
-* See how it is used [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationPresenter.java).
+* [Child presenter](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/home/HomePagePresenter.java) can specify its slot through its call to super constructor.
 
 ```
-public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> {
-    public interface MyView extends View {
-    }
+@Inject
+HomePagePresenter(EventBus eventBus,
+    MyView view,
+    MyProxy proxy,
+    DispatchAsync dispatcher) {
+    super(eventBus, view, proxy, ApplicationPresenter.SLOT_SetMainContent);
+```
 
-    @ProxyStandard
-    public interface MyProxy extends Proxy<ApplicationPresenter> {
-    }
+* The [parent view](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationView.java) now simply sets the widget to the specified slot.
 
-    @ContentSlot
-    public static final Type<RevealContentHandler<?>> MAIN_CONTENT_SLOT = new Type<RevealContentHandler<?>>();
-    public static final Object HEADER_SLOT = new Object();
-
-    private final HeaderPresenter headerPresenter;
-
-    @Inject
-    ApplicationPresenter(EventBus eventBus,
-                         MyView view, MyProxy proxy,
-                         HeaderPresenter headerPresenter) {
-        super(eventBus, view, proxy, RevealType.Root);
-
-        this.headerPresenter = headerPresenter;
-    }
-
-    @Override
-    protected void onBind() {
-        super.onBind();
-
-        setInSlot(MAIN_CONTENT_SLOT, headerPresenter);
+```
+@Override
+public void setInSlot(Object slot, IsWidget content) {
+    if (slot == ApplicationPresenter.SLOT_HeaderPresenter) {
+        header.setWidget(content);
+    } else if (slot == ApplicationPresenter.SLOT_SetMainContent) {
+        main.setWidget(content);
+    } else {
+        super.setInSlot(slot, content);
     }
 }
 ```
 
 ##Child Widget Presenters
-The child presenters are children of the layout presenters. Setting up a child presenter requires a slot name which is referenced in the view.
+A slot can also be used to embed a widget presenter (child) in a layout presenter (parent). A more generic way would be to inject the child widget in parent and call a setter in parent's view to set the child widget. We can instead use slots to keep presenter and view decoupled. The child in this case can be either of `com.gwtplatform.mvp.client.PresenterWidget` and `com.gwtplatform.mvp.client.Presenter` while the parent can only be `com.gwtplatform.mvp.client.Presenter`.
 
-* Example of a child presenter. Set the slot name and use a slot method to render the presenter in the view.
+* In [parent presenter](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header/HeaderPresenter.java), create a slot object. Inject the child widget. 
+* Use a slot method to render the presenter.
 
 ```
 // slot name
 public static final Object LOGIN_SLOT = new Object();
+
+@Inject
+HeaderPresenter(EventBus eventBus,
+    MyView view,
+    LoginPresenter loginPresenter) {
+    super(eventBus, view);
+    this.loginPresenter = loginPresenter;
+    getView().setUiHandlers(this);
+}
 
 @Override
 protected void onBind() {
@@ -67,39 +68,16 @@ protected void onBind() {
 }
 ```
 
-* See how it is used [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header/HeaderPresenter.java).
+* The [parent view](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header/HeaderView.java) simply handles how the slot defined in the parent should be placed.
 
 ```
-public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView>
-        implements HeaderUiHandlers {
-    public interface MyView extends View, HasUiHandlers<HeaderUiHandlers> {
-    }
+@UiField
+SimplePanel login;
 
-    public static final Object LOGIN_SLOT = new Object();
-
-    private final LoginPresenter loginPresenter;
-
-    @Inject
-    HeaderPresenter(EventBus eventBus,
-                    MyView view,
-                    LoginPresenter loginPresenter) {
-        super(eventBus, view);
-
-        this.loginPresenter = loginPresenter;
-
-        getView().setUiHandlers(this);
-    }
-
-    @Override
-    protected void onBind() {
-        super.onBind();
-
-        setInSlot(LOGIN_SLOT, loginPresenter);
-    }
-
-    @Override
-    public void onTestClick() {
-        Window.alert("The Presenter says Hi test");
+@Override
+public void setInSlot(Object slot, IsWidget content) {
+    if (slot == HeaderPresenter.SLOT_LoginPresenter) {
+        login.setWidget(content);
     }
 }
 ```
