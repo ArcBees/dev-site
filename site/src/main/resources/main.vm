@@ -78,7 +78,6 @@
     <div class="menu-button">Menu</div>
 
     <nav id="nav-mobile" class="flexnav">
-        ${toc}
     </nav>
 
     <div class="iconDevTop">

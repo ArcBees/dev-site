@@ -501,10 +501,13 @@ nav#nav-mobile {
   display: none;
 
   @media (@mobile) {
-    display: block;
+    &.flexnav-show {
+      display: block;
 
-    position: relative;
-    top: 33px;
+      position: relative;
+      top: 33px;
+      z-index: 10000;
+    }
   }
 }
 
