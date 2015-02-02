@@ -52,6 +52,7 @@
             <li><a href="https://code.google.com/p/gwtquery/" target="_blank"><i class="icon_gquery"></i>GQuery</a></li>
             <li><a href="http://arcbees.github.io/gwtchosen/" target="_blank"><i class="icon_chosen"></i>GWT-Chosen</a></li>
             <li><a href="gsss/mixins/"><i class="icon_gsss"></i>GSSS</a></li>
+            <li><a href="http://www.arcbees.com/#!/support"><i class="icon_gsss"></i>Support</a></li>
         </ul>
     </div>
 </nav>
