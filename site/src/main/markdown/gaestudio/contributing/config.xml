@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder title="Contributing"
+        href="index"
+        description="How to contribute">
+    <toc>
+        <entries>
+            <entry name="index" title="Basic Setup" displayName="Contributing"></entry>
+            <entry name="Contributing-Guidelines" title="Contributing Guidelines"
+                    displayName="Contributing Guidelines"></entry>
+        </entries>
+    </toc>
+</folder>
