@@ -4,7 +4,7 @@ The goal of this page is to help you get your first project started using GWTP's
 
 After reading this guide you should have a better idea whether or not GWTP is the tool you need for your next project. If you used gwt-presenter before, you might first want to take a look at how it [compares to GWTP](http://code.google.com/p/gwt-platform/wiki/ComparisonWithGwtPresenter).
 
-For more information about the Model-View-Presenter architecture, check out Ray Ryan's [Google IO talk](http://code.google.com/events/io/2009/sessions/GoogleWebToolkitBestPractices.html).
+For more information about the Model-View-Presenter architecture, check out Ray Ryan's [Google IO talk](https://www.youtube.com/watch?v=PDuhR18-EdM).
 
 ## Starting with the GWTP Eclipse Plugin
 
