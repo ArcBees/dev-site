@@ -18,4 +18,7 @@ Run the site locally for easy visual testing
 
 * Run: `mvn install`
 * Run: `mvn jetty:run`
+* Run: `grunt build`
 * Goto: http://127.0.0.1:8080
+
+_You can also run `grunt` to always watch and rebuild your assets (CSS / JS / images)_

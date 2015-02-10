@@ -58,8 +58,7 @@ module.exports = function (grunt) {
                     spawn: false
                 }
             }
-        }
-
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -69,5 +68,5 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', 'watch');
     grunt.registerTask('imgs', 'imagemin');
-
+    grunt.registerTask('build', ['imagemin', 'less', 'uglify']);
 };
