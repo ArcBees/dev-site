@@ -10,6 +10,7 @@
             <entry name="ajax" title="Ajax" displayName="Ajax"></entry>
             <entry name="download" title="Download" displayName="Download"></entry>
             <entry name="contributing" title="How to contribute" displayName="How to contribute"></entry>
+            <entry name="creating-apps" title="Creating applications" displayName="Creating applications"></entry>
         </entries>
     </toc>
 </folder>
