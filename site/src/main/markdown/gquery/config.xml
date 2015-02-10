@@ -8,6 +8,7 @@
         <entries>
             <entry name="index" title="Overview" displayName="Overview"></entry>
             <entry name="ajax" title="Ajax" displayName="Ajax"></entry>
+            <entry name="download" title="Download" displayName="Download"></entry>
             <entry name="contributing" title="How to contribute" displayName="How to contribute"></entry>
         </entries>
     </toc>
