@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder href="index"
+        displayName="Getting Started"
+        title="GQuery"
+        description="GQuery"
+        style="gquery">
+    <toc>
+        <entries>
+            <entry name="index" title="Overview" displayName="Overview"></entry>
+        </entries>
+    </toc>
+</folder>
