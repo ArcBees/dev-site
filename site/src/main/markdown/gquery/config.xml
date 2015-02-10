@@ -11,6 +11,7 @@
             <entry name="download" title="Download" displayName="Download"></entry>
             <entry name="contributing" title="How to contribute" displayName="How to contribute"></entry>
             <entry name="creating-apps" title="Creating applications" displayName="Creating applications"></entry>
+            <entry name="css-guide" title="CSS guide" displayName="CSS Guide"></entry>
         </entries>
     </toc>
 </folder>
