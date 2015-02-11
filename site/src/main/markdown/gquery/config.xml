@@ -12,6 +12,7 @@
             <entry name="contributing" title="How to contribute" displayName="How to contribute"></entry>
             <entry name="creating-apps" title="Creating applications" displayName="Creating applications"></entry>
             <entry name="css-guide" title="CSS guide" displayName="CSS Guide"></entry>
+            <entry name="data-binding" title="Data binding" displayName="Data binding"></entry>
         </entries>
     </toc>
 </folder>

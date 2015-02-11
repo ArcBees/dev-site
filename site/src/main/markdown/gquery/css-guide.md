@@ -91,17 +91,17 @@ The mechanism describe in previous paragraph to set up css is IDE friendly. If y
 But GQuery does not force you to use its type-safe syntax, it also propose you other alternatives if you prefer jquery syntax using attribute-value pairs, or if you wanted to 'copy and paste' attributes from a style-sheet document:
 
 ```
- $("#myId").css("color", "red");
+$("#myId").css("color", "red");
 ```
 
 Using javascript property maps:
 
 ```
- $("#myId").css($$("top: '50px', left: '25px', color: 'red'"));
+$("#myId").css($$("top: '50px', left: '25px', color: 'red'"));
 ```
 
 Or even using the css style sheet syntax:
 
 ```
- $("#myId").css($$("margin: 3px; padding: 3px 5px; text-decoration: none; font-size: small;"));
+$("#myId").css($$("margin: 3px; padding: 3px 5px; text-decoration: none; font-size: small;"));
 ```
