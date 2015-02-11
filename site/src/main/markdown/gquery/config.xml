@@ -14,6 +14,7 @@
             <entry name="css-guide" title="CSS guide" displayName="CSS Guide"></entry>
             <entry name="data-binding" title="Data binding" displayName="Data binding"></entry>
             <entry name="cookbook" title="GQuery Cookbook" displayName="GQuery Cookbook"></entry>
+            <entry name="issues" title="Issues" displayName="Issues"></entry>
         </entries>
     </toc>
 </folder>
