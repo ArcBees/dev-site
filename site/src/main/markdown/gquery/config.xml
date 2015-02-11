@@ -18,6 +18,7 @@
             <entry name="jsquery" title="JsQuery" displayName="JsQuery"></entry>
             <entry name="promises" title="Promise" displayName="Promise"></entry>
             <entry name="roadmap" title="Road map" displayName="Road map"></entry>
+            <entry name="sources" title="Sources" displayName="Sources"></entry>
         </entries>
     </toc>
 </folder>
