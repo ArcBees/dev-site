@@ -15,6 +15,7 @@
             <entry name="data-binding" title="Data binding" displayName="Data binding"></entry>
             <entry name="cookbook" title="GQuery Cookbook" displayName="GQuery Cookbook"></entry>
             <entry name="issues" title="Issues" displayName="Issues"></entry>
+            <entry name="jsquery" title="JsQuery" displayName="JsQuery"></entry>
         </entries>
     </toc>
 </folder>
