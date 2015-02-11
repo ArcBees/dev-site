@@ -23,13 +23,12 @@ If you want to add GQuery on an existing maven project or you don't want to use 
  </dependencies>
 ```
 
-If you want to use the snapshot version of GQuery the [Downloads wiki page](Insert) for more information.
+If you want to use the snapshot version of GQuery check the Download page for more information.
+
 ### Manually
 You could be interested in setting up your project by hand if you don't want to use maven, or it is an already created project.
 
- * First you'll need to download the [latest stable version](Insert) of the _gwtquery_ library related to your GWT version and place it in your classpath.
-
-
+ * First you'll need to download the latest stable version of the _gwtquery_ library related to your GWT version and place it in your classpath.
  * If you're an experienced GWT user, you probably already know how to do this, but if you're a beginner, here's a quick refresher.
 
 First, create a new project by running
