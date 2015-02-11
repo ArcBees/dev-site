@@ -9,6 +9,7 @@ Typical examples for this are:
 
 In order to do so all inputs must be configured in the TestModule of the test class.
 
+```
 public class SimpleAllTest {
     public static class Module extends TestModule {
         protected void configureTest() {
@@ -21,7 +22,7 @@ public class SimpleAllTest {
         System.out.println(s);
     }
 }
-
+```
 
 The above example will print either "Hello" "world" or "world" "Hello".
 
@@ -33,6 +34,7 @@ Finally it will call the test for every bound input executing it multiple times.
 The `@All` annotation can also be used to test different implementations of the same interface or different subclasses of an (abstract) super class.
 In this case the types are bound directly instead of concrete instances.
 
+```
 public class SimpleAllTest {
     public static class Module extends TestModule {
         protected void configureTest() {
@@ -45,6 +47,7 @@ public class SimpleAllTest {
         System.out.println(x.getClass().getSimpleName());
     }
 }
+```
 
 The above example will print either "Impl1 Impl2" or "Impl2 Impl1".
 
@@ -52,6 +55,7 @@ The above example will print either "Impl1 Impl2" or "Impl2 Impl1".
 ## The Cartesian Product
 Tests are not limited to a single parameter. It is possible to annotated more than one parameter with the `@All` annotation. In this case Jukito will form the Cartesian product of all inputs to the test.
 
+```
 public class CartesianProductAllTest {
     public static class Module extends TestModule {
         protected void configureTest() {
@@ -65,7 +69,7 @@ public class CartesianProductAllTest {
         System.out.println(s + i);
     }
 }
-
+```
 
 The above example will print the four strings "a1", "a2", "b1", and "b2". The order of them is not guaranteed.
 **Warning**: the number of test executions increases dramatically for Cartesian products. The execution time of all tests will grow linear with the number of executions.
@@ -75,6 +79,7 @@ i:e.: a test method with three parameters with an `@All` annotation and four bin
 ## Grouping by names
 Sometimes it is desirable to have different groups of bindings of the same class to be used within the same test. Jukito supports this by using a name to identify to which group a binding belongs and which group should be used for executing a test.
 
+```
 public class NamedAllTest {
     public static class Module extends TestModule {
         protected void configureTest() {
@@ -93,6 +98,6 @@ public class NamedAllTest {
         System.out.println("odd " + i);
     }
 }
-
+```
 
 The above example will print the six strings "even 2", "even 4", "even 6", "odd 1", "odd 3", "odd 5". The order of them is not guaranteed.

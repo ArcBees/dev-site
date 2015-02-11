@@ -4,6 +4,7 @@
 
 Here's an exemple that you can find under the Jukito test sources:
 
+```
 @RunWith(JukitoRunner.class)
 @UseModules({AbcModule.class, DefModule.class})
 public class UseModulesTest extends UseModulesTestBase {
@@ -89,3 +90,4 @@ class KlmModule extends AbstractModule {
         bind(Klm.class).to(KlmImpl.class);
     }
 }
+```
