@@ -16,6 +16,7 @@
             <entry name="cookbook" title="GQuery Cookbook" displayName="GQuery Cookbook"></entry>
             <entry name="issues" title="Issues" displayName="Issues"></entry>
             <entry name="jsquery" title="JsQuery" displayName="JsQuery"></entry>
+            <entry name="promises" title="Promise" displayName="Promise"></entry>
         </entries>
     </toc>
 </folder>
