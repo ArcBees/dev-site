@@ -20,6 +20,7 @@
             <entry name="roadmap" title="Road map" displayName="Road map"></entry>
             <entry name="sources" title="Sources" displayName="Sources"></entry>
             <entry name="snapshot" title="Snapshots" displayName="Snapshots"></entry>
+            <entry name="plugins" title="Plugins" displayName="Plugins"></entry>
         </entries>
     </toc>
 </folder>
