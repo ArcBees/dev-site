@@ -8,7 +8,7 @@
             <entry name="Phonegap-support" title="Phonegap Support" displayName="Phonegap Support"></entry>
             <entry name="Crawler-Support" title="Crawler Support" displayName="Crawler Support"></entry>
             <entry name="Custom-Proxy-Class" title="Custom Proxy Class" displayName="Custom Proxy Class"></entry>
-            <entry name="Google-Analytics" title="Google Analytics" displayName="Google Analytics"></entry>
+            <entry name="Google-Universal-Analytics" title="Google Universal Analytics" displayName="Google Universal Analytics"></entry>
             <entry name="Merge-Locale" title="Merge Locale" displayName="Merge Locale"></entry>
             <entry name="Client-Side-Caching" title="Client Side Caching" displayName="Client Side Caching"></entry>
         </entries>
