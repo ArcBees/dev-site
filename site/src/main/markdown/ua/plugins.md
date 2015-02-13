@@ -14,8 +14,6 @@ analytics.sendPageView().go(); // (recommended) track the initial pageview
 
 Some plugins need to be enabled in the Google Analytics Console as well.
 
-If you'd like to use a plugin not yet supported, please raise an issue on this project.
-
 Currently supported plugins:
 
 * AnalyticsPlugin.DISPLAY: Provides demographics information.
