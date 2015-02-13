@@ -14,7 +14,7 @@ Then on your server you need to install the AnalyticsProxyModule in addition to 
     install(new AnalyticsProxyModule("/collect"));  // this should match the path you set on the client.
 ```
 
-The fallback will automatically kick in if analytics.js has not loaded within 10 seconds.  If analytics.js is simply slow to load for some reason, the fallback will turn itself off when the load completes.
+The fallback will automatically kick in if analytics.js has not loaded within 10 seconds.  If analytics.js is simply slow to load, the fallback will turn itself off when the load completes.
 
 Some features may not work exactly as normal.  The same limitations for server calls apply to fallback calls.
 
