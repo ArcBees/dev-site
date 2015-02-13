@@ -11,7 +11,7 @@
     <url>http://www.gwtproject.org</url>
 
     <properties>
-        <build-tools.version>1.0-SNAPSHOT</build-tools.version>
+        <build-tools.version>1.0</build-tools.version>
         <checkstyle.version>6.0</checkstyle.version>
 
         <velocity.version>1.7</velocity.version>
