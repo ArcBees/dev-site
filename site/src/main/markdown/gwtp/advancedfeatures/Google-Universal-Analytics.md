@@ -1,6 +1,6 @@
 # Google Universal Analytics
 
-GWTP is designed for compatibility with Arcbee's Universal Analytics library.
+GWTP is designed for compatibility with Arcbees' Universal Analytics library.
 
 The Universal Analytics library lets you make calls to Google Analytics directly from Java code.
 
