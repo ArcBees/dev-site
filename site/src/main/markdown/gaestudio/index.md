@@ -40,7 +40,7 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 
             <module>
                 <web>
-                    <web-uri>gae-studio-webapp-${gae-studio.version}-module.war</web-uri>
+                    <web-uri>gae-studio-${gae-studio.version}.war</web-uri>
                     <context-root>/gaestudio</context-root>
                 </web>
             </module>
@@ -51,11 +51,11 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 * In your `appengine-web.xml` file, add `<module>default</module>`
 
 #### POM file modifications
-* Add a property : `<gae-studio.version>1.0-RC1</gae-studio.version>`
+* Add a property : `<gae-studio.version>1.0</gae-studio.version>`
 * In the **maven-war-plugin** configuration, add :
 
         <packagingExcludes>
-            %regex[.*?gae-studio-webapp-${gae-studio.version}.*],**/gaestudio/**
+            %regex[.*?gae-studio-${gae-studio.version}.*],**/gaestudio/**
         </packagingExcludes>
 * Add the **appengine-maven-plugin** if you're not already using it
 
@@ -107,7 +107,7 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                 <!-- GAE Studio -->
                 <dependency>
                     <groupId>com.arcbees.gaestudio</groupId>
-                    <artifactId>gae-studio-webapp</artifactId>
+                    <artifactId>gae-studio</artifactId>
                     <version>${gae-studio.version}</version>
                     <classifier>module</classifier>
                     <type>war</type>
