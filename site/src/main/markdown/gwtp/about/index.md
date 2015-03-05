@@ -25,7 +25,7 @@ pattern. This lets you easily address cross-cutting concerns like [Introduction 
 . For the moment, this module's documentation is minimal. However, since it is a fork from the excellent [GWT Dispatch](http://code.google.com/p/gwt-dispatch/), you will find a lot of helpful information  there for background information. Don't hesitate to ask in our [Google Group](http://groups.google.com/group/gwt-platform) if you have questions related to GWTP's new features.
 
 ##Crawler
-The goal of the crawler module is to make your AJAX application crawlable from any search engines supporting [Google's proposed approach](https://developers.google.com/webmasters/ajax-crawling/docs/learn-more?hl=fr). It uses a simple filter to access the crawler service described below. The crawler filter can be used on AppEngine or with any other servlet container.
+The goal of the crawler module is to make your AJAX application crawlable from any search engines supporting [Google's proposed approach](https://www.youtube.com/watch?v=PDuhR18-EdM). It uses a simple filter to access the crawler service described below. The crawler filter can be used on AppEngine or with any other servlet container.
 
 ##Crawler Service
 The crawler service is a simple implementation of a service that can render AJAX pages. It is designed to run on AppEngine but can be called by your application even if it runs on another servlet container. It is meant to be called by the crawler filter described above.
