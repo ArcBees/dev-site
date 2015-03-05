@@ -74,7 +74,7 @@ In addition, **GWTP** offers components that let you:
 * To learn more about these components, check out the LibraryOverview.
 
 ##Notes
-See the [GettingStarted](https://github.com/ArcBees/GWTP/wiki/Getting-started) page for details. You can also get plenty of support from developers and fellow users
+See the [Getting Started](http://dev.arcbees.com/gwtp/basicfeatures/Getting-started.html) page for details. You can also get plenty of support from developers and fellow users
 in the [Forum](https://groups.google.com/forum/?fromgroups#!forum/gwt-platform), cheer for us on [ohloh](https://www.ohloh.net/p/gwt-platform), or follow us on [Google+](https://plus.google.com/communities/113139554133824081251)!
 
 **GWTP** is a fork of gwt-dispatch and gwt-presenter, many thanks to the original authors of these packages. If you're used to gwt-presenter, you might like to see how it compares to **GWTP**.
