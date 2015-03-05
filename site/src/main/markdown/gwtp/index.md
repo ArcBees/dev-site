@@ -13,6 +13,7 @@
 https://github.com/growbit
 
 ##News
+* 01/12/2015 - GWTP 1.4 was released
 * 08/25/2014 - GWTP 1.3.1 was released
 * 08/04/2014 - GWTP 1.3 was released
 * 03/06/2014 - GWTP 1.2.1 was released
