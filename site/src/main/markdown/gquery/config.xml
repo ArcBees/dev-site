@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder href="index"
+        displayName="Getting Started"
+        title="GQuery"
+        description="GQuery"
+        style="gquery">
+    <toc>
+        <entries>
+            <entry name="index" title="Overview" displayName="Overview"></entry>
+            <entry name="ajax" title="Ajax" displayName="Ajax"></entry>
+            <entry name="download" title="Download" displayName="Download"></entry>
+            <entry name="contributing" title="How to contribute" displayName="How to contribute"></entry>
+            <entry name="creating-apps" title="Creating applications" displayName="Creating applications"></entry>
+            <entry name="css-guide" title="CSS guide" displayName="CSS Guide"></entry>
+            <entry name="data-binding" title="Data binding" displayName="Data binding"></entry>
+            <entry name="cookbook" title="GQuery Cookbook" displayName="GQuery Cookbook"></entry>
+            <entry name="issues" title="Issues" displayName="Issues"></entry>
+            <entry name="jsquery" title="JsQuery" displayName="JsQuery"></entry>
+            <entry name="promises" title="Promise" displayName="Promise"></entry>
+            <entry name="roadmap" title="Road map" displayName="Road map"></entry>
+            <entry name="sources" title="Sources" displayName="Sources"></entry>
+            <entry name="snapshot" title="Snapshots" displayName="Snapshots"></entry>
+            <entry name="plugins" title="Plugins" displayName="Plugins"></entry>
+        </entries>
+    </toc>
+</folder>
