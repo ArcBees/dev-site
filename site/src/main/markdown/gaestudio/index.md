@@ -55,7 +55,7 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 * In the **maven-war-plugin** configuration, add :
 
         <packagingExcludes>
-            %regex[.*?gae-studio-${gae-studio.version}.*],**/gaestudio/**
+            %regex[.*?gae-studio-${gae-studio.version}.*],**/gaestudio/**, *.war, *.war/**
         </packagingExcludes>
 * Add the **appengine-maven-plugin** if you're not already using it
 
@@ -95,15 +95,16 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                             <version>5</version>
                             <generateApplicationXml>false</generateApplicationXml>
                             <defaultLibBundleDir>lib</defaultLibBundleDir>
-                            <packagingIncludes>
-                                META-INF/**, %regex[.*?\.war/.*]
-                            </packagingIncludes>
+                            <packagingIncludes>META-INF/**, %regex[.*?\.war/.*]</packagingIncludes>
+                            <packagingExcludes>
+                                *.war/*.war/**
+                            </packagingExcludes>
                             <unpackTypes>war</unpackTypes>
                         </configuration>
-                        
+
                         <executions>
                             <execution>
-                                <phase>package</phase>
+                                <phase>install</phase>
                                 <goals>
                                     <goal>ear</goal>
                                 </goals>
