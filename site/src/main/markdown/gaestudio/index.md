@@ -109,7 +109,6 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                     <groupId>com.arcbees.gaestudio</groupId>
                     <artifactId>gae-studio</artifactId>
                     <version>${gae-studio.version}</version>
-                    <classifier>module</classifier>
                     <type>war</type>
                 </dependency>
 
