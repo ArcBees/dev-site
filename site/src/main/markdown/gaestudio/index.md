@@ -100,6 +100,15 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                             </packagingIncludes>
                             <unpackTypes>war</unpackTypes>
                         </configuration>
+                        
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>ear</goal>
+                                </goals>
+                            </execution>
+                        </executions>
                     </plugin>
                 </plugins>
             </build>
