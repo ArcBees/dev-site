@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder title="Universal Analytics"
+        href="index"
+        description="Universal Analytics">
+    <toc>
+        <entries>
+            <entry name="index" title="Arcbees Universal Analytics" displayName="Arcbees Universal Analytics"></entry>
+            <entry name="setup" title="Universal Analytics Setup" displayName="Universal Analytics Setup"></entry>
+            <entry name="usage" title="Basic Usage" displayName="Basic Usage"></entry>
+            <entry name="server" title="Using Analytics on the Server" displayName="Using Analytics on the Server"></entry>
+            <entry name="timing" title="Tracking App Speed (Timing Events)" displayName="Tracking App Speed (Timing Events)"></entry>
+            <entry name="plugins" title="Plugins" displayName="Plugins"></entry>
+            <entry name="fallback" title="Using a Fallback Server" displayName="Using a Fallback Server"></entry>
+        </entries>
+    </toc>
+</folder>
