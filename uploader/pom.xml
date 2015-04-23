@@ -1,87 +1,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.google.gwt.site</groupId>
+
+    <parent>
+        <groupId>com.arcbees.website.dev</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
     <artifactId>uploader</artifactId>
-    <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven-checkstyle-plugin.version>2.13</maven-checkstyle-plugin.version>
-        <checkstyle.version>6.0</checkstyle.version>
-        <build-tools.version>1.0-SNAPSHOT</build-tools.version>
-        <jdk.version>1.7</jdk.version>
+        <appengine.credentials>credentials</appengine.credentials>
+        <directory.unpack>arcbees-markdown-unpack</directory.unpack>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>com.google.gwt.site</groupId>
-            <artifactId>gwt-site</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.arcbees.website.dev</groupId>
+            <artifactId>markdown</artifactId>
+            <version>${project.version}</version>
             <type>zip</type>
             <classifier>generated-site</classifier>
         </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>14.0.1</version>
-        </dependency>
+
+        <!-- Compile dependencies -->
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>1.7.6</version>
         </dependency>
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-tools-sdk</artifactId>
-            <version>1.7.6</version>
         </dependency>
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-remote-api</artifactId>
-            <version>1.6.1</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20090211</version>
         </dependency>
+
+        <!-- Test dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.arcbees</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>${build-tools.version}</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -89,18 +65,8 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <version>2.5.1</version>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.7</version>
+
                 <executions>
                     <execution>
                         <id>unpack-dependencies</id>
@@ -108,54 +74,12 @@
                         <goals>
                             <goal>unpack-dependencies</goal>
                         </goals>
+
                         <configuration>
-                            <includeGroupIds>com.google.gwt.site</includeGroupIds>
-                            <includeArtifactIds>gwt-site</includeArtifactIds>
-                            <outputDirectory>${project.build.directory}/gwt-site-unpack</outputDirectory>
+                            <includeGroupIds>${project.groupId}</includeGroupIds>
+                            <includeArtifactIds>markdown</includeArtifactIds>
+                            <outputDirectory>${project.build.directory}/${directory.unpack}</outputDirectory>
                         </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven-checkstyle-plugin.version}</version>
-
-                <configuration>
-                    <configLocation>/checkstyle.xml</configLocation>
-                    <suppressionsLocation>/suppressions.xml</suppressionsLocation>
-                    <cacheFile>target/checkstyle-cachefile</cacheFile>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <linkXRef>false</linkXRef>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.arcbees</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${build-tools.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${checkstyle.version}</version>
-                        <exclusions>
-                            <exclusion>
-                                <groupId>com.sun</groupId>
-                                <artifactId>tools</artifactId>
-                            </exclusion>
-                        </exclusions>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>checkstyle</goal>
-                        </goals>
                     </execution>
                 </executions>
             </plugin>
@@ -163,8 +87,31 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.1.1</version>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>upload</id>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+
+                        <configuration>
+                            <mainClass>com.google.gwt.site.uploader.Uploader</mainClass>
+
+                            <arguments>
+                                <argument>${project.build.directory}/${directory.unpack}</argument>
+                                <argument>${appengine.credentials}</argument>
+                            </arguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

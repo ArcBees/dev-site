@@ -1,161 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.google.gwt.site.webapp</groupId>
-    <artifactId>gwt-site-webapp</artifactId>
-    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>com.arcbees.website.dev</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>webapp</artifactId>
     <packaging>war</packaging>
 
     <properties>
         <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
-        <appengine.app.version>${maven.build.timestamp}</appengine.app.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <appengine.target.version>1.9.17</appengine.target.version>
-        <json.version>20140107</json.version>
-        <commons-codec.version>1.9</commons-codec.version>
-        <checkstyle.version>6.0</checkstyle.version>
-        <build-tools.version>1.0-SNAPSHOT</build-tools.version>
-
-        <!-- javax -->
-        <servlet.version>2.5</servlet.version>
-        <universal-analytics.version>2.1</universal-analytics.version>
-
-        <gwt.version>2.7.0</gwt.version>
-        <gwtquery.version>1.4.2</gwtquery.version>
-
-        <!-- Demos -->
-        <gsss.version>1.0-SNAPSHOT</gsss.version>
-        <guava.version>18.0</guava.version>
-
-        <junit.version>4.11</junit.version>
-
-        <!-- plugin -->
-        <surefire-plugin.version>2.17</surefire-plugin.version>
-        <compiler-plugin.version>3.1</compiler-plugin.version>
-        <war-plugin.version>2.5</war-plugin.version>
-        <eclipse-plugin.version>2.9</eclipse-plugin.version>
-        <appengine.plugin.version>1.9.17</appengine.plugin.version>
-        <maven-checkstyle-plugin.version>2.13</maven-checkstyle-plugin.version>
-
-        <jdk.version>1.7</jdk.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencies>
-        <!-- Compile/runtime dependencies -->
+        <dependency>
+            <groupId>com.arcbees.website.dev</groupId>
+            <artifactId>markdown</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+            <classifier>generated-site</classifier>
+        </dependency>
+
+        <!-- Compile dependencies -->
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>${appengine.target.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>${servlet.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>${json.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>${commons-codec.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject.extensions</groupId>
             <artifactId>guice-servlet</artifactId>
-            <version>3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+        </dependency>
+
+        <!-- Provided dependencies -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-gwt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.gwtquery</groupId>
+            <artifactId>gwtquery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.arcbees.gss</groupId>
+            <artifactId>gsss</artifactId>
         </dependency>
         <dependency>
             <groupId>com.arcbees.analytics</groupId>
             <artifactId>universal-analytics</artifactId>
-            <version>${universal-analytics.version}</version>
         </dependency>
 
         <!-- Test Dependencies -->
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-testing</artifactId>
-            <version>${appengine.target.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-stubs</artifactId>
-            <version>${appengine.target.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- UI dependencies -->
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <version>${gwt.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.gwtquery</groupId>
-            <artifactId>gwtquery</artifactId>
-            <version>${gwtquery.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-dev</artifactId>
-            <version>${gwt.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt.site</groupId>
-            <artifactId>gwt-site</artifactId>
-            <version>${project.version}</version>
-            <type>zip</type>
-            <classifier>generated-site</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.arcbees</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>${build-tools.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- DEMO Dependencies -->
-        <!-- GSSS -->
-        <dependency>
-            <groupId>com.arcbees.gss</groupId>
-            <artifactId>gsss</artifactId>
-            <version>${gsss.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava-gwt</artifactId>
-            <version>${guava.version}</version>
         </dependency>
     </dependencies>
 
@@ -173,7 +102,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire-plugin.version}</version>
+
                 <configuration>
                     <excludes>
                         <exclude>**/*GwtTest.java</exclude>
@@ -183,20 +112,18 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${compiler-plugin.version}</version>
+                <artifactId>maven-deploy-plugin</artifactId>
+
                 <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
+                    <skip>true</skip>
                 </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>${war-plugin.version}</version>
+
                 <configuration>
-                    <!-- <archiveClasses>true</archiveClasses> -->
                     <webResources>
                         <!-- in order to interpolate version from pom into appengine-web.xml -->
                         <resource>
@@ -222,63 +149,31 @@
             </plugin>
 
             <plugin>
-                <groupId>com.google.appengine</groupId>
+                <groupId>com.arcbees.appengine</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
-                <version>${appengine.plugin.version}</version>
+
                 <configuration>
+                    <appId>${appengine.app.id}</appId>
                     <version>${appengine.app.version}</version>
                     <address>0.0.0.0</address>
                 </configuration>
-            </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>${eclipse-plugin.version}</version>
-                <configuration>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>false</downloadJavadocs>
-                    <buildOutputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes
-                    </buildOutputDirectory>
-                    <projectnatures>
-                        <projectnature>org.eclipse.jdt.core.javanature</projectnature>
-                        <projectnature>com.google.gdt.eclipse.core.webAppNature</projectnature>
-                        <nature>com.google.appengine.eclipse.core.gaeNature</nature>
-                        <nature>com.google.gwt.eclipse.core.gwtNature</nature>
-                    </projectnatures>
-                    <buildcommands>
-                        <buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
-                        <buildcommand>com.google.gdt.eclipse.core.webAppProjectValidator</buildcommand>
-                        <buildcommand>com.google.appengine.eclipse.core.projectValidator</buildcommand>
-                        <buildcommand>com.google.gwt.eclipse.core.gwtProjectValidator</buildcommand>
-                        <buildcommand>com.google.appengine.eclipse.core.enhancerbuilder</buildcommand>
-                    </buildcommands>
-                    <classpathContainers>
-                        <classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
-                        <classpathContainer>com.google.appengine.eclipse.core.GAE_CONTAINER</classpathContainer>
-                        <classpathContainer>com.google.gwt.eclipse.core.GWT_CONTAINER</classpathContainer>
-                    </classpathContainers>
-                    <excludes>
-                        <exclude>com.google.gwt:gwt-servlet</exclude>
-                        <exclude>com.google.gwt:gwt-user</exclude>
-                        <exclude>com.google.gwt:gwt-dev</exclude>
-                        <exclude>javax.validation:validation-api</exclude>
-                        <exclude>com.google.appengine:appengine-api-1.0-sdk</exclude>
-                        <exclude>com.google.appengine:appengine-api-stubs</exclude>
-                        <exclude>com.google.appengine:appengine-testing</exclude>
-                        <exclude>org.datanucleus:datanucleus-core</exclude>
-                        <exclude>org.datanucleus:datanucleus-enhancer</exclude>
-                        <exclude>org.datanucleus:datanucleus-jpa</exclude>
-                        <exclude>org.datanucleus:datanucleus-api-jdo</exclude>
-                        <exclude>com.google.appengine.orm:datanucleus-appengine</exclude>
-                    </excludes>
-                </configuration>
+                <executions>
+                    <execution>
+                        <id>update</id>
+                        <phase>deploy</phase>
+
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
-                <version>${gwt.version}</version>
+
                 <executions>
                     <execution>
                         <configuration>
@@ -286,13 +181,13 @@
                             <includes>**/*GwtTest.java</includes>
                             <mode>htmlunit</mode>
                             <gen>gen</gen>
-                            <extraJvmArgs>-Xss1024k -Xmx512M -XX:MaxPermSize=512m -Duser.language=en
-                                -Duser.country=US
+                            <extraJvmArgs>-Xss1024k -Xmx512M -XX:MaxPermSize=512m -Duser.language=en -Duser.country=US
                             </extraJvmArgs>
                             <saveSource>true</saveSource>
                             <module>com.google.gwt.site.webapp.GWTProject</module>
                             <style>OBF</style>
                         </configuration>
+
                         <goals>
                             <goal>compile</goal>
                             <goal>test</goal>
@@ -300,8 +195,11 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+
                 <executions>
                     <execution>
                         <id>unpack-dependencies</id>
@@ -309,17 +207,21 @@
                         <goals>
                             <goal>unpack-dependencies</goal>
                         </goals>
+
                         <configuration>
-                            <includeGroupIds>com.google.gwt.site</includeGroupIds>
-                            <includeArtifactIds>gwt-site</includeArtifactIds>
+                            <includeGroupIds>${project.groupId}</includeGroupIds>
+                            <includeArtifactIds>markdown</includeArtifactIds>
                             <excludeTransitive>true</excludeTransitive>
                             <outputDirectory>${project.build.directory}/www/</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
+
                 <executions>
                     <execution>
                         <id>copy-resources</id>
@@ -332,7 +234,7 @@
                             <resources>
                                 <resource>
                                     <directory>
-                                        ${project.build.directory}/${project.artifactId}-${project.version}/gwtproject/
+                                        ${project.build.directory}/${project.build.finalName}/gwtproject/
                                     </directory>
                                 </resource>
                             </resources>
@@ -340,48 +242,46 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven-checkstyle-plugin.version}</version>
-
-                <configuration>
-                    <configLocation>/checkstyle.xml</configLocation>
-                    <suppressionsLocation>/suppressions.xml</suppressionsLocation>
-                    <cacheFile>target/checkstyle-cachefile</cacheFile>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <linkXRef>false</linkXRef>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.arcbees</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${build-tools.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${checkstyle.version}</version>
-                        <exclusions>
-                            <exclusion>
-                                <groupId>com.sun</groupId>
-                                <artifactId>tools</artifactId>
-                            </exclusion>
-                        </exclusions>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>checkstyle</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>prod</id>
+
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <properties>
+                <appengine.app.id>docs-site</appengine.app.id>
+                <appengine.app.version>${maven.build.timestamp}</appengine.app.version>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>ci</id>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.arcbees.appengine</groupId>
+                        <artifactId>appengine-maven-plugin</artifactId>
+                        <configuration>
+                            <serverId>appengine-credentials</serverId>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>staging-gwtp</id>
+
+            <properties>
+                <appengine.app.id>doc-staging-gwtp</appengine.app.id>
+                <appengine.app.version>staging</appengine.app.version>
+            </properties>
+        </profile>
+    </profiles>
 </project>
