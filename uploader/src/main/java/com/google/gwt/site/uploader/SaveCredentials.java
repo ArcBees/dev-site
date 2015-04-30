@@ -48,23 +48,26 @@ public class SaveCredentials {
             System.exit(1);
         }
 
-        p("Please enter your gwtproject.org credentials.");
+        p("Please enter your dev.arcbees.com credentials.");
 
+        String appId;
         String email;
         String password;
 
         if (System.console() != null) {
+            appId = System.console().readLine("Application ID: ");
             email = System.console().readLine("Email: ");
             password = new String(System.console().readPassword("Password: "));
         } else  {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String[] strings = new String(reader.readLine().toCharArray()).split("#");
-            email = strings[0];
-            password = strings[1];
+            String[] strings = new String(reader.readLine().toCharArray()).split("#", 3);
+            appId = strings[0];
+            email = strings[1];
+            password = strings[2];
         }
 
         RemoteApiOptions options =
-                new RemoteApiOptions().server("docs-site.appspot.com", 443).credentials(email, password);
+                new RemoteApiOptions().server(appId + ".appspot.com", 443).credentials(email, password);
         RemoteApiInstaller installer = new RemoteApiInstaller();
         installer.install(options);
         // test the connection
