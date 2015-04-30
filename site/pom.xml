@@ -15,7 +15,7 @@
         <plexus-io.version>2.5</plexus-io.version>
 
         <jar-plugin.version>2.6</jar-plugin.version>
-        <jetty-maven-plugin.version>8.1.9.v20130131</jetty-maven-plugin.version>
+        <jetty-maven-plugin.version>9.2.10.v20150310</jetty-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -63,7 +63,7 @@
             <plugins>
                 <!-- Run site locally: mvn jetty:run -->
                 <plugin>
-                    <groupId>org.mortbay.jetty</groupId>
+                    <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
                     <version>${jetty-maven-plugin.version}</version>
 
