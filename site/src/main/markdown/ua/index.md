@@ -1,4 +1,4 @@
-# Universal Analytics
+# Overview
 
 Universal Analytics is a complete GWT wrapper for Google's Universal Analytics Library.
 

@@ -31,6 +31,6 @@ eg if your site is served from `www.example.com` you can setup your proxy at `an
 Then when installing analytics into your client gin module, set the fallback path to be an absolute url that matches the proxy address:
 
 ```
-    install(new AnalyticsModule.Builder("UA-XXXXXXXX-X").setFallbackPath("https:/analytics.www.example.com/collect").build());
+    install(new AnalyticsModule.Builder("UA-XXXXXXXX-X").setFallbackPath("https://analytics.www.example.com/collect").build());
 ```
 
