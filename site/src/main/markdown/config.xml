@@ -2,13 +2,13 @@
 <folder href="index" title="ArcBees" description="ArcBees DevSite">
     <toc>
         <entries>
-            <entry name="index" displayName="Home"></entry>
-            <entry name="gaestudio/" displayName="GAE Studio"></entry>
-            <entry name="gwtp/" displayName="GWTP"></entry>
-            <entry name="ua/" displayName="Universal Analytics"></entry>
-            <entry name="jukito/" displayName="Jukito"></entry>
-            <entry name="gquery/" displayName="GQuery"></entry>
-            <entry name="gsss/" displayName="GSS on Steroids"></entry>
+            <!--<entry name="index" displayName="Home"></entry>-->
+            <!--<entry name="gaestudio/" displayName="GAE Studio"></entry>-->
+            <!--<entry name="gwtp/" displayName="GWTP"></entry>-->
+            <!--<entry name="ua/" displayName="Universal Analytics"></entry>-->
+            <!--<entry name="jukito/" displayName="Jukito"></entry>-->
+            <!--<entry name="gquery/" displayName="GQuery"></entry>-->
+            <!--<entry name="gsss/" displayName="GSS on Steroids"></entry>-->
         </entries>
     </toc>
 </folder>

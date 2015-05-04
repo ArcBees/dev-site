@@ -46,12 +46,13 @@
                     <span>Developers platform</span>
                 </a>
             </li>
-            <li><a href="gaestudio/"/><i class="icon_gae"></i>GAE Studio</a></li>
             <li><a href="gwtp/"><i class="icon_gwtp"></i>GWTP</a></li>
-            <li><a href="jukito/"><i class="icon_jukito"></i>Jukito</a></li>
             <li><a href="gquery/" target="_blank"><i class="icon_gquery"></i>GQuery</a></li>
             <li><a href="http://arcbees.github.io/gwtchosen/" target="_blank"><i class="icon_chosen"></i>GWT-Chosen</a></li>
             <li><a href="gsss/mixins/"><i class="icon_gsss"></i>GSSS</a></li>
+            <li><a href="ua/">Universal Analytics</a></li>
+            <li><a href="jukito/"><i class="icon_jukito"></i>Jukito</a></li>
+            <li><a href="gaestudio/"/><i class="icon_gae"></i>GAE Studio</a></li>
             <li><a href="http://www.arcbees.com/#!/support">Support</a></li>
         </ul>
     </div>
