@@ -1,4 +1,4 @@
-# ReSourcess
+# Resources
 
 ## Community support {community-support}
 You can post your questions and get community support through a few platforms
