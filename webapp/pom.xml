@@ -180,7 +180,7 @@
                             <testTimeOut>180</testTimeOut>
                             <includes>**/*GwtTest.java</includes>
                             <mode>htmlunit</mode>
-                            <gen>gen</gen>
+                            <gen>target/gwt-generated</gen>
                             <extraJvmArgs>-Xss1024k -Xmx512M -XX:MaxPermSize=512m -Duser.language=en -Duser.country=US
                             </extraJvmArgs>
                             <saveSource>true</saveSource>

@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="assets/build/css/style.min.css">
     <link rel="stylesheet" href="assets/build/fonts/icons/icons.css">
     <link rel="stylesheet" href="assets/build/fonts/geometria/geometria.css">
-        <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
 
     <script type="text/javascript" src="/gwtproject/gwtproject.nocache.js"></script>
 </head>
@@ -47,6 +47,7 @@
                 </a>
             </li>
             <li><a href="gwtp/"><i class="icon_gwtp"></i>GWTP</a></li>
+            <li><a href="gwtp_v2/"><i class="icon_gwtp"></i>GWTP (v2)</a></li>
             <li><a href="gquery/" target="_blank"><i class="icon_gquery"></i>GQuery</a></li>
             <li><a href="http://arcbees.github.io/gwtchosen/" target="_blank"><i class="icon_chosen"></i>GWT-Chosen</a></li>
             <li><a href="gsss/mixins/"><i class="icon_gsss"></i>GSSS</a></li>

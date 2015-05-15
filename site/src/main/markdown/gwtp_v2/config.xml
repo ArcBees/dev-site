@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder href="index"
+        title="GWTP (v2)"
+        description="GWTP (v2)"
+        style="gwtp">
+    <toc>
+        <entries>
+            <entry name="index" title="Overview" displayName="Overview"/>
+            <entry name="advancedfeatures/" displayName="Advanced Features"/>
+            <entry name="resources/" displayName="Resources"/>
+        </entries>
+    </toc>
+</folder>
