@@ -35,4 +35,4 @@ In addition, **GWTP** offers optional components that let you:
 * Organize your internationalization strings.
 
 ##Notes
-**GWTP** is a fork of gwt-dispatch and gwt-presenter, many thanks to the original authors of these packages. If you're used to gwt-presenter, you might like to see how it compares to **GWTP**.
+**GWTP** is a fork of gwt-dispatch and gwt-presenter, many thanks to the original authors of these libraries. If you're used to gwt-presenter, you might like to see how it compares to **GWTP**.
