@@ -31,6 +31,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.google.gwt.site.markdown.Strings;
@@ -39,7 +41,7 @@ import com.google.gwt.site.markdown.TranslaterException;
 public class FileSystemTraverser {
     public static final String CONFIG_XML = "config.xml";
 
-    private static interface FieldAccessor<T> {
+    private interface FieldAccessor<T> {
         void setValue(T object, String value);
 
         String getValue(T object);
@@ -90,6 +92,28 @@ public class FileSystemTraverser {
         }
     };
 
+    private final DocumentBuilder builder;
+
+    public FileSystemTraverser() throws TranslaterException {
+        try {
+            builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            throw new TranslaterException("can not construct xml parser", e);
+        }
+
+        builder.setEntityResolver(new EntityResolver() {
+            @Override
+            public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+                if (systemId.contains("folder.dtd")) {
+                    return new InputSource(getClass().getResourceAsStream("/folder.dtd"));
+                } else {
+                    // Fallback to default behavior
+                    return null;
+                }
+            }
+        });
+    }
+
     public MDParent traverse(File file) throws TranslaterException {
         MDParent mdParent = traverse(null, file, 0, "");
         removeEmptyDirs(mdParent);
@@ -104,7 +128,7 @@ public class FileSystemTraverser {
             FolderConfig config = parseConfig(current.getConfigFile());
             current.setConfig(config);
 
-            if (config.getFolderHref() != null && !config.getFolderHref().trim().equals("")) {
+            if (config.getFolderHref() != null && !config.getFolderHref().trim().isEmpty()) {
                 current.setHref(config.getFolderHref());
             }
 
@@ -273,9 +297,7 @@ public class FileSystemTraverser {
     }
 
     private FolderConfig parseConfig(File file) throws TranslaterException {
-        DocumentBuilder builder;
         List<String> excludeList = new LinkedList<>();
-
         List<FolderConfig.Entry> folderEntries = new LinkedList<>();
 
         String displayName;
@@ -286,8 +308,6 @@ public class FileSystemTraverser {
         String logo;
 
         try {
-            builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-
             Document document = builder.parse(file);
             Element documentElement = document.getDocumentElement();
 
@@ -332,8 +352,6 @@ public class FileSystemTraverser {
                     }
                 }
             }
-        } catch (ParserConfigurationException e) {
-            throw new TranslaterException("can not construct xml parser", e);
         } catch (SAXException e) {
             throw new TranslaterException("error while parsing xml", e);
         } catch (IOException e) {

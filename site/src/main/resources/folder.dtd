@@ -19,7 +19,7 @@
 <!ELEMENT entries (entry*)>
 <!ELEMENT entry (entry*)>
 <!ATTLIST entry
-        name CDATA #IMPLIED
+        name CDATA #REQUIRED
         displayName CDATA #IMPLIED
         title CDATA #IMPLIED
         description CDATA #IMPLIED

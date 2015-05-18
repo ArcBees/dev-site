@@ -27,22 +27,24 @@ import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
 
 public class MDTranslater {
     private static final String SEPARATOR = File.separator;
-    private static final String GITHUB_URL = "https://github.com/arcbees/dev-site/edit/master/site/";
 
     private final MarkdownToHtmlUtil markdownToHtmlUtil = new MarkdownToHtmlUtil();
     private final TocCreator tocCreator;
     private final MarkupWriter writer;
     private final String template;
+    private final String editRootUrl;
     private final VelocityWrapperFactory velocityFactory;
 
     public MDTranslater(
             TocCreator tocCreator,
             MarkupWriter writer,
             String template,
+            String editRootUrl,
             VelocityWrapperFactory velocityFactory) {
         this.tocCreator = tocCreator;
         this.writer = writer;
         this.template = template;
+        this.editRootUrl = editRootUrl;
         this.velocityFactory = velocityFactory;
     }
 
@@ -89,10 +91,7 @@ public class MDTranslater {
         return node.getPath().endsWith(".md");
     }
 
-    private String fillTemplate(
-            String html,
-            String toc,
-            MDNode node) {
+    private String fillTemplate(String html, String toc, MDNode node) {
         VelocityWrapper velocityWrapper = velocityFactory.create(template);
 
         velocityWrapper.put("content", html);
@@ -104,9 +103,13 @@ public class MDTranslater {
     }
 
     private String getEditUrl(String path) {
+        if (editRootUrl == null) {
+            return null;
+        }
+
         int index = path.indexOf(SEPARATOR + "src" + SEPARATOR);
-        return "<a class=\"icon_editGithub\" href=\"" + GITHUB_URL
-                + path.substring(index + 1).replace(SEPARATOR, "/") + "\"></a>";
+        String url = path.substring(index + 1).replace(SEPARATOR, "/");
+        return "<a class=\"icon_editGithub\" href=\"" + editRootUrl + url + "\"></a>";
     }
 
     protected String adjustRelativePath(String html, String relativePath) {

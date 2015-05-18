@@ -2,7 +2,6 @@
 <!DOCTYPE folder SYSTEM "folder.dtd">
 <folder href="index"
         title="GWTP (v2)"
-        description="GWTP (v2)"
         style="gwtp">
     <toc>
         <entries>

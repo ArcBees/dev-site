@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE folder SYSTEM "folder.dtd">
-<folder title="GWTP"
-        href="Crawler-Support"
-        description="GWTP">
+<folder title="Advanced Features">
     <toc>
         <entries>
-            <entry name="Crawler-Support" title="Crawler Support" displayName="Crawler Support"/>
+            <entry name="index" title="Crawler Support" displayName="Crawler Support"/>
         </entries>
     </toc>
 </folder>

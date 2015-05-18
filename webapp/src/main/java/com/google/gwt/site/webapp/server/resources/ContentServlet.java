@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.codec.binary.Base64;
+
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -32,8 +34,7 @@ public class ContentServlet extends HttpServlet {
     private static final long serialVersionUID = 458719890608890896L;
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
-            IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String fullPath = normalizePath(req.getRequestURI());
 
@@ -60,8 +61,7 @@ public class ContentServlet extends HttpServlet {
         setContentTypeByFileEnding(resp, fullPath);
 
         if (isBinaryFile(fullPath)) {
-            byte[] decodeBase64 =
-                    org.apache.commons.codec.binary.Base64.decodeBase64(html.getBytes("UTF-8"));
+            byte[] decodeBase64 = Base64.decodeBase64(html.getBytes("UTF-8"));
             resp.getOutputStream().write(decodeBase64);
         } else {
             resp.getWriter().write(html);

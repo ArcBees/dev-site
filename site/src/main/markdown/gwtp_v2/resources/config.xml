@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE folder SYSTEM "folder.dtd">
-<folder>
+<folder title="Resources">
     <toc>
         <entries>
             <entry name="" displayName="Community Support"/>
             <entry name="#plugins" displayName="IDE Plugins"/>
             <entry name="#samples" displayName="Samples"/>
             <entry name="#release-notes" displayName="Release notes"/>
-            <entry name="#migration-guides" displayName="Migration Guides">
+            <entry name="#migration" displayName="Migration Guides">
                 <entry name="Migrating-from-07-to-10" title="Migrating from v. 0.7 to 1.0"
                         displayName="Migrating from v. 0.7 to 1.0"/>
                 <entry name="Migrating-from-11-to-12" title="Migrating from v. 1.1 to 1.2"

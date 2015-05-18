@@ -14,10 +14,6 @@
 package com.google.gwt.site.markdown;
 
 public class MDHelperException extends Exception {
-
-    /**
-     *
-     */
     private static final long serialVersionUID = 5455100230668917919L;
 
     public MDHelperException(String string) {
