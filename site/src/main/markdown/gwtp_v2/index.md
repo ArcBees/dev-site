@@ -29,8 +29,8 @@ The goal of **GWTP** is to offer an *easy-to-use MVP architecture* with *minimal
 
 In addition, **GWTP** offers optional components that let you:
 
-* Easily communicate with server-side code, leveraging gwt-RPC and allowing you to use a powerful  command pattern;
-* Simplify the use of web APIs with a library following javax standards (JSR-311);
+* Easily communicate with server-side code, leveraging [GWT-RPC](http://www.gwtproject.org/doc/latest/tutorial/RPC.html) and allowing you to use a powerful command pattern;
+* Simplify the use of web APIs with a library following javax standards ([JSR-311](https://jax-rs-spec.java.net/));
 * Nicely support search-engine crawling on your GWT application;
 * Organize your internationalization strings.
 
