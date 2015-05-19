@@ -19,18 +19,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.io.IOUtils;
 
 public class HashCalculatorSha1Impl implements HashCalculator {
-
     @Override
     public String calculateHash(File file) throws IOException {
-        FileInputStream fis = null;
-        try {
-            fis = new FileInputStream(file);
+        try (FileInputStream fis = new FileInputStream(file)) {
             return DigestUtils.sha1Hex(fis);
-        } finally {
-            IOUtils.closeQuietly(fis);
         }
     }
 }
