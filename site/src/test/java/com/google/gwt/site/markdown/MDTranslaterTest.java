@@ -35,7 +35,7 @@ public class MDTranslaterTest {
 
     @Test
     public void testAdjustRelativePath() throws Exception {
-        MDTranslater mdt = new MDTranslater(null, null, null, null);
+        MDTranslater mdt = new MDTranslater(null, null, null, null, null);
 
         // empty url
         assertAdjustUrl(mdt, "../", "a", "href", "", "../");

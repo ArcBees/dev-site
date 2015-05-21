@@ -15,13 +15,12 @@
 package com.google.gwt.site.uploader;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
 import java.util.List;
 
-import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -141,7 +140,7 @@ public class ResourceUploaderTest {
         List<Entity> entities = argumentCaptor.getAllValues();
 
         Assert.assertSame(key1, entities.get(0).getKey());
-        Assert.assertEquals(IOUtils.toString(new FileInputStream(file)),
+        Assert.assertEquals(new String(Files.readAllBytes(file.toPath())),
                 ((Text) entities.get(0).getProperty("html")).getValue());
 
         Assert.assertSame(key2, entities.get(1).getKey());

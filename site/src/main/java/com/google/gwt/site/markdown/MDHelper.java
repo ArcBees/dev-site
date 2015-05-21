@@ -28,94 +28,109 @@ import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
 public class MDHelper {
     private String sourceDirectory;
     private String outputDirectory;
-
     private String templateFile;
     private String templateTocFile;
+    private String editRootUrl;
 
-    private boolean created = false;
-    private File sourceDirectoryFile;
-    private File outputDirectoryFile;
-    private String templateToc;
     private MarkdownToHtmlUtil markdownToHtmlUtil;
+    private File sourceDirectoryFile;
+    private MDTranslater translater;
 
     public MDHelper(MarkdownToHtmlUtil markdownToHtmlUtil) {
         this.markdownToHtmlUtil = markdownToHtmlUtil;
     }
 
     public MDHelper setSourceDirectory(String sourceDirectory) {
-        this.sourceDirectory = sourceDirectory;
+        this.sourceDirectory = Strings.emptyToNull(sourceDirectory);
         return this;
     }
 
     public MDHelper setOutputDirectory(String outputDirectory) {
-        this.outputDirectory = outputDirectory;
+        this.outputDirectory = Strings.emptyToNull(outputDirectory);
         return this;
     }
 
     public MDHelper setTemplateFile(String templateFile) {
-        this.templateFile = templateFile;
+        this.templateFile = Strings.emptyToNull(templateFile);
+        return this;
+    }
+
+    public MDHelper setEditRootUrl(String editRootUrl) {
+        this.editRootUrl = Strings.emptyToNull(editRootUrl);
         return this;
     }
 
     public MDHelper setTemplateToc(String templateTocFile) {
-        this.templateTocFile = templateTocFile;
+        this.templateTocFile = Strings.emptyToNull(templateTocFile);
         return this;
     }
 
     public MDHelper create() throws MDHelperException {
-        // Source dir
+        sourceDirectoryFile = validateSourceDirectory();
+        File outputDirectoryFile = validateOutputDirectory();
+        validateTemplate();
+        TocCreator tocCreator = validateTocTemplate();
+
+        MarkupWriter writer = new MarkupWriter(outputDirectoryFile);
+        VelocityWrapperFactory velocityFactory = new VelocityWrapperFactory(new VelocityEngineProvider());
+
+        translater = new MDTranslater(tocCreator, writer, templateFile, editRootUrl, velocityFactory);
+
+        return this;
+    }
+
+    private File validateSourceDirectory() throws MDHelperException {
         if (sourceDirectory == null) {
             throw new MDHelperException("no sourceDirectory set");
         }
-        sourceDirectoryFile = new File(sourceDirectory);
+        File directory = new File(sourceDirectory);
 
-        if (!sourceDirectoryFile.exists()) {
+        if (!directory.exists()) {
             throw new MDHelperException("sourceDirectory ('" + sourceDirectory + "') does not exist");
         }
-
-        if (!sourceDirectoryFile.isDirectory()) {
+        if (!directory.isDirectory()) {
             throw new MDHelperException("sourceDirectory ('" + sourceDirectory + "') is no directory");
         }
-
-        if (!sourceDirectoryFile.canRead()) {
-            throw new MDHelperException(
-                    "sourceDirectory ('" + sourceDirectory + "') can not read source directory");
+        if (!directory.canRead()) {
+            throw new MDHelperException("sourceDirectory ('" + sourceDirectory + "') can not read source directory");
         }
 
-        // output dir
+        return directory;
+    }
+
+    private File validateOutputDirectory() throws MDHelperException {
         if (outputDirectory == null) {
             throw new MDHelperException("no outputDirectory set");
         }
-        outputDirectoryFile = new File(outputDirectory);
-        if (!outputDirectoryFile.exists()) {
-            if (!outputDirectoryFile.mkdirs()) {
-                throw new MDHelperException(
-                        "outputDirectory ('" + outputDirectoryFile + "') can not be created");
-            }
+        File directory = new File(outputDirectory);
+
+        if (!directory.exists() && !directory.mkdirs()) {
+            throw new MDHelperException("outputDirectory ('" + directory + "') can not be created");
+        }
+        if (!directory.isDirectory()) {
+            throw new MDHelperException("outputDirectory ('" + directory + "') is no directory");
+        }
+        if (!directory.canWrite()) {
+            throw new MDHelperException("outputDirectory ('" + directory + "') can not write to output directory");
         }
 
-        if (!outputDirectoryFile.isDirectory()) {
-            throw new MDHelperException(
-                    "outputDirectory ('" + outputDirectoryFile + "') is no directory");
-        }
+        return directory;
+    }
 
-        if (!outputDirectoryFile.canWrite()) {
-            throw new MDHelperException(
-                    "outputDirectory ('" + outputDirectoryFile + "') can not write to output directory");
-        }
-
-        // read template
+    private void validateTemplate() throws MDHelperException {
         if (templateFile == null) {
             throw new MDHelperException("no templateFile set");
         }
+    }
 
-        // read template TOC if parameter is provided
+    private TocCreator validateTocTemplate() throws MDHelperException {
         if (templateTocFile != null) {
-            templateToc = markdownToHtmlUtil.toHtml(readFile(templateTocFile));
+            String templateToc = markdownToHtmlUtil.toHtml(readFile(templateTocFile));
+
+            return new TocFromTemplateCreator(templateToc);
         }
 
-        created = true;
-        return this;
+        return new TocFromMdCreator();
     }
 
     private String readFile(String filePath) throws MDHelperException {
@@ -128,20 +143,13 @@ public class MDHelper {
     }
 
     public void translate() throws TranslaterException {
-
-        if (!created) {
+        if (translater == null) {
             throw new IllegalStateException();
         }
 
         FileSystemTraverser traverser = new FileSystemTraverser();
         MDParent mdRoot = traverser.traverse(sourceDirectoryFile);
 
-        TocCreator tocCreator = templateToc != null ? new TocFromTemplateCreator(templateToc) : new TocFromMdCreator();
-
-        new MDTranslater(tocCreator,
-                new MarkupWriter(outputDirectoryFile),
-                templateFile,
-                new VelocityWrapperFactory(new VelocityEngineProvider()))
-                .render(mdRoot);
+        translater.render(mdRoot);
     }
 }

@@ -14,40 +14,62 @@
 
 package com.google.gwt.site.markdown;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+
 import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
 
 public class MarkDown {
+    private static final Options OPTIONS = new Options();
+    private static final String HELP = "help";
+    private static final String SOURCE = "source";
+    private static final String OUTPUT = "output";
+    private static final String TEMPLATE = "template";
+    private static final String EDIT_URL = "edit-url";
+    private static final String TEMPLATE_TOC = "template-toc";
 
-    public static void main(String[] args) throws MDHelperException, TranslaterException {
+    static {
+        OPTIONS.addOption(Option.builder("s").required().hasArg().longOpt(SOURCE).desc("Source directory").build());
+        OPTIONS.addOption(Option.builder("o").required().hasArg().longOpt(OUTPUT).desc("Output directory").build());
+        OPTIONS.addOption(Option.builder("t").required().hasArg().longOpt(TEMPLATE).desc("Template file").build());
+        OPTIONS.addOption(Option.builder("e").hasArg().longOpt(EDIT_URL).desc("Edit root URL").build());
+        OPTIONS.addOption(Option.builder("c").hasArg().longOpt(TEMPLATE_TOC).desc("Template TOC file").build());
+        OPTIONS.addOption(Option.builder("h").longOpt(HELP).desc("help").build());
+    }
 
-        if (args.length < 3) {
-            System.out.println("Usage MarkDown <sourceDir> <outputDir> <templateFile> [templateTOC]");
-            throw new IllegalArgumentException("Usage MarkDown <sourceDir> <outputDir> <templateFile> [templateTOC]");
+    public static void main(String[] args) throws MDHelperException, TranslaterException, ParseException {
+        CommandLine commandLine = parseArgs(args);
+
+        if (commandLine.hasOption(HELP)) {
+            printHelp();
+        } else {
+            translateMarkDown(commandLine);
         }
+    }
 
-        String sourceDir = args[0];
-        System.out.println("source directory: '" + sourceDir + "'");
+    private static CommandLine parseArgs(String[] args) throws ParseException {
+        CommandLineParser parser = new DefaultParser();
+        return parser.parse(OPTIONS, args);
+    }
 
-        String outputDir = args[1];
-        System.out.println("output directory: '" + outputDir + "'");
+    private static void printHelp() {
+        new HelpFormatter().printHelp(MarkDown.class.getSimpleName(), OPTIONS);
+    }
 
-        String templateFile = args[2];
-        System.out.println("template file: '" + templateFile + "'");
-
-        String templateToc = args.length > 3 ? args[3] : null;
-        System.out.println("template TOC file: '" + templateToc + "'");
-
+    private static void translateMarkDown(CommandLine commandLine) throws TranslaterException, MDHelperException {
         MDHelper helper = new MDHelper(new MarkdownToHtmlUtil());
-        try {
-            helper.setOutputDirectory(outputDir)
-                    .setSourceDirectory(sourceDir)
-                    .setTemplateFile(templateFile)
-                    .setTemplateToc(templateToc)
-                    .create()
-                    .translate();
-        } catch (MDHelperException | TranslaterException e) {
-            e.printStackTrace();
-            throw e;
-        }
+
+        helper.setOutputDirectory(commandLine.getOptionValue(OUTPUT))
+                .setSourceDirectory(commandLine.getOptionValue(SOURCE))
+                .setTemplateFile(commandLine.getOptionValue(TEMPLATE))
+                .setTemplateToc(commandLine.getOptionValue(TEMPLATE_TOC))
+                .setEditRootUrl(commandLine.getOptionValue(EDIT_URL))
+                .create()
+                .translate();
     }
 }

@@ -1,0 +1,26 @@
+<!ELEMENT folder (toc?)>
+<!ATTLIST folder
+        displayName CDATA #IMPLIED
+        href CDATA #IMPLIED
+        title CDATA #IMPLIED
+        description CDATA #IMPLIED
+        style CDATA #IMPLIED
+        logo CDATA #IMPLIED
+>
+
+<!ELEMENT toc (
+        (entries?,excludes?) |
+        (excludes?,entries?)
+)>
+
+<!ELEMENT excludes (exclude*)>
+<!ELEMENT exclude (#PCDATA)>
+
+<!ELEMENT entries (entry*)>
+<!ELEMENT entry (entry*)>
+<!ATTLIST entry
+        name CDATA #REQUIRED
+        displayName CDATA #IMPLIED
+        title CDATA #IMPLIED
+        description CDATA #IMPLIED
+>

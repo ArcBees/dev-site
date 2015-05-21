@@ -15,19 +15,18 @@
 package com.google.gwt.site.uploader;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,16 +39,15 @@ import com.google.appengine.api.datastore.Text;
 import com.google.appengine.repackaged.com.google.api.client.util.Base64;
 import com.google.appengine.tools.remoteapi.RemoteApiInstaller;
 import com.google.appengine.tools.remoteapi.RemoteApiOptions;
+import com.google.common.io.ByteStreams;
 import com.google.gwt.site.uploader.model.Resource;
 
 public class ResourceUploaderAppEngineImpl implements ResourceUploader {
-
     interface KeyProvider {
-        public Key createKey(String kind, String name);
+        Key createKey(String kind, String name);
     }
 
     public static class KeyProviderImpl implements KeyProvider {
-
         @Override
         public Key createKey(String kind, String name) {
             return KeyFactory.createKey(kind, name);
@@ -75,7 +73,6 @@ public class ResourceUploaderAppEngineImpl implements ResourceUploader {
 
     @Override
     public void uploadResource(String key, String hash, File data) throws IOException {
-
         throwIfNotInitialized();
 
         if (logger.isLoggable(Level.FINE)) {
@@ -83,31 +80,25 @@ public class ResourceUploaderAppEngineImpl implements ResourceUploader {
         }
 
         Entity entityModel = new Entity(keyProvider.createKey(DOC_MODEL, key));
-
         Entity entityHash = new Entity(keyProvider.createKey(DOC_HASH, key));
 
-        FileInputStream fileInputStream = null;
-        try {
-            String text = null;
-            fileInputStream = new FileInputStream(data);
-            if (isBinaryFile(key)) {
-                byte[] byteArray = IOUtils.toByteArray(fileInputStream);
-                text = Base64.encodeBase64String(byteArray);
-            } else {
-                text = IOUtils.toString(fileInputStream, "UTF-8");
-            }
+        byte[] bytes = Files.readAllBytes(data.toPath());
 
-            entityModel.setProperty("html", new Text(text));
-            entityHash.setProperty("hash", hash);
-
-            // following two puts are not transactional. first put content, then hash.
-            // in case the hash value would be put first and something goes wrong before
-            // putting the content, the updated content will be lost
-            ds.put(entityModel);
-            ds.put(entityHash);
-        } finally {
-            IOUtils.closeQuietly(fileInputStream);
+        String text;
+        if (isBinaryFile(key)) {
+            text = Base64.encodeBase64String(bytes);
+        } else {
+            text = new String(bytes, "UTF-8");
         }
+
+        entityModel.setProperty("html", new Text(text));
+        entityHash.setProperty("hash", hash);
+
+        // following two puts are not transactional. first put content, then hash.
+        // in case the hash value would be put first and something goes wrong before
+        // putting the content, the updated content will be lost
+        ds.put(entityModel);
+        ds.put(entityHash);
     }
 
     @Override
@@ -140,8 +131,6 @@ public class ResourceUploaderAppEngineImpl implements ResourceUploader {
             } catch (MalformedURLException | ProtocolException e) {
                 logger.log(Level.SEVERE, "error building url", e);
                 throw new IOException("error building url", e);
-            } catch (IOException e) {
-                throw e;
             } catch (JSONException e) {
                 logger.log(Level.SEVERE, "error parsing json", e);
                 throw new IOException("error parsing json", e);
@@ -165,11 +154,11 @@ public class ResourceUploaderAppEngineImpl implements ResourceUploader {
         return hashes;
     }
 
-    private String getJsonFromServer(List<Resource> hashes) throws MalformedURLException,
-            IOException, ProtocolException {
+    private String getJsonFromServer(List<Resource> hashes) throws IOException {
         String urlString = buildUrl(hashes.size());
 
         URL url = new URL(urlString);
+
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
 
@@ -177,8 +166,11 @@ public class ResourceUploaderAppEngineImpl implements ResourceUploader {
             throw new IOException("Failed : HTTP error code : " + conn.getResponseCode());
         }
 
-        InputStream inputStream = conn.getInputStream();
-        String data = IOUtils.toString(inputStream);
+        String data;
+        try (InputStream inputStream = conn.getInputStream()) {
+            data = new String(ByteStreams.toByteArray(inputStream));
+        }
+
         conn.disconnect();
         return data;
     }

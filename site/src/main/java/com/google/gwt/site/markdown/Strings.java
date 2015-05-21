@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2014 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -21,7 +21,11 @@ public class Strings {
         return value == null ? "" : value;
     }
 
+    public static String emptyToNull(String editRootUrl) {
+        return isNullOrEmpty(editRootUrl) ? null : editRootUrl.trim();
+    }
+
     public static boolean isNullOrEmpty(String string) {
-        return string == null || string.isEmpty();
+        return string == null || string.trim().isEmpty();
     }
 }
