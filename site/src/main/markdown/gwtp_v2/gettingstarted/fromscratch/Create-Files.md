@@ -95,8 +95,8 @@ public class ClientModule extends AbstractPresenterModule {
 ```
 
 > *Note*: Your IDE will likely tell you that *ApplicationModule* does not exist. Don't worry, we are going to create it soon.
-> *Note*: Even if you don't have an error place or an unauthorized place, GWTP requires a token for them.
-<!--- TODO: Navigate [here]() for more information about error places and unauthorized places. -->
+> *Note*: Even if you don't have an error place or an unauthorized place, GWTP requires a token for them. Navigate [here]() for more information about error places and unauthorized places.
+<!--- TODO: Make sure this link works before release. -->
 
 ## Initialize GWT
 It's time to create our last configuration file and tell GWT how to load our application.
@@ -275,5 +275,4 @@ public class HomeModule extends AbstractPresenterModule {
 
 ## Conclusion
 That's it! You created your first GWTP application from nothing. You can now improve it by adding more places, style it, and more. Read the content of [Core (MVP)](core/) for more information on other awesome GWTP features.
-
-<!--- TODO: Make sure the Core (MVP) anchor works when the page is created. -->
+<!--- TODO: Make sure this link works before release. -->

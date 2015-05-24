@@ -130,4 +130,4 @@ Using GWTP without a dependency management tool is a bit more trouble.
 
 ## Create Files
 
-Once you are done, it is time to [create the files](Create-Files).
+Once you are done, it is time to [create the files](Create-Files.html).
