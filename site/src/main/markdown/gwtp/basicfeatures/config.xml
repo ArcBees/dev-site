@@ -6,7 +6,6 @@
         <entries>
             <entry name="index" title="Bootstrapping or Application Initialization"
                     displayName="Bootstrapping or Application Initialization"></entry>
-            <entry name="Getting-started" title="Getting started" displayName="Getting started"></entry>
         </entries>
     </toc>
 </folder>
