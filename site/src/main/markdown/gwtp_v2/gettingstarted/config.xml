@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE folder SYSTEM "folder.dtd">
 <folder href="index"
-        title="Getting Started"
+        title="Get Started"
         style="gwtp">
     <toc>
         <entries>
             <entry name="index" title="Create an App from the Archetype" displayName="Create an App from the Archetype"/>
             <entry name="Create-From-Scratch" title="Create an App from Scratch" displayName="Create an App from Scratch"/>
+            <entry name="Run-App" title="Run your App" displayName="Run your App"/>
             <entry name="Bootstrap-Code" title="Add Bootstrap Code" displayName="Add Bootstrap Code"/>
         </entries>
     </toc>
