@@ -1,38 +1,7 @@
-# Create an App from Scratch
-If you can't, or prefer not to, use a Maven Archetype, the following steps will guide you through the creation of a new application from scratch.
-
-<!---
-TODO: > For a more in-depth guide on creating a new GWTP application, you can read the [Beginner's Tutorial]().
--->
-
-## Folder Structure
-First, start off by creating the initial folder structure. This structure is going to help us separate logical components.
-
-```
-/
-└─ src
-    └─ main
-        ├─ java
-        │  └─ com
-        │      └─ mydomain
-        │          └─ myproject
-        │              └─ application
-        │                  └─ home
-        └─ webapp
-            └─ WEB-INF
-```
-
-Using your terminal, you can easily create all the directories with the following commands:
-
-```sh
-mkdir -p src/main/java/com/mydomain/myproject/application/home
-mkdir -p src/main/java/webapp/WEB-INF
-```
-
-## Import GWTP
+## Import the Dependencies
 In order to use GWTP, you need to import the source code. This can either be done with a dependency management tool (Maven, Gradle, etc.) or manually. We highly recommend using tool as it makes managing transitive dependencies a lot easier.
 
-### Import GWTP using Maven
+### Import the Dependencies with Maven
 For more information on Maven, go to the [official project page](https://maven.apache.org/).
 
 * First, you need a pom file so create `/pom.xml` at the root of your project.
@@ -128,7 +97,20 @@ For more information on Maven, go to the [official project page](https://maven.a
 
 That's it. Maven will transitively resolve the sub-dependencies for you.
 
-### Import GWTP using the JARs
+#### Snapshots
+To use the latest snapshot (1.6-SNAPSHOT), you need to add the following repository in your pom.xml:
+
+```xml
+<repositories>
+    <repository>
+        <id>sonatype.snapshots</id>
+        <name>Sonatype snapshot repository</name>
+        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+    </repository>
+</repositories>
+```
+
+### Import the Dependencies with the JARs
 Using GWTP without a dependency management tool is a bit more trouble.
 
 * First, let's create a new directory at the root of your project to hold the JARs files: `mkdir libs`.
@@ -146,14 +128,6 @@ Using GWTP without a dependency management tool is a bit more trouble.
 
 > **Note**: A [jar containing all GWTP code](http://goo.gl/7vxVK5) exists, however is is unlikely that you need everything from GWTP at this point. Also, at this time, that JAR does not include transitive dependencies, so you would still have to download them manually.
 
-## Start Coding
+## Create Files
 
-<!--- TODO:
-* web.xml
-* index.html
-* NameTokens -- point to unauthorized/error place documentation
-* ClientModule
-* GWT module
-* ApplicationPresenter
-* HomePresenter
--->
+Once you are done, it is time to [create the files](Create-Files).

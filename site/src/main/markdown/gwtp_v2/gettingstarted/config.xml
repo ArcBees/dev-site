@@ -5,9 +5,13 @@
         style="gwtp">
     <toc>
         <entries>
-            <entry name="index" title="Create an App from the Archetype" displayName="Create an App from the Archetype"/>
-            <entry name="Create-From-Scratch" title="Create an App from Scratch" displayName="Create an App from Scratch"/>
-            <entry name="Run-App" title="Run your App" displayName="Run your App"/>
+            <entry name="index" title="Create an App from the Archetype"
+                    displayName="Create an App from the Archetype"/>
+            <entry name="fromscratch/" title="Create an App from Scratch" displayName="Create an App from Scratch">
+                <entry name="fromscratch/index" displayName="Create the Structure"/>
+                <entry name="fromscratch/Import-Dependencies" displayName="Import the Dependencies"/>
+                <entry name="fromscratch/Create-Files" displayName="Create the Files"/>
+            </entry>
             <entry name="Bootstrap-Code" title="Add Bootstrap Code" displayName="Add Bootstrap Code"/>
         </entries>
     </toc>
