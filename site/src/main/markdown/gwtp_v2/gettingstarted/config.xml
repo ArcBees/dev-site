@@ -8,7 +8,7 @@
             <entry name="index" title="Create an App from the Archetype"
                     displayName="Create an App from the Archetype"/>
             <entry name="fromscratch/" title="Create an App from Scratch" displayName="Create an App from Scratch"/>
-            <entry name="Bootstrap-Code" title="Add Bootstrap Code" displayName="Add Bootstrap Code"/>
+            <entry name="Bootstrap-Code" title="Hook in the Bootstrap Process" displayName="Hook in the Bootstrap Process"/>
         </entries>
     </toc>
 </folder>

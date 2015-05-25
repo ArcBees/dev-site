@@ -7,7 +7,6 @@
         <entries>
             <entry name="index" displayName="Overview"></entry>
             <entry name="about/" displayName="About"></entry>
-            <entry name="basicfeatures/" displayName="Basic Features"></entry>
             <entry name="features/" displayName="Features"></entry>
             <entry name="communication/" displayName="Communication"></entry>
             <entry name="advancedfeatures/" displayName="Advanced Features"></entry>

@@ -1,6 +1,16 @@
 ## Create the Files
 
-## Configure the Web Application
+GWTP tries to reduce the amount of boilerplate required for creating new projects. Still, you need to specify your configuration properties at some point. The creating of the required files can be separated into the follwing steps:
+
+1. [Configure the Web Application](#webapp)
+1. [Define your name tokens](#nametokens)
+1. [Initialize GIN](#gin)
+1. [Initialize GWT](#gwt)
+1. [Create your first presenters](#presenters)
+    1. [Application Presenter](#application-presenter)
+    1. [Home Presenter](#home-presenter)
+
+## Configure the Web Application {webapp}
 In order to tell the servlet container how your application should be loaded, we need to create two files.
 
 Create **src/main/webapp/WEB-INF/web.xml** and copy-paste the following code inside:
@@ -51,7 +61,7 @@ and create **src/main/webapp/index.html** with the following code:
 
 Make sure you replace the occurrences of *My Project* with your actual project name.
 
-## Define your name tokens
+## Define your name tokens {nametokens}
 GWTP requires that your places are associated with a unique token that we call name token. This token is also used to navigate to each unique places. This is good practice to regroup all those tokens in a single class.
 
 Let's create **client/NameTokens.java** and add a token for the home page:
@@ -66,7 +76,7 @@ public class NameTokens {
 
 > **Note**: To lighten the syntax, the next files will be create relative to **src/main/java/com/mydomain/myproject**. So NameTokens is actually located in **src/main/java/com/mydomain/myproject/client/**.
 
-## Initialize GIN
+## Initialize GIN {gin}
 GWTP uses GIN to remove the coupling between views and and presenters. To achieve this, we need to create a class with some basic configurations.
 
 Create **client/ClientModule.java** and add the following code to it:
@@ -98,7 +108,7 @@ public class ClientModule extends AbstractPresenterModule {
 > *Note*: Even if you don't have an error place or an unauthorized place, GWTP requires a token for them. Navigate [here]() for more information about error places and unauthorized places.
 <!--- TODO: Make sure this link works before release. -->
 
-## Initialize GWT
+## Initialize GWT {gwt}
 It's time to create our last configuration file and tell GWT how to load our application.
 
 Create **MyProject.gwt.xml** and paste the following code:
@@ -118,10 +128,10 @@ Create **MyProject.gwt.xml** and paste the following code:
 </module>
 ```
 
-## Create your first presenters
+## Create your first presenters {presenters}
 Everything is finally wired up together. Before we are done, we need to create our first presenters and views.
 
-### Application Presenter
+### Application Presenter {application-presenter}
 As a good practice, the application presenter (or root presenter) is not a place. Your home page, or your product page, will be revealed inside the application presenter. We do this because an application often requires extra components like a header, menu or footer. The application presenter is a good place to display those components.
 
 Create your presenter **client/application/ApplicationPresenter.java**:
@@ -201,7 +211,7 @@ public class ApplicationModule extends AbstractPresenterModule {
 
 > **Note**: Is is a good practice to create a GIN module for every packages in your application. This allows you to reduce the visibility of your classes to package-private and avoid unintended uses of those classes.
 
-### Home Presenter
+### Home Presenter {home-presenter}
 
 The last step! The home presenter is what will be displayed when someone first navigate to your application. To do so, we will need to configure the `HOME` token we configured earlier.
 
