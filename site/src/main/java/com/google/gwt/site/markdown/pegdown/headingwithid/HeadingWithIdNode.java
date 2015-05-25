@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.google.gwt.site.markdown.pegdown;
+package com.google.gwt.site.markdown.pegdown.headingwithid;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import org.pegdown.ast.Node;
 import org.pegdown.ast.SuperNode;
 import org.pegdown.ast.Visitor;
 
-public class HeadingWithIdNode extends SuperNode {
+class HeadingWithIdNode extends SuperNode {
     private final int level;
     private final String id;
 

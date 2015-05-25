@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -14,17 +14,19 @@
  * the License.
  */
 
-package com.google.gwt.site.markdown.pegdown;
+package com.google.gwt.site.markdown.pegdown.divwithid;
 
 import org.parboiled.Action;
 import org.parboiled.Context;
 import org.parboiled.Rule;
 import org.pegdown.plugins.BlockPluginParser;
 
+import com.google.gwt.site.markdown.pegdown.CommonParser;
+
 public class DivWithIdParserPlugin extends CommonParser<Object> implements BlockPluginParser {
-    private final Action createDivAction = new Action() {
+    private final Action<Object> createDivAction = new Action<Object>() {
         @Override
-        public boolean run(Context context) {
+        public boolean run(Context<Object> context) {
             String id = match();
 
             return push(new DivWithIdNode(id));
@@ -35,7 +37,7 @@ public class DivWithIdParserPlugin extends CommonParser<Object> implements Block
     public Rule[] blockPluginRules() {
         return toRules(
                 Sequence("$[",
-                        Id(),
+                        id(),
                         createDivAction,
                         "]"));
     }

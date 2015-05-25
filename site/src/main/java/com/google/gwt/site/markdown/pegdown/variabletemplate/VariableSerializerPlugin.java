@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -14,31 +14,33 @@
  * the License.
  */
 
-package com.google.gwt.site.markdown.pegdown;
+package com.google.gwt.site.markdown.pegdown.variabletemplate;
+
+import java.util.Properties;
 
 import org.pegdown.Printer;
 import org.pegdown.ast.Node;
 import org.pegdown.ast.Visitor;
 import org.pegdown.plugins.ToHtmlSerializerPlugin;
 
-public class HeadingWithIdHtmlSerializerPlugin implements ToHtmlSerializerPlugin {
+public class VariableSerializerPlugin implements ToHtmlSerializerPlugin {
+    private final Properties variables;
+
+    public VariableSerializerPlugin(Properties variables) {
+        this.variables = variables;
+    }
+
     @Override
     public boolean visit(Node node, Visitor visitor, Printer printer) {
-        boolean canVisit = node instanceof HeadingWithIdNode;
+        boolean isVariable = node instanceof VariableNode;
 
-        if (canVisit) {
-            HeadingWithIdNode idNode = (HeadingWithIdNode) node;
+        if (isVariable) {
+            String variableName = ((VariableNode) node).getVariableName();
+            String value = variables.getProperty(variableName);
 
-            String id = idNode.getId();
-
-            String tag = "h" + idNode.getLevel();
-            printer.print('<').print(tag).print(' ').print("id=\"" + id + "\"").print('>');
-            for (Node child : node.getChildren()) {
-                child.accept(visitor);
-            }
-            printer.print('<').print('/').print(tag).print('>');
+            printer.print(value);
         }
 
-        return canVisit;
+        return isVariable;
     }
 }

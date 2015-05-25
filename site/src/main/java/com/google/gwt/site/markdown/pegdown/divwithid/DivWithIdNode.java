@@ -1,5 +1,5 @@
-/*
- * Copyright 2014 ArcBees Inc.
+/**
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,18 +14,26 @@
  * the License.
  */
 
-package com.google.gwt.site.markdown;
+package com.google.gwt.site.markdown.pegdown.divwithid;
 
-public class Strings {
-    public static String nullToEmpty(String value) {
-        return value == null ? "" : value;
+import org.pegdown.ast.Node;
+import org.pegdown.ast.SuperNode;
+import org.pegdown.ast.Visitor;
+
+class DivWithIdNode extends SuperNode {
+    private final String id;
+
+    public DivWithIdNode(String id) {
+        this.id = id;
     }
 
-    public static String emptyToNull(String string) {
-        return isNullOrEmpty(string) ? null : string.trim();
+    public String getId() {
+        return id;
     }
 
-    public static boolean isNullOrEmpty(String string) {
-        return string == null || string.trim().isEmpty();
+    @Override
+    public void accept(Visitor visitor) {
+        // Need to cast to Node to triggers correct ToHtmlSerializerPlugin call
+        visitor.visit((Node) this);
     }
 }

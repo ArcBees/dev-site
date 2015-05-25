@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -22,51 +22,51 @@ import org.parboiled.Rule;
 public abstract class CommonParser<V> extends BaseParser<V> {
     /**
      * From HTML spec:
-     *
+     * <p/>
      * ID and NAME tokens must begin with a letter ([A-Za-z]) and may be followed by any number of letters, digits
      * ([0-9]), hyphens ("-"), underscores ("_"), colons (":"), and periods (".").
-     *
+     * <p/>
      * See http://www.w3.org/TR/html4/types.html
      */
-    Rule Id() {
+    protected Rule id() {
         return Sequence(
-                FirstOf(UpperCaseCharacter(), LowerCaseCharacter()),
-                Optional(OneOrMore(FirstOf(Letters(), Number(), AnyOf("-_:.")))));
+                FirstOf(upperCaseLetter(), lowerCaseLetter()),
+                Optional(OneOrMore(FirstOf(letters(), number(), AnyOf("-_:.")))));
     }
 
-    Rule Letters() {
-        return OneOrMore(FirstOf(UpperCaseCharacter(), LowerCaseCharacter()));
+    protected Rule letters() {
+        return OneOrMore(FirstOf(upperCaseLetter(), lowerCaseLetter()));
     }
 
-    Rule UpperCaseCharacter() {
+    protected Rule upperCaseLetter() {
         return CharRange('A', 'Z');
     }
 
-    Rule LowerCaseCharacter() {
+    protected Rule lowerCaseLetter() {
         return CharRange('a', 'z');
     }
 
-    Rule Number() {
+    protected Rule number() {
         return CharRange('0', '9');
     }
 
-    Rule Sp() {
-        return ZeroOrMore(Spacechar());
+    protected Rule optionalWhiteSpaces() {
+        return ZeroOrMore(whiteSpace());
     }
 
-    Rule Spacechar() {
+    protected Rule whiteSpace() {
         return AnyOf(" \t");
     }
 
-    Rule NormalChar() {
-        return Sequence(TestNot(SpecialChar()), TestNot(Spacechar()), NotNewline(), ANY);
+    protected Rule normalCharacter() {
+        return Sequence(TestNot(specialCharacter()), TestNot(whiteSpace()), notNewline(), ANY);
     }
 
-    Rule SpecialChar() {
+    protected Rule specialCharacter() {
         return AnyOf("*_`&[]<>!#\\");
     }
 
-    Rule NotNewline() {
+    protected Rule notNewline() {
         return TestNot(AnyOf("\n\r"));
     }
 }

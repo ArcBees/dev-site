@@ -22,8 +22,6 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
-
 public class MarkDown {
     private static final Options OPTIONS = new Options();
     private static final String HELP = "help";
@@ -32,14 +30,16 @@ public class MarkDown {
     private static final String TEMPLATE = "template";
     private static final String EDIT_URL = "edit-url";
     private static final String TEMPLATE_TOC = "template-toc";
+    private static final String MARKDOWN_VARIABLES = "markdown-variables";
 
     static {
-        OPTIONS.addOption(Option.builder("s").required().hasArg().longOpt(SOURCE).desc("Source directory").build());
-        OPTIONS.addOption(Option.builder("o").required().hasArg().longOpt(OUTPUT).desc("Output directory").build());
-        OPTIONS.addOption(Option.builder("t").required().hasArg().longOpt(TEMPLATE).desc("Template file").build());
+        OPTIONS.addOption(Option.builder("s").required().hasArg().longOpt(SOURCE).desc("Source Directory").build());
+        OPTIONS.addOption(Option.builder("o").required().hasArg().longOpt(OUTPUT).desc("Output Directory").build());
+        OPTIONS.addOption(Option.builder("t").required().hasArg().longOpt(TEMPLATE).desc("Template File").build());
         OPTIONS.addOption(Option.builder("e").hasArg().longOpt(EDIT_URL).desc("Edit root URL").build());
-        OPTIONS.addOption(Option.builder("c").hasArg().longOpt(TEMPLATE_TOC).desc("Template TOC file").build());
-        OPTIONS.addOption(Option.builder("h").longOpt(HELP).desc("help").build());
+        OPTIONS.addOption(Option.builder("v").hasArg().longOpt(MARKDOWN_VARIABLES).desc("Markdown Variables").build());
+        OPTIONS.addOption(Option.builder("c").hasArg().longOpt(TEMPLATE_TOC).desc("Template TOC File").build());
+        OPTIONS.addOption(Option.builder("h").longOpt(HELP).desc("Help").build());
     }
 
     public static void main(String[] args) throws MDHelperException, TranslaterException, ParseException {
@@ -62,13 +62,13 @@ public class MarkDown {
     }
 
     private static void translateMarkDown(CommandLine commandLine) throws TranslaterException, MDHelperException {
-        MDHelper helper = new MDHelper(new MarkdownToHtmlUtil());
-
-        helper.setOutputDirectory(commandLine.getOptionValue(OUTPUT))
+        new MDHelper()
+                .setOutputDirectory(commandLine.getOptionValue(OUTPUT))
                 .setSourceDirectory(commandLine.getOptionValue(SOURCE))
                 .setTemplateFile(commandLine.getOptionValue(TEMPLATE))
                 .setTemplateToc(commandLine.getOptionValue(TEMPLATE_TOC))
                 .setEditRootUrl(commandLine.getOptionValue(EDIT_URL))
+                .setMarkdownVariablesFile(commandLine.getOptionValue(MARKDOWN_VARIABLES))
                 .create()
                 .translate();
     }

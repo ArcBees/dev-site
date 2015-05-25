@@ -20,7 +20,7 @@ import java.util.List;
 
 import com.google.gwt.site.markdown.fs.MDNode;
 import com.google.gwt.site.markdown.fs.MDParent;
-import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
+import com.google.gwt.site.markdown.pegdown.MarkdownParser;
 import com.google.gwt.site.markdown.toc.TocCreator;
 import com.google.gwt.site.markdown.velocity.VelocityWrapper;
 import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
@@ -28,7 +28,7 @@ import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
 public class MDTranslater {
     private static final String SEPARATOR = File.separator;
 
-    private final MarkdownToHtmlUtil markdownToHtmlUtil = new MarkdownToHtmlUtil();
+    private final MarkdownParser markdownParser;
     private final TocCreator tocCreator;
     private final MarkupWriter writer;
     private final String template;
@@ -36,11 +36,13 @@ public class MDTranslater {
     private final VelocityWrapperFactory velocityFactory;
 
     public MDTranslater(
+            MarkdownParser markdownParser,
             TocCreator tocCreator,
             MarkupWriter writer,
             String template,
             String editRootUrl,
             VelocityWrapperFactory velocityFactory) {
+        this.markdownParser = markdownParser;
         this.tocCreator = tocCreator;
         this.writer = writer;
         this.template = template;
@@ -66,24 +68,24 @@ public class MDTranslater {
 
             String content;
             if (isMarkdown(node)) {
-                content = markdownToHtmlUtil.toHtml(fileContent);
+                content = markdownParser.toHtml(fileContent);
             } else {
                 content = fileContent;
             }
 
             String toc = tocCreator.createTocForNode(root, node);
 
-            String relativePath = "./";
+            StringBuilder relativePath = new StringBuilder("./");
             for (int i = 1; i < node.getDepth(); i++) {
-                relativePath += "../";
+                relativePath.append("../");
             }
 
             String html = fillTemplate(
                     content,
-                    adjustRelativePath(toc, relativePath),
+                    adjustRelativePath(toc, relativePath.toString()),
                     node);
 
-            writer.writeHTML(node, adjustRelativePath(html, relativePath));
+            writer.writeHTML(node, adjustRelativePath(html, relativePath.toString()));
         }
     }
 
@@ -122,7 +124,7 @@ public class MDTranslater {
 
     private String getNodeContent(String path) throws TranslaterException {
         try {
-            return Util.getStringFromFile(new File(path));
+            return FilesUtils.getStringFromFile(new File(path));
         } catch (IOException e1) {
             throw new TranslaterException("can not load content from file: '" + path + "'", e1);
         }

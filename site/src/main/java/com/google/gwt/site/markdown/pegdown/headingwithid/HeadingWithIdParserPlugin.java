@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.google.gwt.site.markdown.pegdown;
+package com.google.gwt.site.markdown.pegdown.headingwithid;
 
 import org.parboiled.Action;
 import org.parboiled.Context;
@@ -23,10 +23,12 @@ import org.pegdown.ast.HeaderNode;
 import org.pegdown.ast.TextNode;
 import org.pegdown.plugins.InlinePluginParser;
 
+import com.google.gwt.site.markdown.pegdown.CommonParser;
+
 public class HeadingWithIdParserPlugin extends CommonParser<Object> implements InlinePluginParser {
-    private final Action createHeadingWithIdAction = new Action() {
+    private final Action<Object> createHeadingWithIdAction = new Action<Object>() {
         @Override
-        public boolean run(Context context) {
+        public boolean run(Context<Object> context) {
             Object peek = peek(1);
 
             if (peek instanceof HeaderNode) {
@@ -44,9 +46,9 @@ public class HeadingWithIdParserPlugin extends CommonParser<Object> implements I
         }
     };
 
-    private final Action createTextNodeAction = new Action() {
+    protected final Action<Object> createTextNodeAction = new Action<Object>() {
         @Override
-        public boolean run(Context context) {
+        public boolean run(Context<Object> context) {
             String text = match();
             return push(new TextNode(text));
         }
@@ -56,11 +58,11 @@ public class HeadingWithIdParserPlugin extends CommonParser<Object> implements I
     public Rule[] inlinePluginRules() {
         return toRules(
                 Sequence(
-                        OneOrMore(NormalChar()),
+                        OneOrMore(normalCharacter()),
                         createTextNodeAction,
-                        Optional(Sp(), ZeroOrMore('#'), Sp()),
+                        Optional(optionalWhiteSpaces(), ZeroOrMore('#'), optionalWhiteSpaces()),
                         '{',
-                        Id(),
+                        id(),
                         createHeadingWithIdAction,
                         '}'
                 )

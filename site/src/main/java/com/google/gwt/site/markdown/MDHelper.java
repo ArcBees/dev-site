@@ -15,15 +15,19 @@
 package com.google.gwt.site.markdown;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.Properties;
 
 import com.google.gwt.site.markdown.fs.FileSystemTraverser;
 import com.google.gwt.site.markdown.fs.MDParent;
-import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
+import com.google.gwt.site.markdown.pegdown.MarkdownParser;
 import com.google.gwt.site.markdown.toc.TocCreator;
 import com.google.gwt.site.markdown.toc.TocFromMdCreator;
 import com.google.gwt.site.markdown.toc.TocFromTemplateCreator;
 import com.google.gwt.site.markdown.velocity.VelocityEngineProvider;
 import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
+
+import static com.google.gwt.site.markdown.Strings.emptyToNull;
 
 public class MDHelper {
     private String sourceDirectory;
@@ -31,55 +35,52 @@ public class MDHelper {
     private String templateFile;
     private String templateTocFile;
     private String editRootUrl;
+    private String markdownVariablesFile;
 
-    private MarkdownToHtmlUtil markdownToHtmlUtil;
     private File sourceDirectoryFile;
     private MDTranslater translater;
 
-    public MDHelper(MarkdownToHtmlUtil markdownToHtmlUtil) {
-        this.markdownToHtmlUtil = markdownToHtmlUtil;
-    }
-
     public MDHelper setSourceDirectory(String sourceDirectory) {
-        this.sourceDirectory = Strings.emptyToNull(sourceDirectory);
+        this.sourceDirectory = emptyToNull(sourceDirectory);
         return this;
     }
 
     public MDHelper setOutputDirectory(String outputDirectory) {
-        this.outputDirectory = Strings.emptyToNull(outputDirectory);
+        this.outputDirectory = emptyToNull(outputDirectory);
         return this;
     }
 
     public MDHelper setTemplateFile(String templateFile) {
-        this.templateFile = Strings.emptyToNull(templateFile);
-        return this;
-    }
-
-    public MDHelper setEditRootUrl(String editRootUrl) {
-        this.editRootUrl = Strings.emptyToNull(editRootUrl);
+        this.templateFile = emptyToNull(templateFile);
         return this;
     }
 
     public MDHelper setTemplateToc(String templateTocFile) {
-        this.templateTocFile = Strings.emptyToNull(templateTocFile);
+        this.templateTocFile = emptyToNull(templateTocFile);
+        return this;
+    }
+
+    public MDHelper setEditRootUrl(String editRootUrl) {
+        this.editRootUrl = emptyToNull(editRootUrl);
+        return this;
+    }
+
+    public MDHelper setMarkdownVariablesFile(String markdownVariablesFile) {
+        this.markdownVariablesFile = emptyToNull(markdownVariablesFile);
         return this;
     }
 
     public MDHelper create() throws MDHelperException {
-        sourceDirectoryFile = validateSourceDirectory();
-        File outputDirectoryFile = validateOutputDirectory();
         validateTemplate();
-        TocCreator tocCreator = validateTocTemplate();
 
-        MarkupWriter writer = new MarkupWriter(outputDirectoryFile);
-        VelocityWrapperFactory velocityFactory = new VelocityWrapperFactory(new VelocityEngineProvider());
+        sourceDirectoryFile = resolveSourceDirectory();
 
-        translater = new MDTranslater(tocCreator, writer, templateFile, editRootUrl, velocityFactory);
+        translater = buildTranslater();
 
         return this;
     }
 
-    private File validateSourceDirectory() throws MDHelperException {
+    private File resolveSourceDirectory() throws MDHelperException {
         if (sourceDirectory == null) {
             throw new MDHelperException("no sourceDirectory set");
         }
@@ -98,7 +99,30 @@ public class MDHelper {
         return directory;
     }
 
-    private File validateOutputDirectory() throws MDHelperException {
+    private MarkdownParser buildMarkdownParser() throws MDHelperException {
+        Properties properties = new Properties();
+
+        if (markdownVariablesFile != null) {
+            try {
+                properties.load(getClass().getResourceAsStream(markdownVariablesFile));
+            } catch (IOException e) {
+                throw new MDHelperException("Markdown Variables ('" + markdownVariablesFile + "') can not be loaded");
+            }
+        }
+
+        return new MarkdownParser(properties);
+    }
+
+    private MDTranslater buildTranslater() throws MDHelperException {
+        MarkdownParser markdownParser = buildMarkdownParser();
+        TocCreator tocCreator = resolveTocTemplate(markdownParser);
+        MarkupWriter writer = new MarkupWriter(resolveOutputDirectory());
+        VelocityWrapperFactory velocityFactory = new VelocityWrapperFactory(new VelocityEngineProvider());
+
+        return new MDTranslater(markdownParser, tocCreator, writer, templateFile, editRootUrl, velocityFactory);
+    }
+
+    private File resolveOutputDirectory() throws MDHelperException {
         if (outputDirectory == null) {
             throw new MDHelperException("no outputDirectory set");
         }
@@ -123,9 +147,9 @@ public class MDHelper {
         }
     }
 
-    private TocCreator validateTocTemplate() throws MDHelperException {
+    private TocCreator resolveTocTemplate(MarkdownParser markdownParser) throws MDHelperException {
         if (templateTocFile != null) {
-            String templateToc = markdownToHtmlUtil.toHtml(readFile(templateTocFile));
+            String templateToc = markdownParser.toHtml(readFile(templateTocFile));
 
             return new TocFromTemplateCreator(templateToc);
         }
@@ -136,7 +160,7 @@ public class MDHelper {
     private String readFile(String filePath) throws MDHelperException {
         File file = new File(filePath);
         try {
-            return Util.getStringFromFile(file);
+            return FilesUtils.getStringFromFile(file);
         } catch (Exception e) {
             throw new MDHelperException("can not read file" + filePath, e);
         }

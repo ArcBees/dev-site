@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -14,26 +14,26 @@
  * the License.
  */
 
-package com.google.gwt.site.markdown.pegdown;
+package com.google.gwt.site.markdown.pegdown.variabletemplate;
 
 import org.pegdown.ast.Node;
 import org.pegdown.ast.SuperNode;
 import org.pegdown.ast.Visitor;
 
-public class DivWithIdNode extends SuperNode {
-    private final String id;
+public class VariableNode extends SuperNode {
+    private final String variableName;
 
-    public DivWithIdNode(String id) {
-        this.id = id;
+    public VariableNode(String variableName) {
+        this.variableName = variableName;
     }
 
-    public String getId() {
-        return id;
+    public String getVariableName() {
+        return variableName;
     }
 
     @Override
     public void accept(Visitor visitor) {
-        // Need to cast to Node to triggers correct ToHtmlSerializerPlugin call
+        // Need to explicitly cast to Node to triggers correct ToHtmlSerializerPlugin call
         visitor.visit((Node) this);
     }
 }

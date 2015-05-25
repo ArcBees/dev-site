@@ -113,6 +113,7 @@
                                 <argument>-o ${basedir}/target/generated-site</argument>
                                 <argument>-t /main.vm</argument>
                                 <argument>-e ${github.edit.home}</argument>
+                                <argument>-v /variables.properties</argument>
                             </arguments>
                         </configuration>
                     </execution>

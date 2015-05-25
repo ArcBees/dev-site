@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.google.gwt.site.markdown.pegdown;
+package com.google.gwt.site.markdown.pegdown.divwithid;
 
 import org.pegdown.Printer;
 import org.pegdown.ast.Node;

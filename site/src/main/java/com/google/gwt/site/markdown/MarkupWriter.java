@@ -59,7 +59,7 @@ public class MarkupWriter {
         File fileToWrite = new File(currentDir, fileName);
 
         try {
-            Util.writeStringToFile(fileToWrite, html);
+            FilesUtils.writeStringToFile(fileToWrite, html);
         } catch (IOException e) {
             throw new TranslaterException("can not write markup to file: '" + fileToWrite + "'", e);
         }
