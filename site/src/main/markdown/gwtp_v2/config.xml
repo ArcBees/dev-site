@@ -6,8 +6,8 @@
     <toc>
         <entries>
             <entry name="index" title="Overview" displayName="Overview"/>
-            <entry name="gettingstarted/" displayName="Get Started"/>
-            <entry name="advancedfeatures/" displayName="Advanced Features"/>
+            <entry name="get-started/" displayName="Get Started"/>
+            <entry name="advanced/" displayName="Advanced Features"/>
             <entry name="resources/" displayName="Resources"/>
         </entries>
     </toc>

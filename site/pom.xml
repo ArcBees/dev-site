@@ -50,7 +50,15 @@
         <resources>
             <resource>
                 <directory>src/main/markdown</directory>
+                <targetPath>${project.build.directory}/markdown</targetPath>
+                <filtering>false</filtering>
+
+                <excludes>
+                    <exclude>**/*.xml</exclude>
+                    <exclude>**/*.md</exclude>
+                </excludes>
             </resource>
+
             <resource>
                 <directory>src/main/resources</directory>
             </resource>
@@ -109,8 +117,8 @@
                             <mainClass>com.google.gwt.site.markdown.MarkDown</mainClass>
                             <killAfter>-1</killAfter>
                             <arguments>
-                                <argument>-s ${basedir}/src/main/markdown/</argument>
-                                <argument>-o ${basedir}/target/generated-site</argument>
+                                <argument>-s ${project.build.directory}/markdown/</argument>
+                                <argument>-o ${project.build.directory}/generated-site</argument>
                                 <argument>-t /main.vm</argument>
                                 <argument>-e ${github.edit.home}</argument>
                             </arguments>
@@ -123,7 +131,53 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
 
+                <configuration>
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>eot</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
+                </configuration>
+
                 <executions>
+                    <execution>
+                        <!--
+                        Use a custom filtering profile for markdown files.
+                        Maven's default delimiter can be used in markdown files for documentation purposes.
+                        -->
+                        <id>filter-markdown</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+
+                        <configuration>
+                            <delimiters>
+                                <delimiter>{{#*}}</delimiter>
+                            </delimiters>
+                            <escapeString>\</escapeString>
+                            <useDefaultDelimiters>false</useDefaultDelimiters>
+                            <useBuildFilters>false</useBuildFilters>
+                            <outputDirectory>${project.build.directory}/markdown</outputDirectory>
+
+                            <filters>
+                                <filter>src/main/resources/variables.properties</filter>
+                            </filters>
+
+                            <resources>
+                                <resource>
+                                    <directory>src/main/markdown</directory>
+                                    <filtering>true</filtering>
+
+                                    <includes>
+                                        <include>**/*.xml</include>
+                                        <include>**/*.md</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+
                     <execution>
                         <id>copy doc resources</id>
                         <phase>prepare-package</phase>
@@ -132,12 +186,8 @@
                         </goals>
 
                         <configuration>
-                            <outputDirectory>${basedir}/target/generated-site</outputDirectory>
-                            <nonFilteredFileExtensions>
-                                <nonFilteredFileExtension>woff</nonFilteredFileExtension>
-                                <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
-                                <nonFilteredFileExtension>eot</nonFilteredFileExtension>
-                            </nonFilteredFileExtensions>
+                            <outputDirectory>${project.build.directory}/generated-site</outputDirectory>
+
                             <resources>
                                 <resource>
                                     <directory>src/main/site/</directory>

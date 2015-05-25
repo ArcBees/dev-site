@@ -1,6 +1,6 @@
-## Create the Files
+# Create the Files
 
-GWTP tries to reduce the amount of boilerplate required for creating new projects. Still, you need to specify your configuration properties at some point. The creating of the required files can be separated into the follwing steps:
+GWTP tries to reduce the amount of boilerplate required to create new projects. Still, you need to specify your configuration properties at some point. The creating of the required files can be separated into the following steps:
 
 1. [Configure the Web Application](#webapp)
 1. [Define your name tokens](#nametokens)
@@ -77,7 +77,7 @@ public class NameTokens {
 > **Note**: To lighten the syntax, the next files will be create relative to **src/main/java/com/mydomain/myproject**. So NameTokens is actually located in **src/main/java/com/mydomain/myproject/client/**.
 
 ## Initialize GIN {gin}
-GWTP uses GIN to remove the coupling between views and and presenters. To achieve this, we need to create a class with some basic configurations.
+GWTP uses GIN to remove the coupling between views and presenters. To achieve this, we need to create a class with some basic configurations.
 
 Create **client/ClientModule.java** and add the following code to it:
 
@@ -213,7 +213,7 @@ public class ApplicationModule extends AbstractPresenterModule {
 
 ### Home Presenter {home-presenter}
 
-The last step! The home presenter is what will be displayed when someone first navigate to your application. To do so, we will need to configure the `HOME` token we configured earlier.
+The last step! The home presenter is what will be displayed when someone first navigates to your application. To do so, we will need to configure the `HOME` token we configured earlier.
 
 Create **client/application/home/HomePresenter.java**:
 
@@ -284,5 +284,5 @@ public class HomeModule extends AbstractPresenterModule {
 ```
 
 ## Conclusion
-That's it! You created your first GWTP application from nothing. You can now improve it by adding more places, style it, and more. Read the content of [Core (MVP)](core/) for more information on other awesome GWTP features.
+That's it! You created your first GWTP application from nothing. You can now improve it by adding more places, style it, and more. Read the content of [Core (MVP)]({{#gwtp.doc_home_url}}/core/index.html) for more information on other awesome GWTP features.
 <!--- TODO: Make sure this link works before release. -->

@@ -16,7 +16,7 @@ More information about Maven Archetypes [here](https://maven.apache.org/guides/i
 mvn archetype:generate -DarchetypeGroupId=com.arcbees.archetypes \
 -DarchetypeRepository=https://oss.sonatype.org/content/repositories/snapshots/ \
 -DarchetypeArtifactId=gwtp-basic-archetype \
--DarchetypeVersion=1.4 \
+-DarchetypeVersion={{#gwtp.version}} \
 -DgroupId=$groupId \
 -DartifactId=$artifactId \
 -DmoduleName=$moduleName
@@ -26,5 +26,6 @@ mvn archetype:generate -DarchetypeGroupId=com.arcbees.archetypes \
 Choose an IDE to import the Maven project and get started with development.
 
 For more information on importing a GWT project into an IDE, follow the following links:
+
 * [Instructions on importing a GWT project in IntelliJ IDEA](http://c.gwt-examples.com/home/maven/ide-import/intellij-idea)
 * [Instructions on importing a GWT project in Eclipse](http://c.gwt-examples.com/home/maven/ide-import/eclipse)

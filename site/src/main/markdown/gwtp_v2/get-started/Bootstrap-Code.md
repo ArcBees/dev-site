@@ -97,7 +97,7 @@ Ginjector Extensions should be interfaces and the methods should return a valid 
 ```
 
 ## Custom Entry Point {custom-entrypoint}
-If none of the previous options fit your needs, you can use your own Entry Point the old fashioned way. If you need your own Entry Point, please raise an issue on [GitHub](): we will gladly see what can be improved in GWTP's bootstrap process to cover your use-case. 
+If none of the previous options fit your needs, you can use your own Entry Point the old fashioned way. If you need your own Entry Point, please raise an issue on [GitHub](https://github.com/ArcBees/GWTP/issues/new): we will gladly see what can be improved in GWTP's bootstrap process to cover your use-case. 
 
 In your GWT module, you need to inherit `MVP` (as opposed to `MvpWithEntryPoint`) and specify your own Entry Point:
 
