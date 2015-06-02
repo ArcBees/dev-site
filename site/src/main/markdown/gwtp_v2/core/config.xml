@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder href="index"
+        title="Core (MVP)"
+        style="gwtp">
+    <toc>
+        <entries>
+            <entry name="events/" displayName="Events"/>
+        </entries>
+    </toc>
+</folder>
