@@ -5,6 +5,7 @@
         style="gwtp">
     <toc>
         <entries>
+            <entry name="index" displayName="Overview"/>
             <entry name="events/" displayName="Events"/>
         </entries>
     </toc>

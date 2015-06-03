@@ -1,4 +1,4 @@
-# Core MVP
+# Core (MVP) Overview
 
 ## Events
 - [Documentation]({{#gwtp.doc_home_url}}/{{#gwtp.doc_core_url}}/{{#gwtp.doc_events_url}}/)
