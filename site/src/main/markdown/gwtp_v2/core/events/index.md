@@ -1,6 +1,6 @@
 # Events
 
-There are several ways of writing events but this is the preferred way for GWTP's team.
+There are several ways of writing events but this is based on the GWT way.
 
 ## Example of an event and its handler
 
@@ -117,12 +117,12 @@ public class SimplePresenter extends PresenterWidget<MyView>
 If a component wants to handle an event, it has to:
 
 * Implement the Handler class that was defined with an Event.
-* Register to the event through an event bus if it wants to handle it.
+* Register to the event through an event bus.
 
 In GWTP, the easiest way to handle events in a Presenter is by using `PresenterWidget`'s `addXXXHandler` methods. By doing so, the event registration will be bound to GWTP's lifecycle and unbind the event handlers when presenters are unbound.
 
 * If an handler is registered with `addRegisteredHandler()` the event will be handled until the Presenter is unbound (until the method `unbind()` is called).
-* If an handler is registered with `addVisibleHandler()` the event will be handled only if the presenter is visible in GWTP's cycle. This means that when the method `onHide()` is called, the visibleHandlers are unregistered.
+* If an handler is registered with `addVisibleHandler()` the event will be handled only if the presenter is visible in GWTP's lifecycle. This means that when the method `onHide()` is called, the visibleHandlers are unregistered.
 
 If a handler wants to handle events from a specific source, an interface called `HasXXXHandlers` should be created. This interface should give a convenience method to any implementer to specify the handling object and the source it's listening to.
 
