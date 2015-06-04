@@ -14,7 +14,7 @@ public class SimpleEvent extends GwtEvent<SimpleEvent.SimpleHandler> {
  
     public static final Type<SimpleHandler> TYPE = new Type<>();
  
-    public SimpleEvent() {
+    SimpleEvent() {
     }
  
     public static void fire(HasHandlers source) {
@@ -69,7 +69,8 @@ public class ComplexEvent extends GwtEvent<ComplexEvent.ComplexHandler> {
 
 ### Fire an event
 
-Let's assume an application structure with Presenter/View couple where UI handlers are set. Imagine there's a button and a textbox in the view, and data has to be sent to another component of the application.The data has to be sent through the presenter via UI handlers on the button click event.
+Let's assume an application structure with Presenter/View couple where UI handlers are set. Imagine there's a button and a textbox in the view, and data has to be sent to another component of the application. The data has to be sent through the presenter via UI handlers on the button click event.
+TODO: Add UiHandlers Link
 
 ```
 public class SimpleView extends ViewWithUiHandlers<SimpleUiHandlers>
@@ -116,9 +117,9 @@ public class SimplePresenter extends PresenterWidget<MyView>
 If a component wants to handle an event, it has to:
 
 * Implement the Handler class that was defined with an Event.
-* Register to the event through an event bus if it wants to handle it
+* Register to the event through an event bus if it wants to handle it.
 
-A component . In GWTP, the easiest way to handle events handling in a Presenter is by using `PresenterWidget`'s `addXXXHandler` methods. By doing so, the event registration will be bound to GWTP's lifecycle and unbind the event handlers when presenters are unbound.
+In GWTP, the easiest way to handle events in a Presenter is by using `PresenterWidget`'s `addXXXHandler` methods. By doing so, the event registration will be bound to GWTP's lifecycle and unbind the event handlers when presenters are unbound.
 
 * If an handler is registered with `addRegisteredHandler()` the event will be handled until the Presenter is unbound (until the method `unbind()` is called).
 * If an handler is registered with `addVisibleHandler()` the event will be handled only if the presenter is visible in GWTP's cycle. This means that when the method `onHide()` is called, the visibleHandlers are unregistered.
@@ -151,9 +152,9 @@ public HandlerRegistration addComplexEventHandler(ComplexEvent.ComplexHandler ha
 ```
 
 ## Proxy Event
-In GWTP, it might happen to fire an event and that the Presenter that is supposed to handle it doesn't yet instantiated. This can happen when CodeSplitting is used. With a Proxy evens, an event can be registered on a Proxy instead of a regular object. This should be used, when a presenter should be notified of an event even before it is first instantiated.
+In GWTP, it might happen to fire an event and that the Presenter that is supposed to handle it is not yet instantiated. This can happen when CodeSplitting is used. It possible for a proxy to listen for events using Proxy Events. This should be used, when a presenter should be notified of an event even before it is first instantiated.
 
-Often Proxy events are used to reveal an uninstantiated Presenter on an event handling. Imagine a Presenter called `MessagePresenter`that's using code splitting, and therefore is not necessarily always instantiated. Let's say it needs to be revealed when `ShowMessageEvent` is fired. Here's an example of how it can be done:
+Often Proxy events are used to reveal an uninstantiated Presenter on an event handling. Imagine a Presenter called `MessagePresenter` that's using code splitting, and therefore is not necessarily always instantiated. Let's say it needs to be revealed when `ShowMessageEvent` is fired. Here's an example of how it can be done:
 
 ```
 public class MessagePresenter extends Presenter<MessagePresenter.MyView, MessagePresenter.MyProxy> 
