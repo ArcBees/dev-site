@@ -7,7 +7,7 @@ More information about Maven Archetypes [here](https://maven.apache.org/guides/i
 
 ## Using a Maven Archetype
 * Create a variable `groupId` and assign your domain to it. ie: `groupId="com.mydomain"` on Linux or Mac. By convention, a group ID only contains lowercase letters and dots.
-* Create a variable `artifactId` and assign your project name. ie: `artifactId="myprojectname` on Linux or Mac. By convention, a group ID only contains lowercase letters.
+* Create a variable `artifactId` and assign your project name. ie: `artifactId="myprojectname` on Linux or Mac. By convention, an artifact ID only contains lowercase letters.
 * Create a variable `moduleName` and assign it a GWT module name. ie: `moduleName="MyProjectName"` on Linux or Mac. The name should use an upper CamelCase syntax.
 * Navigate to the *parent directory* in which you want to create new project.
 * Run the following Maven command in your terminal:
