@@ -94,7 +94,7 @@ public class SimpleView extends ViewWithUiHandlers<SimpleUiHandlers>
 
 public class SimplePresenter extends PresenterWidget<MyView>
         implements SimpleUiHandlers {
-    public interface MyView extends View, HasUiHandlers<SimpleUiHandlers> {
+    interface MyView extends View, HasUiHandlers<SimpleUiHandlers> {
     }
 
     @Inject
@@ -152,9 +152,9 @@ public HandlerRegistration addComplexEventHandler(ComplexEvent.ComplexHandler ha
 ```
 
 ## Proxy Event
-In GWTP, it might happen to fire an event and that the Presenter that is supposed to handle it is not yet instantiated. This can happen when CodeSplitting is used. It possible for a proxy to listen for events using Proxy Events. This should be used, when a presenter should be notified of an event even before it is first instantiated.
+`Proxy Events` should be used when an event might be fired before a presenter listening for that event is instantiated. The annotation `@ProxyEvent` tells GWTP to bind the event on the Proxy instead of the presenter. Once the event is fired, the proxy will instantiate the Presenter to handle it.
 
-Often Proxy events are used to reveal an uninstantiated Presenter on an event handling. Imagine a Presenter called `MessagePresenter` that's using code splitting, and therefore is not necessarily always instantiated. Let's say it needs to be revealed when `ShowMessageEvent` is fired. Here's an example of how it can be done:
+Proxy events can also be used to reveal an uninstantiated Presenter. Imagine a Presenter called `MessagePresenter` that's using code splitting, and therefore is not necessarily instantiated. Let's say it needs to be revealed when `ShowMessageEvent` is fired. Here's an example of how it can be done:
 
 ```
 public class MessagePresenter extends Presenter<MessagePresenter.MyView, MessagePresenter.MyProxy> 
@@ -162,18 +162,19 @@ public class MessagePresenter extends Presenter<MessagePresenter.MyView, Message
 
     @ProxyCodeSplit
     @NameToken(NameTokens.messagePage)
-    public interface MyProxy extends ProxyPlace<HomePresenter> {
+    interface MyProxy extends ProxyPlace<HomePresenter> {
     }
 
-    public interface MyView extends View {
+    interface MyView extends View {
         void setMessage(String message);
     }
 
-    final private PlaceManager placeManager;
+    private final PlaceManager placeManager;
 
     @Inject
     MessagePresenter(EventBus eventBus, MyView view, MyProxy proxy, PlaceManager placeManager) {
         super(eventBus, view, proxy);
+        
         this.placeManager = placeManager;
     }
 
