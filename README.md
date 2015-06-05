@@ -12,6 +12,13 @@ If you want to contribute and add some documentation for one of the projects, se
 * `webapp`: the actual website to be hosted on app engine
 * `uploader`: a simple program that pushes compiled html files to `webapp`'s datastore
 
+## Upload 1-liner
+```
+mvn clean install && cd webapp && mvn appengine:update -Pprod && cd ../uploader && touch credentials && ./save_credentials.sh && ./upload.sh credentials
+```
+
+When prompted, app id is `docs-site`.
+
 ##Thanks to
 [![Arcbees.com](http://i.imgur.com/HDf1qfq.png)](http://arcbees.com)
 
