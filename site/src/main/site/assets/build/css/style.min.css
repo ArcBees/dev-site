@@ -1531,8 +1531,27 @@ a {
   margin: 0;
   padding: 0;
 }
+#nav ul.socialmedias {
+  width: 150px;
+  padding-left: 65px;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+}
+#nav ul.socialmedias li {
+  display: inline-block;
+  margin-bottom: 0;
+}
+#nav ul.socialmedias li a {
+  font-size: 2rem;
+  padding: 0;
+  margin: 0;
+}
+#nav ul.socialmedias li a::before {
+  margin-right: 0;
+}
 #nav li {
-  margin-bottom: 8px;
+  margin-bottom: 0px;
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   -o-transition: all 0.2s ease-out;
@@ -1548,8 +1567,9 @@ a {
   font-family: geometria-light;
   color: #ffffff;
   text-transform: none;
-  outline: 0;
   padding: 0;
+  margin: 0;
+  outline: 0;
 }
 #nav li.logo i {
   font-size: 8rem;
@@ -1562,16 +1582,17 @@ a {
   display: block;
 }
 #nav li a {
-  color: #555555;
+  color: #6f6f6f;
   text-decoration: none;
-  outline: 0;
-  font-size: 14px;
-  font-size: 1.4rem;
+  font-size: 13px;
+  font-size: 1.3rem;
   font-family: geometria-bold;
+  line-height: 1em;
   text-transform: uppercase;
-  display: inline-block;
-  width: 100%;
-  padding: 0 65px;
+  display: block;
+  padding: 7px 10px 9px 20px;
+  margin-left: 50px;
+  outline: 0;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -1584,6 +1605,19 @@ a {
 #nav li a:hover,
 #nav li a.active {
   color: #ffffff;
+}
+#nav li a::before {
+  margin: -2px 8px 0 0;
+}
+#nav li a.menuSupport {
+  display: inline-block;
+  width: auto;
+  margin: 4em 0 4em 70px;
+  padding: 7px 10px 4px;
+  border: 1px solid #6f6f6f;
+}
+#nav li a.menuSupport:hover {
+  border-color: C_TEXT_LIGHT;
 }
 #nav li i {
   font-size: 115%;
@@ -1757,13 +1791,13 @@ aside#submenu .logo {
 aside#submenu a {
   color: #ffffff;
   text-decoration: none;
-  outline: 0;
   font-size: 14px;
   font-size: 1.4rem;
   display: inline-block;
   width: 100%;
   padding: 6px 30px 6px 20px;
   position: relative;
+  outline: 0;
   -ms-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -2475,9 +2509,9 @@ nav#nav-mobile {
 #editLink:after {
   left: 100%;
   position: absolute;
+  z-index: 999999;
   visibility: hidden;
   opacity: 0;
-  z-index: 999999;
   -ms-box-sizing: content-box;
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;

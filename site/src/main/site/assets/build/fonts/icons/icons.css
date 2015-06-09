@@ -104,3 +104,27 @@
     -moz-transform: rotate(180deg);
     transform: rotate(180deg);
 }
+
+.icon_fbSquare:before {
+    content: "\e60a";
+}
+
+.icon_Twitter:before {
+    content: "\e622";
+}
+
+.icon_GPlus:before {
+    content: "\e60d";
+}
+
+.icon_Lkd:before {
+    content: "\e611";
+}
+
+.icon_GitHub:before {
+    content: "\e60c";
+}
+
+.icon_Wordpress:before {
+    content: "\e623";
+}
