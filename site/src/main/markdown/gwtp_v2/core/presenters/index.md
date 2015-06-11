@@ -9,7 +9,7 @@ A `PresenterWidget`:
 * Can pass data to its views
 * Can handle data that is pushed from the views
 * Has a powerful and complete *lifecycle*
-* Relies heavily on the *dependency inversion* principle
+* Relies heavily on the *Inversion of Control* principle via Dependency Injection
 * Helps producing loosely coupled UI components
 * Is unit testable with any Java test framework
 
@@ -22,7 +22,7 @@ Let's assume `CurrentUserService` is an interface that's implemented by a client
 
 ```
 public class SimplePresenter extends PresenterWidget<SimplePresenter.MyView> {
-    public interface MyView extends View {
+    interface MyView extends View {
         void displayCurrentUserName(String username);
     }
 
