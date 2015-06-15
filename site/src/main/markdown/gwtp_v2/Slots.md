@@ -35,30 +35,30 @@ You can still use addToPopupSlot if you like but this allows you to also call ge
 
 
 ## Using slots
-If you are adding ChildPresenter to a slot in CurrentPresenter, you can:
+### In the presenter
+You have to define the slot as a field, like this:
+```
+static final Slot<PresenterWidget<?>> SLOT_CONTENT = new Slot<>();
+```
+
+Then, you have to add/set the presenter(s) that goes in the slot.
+
+If you are adding a ChildPresenter to a slot in CurrentPresenter, use either of these methods:
 1. `addToSlot()`: Will append the presenter to the slot.
-2. `setInSlot()`: Will replace existing presenter(s) in the slot.
+1. `setInSlot()`: Will replace existing presenter(s) in the slot.
 
 If you are setting CurrentPresenter in ParentPresenter, set the slot in the constructor, like this:
 ```
 @Inject
 HomePagePresenter(
-    EventBus eventBus,
-    MyView view,
-    MyProxy proxy) {
-    super(eventBus, view, proxy, ApplicationPresenter.SLOT_SetMainContent);
+        EventBus eventBus,
+        MyView view,
+        MyProxy proxy) {
+    super(eventBus, view, proxy, ApplicationPresenter.SLOT_CONTENT);
+}
 ```
 
-
-## Which slot to use?
-If you want to set a single child presenter in a slot, use either `SingleSlot`, `PermanentSlot` or `PopupSlot` and set it using `setInSlot()`.
-
-If you need multiple presenters in a slot, use either `Slot` or `OrderedSlot` and set them using `addToSlot()`.
-
-If you want to expose a slot so that child can set themselves in it, use a nested slot and let the child set it in its constructor. A common use of this is make a root page (containing menus, header, footer, etc.) and expose a CONTENT slot.
-
-
-## Setting the slot in the view
+### In the view
 You have to bind your slot to a widget in the view. For most use cases, you can simply use the `bindSlot()` method:
 ```
 @UiField
@@ -89,88 +89,86 @@ public void addToSlot(Object slot, IsWidget content) {
 Make sure to call `super()` so that you can continue to use the `bindSlot()` method for slots that don't require additional handling.
 
 
-
-
-
-#Presenter Types
-GWTP has a few different ways to setup presenters, but each presenter type uses the slot methods the same.
-
-##Nested or Layout Presenters
-The nested or layout presenters direct the application layout as in the header, footer and content. Layout presenters which can be nested in many different ways communicate via the Eventbus. The `@NameToken` can be used with the PlaceManager to handle url navigation. Please note that both parent and child presenters in this case are `com.gwtplatform.mvp.client.Presenter`
-
-* Layout presenters (parent) initialize the slot by using the @ContentSlot annotation. See how it is used [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationPresenter.java).
-
+## Layout example
+It's common to have a base Presenter containing the layout of the application. For our example, we'll have 2 slots:  one for the menu and one for the content.
 ```
-@ContentSlot
-public static final Type<RevealContentHandler<?>> SLOT_MAIN_CONTENT = new Type<RevealContentHandler<?>>();
+public static final NestedSlot SLOT_CONTENT = new NestedSlot();
+
+static final PermanentSlot<MenuPresenter> SLOT_MENU = new PermanentSlot<>();
 ```
+*Note that `SLOT_MENU` only needs to be available for the View, so we set it package-private. `SLOT_CONTENT` needs to be available for other presenters, so it's public.*
 
-* [Child presenter](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/home/HomePagePresenter.java) can specify its slot through its call to super constructor.
-
+### Menu
+We'll receive it in RootPresenter's constructor:
 ```
 @Inject
-HomePagePresenter(EventBus eventBus,
-    MyView view,
-    MyProxy proxy,
-    DispatchAsync dispatcher) {
-    super(eventBus, view, proxy, ApplicationPresenter.SLOT_SetMainContent);
-```
+RootPresenter(
+        EventBus eventBus,
+        MyView view,
+        MyProxy proxy,
+        MenuPresenter menuPresenter) {
+    super(eventBus, view, proxy);
 
-* The [parent view](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationView.java) now simply sets the widget to the specified slot.
-
-```
-@Override
-public void setInSlot(Object slot, IsWidget content) {
-    if (slot == ApplicationPresenter.SLOT_HeaderPresenter) {
-        header.setWidget(content);
-    } else if (slot == ApplicationPresenter.SLOT_SetMainContent) {
-        main.setWidget(content);
-    } else {
-        super.setInSlot(slot, content);
-    }
+    this.menuPresenter = menuPresenter;
 }
 ```
 
-##Child Widget Presenters
-A slot can also be used to embed a widget presenter (child) in a layout presenter (parent). A more generic way would be to inject the child widget in parent and call a setter in parent's view to set the child widget. We can instead use slots to keep presenter and view decoupled. The child in this case can be either of `com.gwtplatform.mvp.client.PresenterWidget` and `com.gwtplatform.mvp.client.Presenter` while the parent can only be `com.gwtplatform.mvp.client.Presenter`.
-
-* In [parent presenter](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header/HeaderPresenter.java), create a slot object. Inject the child widget.
-* Use a slot method to render the presenter.
-
+Bind it in `onBind()`:
 ```
-// slot name
-public static final Object LOGIN_SLOT = new Object();
-
-@Inject
-HeaderPresenter(EventBus eventBus,
-    MyView view,
-    LoginPresenter loginPresenter) {
-    super(eventBus, view);
-    this.loginPresenter = loginPresenter;
-    getView().setUiHandlers(this);
-}
-
 @Override
 protected void onBind() {
-    super.onBind();
-
-    setInSlot(LOGIN_SLOT, loginPresenter);
+    setInSlot(SLOT_MENU, menuPresenter);
 }
 ```
 
-* The [parent view](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header/HeaderView.java) simply handles how the slot defined in the parent should be placed.
-
+And finally bind the slot to a widget in the view:
 ```
 @UiField
-SimplePanel login;
+SimplePanel menu;
 
-@Override
-public void setInSlot(Object slot, IsWidget content) {
-    if (slot == HeaderPresenter.SLOT_LoginPresenter) {
-        login.setWidget(content);
-    }
+@Inject
+RootView(
+        Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
+
+    bindSlot(RootPresenter.SLOT_MENU, menu);
 }
 ```
+
+### Content
+The content is a bit different. Once the `NestedSlot` field is created, you only need to bind it in the view:
+```
+@UiField
+SimplePanel menu;
+@UiField
+SimplePanel content;
+
+@Inject
+RootView(
+        Binder uiBinder) {
+    initWidget(uiBinder.createAndBindUi(this));
+
+    bindSlot(RootPresenter.SLOT_MENU, menu);
+    bindSlot(RootPresenter.SLOT_CONTENT, content);
+}
+```
+
+Then, a child presenter will set itself as the content of the slot through its constructor:
+```
+@Inject
+HomePagePresenter(
+        EventBus eventBus,
+        MyView view,
+        MyProxy proxy) {
+    super(eventBus, view, proxy, RootPresenter.SLOT_CONTENT);
+}
+```
+
+
+
+
+
+
 
 ##Popup Presenters
 The Popup Presenter skips the view's slot methods all together. When it is used it adds directly to the DOM and
