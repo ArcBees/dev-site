@@ -8,30 +8,12 @@ Typed slots are new in 1.5. If you are using an older version, make sure to read
 
 ## Slot types
 There are different slot types depending on the intended use.
-* [SingleSlot](#SingleSlot)
-* [PermanentSlot](#PermanentSlot)
-* [NestedSlot](#NestedSlot)
-* [Slot](#Slot)
-* [OrderedSlot](#OrderedSlot)
-* [PopupSlot](#PopupSlot)
-
-### SingleSlot
-Slot that can take only one presenter.  Can call getChild(slot) to see what's in the slot.
-
-### PermanentSlot
-Same as `SingleSlot`, but once a presenter goes in it can never be removed. Means that `getChild(slot)` will never be null.
-
-### NestedSlot
-Same as `SingleSlot`, but can only take Presenters that have Proxies (no `PresenterWidget`).
-
-### Slot
-The most permissive slot, can contain multiple presenters. Can call getChildren(slot) to see which presenters it currently contains.
-
-### OrderedSlot
-Like `Slot` except the presenters you put in it must be comparable.  The view will automatically put them in order for you but you can only bind them to an IndexedPanel. `getChildren(slot)` returns the presenters the slot contains in order.
-
-### PopupSlot
-A slot used for popup presenters. See [Popup presenters](TODO-LINK) for more details.
+* **SingleSlot**: Slot that can take only one presenter.  Can call getChild(slot) to see what's in the slot.
+* **PermanentSlot**: Same as `SingleSlot`, but once a presenter goes in it can never be removed. Means that `getChild(slot)` will never be null.
+* **NestedSlot**: Same as `SingleSlot`, but can only take Presenters that have Proxies (no `PresenterWidget`).
+* **Slot**: The most permissive slot, can contain multiple presenters. Can call getChildren(slot) to see which presenters it currently contains.
+* **OrderedSlot**: Like `Slot` except the presenters you put in it must be comparable.  The view will automatically put them in order for you but you can only bind them to an IndexedPanel. `getChildren(slot)` returns the presenters the slot contains in order.
+* **PopupSlot**: A slot used for popup presenters. See [Popup presenters](TODO-LINK) for more details.
 
 
 ## Using slots
