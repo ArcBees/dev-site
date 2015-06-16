@@ -7,6 +7,7 @@
         <entries>
             <entry name="index" title="Overview" displayName="Overview"/>
             <entry name="get-started/" displayName="Get Started"/>
+            <entry name="core/" displayName="Core (MVP)"/>
             <entry name="advanced/" displayName="Advanced Features"/>
             <entry name="resources/" displayName="Resources"/>
             <entry name="License" title="License" displayName="License"/>
