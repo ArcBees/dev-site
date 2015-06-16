@@ -34,7 +34,7 @@ public class SimplePresenter extends PresenterWidget<SimplePresenter.MyView> {
                     CurrentUserService currentUserService) {
         super(eventBus, view);
 
-        this.CurrentUserService = currentUserService;
+        this.currentUserService = currentUserService;
     }
 
     @Override
@@ -47,8 +47,8 @@ public class SimplePresenter extends PresenterWidget<SimplePresenter.MyView> {
 *SimpleViewImpl.java*
 
 ```
-public class SimpleView extends ViewImpl implements SimplePresenter.MyView {
-    interface Binder extends UiBinder<HTMLPanel, SimpleViewView> {
+public class SimpleViewImpl extends ViewImpl implements SimplePresenter.MyView {
+    interface Binder extends UiBinder<HTMLPanel, SimpleView> {
     }
 
     @UiField
