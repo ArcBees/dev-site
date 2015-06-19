@@ -1,5 +1,5 @@
 # Presenter Slots
-Presenters in GWTP have a concept of slots. Slots are basically placeholder where the child presenters are put and associated to that parent presenter. GWTP is using setInSlot in it's hierarchy while revealing the presenters and a recursive strategy is used to call each lifecycle methods in the nested presenters hierarchy defined.
+Presenters in GWTP have a concept of slots. Slots are basically placeholders where the child presenters are put and associated to their parent presenter. GWTP is using `setInSlot()` in it's hierarchy while revealing the presenters and a recursive strategy is used to call each lifecycle methods in the nested presenters hierarchy defined.
 
 
 ## Note on new slots
@@ -8,17 +8,17 @@ Typed slots are new in 1.5. If you are using an older version, make sure to read
 
 ## Slot types
 There are different slot types depending on the intended use.
-* **SingleSlot**: Slot that can take only one presenter.  Can call getChild(slot) to see what's in the slot.
-* **PermanentSlot**: Same as `SingleSlot`, but once a presenter goes in it can never be removed. Means that `getChild(slot)` will never be null.
+* **SingleSlot**: Slot that can take only one presenter.  Can call `getChild(slot)` to see what's in the slot.
+* **PermanentSlot**: Same as `SingleSlot`, but once a presenter is added it can never be removed. Means that `getChild(slot)` will never be null.
 * **NestedSlot**: Same as `SingleSlot`, but can only take Presenters that have Proxies (no `PresenterWidget`).
-* **Slot**: The most permissive slot, can contain multiple presenters. Can call getChildren(slot) to see which presenters it currently contains.
-* **OrderedSlot**: Like `Slot` except the presenters you put in it must be comparable.  The view will automatically put them in order for you but you can only bind them to an IndexedPanel. `getChildren(slot)` returns the presenters the slot contains in order.
+* **Slot**: The most permissive slot, can contain multiple presenters. Can call `getChildren(slot)` to see which presenters it currently contains.
+* **OrderedSlot**: Like `Slot` except the presenters added to it must be comparable. The view will automatically put them in order but they can only be binded to an IndexedPanel. `getChildren(slot)` returns the presenters the slot contains in order.
 * **PopupSlot**: A slot used for popup presenters. See [Popup presenters](TODO-LINK) for more details.
 
 
 ## Using slots
 ### In the presenter
-You have to define the slot as a field, like this:
+The slot needs to be defined as a field, like this:
 ```
 static final Slot<PresenterWidget<?>> SLOT_CONTENT = new Slot<>();
 ```
@@ -27,16 +27,17 @@ Then, you have to add/set the presenter(s) that goes in the slot.
 
 If you are adding a ChildPresenter to a slot in CurrentPresenter, use either of these methods:
 1. `addToSlot()`: Will append the presenter to the slot.
-1. `setInSlot()`: Will replace existing presenter(s) in the slot.
+2. `setInSlot()`: Will replace existing presenter(s) in the slot.
 
-If you are setting CurrentPresenter in ParentPresenter, set the slot in the constructor, like this:
+If you are setting CurrentPresenter in ParentPresenter, set the slot in the constructor by using a `NestedSlot`, like this:
+
 ```
 @Inject
-HomePagePresenter(
+CurrentPresenter(
         EventBus eventBus,
         MyView view,
         MyProxy proxy) {
-    super(eventBus, view, proxy, ApplicationPresenter.SLOT_CONTENT);
+    super(eventBus, view, proxy, ParentPresenter.SLOT_CONTENT);
 }
 ```
 
@@ -47,11 +48,11 @@ You have to bind your slot to a widget in the view. For most use cases, you can 
 SimplePanel searchPanel;
 
 @Inject
-SomeView(
+ApplicationView(
         Binder uiBinder) {
     initWidget(uiBinder.createAndBindUi(this));
 
-    bindSlot(SomePresenter.SLOT_SEARCH, searchPanel);
+    bindSlot(ApplicationPresenter.SLOT_CONTENT, searchPanel);
 }
 ```
 
@@ -72,7 +73,7 @@ Make sure to call `super()` so that you can continue to use the `bindSlot()` met
 
 
 ## Layout example
-It's common to have a base Presenter containing the layout of the application. For our example, we'll have 2 slots:  one for the menu and one for the content.
+It's common to have a base Presenter containing the layout of the application. For our example, we'll have 2 slots: one for the menu and one for the content.
 ```
 public static final NestedSlot SLOT_CONTENT = new NestedSlot();
 
