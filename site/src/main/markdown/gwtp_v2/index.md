@@ -8,7 +8,7 @@ At the heart of **GWTP** is a model-view-presenter architecture (MVP). Although 
 
 For example, adding history management and code splitting to your presenter is as simple as adding these lines to your class:
 
-```
+```java
 @ProxyCodeSplit
 @NameToken("myToken")
 interface MyProxy extends ProxyPlace<MyPresenter> {}

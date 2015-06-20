@@ -2,11 +2,13 @@ Universal Analytics supports the default Analytics plugins.
 
 To use a plugin disable auto create when installing Analytics in your client gin module:
 
-`install(new AnalyticsModule.Builder("UA-XXXXXXXX-X").autoCreate(false).build());`
+```java
+install(new AnalyticsModule.Builder("UA-XXXXXXXX-X").autoCreate(false).build());
+```
 
 Then in your EntryPoint or Bootstrapper (GWTP) enable the plugins you want before making any other calls:
 
-```
+```java
 analytics.create().go();
 analytics.enablePlugin(AnalyticsPlugin.DISPLAY); // (optional) Provides demographics information.
 analytics.sendPageView().go(); // (recommended) track the initial pageview

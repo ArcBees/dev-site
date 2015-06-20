@@ -9,7 +9,7 @@ For full information refer to the javadoc of your `@GenEvent`, `@GenDispatch`, `
 ## Generate Event and Event Handler
 The `@GenEvent` will generate an `Event` class and an `EventHandler` interface.
 
-```
+```java
 @GenEvent
 public class FooChanged {
     @Order(1) Foo foo;
@@ -22,7 +22,7 @@ The above example will generate `FooChangedEvent` and `FooChangedEventHandler`.
 ## Generate Action and Result
 The `@GenDispatch` will generate `Action` and `Result` classes.
 
-```
+```java
 @GenDispatch
 public class RetrieveFoo {
     @In(1) Key<Foo> fooKey;
@@ -37,7 +37,7 @@ The above example will generate `RetrieveFooAction` and `RetrieveFooResult`.
 The `@GenDto` annotation will generate simple Data Transfer Object (DTO) classes to be used solely for transferring data between the client and the server.
 
 
-```
+```java
 @GenDto
 public class LineItem {
     @Order(1) Key<Product> productKey;
@@ -48,7 +48,7 @@ public class LineItem {
 The above example will generate a `LineItemDto` class that could be used on the following action when creating an invoice.
 
 
-```
+```java
 @GenDispatch
 public class CreateInvoice {
     @In Key<Customer> customerKey;
@@ -69,7 +69,7 @@ The `@GenProxy` will generate `EntityProxy` or `ValueProxy` interfaces. The gene
 **Note:** You can embed other generated proxy interfaces (or even the same proxy) using @UseProxyName.
 
 
-```
+```java
 @GenProxy
 public class Person {
     String id;
@@ -89,7 +89,7 @@ Normally two constructors are created with either all or only non-optionals. In 
 **Note:** There is no way to declare optional fields while using the `@GenProxy` annotation. Instead, you can use the 'filterGetter' and/or 'filterSetter' property.
 
 
-```
+```java
 @GenEvent
 public class FooChanged {
     @Order(1) @Optional Foo foo;
@@ -101,7 +101,7 @@ public class FooChanged {
 The following constructor and fire methods will be generated:
 
 
-```
+```java
 public class FooChangedEvent {
     ...
     protected FooChangedEvent() { ...
@@ -121,7 +121,7 @@ Since GWTP 0.5, the generation process will also consider modifiers and constant
 The following code snippet shows a more complex example using the `@GenEvent` annotation.
 
 
-```
+```java
 @GenEvent
 public class FireAnswerOfLife {
     public static final String ANSWER = "42";
@@ -167,12 +167,12 @@ To enable GWTP annotation processing in eclipse:
 ## Ant
 The latest version of ant automatically recognizes annotation processing. A good practice is to put the generated source in an alternate directory. To do this you will have to instruct ant to create that directory:
 
-```
+```bash
 <mkdir dir=".apt_generated" />
 ```
 And then, within your `javac` task, you specify that this directory should be used for generated source via the `-s` flag:
 
-```
+```bash
 <compilerarg value="-s" />
 <compilerarg path=".apt_generated" />
 ```

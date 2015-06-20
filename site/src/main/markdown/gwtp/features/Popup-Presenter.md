@@ -11,15 +11,15 @@ The Popup Presenter skips the view's slot methods all together. When it is used 
 
 * Example of rendering a popup presenter.
 
-```
+```java
 addToPopupSlot(popupPresenter);
 ```
 
 * Removing a popup presenter. Calling either of these methods will hide the popup presenter and remove it from it's parent.
 
-```
+```java
 popupPresenter.removeFromParent();
-or
+// or
 popupPresenter.getView().hide();
 ```
 
@@ -27,7 +27,7 @@ popupPresenter.getView().hide();
 
 ##Presenter
 
-```
+```java
 public class InfoPopupPresenterWidget extends PresenterWidget<InfoPopupPresenterWidget.MyView> {
     /**
      * {@link InfoPopupPresenterWidget}'s view.
@@ -47,7 +47,7 @@ public class InfoPopupPresenterWidget extends PresenterWidget<InfoPopupPresenter
 The view extends `PopupViewImpl` or `PopupViewWithUiHandlers<PresentersUiHandlers>`.
 
 
-```
+```java
 public class InfoPopupView extends PopupViewImpl implements InfoPopupPresenterWidget.MyView {
     public interface Binder extends UiBinder<PopupPanel, InfoPopupView> {
     }
@@ -64,7 +64,7 @@ public class InfoPopupView extends PopupViewImpl implements InfoPopupPresenterWi
 
 ##UiBinder
 
-```
+```xml
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
     <ui:style>
         .popup {
@@ -96,11 +96,13 @@ There are 3 provided Popup Presenters
 To create your own PopupPositioner extend the PopupPositioner class.
 
 You can set the popupPositioner by calling the super constructor:
-```
+
+```java
 super(eventBus, myPositioner);
 ```
 or
-```
+
+```java
 getView().setPopupPositioner(myPositioner);
 ```
 

@@ -11,7 +11,7 @@ Before to start contributing, you have to import the source code of GwtQuery ins
 
 * Be sure you have installed git and maven and both 'mvn' and 'git' commands are in your path.
 
-```
+```bash
 $ mvn -version
 Apache Maven 3.0.3 ...
 $ git --version
@@ -20,7 +20,7 @@ git version 1.7.5.4
 
 * Checkout the project and change into the new folder created
 
-```
+```bash
 $ git clone git@github.com:gwtquery/gwtquery.git
 $ cd gwtquery/gwtquery-core
 ```
@@ -29,7 +29,7 @@ $ cd gwtquery/gwtquery-core
 
 To run gQuery tests, do it twice, the first time ignore the error related with gwt-unitCache, it will not happen the second time.
 
-```
+```bash
 $ mvn test
 ...
 Unable to create new cache log file /msoft/android/gwtquery/war/../gwt-unitCache/gwt-unitCache-000001336DBA483E.
@@ -44,7 +44,7 @@ $ mvn test
 BUILD SUCCESS
 ...
 
-```
+```bash
 
 * Install eclipse and these plugins:
 * Google plugin for eclipse (update-site: http://dl.google.com/eclipse/plugin/3.7 or 3.6 or 3.5)
@@ -54,7 +54,7 @@ BUILD SUCCESS
 ##How to run test ?
 To run test, you can either use maven in the source folder
 
-```
+```bash
 $ cd gwtquery-core
 $ mvn test
 ```
@@ -73,6 +73,6 @@ Whether it is to solve an issue or suggest a new features, there are two ways to
  * Preferred: clone the code in [GitHub](https://github.com/gwtquery/gwtquery), and send a pull request with your changes. There are lots of posts helping how to use github and submit pull requests.
  * Alternative: open an [issue](https://github.com/gwtquery/gwtquery/issues?state=open) and attach your patch to it. Use git in command line to create your patch:
 
-```
+```bash
 $ git diff > ~/fix_issue_123.diff
-```
+```bash

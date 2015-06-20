@@ -15,6 +15,6 @@ com.gwtplatform.mvp.client.proxy.RouteTokenFormatter | com.gwtplatform.mvp.share
 ## New mandatory GIN bindings
 If you don't install `DefaultModule` or `RestDispatchAsyncModule`, you will likely end up with missing binding issues. To fix them, add this line in one of your GIN module:
 
-```
+```java
 install(new CommonGinModule());
 ```

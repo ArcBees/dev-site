@@ -18,7 +18,7 @@ Replace the default GIN binding to `ParameterTokenFormatter` with `RouteTokenFor
 
 In case you use the ``DefaultModule``:
 
-```
+```java
 install(new DefaultModule(DefaultPlaceManager.class, RouteTokenFormatter.class));
 ```
 
@@ -42,7 +42,7 @@ Every parameter which is not part of the route will be treated as query paramete
 Revealing works the same way as with hierarchical-places. By creating a `PlaceRequest` with the target place-token and it's parameters. For example:
 
 
-```
+```java
 placeManager.revealPlace(
     new PlaceRequest.Builder()
         .nameToken("/users/{userId}/photos/{albumId}/{photoId}")
@@ -59,7 +59,7 @@ For example, you might want to have a CRUD editor form that can display both a b
 
 Now you would simple write
 
-```
+```java
 @NameToken({"/item/edit/{id}","/item/edit"})
 public interface MyProxy extends ProxyPlace<ItemEditorPresenter> {
   ...

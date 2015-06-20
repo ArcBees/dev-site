@@ -7,7 +7,7 @@ For instance, if your application has an admin section, a normal user won't have
 
 * Example use of the @ProxyCodeSplitBundle annotation. Setup the bundle.
 
-```
+```java
 @ProxyCodeSplitBundle("MyBundle1")
 public interface MyProxy extends ProxyPlace<Presenter1> {
 }
@@ -15,7 +15,7 @@ public interface MyProxy extends ProxyPlace<Presenter1> {
 
 * To keep your bundles in order an interface with all possible bundle IDs can be created and than used with the `@ProxyCodeSplitBundle` annotation:
 
-```
+```java
 public interface Bundles {
     String BUNDLE1 = "MyBundle1";
     String BUNDLE2 = "MyBundle2";
@@ -31,7 +31,7 @@ With large bundles keeping all the IDs and bundle sizes in order can be quite ha
 
 * `ProviderBundle`s is used and created like this:
 
-```
+```java
 public class MyPresenterBundle extends ProviderBundle {
     public final static int ID_PRESENTER1 = 0;
     public final static int ID_PRESENTER2 = 1;
@@ -48,7 +48,7 @@ public class MyPresenterBundle extends ProviderBundle {
 
 * After that the bundle can be used when declaring a proxy by using `@ProxyCodeSplitBundle`:
 
-```
+```java
 @ProxyCodeSplitBundle(bundleClass = MyPresenterBundle.class, id = MyPresenterBundle.ID_PRESENTER1)
 public interface MyProxy extends ProxyPlace<Presenter1> {
 }
@@ -59,7 +59,7 @@ Methods marked with `@TabInfo` now accept multiple parameters. Parameter types m
 
 * Example use of @TabInfo annotation.
 
-```
+```java
 @TabInfo(container = AdminPresenter.class)
 static TabData getTabLabel(MyConstants constants, IsAdminGateKeeper gateKeeper) {
     return new TabDataExt(constants.admin(), 0, gateKeeper);
@@ -74,7 +74,7 @@ Injecting CSS and binding resources docs can be foud here: [Resources][res].
 ##Important Notes
 * Projects that update to GWTP 1.0 need to remove the following line from `Module.gwt.xml` files
 
-```
+```xml
 <define-configuration-property name="gin.ginjector" is-multi-valued="false"/>
 ```
 

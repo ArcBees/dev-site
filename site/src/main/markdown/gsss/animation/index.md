@@ -4,7 +4,7 @@
 
 Add the animation settings `com/arcbees/gsss/animation/client/animationsettings.gss` and the animation file `com/arcbees/gsss/animation/client/animation.gss` in a `@Source` annotation.
 
-```
+```java
 @Source({"com/arcbees/gsss/animation/client/animationsettings.gss", "com/arcbees/gsss/animation/client/animation.gss"})
 AnimationResources.Animation animation();
 ```

@@ -9,7 +9,7 @@ The starting point is the [Sonatype OSS Maven Repository User Guide](https://doc
 ##Specifying your Google Code credentials
 The various deployment steps need Maven to know your Google Code credentials. You specify them on your local machine by adding the following to Maven's settings.xml:
 
-```
+```xml
 <servers>
     ...
     <server>
@@ -29,7 +29,7 @@ This is explained in section 7a.2 of the previous document.
 It's accomplished simply via:
 
 
-```
+```bash
 mvn clean deploy
 ```
 
@@ -45,7 +45,7 @@ This is explained in section 7a.2 of the previous document.
 
 Before you deploy a release you should make sure all the source is committed and pushed to the Google Code repository. You do not have to tag the code, it will be done automatically by Maven in the following steps. This is done via:
 
-```
+```bash
 mvn release:clean
 mvn release:prepare -Dgpg.passphrase=yourpassphrase
 ```
@@ -54,7 +54,7 @@ Answer all the questions. The artifacts will be signed so you have to enter your
 
 The next step is performing staging the actual release through the following command:
 
-```
+```bash
 mvn release:perform -Dgpg.passphrase=yourpassphrase
 ```
 

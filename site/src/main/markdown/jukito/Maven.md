@@ -2,7 +2,7 @@
 
 Jukito is released on Maven central. If you use Maven you can configure add this dependency:
 
-```
+```xml
 <dependency>
     <groupId>org.jukito</groupId>
     <artifactId>jukito</artifactId>
@@ -15,7 +15,7 @@ Replace `${jukito.version}` with the current version of Jukito, which you should
 
 If you want to use a jukito SNAPSHOT you will have to include Sonatype's repository in your POM:
 
-```
+```xml
 <repository>
     <id>sonatype.snapshots</id>
     <name>Sonatype snapshot repository</name>

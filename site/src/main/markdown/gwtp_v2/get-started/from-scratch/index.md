@@ -24,7 +24,7 @@ project_root
 
 Using your terminal, you can easily create all the directories with the following commands:
 
-```sh
+```bash
 mkdir -p src/main/java/com/mydomain/myproject/client/application/home
 mkdir -p src/main/java/webapp/WEB-INF
 ```

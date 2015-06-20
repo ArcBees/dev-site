@@ -20,7 +20,7 @@ In the following example we will implement a ClientActionHandler that caches the
 The first thing we need to do is to create the actual ClientActionHandler. Think of this as a client-side version of a normal server-side ActionHandler. Once this ClientActionHandler is installed, this class will be called instead of the ActionHandler on the server.
 
 
-```
+```java
 public class FooRetrieveClientActionHandler extends AbstractClientActionHandler<FooRetrieveAction, FooRetrieveResult> {
     private final Cache cache; // Use the built-in GWTP cache
 
@@ -78,7 +78,7 @@ To register a client action handler, extend the `DefaultClientActionHandlerRegis
 
 Below is an example of how to extend the ``DefaultClientActionHandlerRegistry``
 
-```
+```java
 public class MyClientActionHandlerRegistry extends DefaultClientActionHandlerRegistry {
     // Direct Inject
     @Inject
@@ -107,7 +107,7 @@ public class MyClientActionHandlerRegistry extends DefaultClientActionHandlerReg
 
 Note that you can supply as many ClientActionHandlers as needed to the constructor and you can also mix in what way they are provided. Below is an example of a constructor with three different ClientActionHandlers, all provided in different ways
 
-```
+```java
 @Inject
 public MyClientActionHandlerRegistry(
     MyFirstClientActionHandler handler
@@ -125,7 +125,7 @@ Now we have everything we need. All that is left is to wire up Gin to use your `
 
 To do this, you create a custom DispatchModule that uses your ClientActionHandlerRegistry. This is how you create such a module:
 
-```
+```java
 public class ClientDispatchModule extends AbstractGinModule {
     @Override
     protected void configure() {
@@ -136,7 +136,7 @@ public class ClientDispatchModule extends AbstractGinModule {
 
 Once this is done, replace the GWTP default DispatchModule with your custom-made ClientDispatchModule
 
-```
+```java
 public class ClientModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
@@ -162,7 +162,7 @@ Congratulations! Now calling the `FooRetrieveAction` will call `ClientActionHand
 
 ##Testing Presenters that use client action handlers
 
-```
+```java
 @RunWith(MockitoJUnitRunner.class)
 public class TestMyPresenter {
     @Mock
@@ -237,7 +237,7 @@ public class TestMyPresenter {
 ### Geocoding Example ###
 The following code demonstrates a client action handler that communicate directly with a server using a different mechanism than gwt-rpc.
 
-```
+```java
 @GenDispatch
 public class GeocodeAddress {
     @In(1) String address;
@@ -339,7 +339,7 @@ public class GeocodeAddressClientActionHandler extends
 
 ### Testing the Geocoding Example ###
 
-```
+```java
 @RunWith(MockitoJUnitRunner.class)
 public class MyTest {
     @Mock

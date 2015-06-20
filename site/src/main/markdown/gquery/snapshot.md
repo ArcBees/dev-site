@@ -11,7 +11,7 @@ Get latest SNAPSHOT artifacts from the [Sonatype repository](http://oss.sonatype
 * Also you could use it in your maven project just adding these lines to your pom.xml
 * Latest snapshot is compiled using last gwt-version (it should work with 2.5.x, 2.4.0, 2.3.0 and 2.2.0), so if you wanted to use it in an older gwt version you should compile by hand.
 
-```
+```xml
     <repositories>
         <repository>
             <id>sonatype</id>
@@ -35,13 +35,13 @@ Get latest SNAPSHOT artifacts from the [Sonatype repository](http://oss.sonatype
 * Compile the code using maven
 * Use the generated jar file
 
-```
+```bash
  $ git clone http://code.google.com/p/gwtquery/
 ```
 
 or
 
-```
+```bash
  $ git clone git@github.com:gwtquery/gwtquery.git
 
  $ cd gwtquery

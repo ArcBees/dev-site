@@ -12,7 +12,7 @@ When the presenter is bound the onBind() is called. This is a great place to reg
 
 * Example:
 
-```
+```java
 @Override
 protected void onBind() {
     super.onBind();
@@ -25,7 +25,7 @@ When the Presenter's unbound the onUnbind() is called. This is a good place to d
 
 * Example:
 
-```
+```java
 @Override
 protected void onUnbind() {
     super.onUnbind();
@@ -38,7 +38,7 @@ When the Presenter is about to be revealed the onReveal() is called. Another way
 
 * Example:
 
-```
+```java
 @Override
 protected void onReveal() {
     super.onReveal();
@@ -51,7 +51,7 @@ When the Presenter is about to be hidden the onHide() is called.
 
 * Example:
 
-```
+```java
 @Override
 protected void onHide() {
     super.onHide();
@@ -64,7 +64,7 @@ When any Presenter with in the Presenter's hierarchy has used onReveal() the onR
 
 * Example:
 
-```
+```java
 @Override
 protected void onReset() {
     super.onReset();
@@ -93,7 +93,7 @@ Sometimes, however, using an `Hyperlink` is not possible and you will need to re
 
 You do this by calling the `revealPlace` or one of the `revealRelativePlace` method of `PlaceManager`. To do this you need to build a `PlaceRequest` with the desired name token:
 
-```
+```java
 PlaceRequest.Builder myRequestBuilder = new PlaceRequest.Builder().nameToken("desiredNameToken");
 // If needed, add URL parameters in this way:
 myRequestBuilder = myRequestBuilder.with( "key1", "param1" ).with( "key2", "param2" );

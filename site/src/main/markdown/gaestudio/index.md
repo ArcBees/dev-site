@@ -15,12 +15,16 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 
 * Create a file named `appengine-application.xml` in `/src/META-INF`
 
+    ```xml
         <?xml version="1.0" encoding="utf-8" standalone="no"?>
         <appengine-application xmlns="http://appengine.google.com/ns/1.0">
             <application>__application_id__</application>
         </appengine-application>
+    ```
+
 * Create a file named `application.xml` in `/src/META-INF`
 
+    ```xml
         <?xml version="1.0" encoding="UTF-8"?>
         <application xmlns="http://java.sun.com/xml/ns/javaee"
                 xmlns:xsi="http://www.w3.omarg/2001/XMLSchema-instance"
@@ -47,6 +51,7 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 
             <library-directory>lib</library-directory>
         </application>
+    ```
 
 * In your `appengine-web.xml` file, add `<module>default</module>`
 
@@ -54,11 +59,15 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 * Add a property : `<gae-studio.version>1.0</gae-studio.version>`
 * In the **maven-war-plugin** configuration, add :
 
+    ```xml
         <packagingExcludes>
             %regex[.*?gae-studio-${gae-studio.version}.*],**/gaestudio/**, *.war, *.war/**
         </packagingExcludes>
+    ```
+
 * Add the **appengine-maven-plugin** if you're not already using it
 
+    ```xml
         <plugin>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-maven-plugin</artifactId>
@@ -67,8 +76,11 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                 <enableJarSplitting>true</enableJarSplitting>
             </configuration>
         </plugin>
+    ```
+
 * Create a profile named **gae-studio-ear**
 
+    ```xml
         <profile>
             <id>create-ear</id>
 
@@ -131,6 +143,8 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                 </dependency>
             </dependencies>
         </profile>
+    ```
+
 Simply run `mvn clean install appengine:devserver -Pgae-studio-ear`. This will start both your application and the GAE Studio module.
 
 ### Using the App Engine SDK

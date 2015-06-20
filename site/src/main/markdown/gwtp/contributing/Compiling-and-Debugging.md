@@ -15,7 +15,8 @@ You'll need [RunningGwtpSamples#Getting_Maven Maven], Eclipse Indigo for Java De
 ##Compiling using Maven
 
 To compile the GWTP libraries from a command line prompt go to the top-level directory of the GWTP sources and type:
-```
+
+```bash
 > cd gwt-platform
 > mvn clean install
 ```
@@ -34,7 +35,8 @@ If you prefer to use Eclipse as an external debugger, just right-click on the sa
 Sometimes things go wrong, and you end up with a bunch of files that can mess-up your development environment. At this point, the first thing to try is to reload your Maven configuration. Right-click on the main project, `gwtp`, and select `Maven > Update Project Configuration`.
 
 If this fails, in the package explorer click `Collapse All`, then select all the projects by shift-clicking, then hit `delete`. Make sure you _don't_ delete the projects from disk. Once this is done, in a command prompt go to the root `gwt-platform` directory and issue:
-```
+
+```bash
 > mvn clean eclipse:clean
 ```
 Then import the projects again.
@@ -52,6 +54,7 @@ When working from the command line, recompiling everything as soon as you change
 ##Getting the jars
 
 Compiling everything produces a bunch of jars, which you can find under the various `gwtp-core/*/target` directories . For example, the client-side jar for the MVP components is:
+
 ```
 gwtp-core/gwtp-mvp-client/target/gwtp-mvp-client-[version].jar
 ```
@@ -59,11 +62,13 @@ See the DescriptionOfIndividualJars for more details on each of these jars.
 
 In most cases, you don't really care about optimizing the size of the jars. In such situations you can simply grab the compound jar that includes all of the above.
 To create the compound jar, package the `gwtp-all` module. From a terminal window type:
-```
+
+```bash
 > cd gwtp-core/gwtp-all
 > mvn package
 ```
 and look for the compound artifact in the target directory:
+
 ```
 gwtp-core/gwtp-all/target/gwtp-all-[version].jar
 ```
@@ -73,7 +78,8 @@ Please note that the compound jar for the current SNAPSHOT version of gwt-platfo
 ##Generating the javadoc
 
 If you want to build the javadoc yourself, all you have to do is to activate the `release` maven profile. This can be easily done by passing the `-Prelease` argument along with the rest of your maven goals. For example, to build every module inside gwtp-core with javadoc and sources artifacts attached to the build you should type:
-```
+
+```bash
 > cd gwtp-core
 > mvn package -Prelease
 ```
@@ -87,10 +93,12 @@ The javadoc will be under `gwtp-core/*/target/apidocs`, simply open `index.html`
 ##Custom maven repository
 
 In snapshot versions, GWTP sometimes makes use of recent versions of various libraries that are not yet available in any Maven repository. To that effect, we maintain our own custom Maven repository with these versions. You can obtain the repository by doing:
-```
+
+```bash
 hg clone http://maven.gwt-platform.googlecode.com/hg/ gwt-platform-maven
 ```
 In order to add a library to this repository use `mvn deploy:deploy-file`. For example, to deploy a `gin` snapshot, from the directory containing `gin-1.0-r170.jar` type:
-```
+
+```bash
 mvn deploy:deploy-file -DgroupId=com.google.gwt.inject -DartifactId=gin -Dversion=1.0-r170 -Dpackaging=jar -Dfile=gin-1.0-r170.jar -Durl=file://c:/users/beaudoin/workspace/gwt-platform-maven/
 ```

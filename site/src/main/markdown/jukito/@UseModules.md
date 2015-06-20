@@ -4,7 +4,7 @@
 
 Here's an exemple that you can find under the Jukito test sources:
 
-```
+```java
 @RunWith(JukitoRunner.class)
 @UseModules({AbcModule.class, DefModule.class})
 public class UseModulesTest extends UseModulesTestBase {

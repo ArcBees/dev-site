@@ -10,14 +10,14 @@ The nested or layout presenters direct the application layout as in the header, 
 
 * Layout presenters (parent) initialize the slot by using the @ContentSlot annotation. See how it is used [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationPresenter.java).
 
-```
+```java
 @ContentSlot
 public static final Type<RevealContentHandler<?>> SLOT_MAIN_CONTENT = new Type<RevealContentHandler<?>>();
 ```
 
 * [Child presenter](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/home/HomePagePresenter.java) can specify its slot through its call to super constructor.
 
-```
+```java
 @Inject
 HomePagePresenter(EventBus eventBus,
     MyView view,
@@ -28,7 +28,7 @@ HomePagePresenter(EventBus eventBus,
 
 * The [parent view](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationView.java) now simply sets the widget to the specified slot.
 
-```
+```java
 @Override
 public void setInSlot(Object slot, IsWidget content) {
     if (slot == ApplicationPresenter.SLOT_HeaderPresenter) {
@@ -47,7 +47,7 @@ A slot can also be used to embed a widget presenter (child) in a layout presente
 * In [parent presenter](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header/HeaderPresenter.java), create a slot object. Inject the child widget. 
 * Use a slot method to render the presenter.
 
-```
+```java
 // slot name
 public static final Object LOGIN_SLOT = new Object();
 
@@ -70,7 +70,7 @@ protected void onBind() {
 
 * The [parent view](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/widget/header/HeaderView.java) simply handles how the slot defined in the parent should be placed.
 
-```
+```java
 @UiField
 SimplePanel login;
 
@@ -88,7 +88,7 @@ requests displays in the center or location selected. See more on [Popup Present
 
 * Example of rendering a popup presenter.
 
-```
+```java
 addToPopupSlot(popupPresenter);
 ```
 
@@ -99,7 +99,7 @@ Add presenter with in a presenter, define the presenter slot in the parent prese
 
 * Example of `addToSlot(presenter)` in the presenter:
 
-```
+```java
 // In the Presenter
 // Define a slot name for presenter
 private Object MY_PRESENTER_SLOT = new Object();
@@ -115,7 +115,7 @@ private void displayMyPresenter() {
 
 * Example of the `addToSlot(presenter)` in the view:
 
-```
+```java
 // In the view
 @Override
 public void addToSlot(Object slot, IsWidget content) {
@@ -132,7 +132,7 @@ When removing a presenter.
 
 * Example in of `removeFromSlot(presenter)` in the presenter:
 
-```
+```java
 // In the Presenter
 // Define a slot name for presenter
 private Object MY_PRESENTER_SLOT = new Object();
@@ -148,7 +148,7 @@ private void displayMyPresenter() {
 
 * Example of `removeFromSlot(presenter)` in the view:
 
-```
+```java
 @Override
 public void removeFromSlot(Object slot, IsWidget content) {
     if (slot == ApplicationPresenter.MY_PRESENTER_SLOT) {
@@ -164,7 +164,7 @@ public void removeFromSlot(Object slot, IsWidget content) {
 
 * Example of `setInSlot(presenter)` in the presenter:
 
-```
+```java
 // In the Presenter
 // Define a slot name for presenter
 private Object MY_PRESENTER_SLOT = new Object();
@@ -179,7 +179,7 @@ private void displayMyPresenter() {
 
 * Example of `setInSlot(presenter)` in the view:
 
-```
+```java
 // In the view
 @Override
 public void setInSlot(Object slot, IsWidget content) {
@@ -198,7 +198,7 @@ Clear a child or nested presenter call `clearSlot(slot)`. Remember that calling 
 
 * Call `clearSlot(presenter)` in the presenter:
 
-```
+```java
 // In the presenter
 // Name of the slot
 private Object MY_ITEMS_SLOT = new Object();
@@ -212,7 +212,7 @@ private void clearChildPresenter() {
 
 * And add the `slot == Presenter && content == null` in the view:
 
-```
+```java
 // In the view
 @Override
 public void setInSlot(Object slot, IsWidget content) {
