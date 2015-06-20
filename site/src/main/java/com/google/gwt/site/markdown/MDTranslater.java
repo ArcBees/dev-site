@@ -21,6 +21,7 @@ import java.util.List;
 import com.google.gwt.site.markdown.fs.MDNode;
 import com.google.gwt.site.markdown.fs.MDParent;
 import com.google.gwt.site.markdown.pegdown.MarkdownToHtmlUtil;
+import com.google.gwt.site.markdown.pegdown.ParsedMarkdown;
 import com.google.gwt.site.markdown.toc.TocCreator;
 import com.google.gwt.site.markdown.velocity.VelocityWrapper;
 import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
@@ -53,7 +54,6 @@ public class MDTranslater {
     }
 
     private void renderTree(MDNode node, MDParent root) throws TranslaterException {
-
         if (node.isFolder()) {
             MDParent mdParent = node.asFolder();
 
@@ -63,37 +63,46 @@ public class MDTranslater {
             }
         } else {
             String fileContent = getNodeContent(node.getPath());
-
+            String style = "";
             String content;
+
             if (isMarkdown(node)) {
-                content = markdownToHtmlUtil.toHtml(fileContent);
+                ParsedMarkdown parsedMarkdown = markdownToHtmlUtil.convert(fileContent);
+                content = parsedMarkdown.getHtml();
+                style = parsedMarkdown.getStyle();
             } else {
                 content = fileContent;
             }
 
+            String relativePath = computeRelativePath(node);
+
             String toc = tocCreator.createTocForNode(root, node);
+            toc = adjustRelativePath(toc, relativePath);
 
-            String relativePath = "./";
-            for (int i = 1; i < node.getDepth(); i++) {
-                relativePath += "../";
-            }
+            String html = fillTemplate(style, content, toc, node);
+            html = adjustRelativePath(html, relativePath);
 
-            String html = fillTemplate(
-                    content,
-                    adjustRelativePath(toc, relativePath),
-                    node);
-
-            writer.writeHTML(node, adjustRelativePath(html, relativePath));
+            writer.writeHTML(node, html);
         }
+    }
+
+    private String computeRelativePath(MDNode node) {
+        StringBuilder relativePath = new StringBuilder("./");
+        for (int i = 1; i < node.getDepth(); i++) {
+            relativePath.append("../");
+        }
+
+        return relativePath.toString();
     }
 
     private boolean isMarkdown(MDNode node) {
         return node.getPath().endsWith(".md");
     }
 
-    private String fillTemplate(String html, String toc, MDNode node) {
+    private String fillTemplate(String style, String html, String toc, MDNode node) {
         VelocityWrapper velocityWrapper = velocityFactory.create(template);
 
+        velocityWrapper.put("style", style);
         velocityWrapper.put("content", html);
         velocityWrapper.put("toc", toc);
         velocityWrapper.put("node", node);
