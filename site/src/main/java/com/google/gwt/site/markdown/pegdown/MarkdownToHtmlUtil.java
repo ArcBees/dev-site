@@ -26,7 +26,7 @@ import org.pegdown.ast.RootNode;
 import org.pegdown.plugins.PegDownPlugins;
 import org.pegdown.plugins.ToHtmlSerializerPlugin;
 
-import com.google.gwt.site.markdown.pegdown.jygments.JygmentsCodeHighlighter;
+import com.google.gwt.site.markdown.pegdown.pygments.PygmentsCodeHighlighter;
 
 import static org.pegdown.Extensions.FENCED_CODE_BLOCKS;
 import static org.pegdown.Extensions.STRIKETHROUGH;
@@ -51,7 +51,7 @@ public class MarkdownToHtmlUtil {
 
     public MarkdownToHtmlUtil(PegDownProcessor pegDownProcessor) {
         this.pegDownProcessor = pegDownProcessor;
-        this.highlighter = new JygmentsCodeHighlighter();
+        this.highlighter = new PygmentsCodeHighlighter();
         this.verbatimSerializers = new HashMap<>();
         this.plugins = new ArrayList<>();
 
