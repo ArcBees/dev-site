@@ -19,7 +19,7 @@ There are different slot types depending on the intended use.
 ## Using slots
 ### In the presenter
 The slot needs to be defined as a field, like this:
-```
+```java
 static final Slot<PresenterWidget<?>> SLOT_CONTENT = new Slot<>();
 ```
 
@@ -31,7 +31,7 @@ If you are adding a ChildPresenter to a slot in CurrentPresenter, use either of 
 
 If you are setting CurrentPresenter in ParentPresenter, set the slot in the constructor by using a `NestedSlot`, like this:
 
-```
+```java
 @Inject
 CurrentPresenter(
         EventBus eventBus,
@@ -43,7 +43,8 @@ CurrentPresenter(
 
 ### In the view
 You have to bind your slot to a widget in the view. For most use cases, you can simply use the `bindSlot()` method:
-```
+
+```java
 @UiField
 SimplePanel searchPanel;
 
@@ -57,7 +58,8 @@ ApplicationView(
 ```
 
 If you need to do something when adding/setting the slot, you will need to override the `addToSlot()` or `setInSlot()` method in the view. As a simple example, let's say you want to add an `<hr>` tag before each presenter added in the slot, you would do something like this:
-```
+
+```java
 @Override
 public void addToSlot(Object slot, IsWidget content) {
     if (slot == SomePresenter.SLOT_EXTENSIONS) {
@@ -83,7 +85,8 @@ static final PermanentSlot<MenuPresenter> SLOT_MENU = new PermanentSlot<>();
 
 ### Menu
 We'll receive it in RootPresenter's constructor:
-```
+
+```java
 @Inject
 RootPresenter(
         EventBus eventBus,
@@ -97,7 +100,8 @@ RootPresenter(
 ```
 
 Bind it in `onBind()`:
-```
+
+```java
 @Override
 protected void onBind() {
     setInSlot(SLOT_MENU, menuPresenter);
@@ -105,7 +109,8 @@ protected void onBind() {
 ```
 
 And finally bind the slot to a widget in the view:
-```
+
+```java
 @UiField
 SimplePanel menu;
 
@@ -120,7 +125,8 @@ RootView(
 
 ### Content
 The content is a bit different. Once the `NestedSlot` field is created, you only need to bind it in the view:
-```
+
+```java
 @UiField
 SimplePanel menu;
 @UiField
@@ -137,7 +143,8 @@ RootView(
 ```
 
 Then, a child presenter will set itself as the content of the slot through its constructor:
-```
+
+```java
 @Inject
 HomePagePresenter(
         EventBus eventBus,
