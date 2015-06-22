@@ -6,7 +6,7 @@ There are several ways of writing events but this is based on the GWT way.
 
 ### Simple event
 
-```
+```java
 public class SimpleEvent extends GwtEvent<SimpleEvent.SimpleHandler> {
     public interface SimpleHandler extends EventHandler {
         void onSimpleEvent(SimpleEvent event);
@@ -37,7 +37,7 @@ public class SimpleEvent extends GwtEvent<SimpleEvent.SimpleHandler> {
 
 A common use of events is to pass information between loosely coupled components. Events can be more complex and can carry data. Here's an example :
 
-```
+```java
 public class ComplexEvent extends GwtEvent<ComplexEvent.ComplexHandler> {
     public interface ComplexHandler extends EventHandler {
         void onComplexEvent(ComplexEvent event);
@@ -72,7 +72,7 @@ public class ComplexEvent extends GwtEvent<ComplexEvent.ComplexHandler> {
 Let's assume an application structure with Presenter/View couple where UI handlers are set. Imagine there's a button and a textbox in the view, and data has to be sent to another component of the application. The data has to be sent through the presenter via UI handlers on the button click event.
 TODO: Add UiHandlers Link
 
-```
+```java
 public class SimpleView extends ViewWithUiHandlers<SimpleUiHandlers>
         implements SimplePresenter.MyView {
     interface Binder extends UiBinder<Widget, SimpleView> {
@@ -130,7 +130,7 @@ Here's a concrete example:
 
 *The interface:*
 
-```
+```java
 import com.google.web.bindery.event.shared.HandlerRegistration;
  
 public interface HasComplexEventHandlers {
@@ -142,7 +142,7 @@ public interface HasComplexEventHandlers {
 *The implementer (a presenter in this case):*
 ### Register an event handler
 
-```
+```java
 // Implement this on a presenter
 public HandlerRegistration addComplexEventHandler(ComplexEvent.ComplexHandler handler, Object source) {
     HandlerRegistration hr = getEventBus().addHandlerToSource(ComplexEvent.TYPE, source, handler);
@@ -156,7 +156,7 @@ public HandlerRegistration addComplexEventHandler(ComplexEvent.ComplexHandler ha
 
 Proxy events can also be used to reveal an uninstantiated Presenter. Imagine a Presenter called `MessagePresenter` that's using code splitting, and therefore is not necessarily instantiated. Let's say it needs to be revealed when `ShowMessageEvent` is fired. Here's an example of how it can be done:
 
-```
+```java
 public class MessagePresenter extends Presenter<MessagePresenter.MyView, MessagePresenter.MyProxy> 
         implements ShowMessageHandler {
 

@@ -1,19 +1,22 @@
 You can track how fast things happen in your app by using timing events.
 
 Start your timing event when the process you want to track begins:
-```
+
+```java
 analytics.startTimingEvent("MyCategory", "MyVariableName")
 ```
 
 Then when your timing event ends:
-```
+
+```java
 analytics.endTimingEvent("MyCategory", "MyVariableName").go();
 ```
 
 Make sure the category and variable name are exactly the same or the call won't work.
 
 You can also log the timing in your console if you want to check the speed of things while developing.
-```
+
+```java
 analytics.endTimingEvent("MyCategory", "MyVariableName").goAndLog(Level.INFO);
 ```
 

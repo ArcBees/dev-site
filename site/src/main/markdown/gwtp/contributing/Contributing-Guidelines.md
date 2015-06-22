@@ -53,7 +53,7 @@ For the record, we know that coding style is often a controversial topic. We ack
 
 Every file should have an Apache license header at the top, prefaced with a copyright notice. A package statement and import statements should follow, each block separated by a blank line. Next is the class or interface declaration. In the Javadoc comments, describe what the class or interface does.
 
-```
+```java
 /**
  * Copyright 2010 ArcBees Inc.
  *
@@ -92,7 +92,7 @@ Members that fall into the same category (e.g. static methods) should also be so
 
 All methods should be sorted alphabetically. Sorting is optional but recommended for fields. For example, the following class excerpt is correctly sorted:
 
-```
+```java
 public abstract class Foo {
     // Type declarations.
     public class FooBaz {
@@ -177,14 +177,14 @@ We use 2-space indents for blocks. No tabs at all, anywhere.
 
 We use 4-space indents after line wraps, including function calls and assignments. For example, this is correct (4 spaces after the newline):
 
-```
+```java
 Instrument i =
     new Instrument();
 ```
 
 and this is not correct (2 spaces after the newline):
 
-```
+```java
 Instrument i =
   new Instrument();
 ```

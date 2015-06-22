@@ -29,7 +29,7 @@ Plus, you can combine Promises logically into new Promises. That makes it trivia
 
 All GQuery Ajax methods return a promise, so you could join multiple calls into a promise and call methods whenever all of then finish.
 
-```
+```java
 Promise gettingThings = GQuery.when(
     Ajax.getJSONP(url1),
     Ajax.getJSONP(url2)
@@ -55,7 +55,7 @@ gettingThings.fail(new Function(){
 
 `GQuery.promise()` returns a promise which will observe all queued processes, so as you can chain effects and run functions when they finish.
 
-```
+```java
 $("div").fadeIn(800)
         .delay(1200)
         .fadeOut()
@@ -81,7 +81,7 @@ GQuery comes with `PromiseFunction` a utility abstract class which facilitates c
 
 You have to implement a function `void f(Deferred)` which will be executed just once when the promise is created. You get the deferred instance which so as you can resolve the promise.
 
-```
+```java
   Promise doingFoo = new PromiseFunction() {
     public void f(Deferred dfd) {
       dfd.notify(1);
@@ -116,7 +116,7 @@ You have to implement a function `void f(Deferred)` which will be executed just 
 
 A very common case is to put together some callbacks and monitor whether all of them are resolved or any of them is rejected. The method `when()` allows to combine multiple subordinates and return one promise which will be resolved only in the case all of them succeed.
 
-```
+```java
 // Create 3 helper promises to wrap RPC callbacks
 PromiseRPC<String> promise1 = new PromiseRPC<String>();
 PromiseRPC<String> promise2 = new PromiseRPC<String>();
@@ -145,7 +145,7 @@ GQuery
 
 But `when()` also allows monitor any kind of objects, so we could mix `Promises`, `Functions`, `Effects`, `Queues` or plain objects. `done()` functions will have access to all the objects or its results depending on the case.
 
-```
+```java
 GQuery.when(
           $("div").fadeIn(800).delay(1200).fadeOut(),
           $("p").slideDown(400),
@@ -169,7 +169,7 @@ GQuery.when(
 
 Sometimes it is useful to delay the execution of an asynchronous process until we have the results of a previous one. You can pipeline processes using the `Promise.then()` method. This method accept functions which can return filtered arguments, or new promises:
 
-```
+```java
 Ajax.ajax("your/web/service/getData")
     .then(new Function() {public Object f(Object...args) {
         theOriginalData = arguments(0);
@@ -182,7 +182,7 @@ Ajax.ajax("your/web/service/getData")
 
 But the `Promise.then()` method is also useful for filtering the results of an execution, similar to `GQuery.map()` but with async callbacks:
 
-```
+```java
 Ajax.ajax("your/web/service/getData")
     .then(new Function() {public Object f(Object...args) {
         theOriginalData = args[0];
@@ -197,7 +197,7 @@ Ajax.ajax("your/web/service/getData")
 
 Complex ajax applications code is difficult to follow due to the excessive usage of asynchronous callbacks. gQuery offers a way to maintain your GWT code in a more `declarative` way when dealing with complex asynchronous work flows:
 
-```
+```java
 GQuery.when(doingLogin())
     .and(gettingUserconfigFromCache())
     .or(gettingUserconfigFromServer())

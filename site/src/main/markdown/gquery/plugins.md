@@ -23,7 +23,7 @@ As you can see in the example code bellow you have to:
  * Next, you have to create a constructor for your plugin accepting a `GQuery` object.
  * And finally, you can either write new public methods which will extend `GQuery` abilities, or override its methods to change or improve the default behavior.
 
-```
+```java
 public class MyPlugin extends GQuery {
 
   // Register the plugin in GQuery plugin system and
@@ -61,13 +61,13 @@ To use the plugin, you must do two things:
 
 first, statically import a reference to the Plugin's class literal,
 
-```
+```java
 import static MyPlugin.MyPlugin;
 ```
 
 and secondly, invoke the method `as` which converts the basic GQuery interface into an instance of the plugin interface
 
-```
+```java
 $("h1").as(MyPlugin).newMethod();
 ```
 

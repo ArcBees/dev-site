@@ -19,7 +19,7 @@ GwtQuery 1.3.+ is not compatible with a version of GWT less than 2.2.0. If you w
 
 Maven user has to add the following sections in the pom.xml :
 
-```
+```xml
 <dependencies>
   <dependency>
     <groupId>com.googlecode.gwtquery</groupId>
@@ -41,7 +41,7 @@ The snapshot version includes last code features and fixes, note that this is bu
 * Download 1.4.3-SNAPSHOT from the [sonatype repository](https://oss.sonatype.org/content/repositories/snapshots/com/googlecode/gwtquery/gwtquery/1.4.3-SNAPSHOT)
 * Maven users of the SNAPSHOT version you have to add these lines:
 
-```
+```xml
 <repositories>
 <repository>
   <id>sonatype-snapshots</id>
@@ -70,7 +70,7 @@ Download them from this [page](http://code.google.com/p/gwtquery-plugins/downloa
 
 Maven users have to add this repositories to the pom.xml:
 
-```
+```xml
 <repositories>
 <!-- Repository for gquery plugins -->
 <repository>

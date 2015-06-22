@@ -18,7 +18,7 @@ It is the most generic method to get data from servers in gquery, and it is full
 
 It is used internally by the rest of gquery ajax methods : `load()`, `get()`, `post()`, `json()` and `jsonp()`.
 
-```
+```java
     Ajax.ajax(Ajax.createSettings()
        .setUrl("miservice.php")
        .setDataType("xml") // txt, json, jsonp, xml
@@ -42,12 +42,12 @@ It is used internally by the rest of gquery ajax methods : `load()`, `get()`, `p
 
 ### load()
 Load a remote html fragment and append it to the element whose `id=c`.
-```
+```java
     $("#c").load("file.html");
 ```
 
 Load a remote html and append the fragment with `id=mid` from the returned document to the element with `id=c` in the current one
-```
+```java
     $("#c").load("file.html #mid");
 ```
 
@@ -58,7 +58,7 @@ In the callback `Function`, the method `getData()` returns an array where the fi
 
 If you want to pass an error callback function or a timeout, you have to use the [Ajax#ajax() ajax()] method with the `dataType` set to `get`
 
-```
+```java
     GQuery.get("file.html", $$("name:'John',time:'2pm'"), new Function(){
       public void f() {
         alert("success " + getDataObject());
@@ -75,7 +75,7 @@ In the callback `Function`, the method `getData()` returns an array where the fi
 
 If you want to pass an error callback function or a timeout, you have to use the [Ajax#ajax() ajax()] method with the `dataType` set to `post`
 
-```
+```java
     GQuery.post("file.html",$$("name:'John',time:'2pm'"),
      new Function(){ public void f() {
         alert("success " + getDataObject());
@@ -90,7 +90,7 @@ In the callback `Function`, the method `getDataProperties()` returns a propertie
 
 If you want to pass an error callback function or a timeout, you have to use the [Ajax#ajax() ajax()] method with the `dataType` set to `json`
 
-```
+```java
     GQuery.getJSON("file.html",$$("name:'John',time:'2pm'"),
       new Function(){ public void f() {
         alert("success " + getDataProperties().toJsonString());
@@ -105,7 +105,7 @@ The first parameter is the target url. The second parameter is the set of key-va
 
 In the callback `Function`, the method `getDataProperties()` returns a properties which is a Overlay class wrapping the content of the `json` response.
 
-```
+```java
     GQuery.getJSONP("http://externalserver.com/service.php",
         GQuery.$$("callbackParameter: ?, otherParameter: 'abate ver'"),
         new Function(){ public void f() {
@@ -116,7 +116,7 @@ In the callback `Function`, the method `getDataProperties()` returns a propertie
 
 The only way to get an error in case the service is not a valid jsonp one, is setting a timeout for the call, to do that you have to use the [Ajax#ajax() ajax()] method with the dataType set to 'jsonp'
 
-```
+```java
    GQuery.ajax(Ajax.createSettings()
        .setUrl("http://externalserver.com/service.php")
        .setData(GQuery.$$("param1: 1, param2: 2"))
@@ -144,7 +144,7 @@ All modern browsers have support for CORS. The way to enable CORS in your server
 
 This is an example of how to implement it in a servlet container, and it is compatible with any gwt ajax request type (gquery.ajax, request-builder, rpc, rf, etc):
 
-```
+```xml
  <filter>
    <filter-name>CORSFilter</filter-name>
    <filter-class>my.namespace.CORSFilter</filter-class>
@@ -155,7 +155,7 @@ This is an example of how to implement it in a servlet container, and it is comp
  </filter-mapping>
 ```
 
-```
+```java
 public class CORSFilter implements Filter {
   // For security reasons set this regex to an appropriate value
   // example: ".*example\\.com"

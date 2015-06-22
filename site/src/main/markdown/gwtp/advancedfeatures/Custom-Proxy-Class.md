@@ -18,7 +18,7 @@ To do a standard proxy...
 #Custom Proxy that is also a Place
 The following example shows you how to build a basic custom proxy that is also a place. This example uses code splitting, if you don't want this replace `AsyncProvider` with `Provider` and `CodeSplitProvider` with `StandardProvider`.
 
-```
+```java
 public class MyPresenterProxyPlaceImpl extends ProxyPlace<MyPresenter>
 implements MyPresenter.MyProxy {
 

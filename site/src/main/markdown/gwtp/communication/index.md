@@ -19,7 +19,7 @@ If you want a custom url for your action, simply implement the `Action` interfac
 Here's a little trick that will let you automatically build urls of the form `"dispatch/MY_ACTION_CLASS"`, at the cost of some java reflexion:
 
 
-```
+```java
 public abstract class AbstractAction<R extends Result> implements Action<R> {
     @Override
     public String getServiceName() {
@@ -40,7 +40,7 @@ public abstract class AbstractAction<R extends Result> implements Action<R> {
 Here's an example of an action built on this scheme, this action will use the `"dispatch/GetProducts"` url:
 
 
-```
+```java
 public class GetProducts extends AbstractAction<GetProductsResult> {
     private String categoryId;
 
@@ -60,18 +60,24 @@ public class GetProducts extends AbstractAction<GetProductsResult> {
 I will be assumed here that you're using the default. Advanced configurations will be discussed in another page. Just so
  you know, you can make your own `DispatchModule` with your own `ExceptionHandler` that will override `onFailure`. Anyway, gin configurations for dispatch almost always only need to add the default to your Ginjector class like this :
 
-`@GinModules({ DispatchAsyncModule.class, YourClientModule.class})`
+```java
+@GinModules({ DispatchAsyncModule.class, YourClientModule.class})
+```
 
-Then don't forget to add a deffinition :
+Then don't forget to add a definition :
 
-`DispatchAsync getDispatcher();`
+```java
+DispatchAsync getDispatcher();
+```
 
 No big changes here.
 
 For guice
 The only change here is that we don't use hard coded dispatch string in your module that extends `ServletModule`.
 
-`serve("/yourappname/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(DispatchServiceImpl.class);`
+```java
+serve("/yourappname/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(DispatchServiceImpl.class);
+```
 
 #!ActionValidators
 Here's the big change. `ActionValidators` are classes bound to an `ActionHandler` that evaluates if the action can or cannot be executed, typically using the user logged into the current session. They are server-side, secure and reusable.
@@ -80,7 +86,7 @@ That change introduced a new overload of `bindHandler` : `bindHandler(action.cla
 
 An action that can be executed by all users, logged-in or not, will be bound to an `ActionValidator` of looking like this :
 
-```
+```java
 public class PublicActionValidator implements ActionValidator  {
     @Override
     public boolean isValid(Action<? extends Result> action) {
@@ -93,7 +99,7 @@ The `isValid` method should return `true` when the user can execute the action, 
 
 You never have to write such a trivial `PublicActionValidator`, however, since this is exactly what you will get by using the 2-parameter version of `bindHandler`: `bindHandler(action.class, actionHandler.class)`. Let's therefore look at a more interesting example that uses the `UserServiceFactory` of !AppEngine to determine whether the user is an admin:
 
-```
+```java
 public class AdminActionValidator implements ActionValidator  {
     @Override
     public boolean isValid(Action<? extends Result> action) {
@@ -110,13 +116,13 @@ Short and simple. Now only admin of your appdomain can use actions that are boun
 
 Dispatch will return a new service exception :
 
-```
+```java
 throw new ServiceException( actionValidator.getClass().getName() + actionValidatorMessage + action.getClass().getName() );
 ```
 
 and the message :
 
-```
+```java
 private final static String actionValidatorMessage = " couldn't allow access to action : ";
 ```
 

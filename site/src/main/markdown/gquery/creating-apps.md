@@ -8,7 +8,7 @@ This page describes how to create a new mavenized gwt-application which uses gQu
 * Run the following commands in a terminal
 * This command generates a project ready to work with gwt-2.5.1 if you wanted an old version edit the file pom.xml and set the version, or use an older version of the archetype.
 
-```
+```bash
 mvn archetype:generate  -DarchetypeGroupId=com.googlecode.gwtquery \
                         -DarchetypeArtifactId=gquery-archetype  \
                         -DarchetypeVersion=1.3.3 \
@@ -19,14 +19,14 @@ mvn archetype:generate  -DarchetypeGroupId=com.googlecode.gwtquery \
 
  * Change to the new created folder and check that the project compiles
 
-```
+```bash
   cd myproject/
   mvn clean package
 ```
 
  * Run the project in develop mode
 
-```
+```bash
   mvn gwt:run
 ```
 

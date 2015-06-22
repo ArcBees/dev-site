@@ -7,7 +7,7 @@ Manual reveal gives you greater control over the precise moment at which your pr
 
 * First add this to the Presenter with ProxyPlace.
 
-```
+```java
 @Override
 public boolean useManualReveal() {
     return true;
@@ -19,7 +19,7 @@ This will allow the callback to reveal the presenter when the callback happens.
 
 * Example using the `ManualRevealCallback`
 
-```
+```java
 @Override
 public void prepareFromRequest(PlaceRequest request) {
     super.prepareFromRequest(request);
@@ -42,7 +42,7 @@ Alternatively, you can directly call `ProxyPlace.manualReveal()` or `ProxyPlace.
 
 * Example using `getProxy.manualReveal(ThePresenter.this)`
 
-```
+```java
 @Override
 public void prepareFromRequest(PlaceRequest request) {
     super.prepareFromRequest(request);

@@ -9,7 +9,7 @@ Typical examples for this are:
 
 In order to do so all inputs must be configured in the TestModule of the test class.
 
-```
+```java
 public class SimpleAllTest {
     public static class Module extends TestModule {
         protected void configureTest() {
@@ -34,7 +34,7 @@ Finally it will call the test for every bound input executing it multiple times.
 The `@All` annotation can also be used to test different implementations of the same interface or different subclasses of an (abstract) super class.
 In this case the types are bound directly instead of concrete instances.
 
-```
+```java
 public class SimpleAllTest {
     public static class Module extends TestModule {
         protected void configureTest() {
@@ -55,7 +55,7 @@ The above example will print either "Impl1 Impl2" or "Impl2 Impl1".
 ## The Cartesian Product
 Tests are not limited to a single parameter. It is possible to annotated more than one parameter with the `@All` annotation. In this case Jukito will form the Cartesian product of all inputs to the test.
 
-```
+```java
 public class CartesianProductAllTest {
     public static class Module extends TestModule {
         protected void configureTest() {
@@ -79,7 +79,7 @@ i:e.: a test method with three parameters with an `@All` annotation and four bin
 ## Grouping by names
 Sometimes it is desirable to have different groups of bindings of the same class to be used within the same test. Jukito supports this by using a name to identify to which group a binding belongs and which group should be used for executing a test.
 
-```
+```java
 public class NamedAllTest {
     public static class Module extends TestModule {
         protected void configureTest() {
