@@ -1,7 +1,7 @@
 # Revealing Places
 Revealing places in GWTP can be achieved using many different means. All will have the same effect: display the presenter associated with the requested token and trigger the [lifecycle methods]({{#gwtp.doc.url.lifecycle}}) on that presenter.
 
-1. [Configure Built-in Places](#builtin)
+1. [Configure Built-in Places](#built-in)
 2. [Use the Place Manager](#place-manager)
 3. [Use Native Anchors](#anchors)
 

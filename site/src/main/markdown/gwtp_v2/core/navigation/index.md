@@ -5,7 +5,7 @@ Some presenters can be associated to a specific URL. GWTP makes it possible by m
 In order for a presenter to be a place, a regular Presenter with a [proxy]({{#gwtp.doc.url.proxy}}) has to be created first. From there the following changes are required:
 
 1. The super-interface has to be changed to `ProxyPlace`;
-2. It has to be annotated with `@NameToken("a-unique-token")`.
+2. It has to be annotated with `@NameToken("a-unique-token")`. It is possible to configure more than one name token on a single presenter by passing more than one argument to `@NameToken`.
 
 ```java
 package com.gwtplatform.sample.application.cars;

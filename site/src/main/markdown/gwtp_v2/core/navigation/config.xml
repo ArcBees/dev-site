@@ -7,6 +7,7 @@
         <entries>
             <entry name="index" title="Linking Places to a Token" displayName="Linking Places to a Token"/>
             <entry name="reveal-places" title="Revealing Places" displayName="Revealing Places"/>
+            <entry name="token-formats" title="Token Formats" displayName="Token Formats"/>
         </entries>
     </toc>
 </folder>
