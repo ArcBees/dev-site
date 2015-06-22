@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<folder title="Navigation"
+        href="index"
+        description="Navigation">
+    <toc>
+        <entries>
+            <entry name="index" title="Linking Places to a Token" displayName="Linking Places to a Token"/>
+            <entry name="reveal-places" title="Revealing Places" displayName="Revealing Places"/>
+        </entries>
+    </toc>
+</folder>
