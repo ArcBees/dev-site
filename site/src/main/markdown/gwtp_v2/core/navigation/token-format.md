@@ -6,6 +6,7 @@ By default, GWTP allows two different token format to be used. They can be confi
 2. [Crawlable Tokens](#hashbang)
 3. [Default Token Formatter](#default)
 4. [Route Token Formatter](#route)
+5. [Read Parameters](#parameters)
 
 ## Configure the desired Token Formatter {configure}
 The Token Formatter can be configured when the DefaultModule is installed, in the [root GIN module]({{#gwtp.doc.url.initialize_gin}}). For example, installing the Route Token Formatter would look like this:
@@ -43,9 +44,7 @@ The `RouteTokenFormatter` allows your application to use REST-like URLs with sup
 
 Name Tokens must either start with "/" or "!/" and contains one or many segment separated by "/". For example, `http://www.arcbees.com/#!/products/gwtp` is a route token using a *hashbang*.
 
-Routes can contain path and query-string parameters that can then be extracted from the `PlaceRequest` object. `PlaceManager.getCurrentPlaceRequest()` or `Presenter.prepareFromRequest(PlaceRequest)` can be used to access the current place request and the associated parameters.
-
-Token Parameters can be accessed with `PlaceRequest.getParameter("key", "defaultValue")`. "defaultValue" is a value that will be returned if the parameter "key" is missing from the request.
+Routes can contain path and query-string parameters that can then be extracted from the `PlaceRequest` object.
 
 ### Path Parameters
 A route token can contain path parameters. Those parameters are defined between curly braces and take up a whole path segment. For example, `/users/{userId}/photos/{albumId}/{photoId}` defines 3 path parameters: "userId", "albumId" and "photoId".
@@ -67,3 +66,19 @@ new PlaceRequest.Builder()
 will lead to the following url: `https://www.mydomain.tld/#/users/homer/photos/hawaii/coconut?size=original&color=b%26w`.
 
 **Note** that the parameters are encoded, so a call to `PlaceRequest.getParameter("color", "defaultValue")` will return "b&w".
+
+## Read Parameters {parameters}
+`PlaceManager.getCurrentPlaceRequest()` or `Presenter.prepareFromRequest(PlaceRequest)` can be used to access the current place request and the associated parameters.
+
+Token Parameters can be accessed with `PlaceRequest.getParameter("key", "defaultValue")`. "defaultValue" is a value that will be returned if the parameter "key" is missing from the request in order to avoid unnecessary null-checks.
+
+```java
+// Override Presenter.prepareFromRequest() to get access
+// the current PlaceRequest before a presenter is revealed.
+@Override
+public void prepareFromRequest(PlaceRequest request) {
+    // Access the "id" parameter in the current place request.
+    // "0" is returned if "id" is missing.
+    String id = request.getParameter("id", "0");
+}
+```

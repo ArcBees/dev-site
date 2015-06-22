@@ -14,10 +14,6 @@
             <entry name="Tabbed-Presenters" title="Tabbed Presenters" displayName="Tabbed Presenters"></entry>
             <entry name="Layout-Presenter" title="Layout Presenter" displayName="Layout Presenter"></entry>
             <entry name="PlaceManager" title="PlaceManager" displayName="PlaceManager"></entry>
-            <entry name="URL-Parameters" title="URL Parameters" displayName="URL Parameters"></entry>
-            <entry name="Route-Place-Tokens" title="Route Place Tokens" displayName="Route Place Tokens"></entry>
-            <entry name="Navigation-Confirmation" title="Navigation Confirmation"
-                    displayName="Navigation Confirmation"></entry>
             <entry name="Presenter-Gatekeeper" title="Presenter Gatekeeper" displayName="Presenter Gatekeeper"></entry>
             <entry name="Presenter-Manual-Reveal" title="Presenter Manual Reveal"
                     displayName="Presenter Manual Reveal"></entry>

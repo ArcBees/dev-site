@@ -15,7 +15,7 @@ In Get Started, we saw how to [initialize the root GIN module]({{#gwtp.doc.url.i
 Those places will be revealed automatically by GWTP when appropriate. Alternatively, as described in the next section, the Place Manager can be used to reveal them manually.
 
 ## Use the Place Manager {place-manager}
-The *Place Manager* can be used to programmatically build a request for an existing place and then reveal it.
+The *Place Manager* can be used to programmatically build a `PlaceRequest` for an existing place and then reveal it. Once built, `PlaceRequest`s are immutable and the values cannot be changed. You can call `new PlaceRequest.Builder(otherRequest)` to create a place request based on another request. Then optionally add or remove parameters and finally call `build()`.
 
 ```java
 @Inject
