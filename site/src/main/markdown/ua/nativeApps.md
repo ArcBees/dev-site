@@ -16,7 +16,7 @@ install(new AnalyticsModule.Builder("UA-XXXXXXXX-X").autoCreate(false).build());
 Then in your entry point or bootstrapper(GWTP) call the following:
 
 ```
-analytics.create().clientId(UNIQUE_ID_SINCE_COOKIES_ARENT_AVAILABLE).go();
+analytics.create().clientId(UNIQUE_ID_SINCE_COOKIES_ARENT_AVAILABLE).storage(Storage.NONE).go();
 analytics.setGlobalSettings().disableTask(Task.CHECK_PROTOCOL).go();
 analytics.sendPageView().go();  //recommended tracks the first page view.
 ```
