@@ -76,11 +76,13 @@ Make sure to call `super()` so that you can continue to use the `bindSlot()` met
 
 ## Layout example
 It's common to have a base Presenter containing the layout of the application. For our example, we'll have 2 slots: one for the menu and one for the content.
-```
+
+```java
 public static final NestedSlot SLOT_CONTENT = new NestedSlot();
 
 static final PermanentSlot<MenuPresenter> SLOT_MENU = new PermanentSlot<>();
 ```
+
 *Note that `SLOT_MENU` only needs to be available for the View, so we set it package-private. `SLOT_CONTENT` needs to be available for other presenters, so it's public.*
 
 ### Menu
@@ -186,3 +188,7 @@ If slot is of type `OrderedSlot`, returns a sorted List.
 
 ### getChild(slot) - Get Presenter
 Returns the child presenter contained in the slot or null if the slot is empty.
+
+
+## RevealType
+The RevealType define which event will be fired in the default `Presenter.revealInParent()`. `RevealType.Root` will fire a `RevealRootContentEvent`. `RevealType.RootLayout` will fire a `RevealRootLayoutContentEvent`. `RevealType.RootPopup` will fire a `RevealRootPopupContentEvent`.

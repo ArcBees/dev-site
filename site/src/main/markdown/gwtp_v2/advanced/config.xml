@@ -3,7 +3,8 @@
 <folder title="Advanced Features">
     <toc>
         <entries>
-            <entry name="index" title="Crawler Support" displayName="Crawler Support"/>
+            <entry name="crawler-support" title="Crawler Support" displayName="Crawler Support"/>
+            <entry name="using-generic-slots" title="Using Generic Slots" displayName="Using Generic Slots"/>
         </entries>
     </toc>
 </folder>
