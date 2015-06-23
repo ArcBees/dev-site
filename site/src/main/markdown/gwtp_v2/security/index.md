@@ -1,7 +1,7 @@
 ## Presenter Gatekeeper
 Gatekeepers are used to protect places from unauthorized access.
 
-This is a Gatekeeper example class:
+Example of use:
 
 ```java
 public class LoggedInGatekeeper implements Gatekeeper {
@@ -41,7 +41,7 @@ public class LoggedInGatekeeper implements Gatekeeper {
 ```
 
 ### @UseGatekeeper
-Using a gatekeeper is done by specifying `@UseGatekeeper()` annotation on the presenter proxy.
+This annotation lets you define a `Gatekeeper` to use for the `Place` associated with your proxy.
 
 ```java
 @ProxyStandard
@@ -61,8 +61,41 @@ public interface MyProxy extends ProxyPlace<SplashPresenter> {}
 ```
 
 ## Inject parameters to a Gatekeeper
-### @GatekeeperParams
-This annotation lets you define the parameters for a `GatekeeperWithParams` to use for the Place associated with your proxy. Your custom Ginjector must have a method returning the `GatekeeperWithParams` specified in this annotation.
+### GatekeeperWithParams
+Specialized Gatekeeper which needs additional parameters in order to find out if the protected Place can be revealed.
 
-### @GatekeeperWithParams
-Specialized `Gatekeeper` which needs additional parameters in order to find out if the protected Place can be revealed.
+ Example of use:
+ 
+```java
+public class HasAllRolesGatekeeper implements GatekeeperWithParams {
+	private final CurrentUser currentUser;
+	private String[] requiredRoles;
+
+	@Inject
+	public HasAllRolesGatekeeper(CurrentUser currentUser) {
+		this.currentUser = currentUser;
+	}
+	
+	@Override
+	public GatekeeperWithParams withParams(String[] params) {
+		requiredRoles = params;
+		return this;
+	}
+	
+	@Override
+	public boolean canReveal() {
+		return currentUser.getRoles().containsAll(Arrays.asList(requiredRoles);
+	}
+}
+```
+
+### @GatekeeperParams
+This annotation lets you define the parameters for a `GatekeeperWithParams` to use for the Place associated with your proxy.
+
+```java
+@ProxyStandard
+@NameToken(NameTokens.SETTINGS_DASHBOARD)
+@UseGatekeeper(HasAllRolesGatekeeper.class)
+@GatekeeperParams(USER_ROLES)
+interface MyProxy extends ProxyPlace<DashboardSettingsPresenter> {}
+```
