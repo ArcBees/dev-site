@@ -191,4 +191,13 @@ Returns the child presenter contained in the slot or null if the slot is empty.
 
 
 ## RevealType
-The RevealType define which event will be fired in the default `Presenter.revealInParent()`. `RevealType.Root` will fire a `RevealRootContentEvent`. `RevealType.RootLayout` will fire a `RevealRootLayoutContentEvent`. `RevealType.RootPopup` will fire a `RevealRootPopupContentEvent`.
+The RevealType define which event will be fired in the default `Presenter.revealInParent()`.
+
+### Root
+`RevealType.Root` will fire a `RevealRootContentEvent`. This event is fired by a Presenter that desires to reveal itself at the root of the application. This type of content is usually meant to use the browser like a regular webpage, adding a vertical scrollbar as the content overflow.
+
+### RootLayout
+`RevealType.RootLayout` will fire a `RevealRootLayoutContentEvent`. Again, this event will be fired by a Presenter that will be revealed at the application's root. However, this type of content is constrained to lie within the browser window, and to resize with it. You will be responsible for adding your own scrollbars as content overflow, usually via `com.google.gwt.user.client.ui.ScrollPanel`.
+
+### RootPopup
+`RevealType.RootPopup` will fire a `RevealRootPopupContentEvent`. This event is fired when a PresenterWidget wants to reveal itself as a popup at the root of the application. Use this type of event to reveal popup content that should get added at the root of the presenter hierarchy.
