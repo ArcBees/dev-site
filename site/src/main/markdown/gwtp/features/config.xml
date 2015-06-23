@@ -15,8 +15,6 @@
             <entry name="Layout-Presenter" title="Layout Presenter" displayName="Layout Presenter"></entry>
             <entry name="PlaceManager" title="PlaceManager" displayName="PlaceManager"></entry>
             <entry name="Presenter-Gatekeeper" title="Presenter Gatekeeper" displayName="Presenter Gatekeeper"></entry>
-            <entry name="Presenter-Manual-Reveal" title="Presenter Manual Reveal"
-                    displayName="Presenter Manual Reveal"></entry>
         </entries>
     </toc>
 </folder>

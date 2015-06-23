@@ -10,6 +10,7 @@
             <entry name="token-formats" title="Token Formats" displayName="Token Formats"/>
             <entry name="navigation-confirmation" title="Navigation Confirmation"
                     displayName="Navigation Confirmation"/>
+            <entry name="manual-reveal" title="Manual Reveal" displayName="Manual Reveal"/>
         </entries>
     </toc>
 </folder>
