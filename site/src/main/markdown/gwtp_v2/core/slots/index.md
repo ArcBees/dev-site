@@ -191,13 +191,42 @@ Returns the child presenter contained in the slot or null if the slot is empty.
 
 
 ## RevealType
-The RevealType define which event will be fired in the default `Presenter.revealInParent()`.
+Used to specify which event will be fired when a presenter reveals itself in it's parent presenter using `Presenter.revealInParent()`.
 
 ### Root
-`RevealType.Root` will fire a `RevealRootContentEvent`. This event is fired by a Presenter that desires to reveal itself at the root of the application. This type of content is usually meant to use the browser like a regular webpage, adding a vertical scrollbar as the content overflow.
+`RevealType.Root` will fire a `RevealRootContentEvent`. This event is fired by a Presenter that desires to reveal itself at the root of the application. This type of content is usually meant to use the browser like a regular webpage, adding a vertical scrollbar as the content overflows.
 
 ### RootLayout
-`RevealType.RootLayout` will fire a `RevealRootLayoutContentEvent`. Again, this event will be fired by a Presenter that will be revealed at the application's root. However, this type of content is constrained to lie within the browser window, and to resize with it. You will be responsible for adding your own scrollbars as content overflow, usually via `com.google.gwt.user.client.ui.ScrollPanel`.
+`RevealType.RootLayout` will fire a `RevealRootLayoutContentEvent`. Again, this event will be fired by a Presenter that will be revealed at the application's root. However, this type of content is constrained to lie within the browser window, and to resize with it. You will be responsible for adding your own scrollbars as content overflows, usually via `com.google.gwt.user.client.ui.ScrollPanel`.
 
 ### RootPopup
 `RevealType.RootPopup` will fire a `RevealRootPopupContentEvent`. This event is fired when a PresenterWidget wants to reveal itself as a popup at the root of the application. Use this type of event to reveal popup content that should get added at the root of the presenter hierarchy.
+
+
+## Using slots as collections
+
+Generic slots are useful when you want to extract the exact Presenter contained in a slot by using `getChild()` / `getChildren()` methods. One of the most useful things to use generic slots for is to represent the state of a model. For instance, if you create a slot in the parent then that slot can represent the collection. So removing a child from the slot should also remove it from the collection.
+
+### Example usage:
+
+Here is a basic model:
+
+```java
+class Book {
+   List<Chapter> chapters;
+}
+```
+
+To represent that model you can create a BookPresenter with a `Slot<ChapterPresenter>`. Then instead of having to keep track of the chapters and their ChapterPresenters separately the slot itself can manage the collection. So to get the current List of chapters you might have a method in BookPresenter:
+
+```java
+List<Chapter> getChapters() {
+   List<Chapter> chapters = new ArrayList<>();
+   for (ChapterPresenter chapterPresenter: getChildren(CHAPTER_SLOT)) {
+        chapters.add(chapterPresenter.getChapter());
+   }
+   return chapters;
+}
+```
+
+And so now if you have a Delete Chapter button in your `ChapterView` all you need to call when that button is clicked is `removeFromParentSlot()` and your list of chapters will update automatically.
