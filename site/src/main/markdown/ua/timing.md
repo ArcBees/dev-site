@@ -24,8 +24,8 @@ analytics.endTimingEvent("MyCategory", "MyVariableName").goAndLog(Level.INFO);
 
 You can find the events you're tracking under Behavior > Site Speed > User Timings:
 
-![](http://i.imgur.com/YtMJFvw.png)
+![User Timings menu](http://i.imgur.com/YtMJFvw.png)
 
 Here's an example where a site has tracked how long it takes for pages to render:
 
-![](http://i.imgur.com/6Brlj6c.png)
+![Example](http://i.imgur.com/6Brlj6c.png)
