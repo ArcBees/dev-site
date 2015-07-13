@@ -24,7 +24,7 @@ public class LoggedInGatekeeper implements Gatekeeper {
 }
 ```
 
-By using `canReveal()` when a certain condition is met, in this case a user is logged in, GWTP will automatically use the Gatekeeper to ensure the access the to Presenter is authorized.
+By using `canReveal()` when a certain condition is met, in this case if a user is logged in, GWTP will automatically use the Gatekeeper to ensure access to the Presenter is authorized.
 
 ## Gatekeeper Annotations
 ### @DefaultGatekeeper
@@ -115,7 +115,7 @@ interface MyProxy extends ProxyPlace<DashboardSettingsPresenter> {}
 
 
 ## Gatekeeper on method level
-You can also use a Gatekeeper on Presenter method level. Here is an example for that:
+You can also use a Gatekeeper on the Presenter method level. Here is an example for that:
 
 ```java
 public class ManufacturerPresenter extends Presenter<MyView, MyProxy>
