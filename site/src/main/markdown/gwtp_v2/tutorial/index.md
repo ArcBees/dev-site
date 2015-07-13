@@ -1,5 +1,5 @@
 # GWTP Beginner’s Tutorial - Part 1	
-This tutorial is intended for people having no prior knowledge of GWTP who wants to get started right away writing some code. This first part will show you how a basic Presenter can interact with a View by using UiHandler and UiBinder. Chances are that you will need to replicate this over and over again for almost every Presenter you create. This tutorial won’t go much into the details of explaining how GWTP works (we have excellent documentation for that), but rather how the features interact together.
+This tutorial is intended for someone having no prior knowledge of GWTP who wants to get started right away writing some code. This first part will show you how a basic Presenter can interact with a View by using UiHandler and UiBinder. Chances are that you will need to replicate this over and over again for almost every Presenter you create. This tutorial won’t go much into the details of explaining how GWTP works (we have excellent documentation for that), but rather how the features interact together.
 
 
 ## Covered features:
@@ -69,7 +69,7 @@ public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> i
 
 We’re going to break it down into simpler part. First, let’s take a look at the class declaration. We have an ApplicationView extending a ViewWithUiHandlers. This specify that ApplicationView will be a View and will also use UiHandlers which I will talk about further in this tutorial. Then the View implements an interface that is declared in the ApplicationPresenter class. This will allow the View to talk to the Presenter.
 
-GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), thus the presence of a `@Inject` annotation on the constructor.
+GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), thus the presence of an `@Inject` annotation on the constructor.
 
 ### Presenter
 This is the ApplicationPresenter:
@@ -111,7 +111,7 @@ interface MyView extends View, HasUiHandlers<ApplicationUiHandlers> {
 
 `@ProxyStandard` annotation is used to specify whether or not your Presenter should use GWT's code splitting feature. In this case, code splitting is not used but we could have simply used the `@ProxyCodeSplit` annotation instead of this one to use code split. You can learn more on [code splitting](http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html) at GWT Project website.
 
-`@NameToken` is used to easily refer to a page in your application. Each page you want to navigate to should have a nameToken associated with it. For instance, this page is called home because it should be the first page a user will see. This will also let you to use the back and forward button of your browser to navigate in your application. We generally refer to a Presenter having a NameToken as a **Place**.
+`@NameToken` is used to easily refer to a page in your application. Each page you want to navigate to should have a nameToken associated with it. For instance, this page is called home because it should be the first page a user will see. This will also let you use the back and forward button of your browser to navigate in your application. We generally refer to a Presenter having a NameToken as a **Place**.
 
 
 ## UiBinder
@@ -150,7 +150,7 @@ public String getTextFromNameField() {
 }
 ```
 
-You are now able to create HTML elements and access its values and attributes from the view like any other fields.
+You are now able to create HTML elements and access their values and attributes from the view like any other fields.
 
 
 ## UiHandler
@@ -270,6 +270,6 @@ public class ApplicationModule extends AbstractPresenterModule {
 
 
 ## Conclusion
-You are now able to create a Presenter and its associated View and delegate some of its action to the Presenter using UiHandlers. You also saw how to create HTML elements and access its values from the View using UiBinder. This conclude the first part of this tutorial. In the next part, we will take a look at PresenterWidgets, Gatekeepers, the PlaceManager and RestDispatch.
+You are now able to create a Presenter and its associated View and delegate some of its action to the Presenter using UiHandlers. You also saw how to create HTML elements and access their values from the View using UiBinder. This conclude the first part of this tutorial. In the next part, we will take a look at PresenterWidgets, Gatekeepers, the PlaceManager and RestDispatch.
 
 [Link to next part]
