@@ -4,7 +4,7 @@ A typical view could consist of two classes, one UiBinder and maybe one gin modu
 
 * A package might look something like [this](https://github.com/ArcBees/ArcBees-tools/tree/master/archetypes/gwtp-appengine-basic/src/main/java/com/arcbees/project/client/application/home):
 
-```
+```java
 // com.arcbees.project.client.application.home
 HomeModule.java
 HomePagePresenter.java
@@ -17,7 +17,7 @@ A view is considered to be a place or page in which a user can go in the applica
 
 * Start by creating the UiBinder [HomePageView.ui.xml](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-basic/src/main/java/com/arcbees/project/client/application/home/HomePageView.ui.xml) resource for the widget.
 
-```
+```xml
 <!-- HomePageView.ui.xml -->
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
@@ -27,7 +27,7 @@ A view is considered to be a place or page in which a user can go in the applica
 
 * Next setup the view which contains the widget and uses the UiBinder like [this](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-basic/src/main/java/com/arcbees/project/client/application/home/HomePageView.java):
 
-```
+```java
 // HomePageView.java
 package com.arcbees.project.client.application.home;
 
@@ -53,7 +53,7 @@ Create the presenter in which its purpose is to display the view.
 
 * Create a basic presenter like [this](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-basic/src/main/java/com/arcbees/project/client/application/home/HomePagePresenter.java):
 
-```
+```java
 // HomePagePresenter.java
 package com.arcbees.project.client.application.home;
 

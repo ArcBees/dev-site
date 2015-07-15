@@ -12,7 +12,7 @@ More information about Maven Archetypes [here](https://maven.apache.org/guides/i
 * Navigate to the *parent directory* in which you want to create new project.
 * Run the following Maven command in your terminal:
 
-```
+```bash
 mvn archetype:generate -DarchetypeGroupId=com.arcbees.archetypes \
 -DarchetypeRepository=https://oss.sonatype.org/content/repositories/snapshots/ \
 -DarchetypeArtifactId=gwtp-basic-archetype \

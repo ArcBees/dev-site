@@ -16,7 +16,7 @@ Below is a simple example of a `PresenterWidget`. Find the source [here](https:/
 
 ## Presenter
 
-```
+```java
 public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView> implements
         HeaderUiHandlers {
     public interface MyView extends View, HasUiHandlers<HeaderUiHandlers> {
@@ -53,7 +53,7 @@ public class HeaderPresenter extends PresenterWidget<HeaderPresenter.MyView> imp
 
 ## View
 
-```
+```java
 public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements HeaderPresenter.MyView {
     interface Binder extends UiBinder<HTMLPanel, HeaderView> {
     }
@@ -82,7 +82,7 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements 
 
 ## UiBinder
 
-```
+```xml
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
     <ui:style>
@@ -97,7 +97,7 @@ public class HeaderView extends ViewWithUiHandlers<HeaderUiHandlers> implements 
 
 ## UiHandlers
 
-```
+```java
 public interface HeaderUiHandlers extends UiHandlers {
     void onTestClick();
 }

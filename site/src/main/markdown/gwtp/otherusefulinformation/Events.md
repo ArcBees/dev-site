@@ -6,7 +6,7 @@ Creating events fired on the `EventBus`. This helps decouple widgets and present
 
 * Example of a `GlobalEvent` without a data member:
 
-```
+```java
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
@@ -48,7 +48,7 @@ public class GlobalEvent extends GwtEvent<GlobalEvent.GlobalHandler> {
 ```
 * Fire the `GlobalEvent` from any presenter like this:
 
-```
+```java
 GlobalEvent.fire(this);
 ```
 
@@ -56,7 +56,7 @@ GlobalEvent.fire(this);
 
 * Example of a `GlobalDataEvent` with a data member:
 
-```
+```java
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HasHandlers;
@@ -107,7 +107,7 @@ public class GlobalDataEvent extends GwtEvent<GlobalDataEvent.GlobalDataHandler>
 ```
 * Fire the `GlobalDataEvent` from any presenter like this:
 
-```
+```java
 String data = "Sending some data with the event";
 GlobalDataEvent.fire(this, data);
 ```
@@ -117,7 +117,7 @@ Setting the source on fireEvent with your own objects.
 
 * Example of sending the source of the event with the event:
 
-```
+```java
 public abstract class MyCustomCallback<T> implements AsyncCallback<T>, HasHandlers {
     @Inject
     private static EventBus eventBus;
@@ -147,7 +147,7 @@ Registering handlers can be tightly integrated into the presenter. The handler t
 
 * Example of registering a `GlobalDataEvent`:
 
-```
+```java
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> implements GlobalDataHandler {
     public interface MyView extends View {
     }
@@ -192,7 +192,7 @@ Sometimes several presenters listen to a same event. But you may want that when 
 The onBind method of the example above becomes :
 
 
-```
+```java
 @Override
 protected void onBind() {
     super.onBind();
@@ -217,7 +217,7 @@ Setting up a `SimpleEventBus` to Observe a specific set of events which can be g
 
 * Example of the Observer with annotated `EventBus`:
 
-```
+```java
 public class ArchetypeObserver {
     private final EventBus eventBus;
 
@@ -246,7 +246,7 @@ public class ArchetypeObserver {
 
 * Example of instantiating the Observer through binding:
 
-```
+```java
 public class EventsModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
@@ -258,7 +258,7 @@ public class EventsModule extends AbstractPresenterModule {
 
 * Example of a event used in the Observer:
 
-```
+```java
 public class ArchetypeDisplayEvent extends GwtEvent<ArchetypeDisplayEvent.DisplayArchetypeHandler> {
     public interface DisplayArchetypeHandler extends EventHandler {
         void onDisplay(ArchetypeDisplayEvent event);
@@ -294,7 +294,7 @@ public class ArchetypeDisplayEvent extends GwtEvent<ArchetypeDisplayEvent.Displa
 
 * Example of firing the `ArchetypeDisplayEvent`:
 
-```
+```java
 public class ArchetypeListPresenter extends PresenterWidget<ArchetypeListPresenter.MyView> implements
     ArchtypeListUiHandlers {
     //...
@@ -323,7 +323,7 @@ public class ArchetypeListPresenter extends PresenterWidget<ArchetypeListPresent
 
 * Example of handling the `ArchetypeDisplayEvent`:
 
-```
+```java
 // Implement `ArchetypeDisplayEvent.DisplayArchetypeHandler` handler.
 public class ArchetypeDisplayPresenter extends PresenterWidget<ArchetypeDisplayPresenter.MyView> implements
     ArchetypeDisplayUiHandlers, ArchetypeDisplayEvent.DisplayArchetypeHandler {

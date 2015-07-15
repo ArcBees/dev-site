@@ -12,7 +12,7 @@ This has also been [advocated by Google](http://code.google.com/webtoolkit/artic
 
 * The "supervising controller" pattern can easily be implemented using the tools provided by GWTP. First you need to create an interface that extends UiHandlers and add all the methods your view needs to call. For example:
 
-```
+```java
 public interface UserProfileUiHandlers extends UiHandlers {
     void onSave();
 }
@@ -22,7 +22,7 @@ It would be nice to define this class directly within UserProfileView and call i
 
 * Your presenter then needs to implement this interface:
 
-```
+```java
 public class UserProfilePresenter extends Presenter<UserProfilePresenter.MyView, UserProfilePresenter.MyProxy>
     implements UserProfileUiHandlers {
     //...
@@ -36,7 +36,7 @@ public class UserProfilePresenter extends Presenter<UserProfilePresenter.MyView,
 
 * Then you have to connect these methods to your view. This is done by letting MyView extend HasUiHandlers and by calling setUiHandlers() within your presenter’s constructor to finalize the connection:
 
-```
+```java
 public class UserProfilePresenter extends Presenter<UserProfilePresenter.MyView, UserProfilePresenter.MyProxy>
     implements UserProfileUiHandlers {
     public interface MyView extends View, HasUiHandlers<UserProfileUiHandlers>{
@@ -57,7 +57,7 @@ Be careful: since the view is instantiated before the presenter, the setUiHandle
 
 * The last step is to let your view extends ViewWithUiHandlers or PopupViewWithUiHandlers instead of ViewImpl or PopupViewImpl. Then you’re ready to use your controls via getUiHandlers(). As a result, using the great @UiHandler annotation is now very easy:
 
-```
+```java
 public class ExampleView extends ViewWithUiHandlers<UserProfileUiHandlers> implements MyView {
     //...
     @UiHandler("saveButton")

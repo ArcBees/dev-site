@@ -4,7 +4,7 @@ Since version 0.6, GWTP makes it easy for your website to be crawlable by search
 ##Before you begin...
 Make sure you read [Google's specification](https://developers.google.com/webmasters/ajax-crawling/). In particular, your page's name tokens should all start with a bang (i.e. `http://myapp.myself.com#!homePage` rather than `http://myapp.myself.com#homePage`). Also, you will probably need to add fragment tag to your HTML page.
 
-```
+```html
 <meta name="fragment" content="!">
 ```
 
@@ -24,7 +24,7 @@ Note that the above URL works since `crawlservice.appspot.com` is the deployed v
 ###Using `gwtp-crawler-service`
 It's easy to roll out your own personalized crawl service. Simply take a look at [gwtp-sample-crawler-service](https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-crawler-service). In particular you want to look at [CrawlerModule.java](https://github.com/ArcBees/GWTP-Samples/blob/master/gwtp-samples/gwtp-sample-crawler-service/src/main/java/com/gwtplatform/samples/crawlerservice/server/CrawlerModule.java) which simply sets-up your service's key and installs GWTP's `CrawlServiceModule`. Your version should look somewhat like this:
 
-```
+```java
 public class MyCrawlerModule extends AbstractModule {
     @Override
     protected void configure() {
@@ -41,7 +41,7 @@ Naturally you'll have to setup your [AppEngine](https://cloud.google.com/appengi
 ###Crawler service dependencies
 Even though creating your own service is simple, a number of things go on behind the scenes, so you need a few dependencies. If you're using Maven it's really simple, just use this in your POM:
 
-```
+```xml
 <dependencies>
     <dependency>
         <groupId>com.gwtplatform</groupId>
@@ -105,7 +105,7 @@ The crawl service is able to render any webpage, but you're interested in using 
 
 A sample use of the crawl filter is available in [gwtp-hplace-sample](https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-mobile). To use the filter, you simply need to bind a couple of things using Guice:
 
-```
+```java
 bindConstant().annotatedWith(ServiceKey.class).to("123456");
 bindConstant().annotatedWith(ServiceUrl.class).to("http://crawlservice.appspot.com/");
 filter("/*").through(CrawlFilter.class);
@@ -116,7 +116,7 @@ Naturally, use your own service key and url. (Careful here, you need to bind `co
 ###Ensuring HTML pages are not served as static
 Since you're running every page through a filter that identifies those `escaped_fragment`, you will need to make sure your HTML pages are not served statically. If you application runs on [AppEngine](https://cloud.google.com/appengine/) this is done by adding this to your `appengine-web.xml`, at the end of the `<static-files>` section:
 
-```
+```xml
 <static-files>
     [...]
     <exclude path="**.html" />

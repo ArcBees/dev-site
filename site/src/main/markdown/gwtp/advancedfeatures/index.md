@@ -24,12 +24,12 @@ new feature. I invite you to read [Bootstrapping or Application Initialization][
 ## Using FormFactors
 The first thing that you need to do in order to be able to use the new FormFactor functionality is to inherits from the gwt module:
 
-```
+```xml
 <inherits name="com.gwtplatform.mvp.MvpWithFormFactor" />
 ```
 Once it's done, you need to specify what are the form factor based modules:
 
-```
+```xml
 <!-- Form factor specific modules -->
 <set-configuration-property name="gin.ginjector.module.desktop"
                     value="com.gwtplatform.samples.mobile.client.gin.DesktopModule" />
@@ -43,7 +43,7 @@ Depending on the the browser user agent used and browser screen size, it will us
 ## Presenter permutations
 Permuting the view is really easy, but it's not as obvious with presenters that has proxies. If you don't pay attention, you could end up by adding each permutation of your presenters to each Ginjector generated for your application. To avoid that, you must create an abstract presenter that will share the same proxy for each of your presenter.
 
-```
+```java
 public abstract class AbstractApplicationPresenter
         extends Presenter<AbstractApplicationPresenter.MyView,
                           AbstractApplicationPresenter.MyProxy> {
@@ -68,7 +68,7 @@ public abstract class AbstractApplicationPresenter
 
 Then your real implementation can extend this newly create abstraction:
 
-```
+```java
 public class ApplicationDesktopPresenter
         extends AbstractApplicationPresenter implements ApplicationUiHandlers {
     private PlaceManager placeManager;
@@ -90,7 +90,7 @@ public class ApplicationDesktopPresenter
 
 And finally, you must bind the presenter in your gin module manually:
 
-```
+```java
 // Application Presenters
 bind(ApplicationDesktopPresenter.class).in(Singleton.class);
 bind(ApplicationDesktopView.class).in(Singleton.class);

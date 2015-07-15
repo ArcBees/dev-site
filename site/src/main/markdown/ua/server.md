@@ -1,6 +1,6 @@
 In your guice server module:
 
-```
+```java
 install(new ServerAnalyticsModule("UA-XXXXXX-X"));
 ```
 

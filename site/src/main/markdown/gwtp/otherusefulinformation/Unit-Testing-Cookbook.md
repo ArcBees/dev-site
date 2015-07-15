@@ -18,7 +18,7 @@ Without further ado, let's get started with a simple example.
 
 Let's create our root `ApplicationPresenter`:
 
-```
+```java
 package com.gwtplatform.samples.unittesting.client.application;
 
 import javax.inject.Inject;
@@ -59,7 +59,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
 ```
 What we'll want here is to verify that the title is sent to the `MyView` when the `ApplicationPresenter` is revealed. Here's our unit test for this:
 
-```
+```java
 package com.gwtplatform.samples.unittesting.client.application;
 
 import javax.inject.Inject;
@@ -95,7 +95,7 @@ The weird thing in this test is probably the `MyView` instance that is found in 
 
 Here's our `ApplicationView`:
 
-```
+```java
 package com.gwtplatform.samples.unittesting.client.application;
 
 import javax.inject.Inject;
@@ -130,7 +130,7 @@ As you can see, the `ApplicationView`'s code is kept to a bare minimum (hence th
 ##Testing that a PresenterWidget is assigned to a slot during onBind()
 One common pattern with GWTP is to add a `PresenterWidget` to the page during the `onBind` lifecycle phase. Let's see how we can verify that our `HeaderPresenter` has been added. Here's the code we added to our `ApplicationPresenter`:
 
-```
+```java
 static final Object HEADER_SLOT = new Object();
 
 private final HeaderPresenter headerPresenter; // a PresenterWidget
@@ -157,7 +157,7 @@ protected void onBind() {
 
 The simplest test we can write to make sure `HeaderPresenter` has been set in the `HEADER_SLOT` looks like this:
 
-```
+```java
 @Test
 public void onBind_anytime_setsHeaderPresenterInSlot(HeaderPresenter headerPresenter,
                                                      ApplicationPresenter.MyView myView) {
@@ -171,7 +171,7 @@ One thing I don't like about the test above is that the test hides the `onBind` 
 
 What I'll do instead is modify our test slightly to use Guice `Provider` and have better control on the `ApplicationPresenter`'s instatiation process:
 
-```
+```java
 @Inject
 Provider<ApplicationPresenter> provider;
 
@@ -191,7 +191,7 @@ public void onBind_anytime_setsHeaderPresenterInSlot(HeaderPresenter headerPrese
 ##Stubbing Async service response
 Asynchronous service calls (ie: REST, RPC) are common in web applications, but running your tests agains't a server is not ideal. Using Mockito, we can simulate calls and invoke the callback to test the behaviour of the `onSuccess` and `onFailure` methods. We first need to create the Stubber
 
-```
+```java
 public class AsyncStubber {
     public static <T, C extends AsyncCallback> Stubber callSuccessWith(final T data) {
         return Mockito.doAnswer(new Answer<T>() {
@@ -221,7 +221,7 @@ public class AsyncStubber {
 
 Then let's say we have this service interface and this presenter :
 
-```
+```java
 public interface AppleServiceAsync {
     void getApples(AsyncCallback<List<Apple>> callback);
 }
@@ -247,7 +247,7 @@ public class ApplesPresenter extends PresenterWidget<ApplesPresenter.MyView> {
 
 We can use our AsyncStubber like this :
 
-```
+```java
 @Test
 public void getApples_success_displaysApples(ApplesPresenter applesPresenter,
                                              AppleServiceAsync appleService,

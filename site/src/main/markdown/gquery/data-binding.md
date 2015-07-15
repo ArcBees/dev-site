@@ -3,7 +3,7 @@
 ## Introduction
 Although Gquery provides the class `Properties` to handle Json objects, and Gquery is also able to inspect Xml objects using the css selector engine ...
 
-```
+```java
 // Using Properties to handle JSON messages
 Properties p = $$("key1: 'value1', key2: [1,2]");
 String v1 = p.getStr("key1");
@@ -15,7 +15,7 @@ String txt = $("root message", e).text();
 
 ... additionally Gquery provides generators to deal with Xml and Json as normal 'java' objects:
 
-```
+```java
 s.setKey1("key1").setKey2(new long[]{1, 2});
 System.out.println(s.getKey1());
 ```
@@ -30,7 +30,7 @@ The usage of data binders makes the code more readable, type-saving, handing nul
 ###JSON
  * Given a JSON message
 
-```
+```json
 {
  "id": 1234,
  "referer": {"id": 2, "url": "http://google.com"},
@@ -45,7 +45,7 @@ The usage of data binders makes the code more readable, type-saving, handing nul
 
  * Create an interface with setters and getters to handle the attributes
 
-```
+```java
 interface Site extends JsonBuilder {
     long getId();
     String getUrl();
@@ -66,7 +66,7 @@ interface Site extends JsonBuilder {
 
  * Finally the `GWT.create()` to get an instance of your interface and use fill the object whether chaining setters or parsing a json message.
 
-```
+```java
 Site s = GWT.create(Site.class);
 s.parse(xmlString);
 s.setId(123).setUrl("http://www.google.com");
@@ -74,7 +74,7 @@ s.setId(123).setUrl("http://www.google.com");
 
  * Here you have a complete example Using Ajax
 
-```
+```java
 GQuery.getJSON("test.json", null, new Function() {
   public void f() {
     // Create the Site instance
@@ -97,7 +97,7 @@ GQuery.getJSON("test.json", null, new Function() {
 
  * Given a XML message, like this one taken from the gmail feeds service
 
-```
+```xml
 <?xml version='1.0' encoding='UTF-8'?>
 <feed version='0.3' xmlns='http://purl.org/atom/ns#'>
  <title>Gmail - Inbox for manolo@gquery.org</title>
@@ -122,7 +122,7 @@ GQuery.getJSON("test.json", null, new Function() {
 
  * Create the interfaces which represents all xml elements
 
-```
+```java
 interface Feed extends XmlBuilder {
 
 interface Tag extends XmlBuilder {
@@ -157,7 +157,7 @@ Entry[] getEntry();
 
 * Finally use `GWT.create()` to get an instance of the object and fill it from a xml string.
 
-```
+```java
     Feed x = GWT.create(Feed.class);
     x.parse(xml);
     System.out.println(x.getTitle().getText());
@@ -166,7 +166,7 @@ Entry[] getEntry();
 
 * Here you have a full example using xml databinding with gquery ajax:
 
-```
+```java
 GQuery.ajax(Ajax.createSettings()
     .setUrl("http://webservice-proxy.mydomain.com")
     .setType("get")

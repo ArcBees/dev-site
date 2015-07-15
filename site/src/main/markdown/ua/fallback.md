@@ -4,12 +4,13 @@ Analytics may not work for a significant portion of your users because https://w
 
 In this case you can proxy your analytics calls via your server by setting a fallback path when installing analytics in your gin module:
 
-```
+```java
     install(new AnalyticsModule.Builder("UA-XXXXXXXX-X").setFallbackPath("/collect").build());
 ```
 
 Then on your server you need to install the AnalyticsProxyModule in addition to the AnalyticsServerModule in your Guice server module:
-```
+
+```java
     install(new ServerAnalyticsModule("UA-XXXXXX-X"));
     install(new AnalyticsProxyModule("/collect"));  // this should match the path you set on the client.
 ```
@@ -30,7 +31,7 @@ eg if your site is served from `www.example.com` you can setup your proxy at `an
 
 Then when installing analytics into your client gin module, set the fallback path to be an absolute url that matches the proxy address:
 
-```
+```java
     install(new AnalyticsModule.Builder("UA-XXXXXXXX-X").setFallbackPath("https://analytics.www.example.com/collect").build());
 ```
 

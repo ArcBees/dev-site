@@ -125,7 +125,7 @@ public class MDHelper {
 
     private TocCreator validateTocTemplate() throws MDHelperException {
         if (templateTocFile != null) {
-            String templateToc = markdownToHtmlUtil.toHtml(readFile(templateTocFile));
+            String templateToc = markdownToHtmlUtil.convert(readFile(templateTocFile)).getHtml();
 
             return new TocFromTemplateCreator(templateToc);
         }

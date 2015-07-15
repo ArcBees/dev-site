@@ -12,7 +12,7 @@ It's common to automatically track navigation events, so that you can see the pl
 
 You can do this by creating a NavigationTracker class:
 
-```
+```java
 package YOUR_PACKAGE_NAME
  
 import javax.inject.Inject;
@@ -39,8 +39,10 @@ public class NavigationTracker implements NavigationHandler {
     analytics.sendPageView().documentPath(tokenFormatter.toPlaceToken(navigationEvent.getRequest())).go();
   }
 } 
-``` 
-and then binding it in your gin module:
 ```
+
+and then binding it in your gin module:
+
+```java
   bind(NavigationTracker.class).asEagerSingleton();
 ```
