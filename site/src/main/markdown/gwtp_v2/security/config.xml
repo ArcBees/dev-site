@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Security">
+    <toc>
+        <entries>
+            <entry name="index" title="Security" displayName="Security"/>
+        </entries>
+    </toc>
+</folder>
