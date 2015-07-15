@@ -15,7 +15,7 @@ Setting up your application to use REST Dispatch requires a few steps:
 ###1. Add REST Dispatch to your maven configuration
 To access the REST Dispatch classes, you need to add the following dependency to your pom file.
 
-```
+```xml
 <dependency>
     <groupId>com.gwtplatform</groupId>
     <artifactId>gwtp-dispatch-rest</artifactId>
@@ -33,20 +33,20 @@ To access the REST Dispatch classes, you need to add the following dependency to
 ###Add REST Dispatch to your GWT module
 You need to add an inherits clause to your project's **gwt.xml** file
 
-```
+```xml
 <inherits name="com.gwtplatform.dispatch.rest.DispatchRest"/>
 ```
 
 **Very Important**
 * If you use `MvpWithFormFactor` or `MvpWithEntryPoint`, the previous line _**needs**_ to be _**before**_ the `MvpWith*` inherits tag. ie:
 
-```
+```xml
 <inherits name="com.gwtplatform.dispatch.rest.DispatchRest"/>
 <inherits name="com.gwtplatform.mvp.MvpWithEntryPoint" />
 ```
 * If you are using a generated GINjector and have something similar to
 
-```
+```xml
 <set-configuration-property name="gin.ginjector.modules"
     value="com.gwtplatform.carstore.client.gin.SharedModule"/>
 ```
@@ -55,7 +55,7 @@ You need to change `set-configuration-property` to `extend-configuration-propert
 ### Installing with your own Ginjector
 When you are using your own Ginjector -- that is if you are _not_ using GWTP's generated ginjector -- you need to add `gin.ginjector.modules` to `GinModules`'s properties attribute. This will ensure that generated GIN modules are installed.
 
-```
+```java
 @GinModules(properties = {"gin.ginjector.modules"})
 public interface MyGinjector extends Ginjector {
 }
@@ -64,7 +64,7 @@ public interface MyGinjector extends Ginjector {
 ###Install the REST Dispatch module
 To ensure the REST Dispatch can work properly, you need to install the `RestDispatchAsyncModule` in your Gin module as well as bind `RestApplicationPath` to your server API end-point.
 
-```
+```java
 public class DispatchModule extends AbstractGinModule {
     @Override
     protected void configure() {
@@ -115,25 +115,25 @@ Following the steps below, you can create and customize your endpoints:
 * For all the supported HTTP methods, you can use one or many of the following declarations:
     * The result is specified in the `RestAction<R>`'s generic. The following example will deserialize the response and give you a `List<Car>` instance.
 
-    ```
+    ```java
     RestAction<List<Car>> getCars();
     ```
     * You can specify header parameters via the `@HeaderParam` annotation. The following example will send the "Pragma" header along with any value you specify at runtime.
 
-    ```
+    ```java
     RestAction<Car> getCars(@HeaderParam("Pragma") String pragma);
     ```
 
     * You can add query parameters to your request URI via the `@QueryParam` annotation. The following example will create and send the request to a URI with the start and length parameters (ie.: `/cars?start=3&length=25`).
 
-    ```
+    ```java
     RestAction<List<Car>> getCars(@QueryParam("start") int start,
         @QueryParam("length") int length);
     ```
 
     * You can specify path parameters to your request URI via the `@PathParam` annotation. Your path must contain a parameter identical (case-sensitive) to the one given to `@PathParam`. The following example will replace the `{id}` parameter in your path by the specified id (`/cars/5`).
 
-    ```
+    ```java
     @Path("/{id}")
     RestAction<Car> getCar(@PathParam("id") int id);
     ```
@@ -141,7 +141,7 @@ Following the steps below, you can create and customize your endpoints:
 * Additionally, for `@PUT` or `@POST`, you can use either of these parameters, but **not both**:
     * You can add multiple parameters annotated with `@FormParam`. The request body will then be formatted like a query string would be. The following example will generate this request body: `username=admin&password=s3cr3t`.
 
-    ```
+    ```java
     RestAction<Void> login(@FormParam("username") String username,
         @FormParam("password") String password);
     ```
@@ -153,7 +153,7 @@ Following the steps below, you can create and customize your endpoints:
         + It must not be annotated by any of the previous annotations;
         + It must not be combined with any other `@FormParam` parameters.
 
-    ```
+    ```java
     @Path("/{id}")
     RestAction<Car> saveCar(@PathParam("id") int id, Car car);
     ```
@@ -166,7 +166,7 @@ Using your resources is probably the most straight-forward step:
 
 1. You need to inject `RestDispatch` and your resource.
 
-```
+```java
 @Inject
 CarPresenter(
         RestDispatch dispatcher,
@@ -178,7 +178,7 @@ CarPresenter(
 
 2. Then you will pass the instance returned by your delegate to RestDispatch, with a callback. ie:
 
-```
+```java
 dispatcher.execute(carsResource.car(mycarId).delete()
     new AsyncCallback<Car>() {
         @Override
@@ -191,7 +191,7 @@ dispatcher.execute(carsResource.car(mycarId).delete()
 
 Additionally, you can retrieve the raw [Response](http://www.gwtproject.org/javadoc/latest/com/google/gwt/http/client/Response.html) object received from the server. To do so, pass a `RestCallback` instead of an `AsyncCallback`. You will have to implement an additional `setResponse()` method. This method will be called before `onSuccess` or `onFailure`. Your endpoint call would then look like:
 
-```
+```java
 dispatcher.execute(carsResource.car(mycarId).delete()
     new RestCallback<Car>() {
         @Override
@@ -212,7 +212,7 @@ The second configurable option is *xsrfTokenHeaderName*. It allows you to change
 
 For example
 
-```
+```java
 protected GinModule extends AbstractGinModule {
     @Override
     protected void configure() {
@@ -246,7 +246,7 @@ The builder also makes it possible to specify to which HTTP methods the configur
 
 For example
 
-```
+```java
 public class MyModule extends AbstractPresenterModule {
     @Override
     protected void configure() {

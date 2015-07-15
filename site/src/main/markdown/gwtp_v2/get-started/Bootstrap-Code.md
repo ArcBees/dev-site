@@ -91,7 +91,7 @@ Ginjector extensions are useful if you need to add custom code to the Ginjector 
 
 Ginjector Extensions should be interfaces and the methods should return a valid type. See [GIN's documentation](https://code.google.com/p/google-gin/wiki/GinTutorial#Step_2._Defining_the_Ginjector) for more details. Once it is created, register it in your GWT module like so:
 
-```
+```xml
 <extend-configuration-property name="gin.ginjector.extensions"
         value="com.mydomain.myproject.client.MyGinjectorExtension"/>
 ```

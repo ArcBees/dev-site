@@ -4,7 +4,7 @@ Blocking some presenters using the gatekeeper.
 
 * Setup example of a gatekeeper:
 
-```
+```java
 public class LoggedInGatekeeper implements Gatekeeper {
     private final CurrentUser currentUser;
 
@@ -22,7 +22,7 @@ public class LoggedInGatekeeper implements Gatekeeper {
 
 * Use of the gatekeeper by specifying `@UseGatekeeper(LoggedInGatekeeper.class)` annotation on the presenter proxy.
 
-```
+```java
 @ProxyCodeSplit
 @NameToken("userSettings")
 @UseGatekeeper(LoggedInGatekeeper.class)
@@ -50,7 +50,7 @@ Anonymous access.
 ##Gatekeeper on Method Level
 You can also use Gatekeeper on presenter method level. Here is an example for that:
 
-```
+```java
 public class ManufacturerPresenter extends Presenter<MyView, MyProxy>
         implements ManufacturerUiHandlers, ActionBarEvent.ActionBarHandler {
     @ProxyCodeSplit

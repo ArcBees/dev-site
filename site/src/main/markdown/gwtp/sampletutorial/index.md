@@ -43,7 +43,7 @@ Adding dependencies to `Gwtpnestedsamples.gwt.xml`
 Before starting to write anything, don't forget to add every dependencies we need inside `Gwtpnestedsamples.gwt.xml` :
 * See more on [Bootstrapping or Application Initialization][boot].
 
-```
+```xml
 <inherits name="com.google.gwt.uibinder.UiBinder" />
 <inherits name="com.google.gwt.inject.Inject" />
 <inherits name='com.gwtplatform.mvp.MvpWithEntryPoint'/>
@@ -56,7 +56,7 @@ Adding navigation's logic classes and Gin classes definition.
 
 `class com.gwtplatform.samples.nested.client.gin.DefaultPlace`:
 
-```
+```java
 @BindingAnnotation
 @Target( { FIELD, PARAMETER, METHOD })
 @Retention(RUNTIME)
@@ -68,7 +68,7 @@ This annotation is used inside our `PlaceManager` implementation to link the def
 
 `class com.gwtplatform.samples.nested.client.GwtpnestedsamplePlaceManager`:
 
-```
+```java
 public class GwtpnestedsamplePlaceManager extends PlaceManagerImpl {
     private final PlaceRequest defaultPlaceRequest;
 
@@ -91,7 +91,7 @@ public class GwtpnestedsamplePlaceManager extends PlaceManagerImpl {
 
 We'll use this class to tell which presenter to load by default. By default, when an error occurs while requesting a new place, this page will be displayed. If we want to change for a custom error page, we could create another annotation and link it to an error presenter, or use other scheme as needed. Then you override this method :
 
-```
+```java
 @Override
     public void revealErrorPlace(String invalidHistoryToken) {
         super.revealErrorPlace(invalidHistoryToken);
@@ -100,7 +100,7 @@ We'll use this class to tell which presenter to load by default. By default, whe
 
 `class com.gwtplatform.samples.nested.client.NameTokens`:
 
-```
+```java
 public class NameTokens {
     public static final String homePage = "!homePage";
     public static String getHomePage() {
@@ -123,7 +123,7 @@ You're probably asking yourself why we're defining both a `getHomePage` method a
 
 `class com.gwtplatform.samples.nested.client.gin.ClientModule`:
 
-```
+```java
 public class ClientModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
@@ -149,7 +149,7 @@ I've written a simple menu widget and since there's no complex logic at all I go
 
 `class com.gwtplatform.samples.nested.client.ui.MainMenu`:
 
-```
+```java
 public class MainMenu extends Composite {
     private static MainMenuUiBinder uiBinder = GWT.create(MainMenuUiBinder.class);
     interface MainMenuUiBinder extends UiBinder<Widget, MainMenu> {}
@@ -164,7 +164,7 @@ Simple, it's the default template when you create a !UiBinder class.
 
 `com.gwtplatform.samples.nested.client.ui.MainMenu.ui.xml`:
 
-```
+```xml
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
     xmlns:g="urn:import:com.google.gwt.user.client.ui">
@@ -184,7 +184,7 @@ Now is the time to create our presenters and views. Since `ContactPresenter`,`Ab
 
 `class com.gwtplatform.samples.nested.client.presenter.MainPagePresenter`:
 
-```
+```java
 public class MainPagePresenter extends Presenter<MainPagePresenter.MyView, MainPagePresenter.MyProxy> {
     /**
     * Child presenters can fire a RevealContentEvent with TYPE_SetMainContent to set themselves
@@ -214,7 +214,7 @@ Simple and easy. `@ContentSlot` is used to define a type to use in child present
 
 `class com.gwtplatform.samples.nested.client.view.MainPageView`:
 
-```
+```java
 public class MainPageView extends ViewImpl implements MyView {
     private static MainPageViewUiBinder uiBinder = GWT.create(MainPageViewUiBinder.class);
     interface MainPageViewUiBinder extends UiBinder<Widget, MainPageView> {}
@@ -240,7 +240,7 @@ GWTP will call `setInSlot` when a child presenter asks to be added under this vi
 
 `com.gwtplatform.samples.nested.client.view.MainPageView.ui.xml`:
 
-```
+```xml
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
     xmlns:g="urn:import:com.google.gwt.user.client.ui"
@@ -257,7 +257,7 @@ As you can see, I used my `MainMenu` twice here. This is not a problem, since `M
 
 `class com.gwtplatform.samples.nested.client.presenter.HomePresenter`:
 
-```
+```java
 public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> {
     public interface MyView extends View {}
 
@@ -284,7 +284,7 @@ We added two new annotations, `@ProxyCodeSplit`, used by GWTP proxy generator to
 
 `class com.gwtplatform.samples.nested.client.view.HomeView`:
 
-```
+```java
 public class HomeView extends ViewImpl implements MyView {
     private static HomeViewUiBinder uiBinder = GWT.create(HomeViewUiBinder.class);
     interface HomeViewUiBinder extends UiBinder<Widget, HomeView> {}

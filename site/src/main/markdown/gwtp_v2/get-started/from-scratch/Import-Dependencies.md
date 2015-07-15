@@ -130,4 +130,4 @@ Using GWTP without a dependency management tool is a bit more trouble.
 
 # Create Files
 
-Once you are done, it is time to [create the files]({{#gwtp.doc_home_url}}/get-started/from-scratch/Create-Files.html).
+Once you are done, it is time to [create the files]({{#gwtp.doc.url.create_files}}).

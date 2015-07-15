@@ -5,7 +5,7 @@ Binding the `DefaultModule()` will initialize the `DefaultPlaceManager`. But it'
 
 * Example of setting up the `DefaultPlaceManger` through the `DefaultModule`
 
-```
+```java
 public class ClientModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
@@ -25,7 +25,7 @@ Setting up a custom `PlaceManager` can be done by setting up the `DefaultModule`
 
 * Example extending `PlaceManagerImpl` to build the application's `PlaceManager`:
 
-```
+```java
 package com.arcbees.project.client.place;
 
 import com.google.inject.Inject;
@@ -58,7 +58,7 @@ public class PlaceManager extends PlaceManagerImpl {
 
 * When using a custom `PlaceManager` instantiate the DefaultModule with the `PlaceManager.class` like `DefaultModue(PlaceManager.class)`.
 
-```
+```java
 public class ClientModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
@@ -78,7 +78,7 @@ To explain that how revealDefaultPlace works a bit more, a situation that could 
 
 * Set to false:
 
-```
+```java
 revealPlace(defaultPlaceRequest, false);
 ```
 
@@ -86,7 +86,7 @@ revealPlace(defaultPlaceRequest, false);
 Installing the `DefaultModule` saves you from having to perform all the following bindings.
 
 
-```
+```java
 bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
 bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(Singleton.class);
 bind(RootPresenter.class).asEagerSingleton();
@@ -106,7 +106,7 @@ The `@DefaultPlace` has been built into the `DefaultPlaceManager`. This will tel
 
 * The `@DefaultPlace` can be set like this:
 
-```
+```java
 bindConstant().annotatedWith(DefaultPlace.class).to(NameTokens.home);
 ```
 
@@ -115,7 +115,7 @@ This is the landing place when a 404 occurs.
 
 * The `@ErrorPlace` can be set like this:
 
-```
+```java
 bindConstant().annotatedWith(ErrorPlace.class).to(NameTokens.error);
 ```
 
@@ -124,7 +124,7 @@ The `@UnauthorizedPlace` is the landing place for unauthorized users.
 
 * The `@UnauthorizedPlace` can be set like this:
 
-```
+```java
 bindConstant().annotatedWith(UnauthorizedPlace.class).to(NameTokens.unauthorized);
 ```
 

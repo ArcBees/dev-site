@@ -4,7 +4,7 @@
 
 Add `com/arcbees/gsss/mixin/client/mixin.gss` and your Gss file path in a `@Source` annotation.
 
-```
+```java
 @Source({"com/arcbees/gsss/mixin/client/mixins.gss", "style.gss"})
 public Style style();
 ```
@@ -31,7 +31,7 @@ You can now use any mixins in your style.gss file.
 
 #### borderradius(TOP_RIGHT, BOTTOM_RIGHT, BOTTOM_LEFT, TOP_LEFT)
 
-```
+```css
 @mixin borderradius(15px, 0, 30px, 5px);
 ```
 
@@ -39,7 +39,7 @@ $[gsss-mixins-1]
 
 #### rounded(SIZE)
 
-```
+```css
 @mixin rounded(15px);
 ```
 
@@ -47,7 +47,7 @@ $[gsss-mixins-2]
 
 #### borderradius_t(TOP)
 
-```
+```css
 @mixin borderradius_t(15px);
 ```
 
@@ -55,7 +55,7 @@ $[gsss-mixins-3]
 
 #### borderradius_b(BOTTOM)
 
-```
+```css
 @mixin borderradius_b(15px);
 ```
 
@@ -63,7 +63,7 @@ $[gsss-mixins-4]
 
 #### borderradius_l(LEFT)
 
-```
+```css
 @mixin borderradius_l(15px);
 ```
 
@@ -71,7 +71,7 @@ $[gsss-mixins-5]
 
 #### borderradius_r(RIGHT)
 
-```
+```css
 @mixin borderradius_r(15px);
 ```
 
@@ -79,7 +79,7 @@ $[gsss-mixins-6]
 
 #### borderradius_tr(TOP_RIGHT)
 
-```
+```css
 @mixin borderradius_tr(15px);
 ```
 
@@ -87,7 +87,7 @@ $[gsss-mixins-7]
 
 #### borderradius_tl(TOP_LEFT)
 
-```
+```css
 @mixin borderradius_tl(15px);
 ```
 
@@ -95,7 +95,7 @@ $[gsss-mixins-8]
 
 #### borderradius_br(BOTTOM_RIGHT)
 
-```
+```css
 @mixin borderradius_br(15px);
 ```
 
@@ -103,7 +103,7 @@ $[gsss-mixins-9]
 
 #### borderradius_bl(BOTTOM_LEFT)
 
-```
+```css
 @mixin borderradius_bl(15px);
 ```
 
@@ -115,7 +115,7 @@ $[gsss-mixins-10]
 
 #### boxsizing()
 
-```
+```css
 @mixin boxsizing();
 ```
 
@@ -132,7 +132,7 @@ $[gsss-mixins-10]
 
 #### gradient(FIRST_COLOR, SECOND_COLOR)
 
-```
+```css
 @mixin gradient(#ff22ee, #0044e1);
 ```
 
@@ -140,7 +140,7 @@ $[gsss-mixins-11]
 
 #### gradient_h(FIRST_COLOR, SECOND_COLOR)
 
-```
+```css
 @mixin gradient_h(#ff22ee, #0044e1);
 ```
 
@@ -148,7 +148,7 @@ $[gsss-mixins-12]
 
 #### gradient_tlbr(FIRST_COLOR, SECOND_COLOR)
 
-```
+```css
 @mixin gradient_tlbr(#ff22ee, #0044e1);
 ```
 
@@ -156,7 +156,7 @@ $[gsss-mixins-13]
 
 #### gradient_bltr(FIRST_COLOR, SECOND_COLOR)
 
-```
+```css
 @mixin gradient_bltr(#ff22ee, #0044e1);
 ```
 
@@ -164,7 +164,7 @@ $[gsss-mixins-14]
 
 #### gradient_circular(FIRST_COLOR, SECOND_COLOR)
 
-```
+```css
 @mixin gradient_circular(#ff22ee, #0044e1);
 ```
 
@@ -180,7 +180,7 @@ $[gsss-mixins-15]
 
 #### opacity(ALPHA)
 
-```
+```css
 @mixin opacity(0.5);
 ```
 
@@ -199,7 +199,7 @@ $[gsss-mixins-16]
 
 #### outline(SIZE, BORDER, COLOR, OFFSET)
 
-```
+```css
 @mixin outline(2px, solid, #000, 10px);
 ```
 
@@ -220,7 +220,7 @@ $[gsss-mixins-17]
 
 #### shadow(HORIZONTAL, VERTICAL, BLUR, ALPHA)
 
-```
+```css
 @mixin shadow(5px, 5px, 3px, 0.3);
 ```
 
@@ -228,7 +228,7 @@ $[gsss-mixins-18]
 
 #### shadow_color(HORIZONTAL, VERTICAL, BLUR, SPREAD, COLOR)
 
-```
+```css
 @mixin shadow_color(5px, 5px, 10px, 2px, #22ee22);
 ```
 
@@ -236,7 +236,7 @@ $[gsss-mixins-19]
 
 #### shadow_inner(HORIZONTAL, VERTICAL, BLUR, ALPHA)
 
-```
+```css
 @mixin shadow_inner(0, 7px, 5px, 0.4);
 ```
 
@@ -244,7 +244,7 @@ $[gsss-mixins-20]
 
 #### shadow_inner_color(HORIZONTAL, VERTICAL, BLUR, SPREAD, COLOR)
 
-```
+```css
 @mixin shadow_inner_color(0, 7px, 5px, 2px, rgba(0, 0, 255, 0.4));
 ```
 
@@ -252,7 +252,7 @@ $[gsss-mixins-21]
 
 #### shadow_text(HORIZONTAL, VERTICAL, BLUR, ALPHA)
 
-```
+```css
 @mixin shadow_text(2px, 2px, 1px, 0.5);
 ```
 
@@ -260,7 +260,7 @@ $[gsss-mixins-22]
 
 #### shadow_text_color(HORIZONTAL, VERTICAL, BLUR, COLOR)
 
-```
+```css
 @mixin shadow_text_color(0, 5px, 2px, #11ff66);
 ```
 
@@ -268,7 +268,7 @@ $[gsss-mixins-23]
 
 #### shadow_none()
 
-```
+```css
 @mixin shadow_none();
 ```
 
@@ -286,7 +286,7 @@ $[gsss-mixins-23]
 
 #### flip_horizontal()
 
-```
+```css
 @mixin flip_horizontal();
 ```
 
@@ -294,7 +294,7 @@ $[gsss-mixins-24]
 
 #### flip_vertical()
 
-```
+```css
 @mixin flip_vertical();
 ```
 
@@ -304,7 +304,7 @@ $[gsss-mixins-25]
 
 #### rotate(DEGREE)
 
-```
+```css
 @mixin rotate(45deg);
 ```
 
@@ -312,7 +312,7 @@ $[gsss-mixins-26]
 
 #### rotate_180_cw()
 
-```
+```css
 @mixin rotate_180_cw();
 ```
 
@@ -320,7 +320,7 @@ $[gsss-mixins-27]
 
 #### rotate_180_ccw()
 
-```
+```css
 @mixin rotate_180_ccw();
 ```
 
@@ -328,7 +328,7 @@ $[gsss-mixins-27]
 
 #### scale(RATIO_HORIZONTAL, RATIO_VERTICAL)
 
-```
+```css
 @mixin scale(1.5, 1);
 ```
 
@@ -338,7 +338,7 @@ $[gsss-mixins-28]
 
 #### translate(HORIZONTAL, VERTICAL)
 
-```
+```css
 @mixin translate(10px, 20px);
 ```
 
@@ -357,18 +357,18 @@ $[gsss-mixins-29]
 
 #### transition(PROPERTY, DURATION)
 
-```
+```css
 @mixin transition(margin-left, 200);
 ```
 
 #### transition_effect(PROPERTY, DURATION, EFFECT)
 
-```
+```css
 @mixin transition(all, 500, ease);
 ```
 
 #### transition_delay(PROPERTY, DURATION, EFFECT, DELAY)
 
-```
+```css
 @mixin transition(width, 250, ease, 100);
 ```

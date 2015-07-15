@@ -26,7 +26,7 @@ Gwt-exporter penalizes performance since it spends time figuring out which metho
 
 To use jsQuery as a replacement of jQuery in a non GWT project, just replace the `src` attribute in the script tag importing jQuery by the url with jsquery.js, and use it as habitual (see Known issues below).
 
-```
+```html
 
 // Just replace jquery by jsquery
 <!-- <script src="http://code.jquery.com/jquery-latest.min.js" /> -->
@@ -50,7 +50,7 @@ In order to use a jquery plugin in a GWT project, you have to:
 
 * Include the gwtexporter dependency in your project. In the case of maven:
 
-```
+```xml
   <dependency>
      <groupId>org.timepedia.exporter</groupId>
      <artifactId>gwtexporter</artifactId>
@@ -61,7 +61,7 @@ In order to use a jquery plugin in a GWT project, you have to:
 
 * Inherit gwtexporter in your gwt.xml file
 
-```
+```xml
   <inherits name='org.timepedia.exporter.Exporter' />
   <set-property name="export" value="yes" />
 ```
@@ -69,7 +69,7 @@ In order to use a jquery plugin in a GWT project, you have to:
 * Copy the classes [GQueryOverlay.java](http://code.google.com/p/gwtquery/source/browse/jsquery/src/main/java/com/google/gwt/query/jsquery/client/GQueryOverlay.java) and [JsQueryUtils.java](http://code.google.com/p/gwtquery/source/browse/jsquery/src/main/java/com/google/gwt/query/jsquery/client/JsQueryUtils.java) to your plugin project.
 * Add these lines in your entry point class:
 
-```
+```java
   public void onModuleLoad() {
   [...]
     // Export jsQuery api
@@ -87,7 +87,7 @@ In order to use a jquery plugin in a GWT project, you have to:
 
 * Then you can do either: import the jquery javascript code in your html, or wrap it in a a java class copying the javascript in a jsni method:
 
-```
+```java
 
 public abstract class MyPlugin {
   public static native void loadPlugin() /*-{

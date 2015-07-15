@@ -20,7 +20,7 @@ Let's assume `CurrentUserService` is an interface that's implemented by a client
 
 *SimplePresenter.java*
 
-```
+```java
 public class SimplePresenter extends PresenterWidget<SimplePresenter.MyView> {
     interface MyView extends View {
         void displayCurrentUserName(String username);
@@ -46,7 +46,7 @@ public class SimplePresenter extends PresenterWidget<SimplePresenter.MyView> {
 
 *SimpleViewImpl.java*
 
-```
+```java
 public class SimpleViewImpl extends ViewImpl implements SimplePresenter.MyView {
     interface Binder extends UiBinder<HTMLPanel, SimpleView> {
     }
@@ -67,7 +67,7 @@ public class SimpleViewImpl extends ViewImpl implements SimplePresenter.MyView {
 
 *SimpleViewImpl.ui.xml*
 
-```
+```xml
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
         xmlns:g='urn:import:com.google.gwt.user.client.ui'>
     <g:HTMLPanel>

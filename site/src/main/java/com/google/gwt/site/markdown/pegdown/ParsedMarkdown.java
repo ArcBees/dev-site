@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 ArcBees Inc.
+ * Copyright 2015 ArcBees Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -14,20 +14,24 @@
  * the License.
  */
 
-package com.google.gwt.site.demo.gsss.animation.resources;
+package com.google.gwt.site.markdown.pegdown;
 
-import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.CssResource;
+public class ParsedMarkdown {
+    private final String html;
+    private final String style;
 
-public interface AnimationResources extends ClientBundle {
-    interface Default extends CssResource {
-        String dummy();
-
-        String example1();
-
-        String example2();
+    public ParsedMarkdown(
+            String html,
+            String style) {
+        this.html = html;
+        this.style = style;
     }
 
-    @Source("com/google/gwt/site/demo/gsss/animation/example.gss")
-    Default style();
+    public String getHtml() {
+        return html;
+    }
+
+    public String getStyle() {
+        return style;
+    }
 }

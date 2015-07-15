@@ -15,7 +15,7 @@ However, only CSS2 properties (as described [here](http://www.w3.org/TR/CSS21/pr
 ##How to get the value of a CSS property
 The [CSS](http://gwtquery.googlecode.com/svn/trunk/gwtquery-core/javadoc/com/google/gwt/query/client/css/CSS.html) class lists all available css properties. You can use the properties defined in [CSS](http://gwtquery.googlecode.com/svn/trunk/gwtquery-core/javadoc/com/google/gwt/query/client/css/CSS.html) class with the css() method of GQuery class to get the value of a css property :
 
-```
+```java
 import static com.google.gwt.query.client.GQuery.$
 import com.google.gwt.query.client.css.CSS;
 ...
@@ -31,7 +31,7 @@ String borderType = $(myButton).css(CSS.BORDER_STYLE);
 ##How to set a value in a CSS property
 Each property defined in CSS class proposes different with() methods allowing you to set a value in a type-safe way :
 
-```
+```java
 //set the border style of the button to 'dotted' value
 $(myButton).css(CSS.BORDER_STYLE.with(BorderStyle.DOTTED));
 
@@ -51,7 +51,7 @@ $("#myId").css(CSS.BACKGROUND.with(
 
 It's now impossible to set wrong value to a property. This code below will not compile :
 
-```
+```java
 //the value are not specified in the correct order
 $("#myId").css(CSS.BACKGROUND.with(
                 RGBColor.TRANSPARENT,
@@ -66,7 +66,7 @@ $("#myId").css(CSS.TOP.with(VerticalAlign.TOP));
 
 You can also set several properties in a single call :
 
-```
+```java
 // specify margin, padding, text-decoration and font-size in one pass
 $("#myId").css(CSS.MARGIN.with(Length.px(3)),
                CSS.PADDING.with(Length.px(3), Length.px(5)),
@@ -90,18 +90,18 @@ The mechanism describe in previous paragraph to set up css is IDE friendly. If y
 ## Syntax Alternatives
 But GQuery does not force you to use its type-safe syntax, it also propose you other alternatives if you prefer jquery syntax using attribute-value pairs, or if you wanted to 'copy and paste' attributes from a style-sheet document:
 
-```
+```java
 $("#myId").css("color", "red");
 ```
 
 Using javascript property maps:
 
-```
+```java
 $("#myId").css($$("top: '50px', left: '25px', color: 'red'"));
 ```
 
 Or even using the css style sheet syntax:
 
-```
+```java
 $("#myId").css($$("margin: 3px; padding: 3px 5px; text-decoration: none; font-size: small;"));
 ```

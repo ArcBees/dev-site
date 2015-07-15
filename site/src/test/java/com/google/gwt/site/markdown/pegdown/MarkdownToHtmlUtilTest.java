@@ -25,126 +25,126 @@ public class MarkdownToHtmlUtilTest {
 
     @Test
     public void simpleString_isParagraph() {
-        String html = markdownToHtmlUtil.toHtml("blah");
+        String html = markdownToHtmlUtil.convert("blah").getHtml();
 
         assertThat(html).isEqualTo("<p>blah</p>");
     }
 
     @Test
     public void h1() {
-        String html = markdownToHtmlUtil.toHtml("#blah");
+        String html = markdownToHtmlUtil.convert("#blah").getHtml();
 
         assertThat(html).isEqualTo("<h1>blah</h1>");
     }
 
     @Test
     public void h1_withNumbers() {
-        String html = markdownToHtmlUtil.toHtml("#blah6");
+        String html = markdownToHtmlUtil.convert("#blah6").getHtml();
 
         assertThat(html).isEqualTo("<h1>blah6</h1>");
     }
 
     @Test
     public void h1_withId() {
-        String html = markdownToHtmlUtil.toHtml("#blah {myId}");
+        String html = markdownToHtmlUtil.convert("#blah {myId}").getHtml();
 
         assertThat(html).isEqualTo("<h1 id=\"myId\">blah</h1>");
     }
 
     @Test
     public void h1_withId_complexText() {
-        String html = markdownToHtmlUtil.toHtml("#blah6? bon6?jour http://www.google.com {myId}");
+        String html = markdownToHtmlUtil.convert("#blah6? bon6?jour http://www.google.com {myId}").getHtml();
 
         assertThat(html).isEqualTo("<h1 id=\"myId\">blah6? bon6?jour http://www.google.com</h1>");
     }
 
     @Test
     public void h1_withIdAndClosingHashes() {
-        String html = markdownToHtmlUtil.toHtml("#blah # {myId}");
+        String html = markdownToHtmlUtil.convert("#blah # {myId}").getHtml();
 
         assertThat(html).isEqualTo("<h1 id=\"myId\">blah</h1>");
     }
 
     @Test
     public void h1_withClosingHashes() {
-        String html = markdownToHtmlUtil.toHtml("#blah #");
+        String html = markdownToHtmlUtil.convert("#blah #").getHtml();
 
         assertThat(html).isEqualTo("<h1>blah</h1>");
     }
 
     @Test
     public void h2() {
-        String html = markdownToHtmlUtil.toHtml("##blah");
+        String html = markdownToHtmlUtil.convert("##blah").getHtml();
 
         assertThat(html).isEqualTo("<h2>blah</h2>");
     }
 
     @Test
     public void h2_withId_randomNumberOfClosingHashes() {
-        String html = markdownToHtmlUtil.toHtml("##blah ########## {myId}");
+        String html = markdownToHtmlUtil.convert("##blah ########## {myId}").getHtml();
 
         assertThat(html).isEqualTo("<h2 id=\"myId\">blah</h2>");
     }
 
     @Test
     public void idWithHyphen() {
-        String html = markdownToHtmlUtil.toHtml("#blah {my-Id}");
+        String html = markdownToHtmlUtil.convert("#blah {my-Id}").getHtml();
 
         assertThat(html).isEqualTo("<h1 id=\"my-Id\">blah</h1>");
     }
 
     @Test
     public void idWithUnderscore() {
-        String html = markdownToHtmlUtil.toHtml("#blah {my_Id}");
+        String html = markdownToHtmlUtil.convert("#blah {my_Id}").getHtml();
 
         assertThat(html).isEqualTo("<h1 id=\"my_Id\">blah</h1>");
     }
 
     @Test
     public void idWithColon() {
-        String html = markdownToHtmlUtil.toHtml("#blah {my:Id}");
+        String html = markdownToHtmlUtil.convert("#blah {my:Id}").getHtml();
 
         assertThat(html).isEqualTo("<h1 id=\"my:Id\">blah</h1>");
     }
 
     @Test
     public void idWithPeriod() {
-        String html = markdownToHtmlUtil.toHtml("#blah {my.Id}");
+        String html = markdownToHtmlUtil.convert("#blah {my.Id}").getHtml();
 
         assertThat(html).isEqualTo("<h1 id=\"my.Id\">blah</h1>");
     }
 
     @Test
     public void divWithId() {
-        String html = markdownToHtmlUtil.toHtml("$[myId]");
+        String html = markdownToHtmlUtil.convert("$[myId]").getHtml();
 
         assertThat(html).isEqualTo("<div id=\"myId\"></div>");
     }
 
     @Test
     public void divWithId_hyphen() {
-        String html = markdownToHtmlUtil.toHtml("$[my-Id]");
+        String html = markdownToHtmlUtil.convert("$[my-Id]").getHtml();
 
         assertThat(html).isEqualTo("<div id=\"my-Id\"></div>");
     }
 
     @Test
     public void divWithId_underscore() {
-        String html = markdownToHtmlUtil.toHtml("$[my_Id]");
+        String html = markdownToHtmlUtil.convert("$[my_Id]").getHtml();
 
         assertThat(html).isEqualTo("<div id=\"my_Id\"></div>");
     }
 
     @Test
     public void divWithId_colon() {
-        String html = markdownToHtmlUtil.toHtml("$[my:Id]");
+        String html = markdownToHtmlUtil.convert("$[my:Id]").getHtml();
 
         assertThat(html).isEqualTo("<div id=\"my:Id\"></div>");
     }
 
     @Test
     public void divWithId_period() {
-        String html = markdownToHtmlUtil.toHtml("$[my.Id]");
+        String html = markdownToHtmlUtil.convert("$[my.Id]").getHtml();
 
         assertThat(html).isEqualTo("<div id=\"my.Id\"></div>");
     }

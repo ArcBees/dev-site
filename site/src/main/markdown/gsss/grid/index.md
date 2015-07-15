@@ -4,7 +4,7 @@
 
 Add the grid settings `com/arcbees/gsss/grid/client/gridsettings.gss` and the grid `com/arcbees/gsss/grid/client/grid.gss` in a `@Source` annotation.
 
-```
+```java
 @Source({"com/arcbees/gsss/grid/client/gridsettings.gss", "com/arcbees/gsss/grid/client/grid.gss"})
 GridResources.Grid grid();
 ```
@@ -17,7 +17,7 @@ The grid is working on a 12 columns system. Group of columns are wrapped inside 
 
 Start by adding a `row` element. Inside of it, add the desired columns using `col` for each one and specify the size of it (refer to the *Columns size* section for more info).
 
-```
+```xml
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
     <ui:with field="resources" type="path.to.your.resources.ResourcesFile"/>
@@ -50,7 +50,7 @@ Start adjusting for desktop, and then fine tune for tablet and mobile if require
 
 Default style, will also be applied to Tablet and Mobile if not overwritten
 
-```
+```css
 .col_1, .col_1_12:      1 / 12
 .col_2, .col_1_6:       1 / 6
 .col_3, .col_1_4:       1 / 4
@@ -70,7 +70,7 @@ Default style, will also be applied to Tablet and Mobile if not overwritten
 
 Tablet style, will also be applied to Mobile if not overwritten
 
-```
+```css
 .col_t_1, .col_t_1_12:      1 / 12
 .col_t_2, .col_t_1_6:       1 / 6
 .col_t_3, .col_t_1_4:       1 / 4
@@ -90,7 +90,7 @@ Tablet style, will also be applied to Mobile if not overwritten
 
 Mobile style
 
-```
+```css
 .col_m_1, .col_m_1_12:      1 / 12
 .col_m_2, .col_m_1_6:       1 / 6
 .col_m_3, .col_m_1_4:       1 / 4
@@ -110,7 +110,7 @@ Mobile style
 
 You can push a column using the push class. It will do the same as creating an empty column of the specified size on the left of the current column.
 
-```
+```css
 .col_push_1, .col_push_1_12:    1 / 12 push
 .col_push_2, .col_push_1_6:     1 / 6 push
 ...
@@ -119,14 +119,14 @@ You can push a column using the push class. It will do the same as creating an e
 
 Same as sizes, you can target the push to Tablet and Mobile size :
 
-```
+```css
 .col_t_push_1, .col_t_push_1_12:     1 / 12 push for Tablet and lower
 .col_m_push_1, .col_m_push_1_12:     1 / 12 push for Mobile only
 ```
 
 You can also overwrite a push with push_0 :
 
-```
+```css
 .col_m_push_0:      No push for Mobile only
 ```
 
@@ -136,7 +136,7 @@ $[gsss-grid-2]
 
 In order to change the Grid settings, you will need to duplicate the file `gridsettings.gss` file into you own resources directory and link to it instead of the default file.
 
-```
+```java
 @Source({"your/path/to/the/file/gridsettings.gss", "com/arcbees/gsss/grid/client/grid.gss"})
 GridResources.Grid grid();
 ```
