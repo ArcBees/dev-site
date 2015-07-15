@@ -1,9 +1,9 @@
 # Presenter Slots
-Presenters in GWTP have a concept of slots. Slots are basically placeholders where the child presenters are put and associated to their parent presenter. GWTP is using `setInSlot()` in it's hierarchy while revealing the presenters and a recursive strategy is used to call each lifecycle methods in the nested presenters hierarchy defined.
+Presenters in GWTP have a concept of slots. Slots are basically placeholders where the child presenters are put and associated to their parent presenter. GWTP is using `setInSlot()` in its hierarchy while revealing the presenters and a recursive strategy is used to call each lifecycle methods in the nested presenters hierarchy defined.
 
 
 ## Note on new slots
-Typed slots are new in 1.5. If you are using an older version, make sure to read the [slots section](TODO-LINK) of the migrating from 1.4 to 1.5 guide.
+Typed slots are new in 1.5. If you are using an older version, make sure to read the [slots section]({{#gwtp.doc.url.migrating}}) of the migrating from 1.4 to 1.5 guide.
 
 
 ## Slot types
@@ -13,7 +13,7 @@ There are different slot types depending on the intended use.
 * **NestedSlot**: Same as `SingleSlot`, but can only take Presenters that have Proxies (no `PresenterWidget`).
 * **Slot**: The most permissive slot, can contain multiple presenters. Can call `getChildren(slot)` to see which presenters it currently contains.
 * **OrderedSlot**: Like `Slot` except the presenters added to it must be comparable. The view will automatically put them in order but they can only be binded to an IndexedPanel. `getChildren(slot)` returns the presenters the slot contains in order.
-* **PopupSlot**: A slot used for popup presenters. See [Popup presenters](TODO-LINK) for more details.
+* **PopupSlot**: A slot used for popup presenters. See [Popup presenters]({{#gwtp.doc.url.popup_presenter}}) for more details.
 
 
 ## Using slots
@@ -163,7 +163,7 @@ requests displays in the center or location selected.
 
 You can define your own popup slot if you want to use methods like `getChildren(SLOT)`. It works the same way as other slots (with setInSlot/addToSlot). There is also a built-in popup slot that you can use if you only want to show a popup presenter. This slot is only a shortcut, it's not different than a manually created popup slot. You can use this built-in slot with `addToPopupSlot(popupPresenter)`.
 
-See [here](TODO-LINK) for more details on popup presenters.
+See [here]({{#gwtp.doc.url.popup_presenter}}) for more details on popup presenters.
 
 
 ## Slot Methods
