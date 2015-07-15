@@ -1,8 +1,7 @@
 # Create an App from Scratch
 If you can't, or prefer not to use a Maven Archetype, the following steps will guide you through the creation of a new application from scratch.
 
-> **Note**: For a more in-depth guide on creating a new GWTP application, you can read the [Beginner's Tutorial]().
-<!--- TODO: Fix this link before release -->
+> **Note**: For a more in-depth guide on creating a new GWTP application, you can read the [Beginner's Tutorial]({{#gwtp.doc.url.beginner_tutorial}}).
 
 ## Folder Structure
 First, start off by creating the initial folder structure. This structure is going to help us separate logical components.
@@ -32,7 +31,7 @@ mkdir -p src/main/java/webapp/WEB-INF
 # Import the Dependencies
 In order to use GWTP, you need to import the source code. This can either be done with a dependency management tool (Maven, Gradle, etc.) or manually. We highly recommend using such a tool as it makes managing transitive dependencies a lot easier.
 
-If using Maven you should really skip through the boilerplate and [use an archetype]({{#gwtp.doc_home_url}}/get-started/index.html).
+If using Maven you should really skip through the boilerplate and [use an archetype]({{#gwtp.doc.url.use_archetype}}).
 
-* [Import the Dependencies with Maven]({{#gwtp.doc_home_url}}/get-started/from-scratch/Import-Dependencies.html#maven)
-* [Import the Dependencies with the JARs]({{#gwtp.doc_home_url}}/get-started/from-scratch/Import-Dependencies.html#jars)
+* [Import the Dependencies with Maven]({{#gwtp.doc.url.dependencies_maven}})
+* [Import the Dependencies with the JARs]({{#gwtp.doc.url.dependencies_jars}})
