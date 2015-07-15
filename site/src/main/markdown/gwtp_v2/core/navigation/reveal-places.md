@@ -40,7 +40,9 @@ public void displayCar(String model) {
 }
 ```
 
-This will create a new request with the token `CARS` and a parameter `MODEL` with the value `model`. `placeManager.revealPlace()` will then reveal the associated presenter. Alternatively, `placeManager.revealPlace(request, false)` can be used to reveal the presenter without updating the URL. This can be useful if when a new entry in the browser history is not wanted.
+This will create a new request with the token `CARS` and a parameter `MODEL` with the value `model`. `placeManager.revealPlace()` will then reveal the associated presenter. Alternatively, `placeManager.revealPlace(request, false)` can be used to reveal the presenter without updating the URL. This can be useful when a new entry in the browser history is not wanted.
+
+Notice that the parameter token comes from another class named `ParameterTokens`. This is to facilitate reusability and maintainability of parameter tokens across the application.
 
 The place manager also has a couple utilities methods. The most common methods are:
 
@@ -56,7 +58,7 @@ From a UiBinder file, this would look like this:
 ```xml
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
         xmlns:g="urn:import:com.google.gwt.user.client.ui">
-    <ui:import field="com.roler.res.client.NameTokens.CARS"/>
+    <ui:import field="com.project.client.NameTokens.CARS"/>
 
     <g:HTMLPanel>
         Hello there. See our new car models
@@ -67,4 +69,4 @@ From a UiBinder file, this would look like this:
 </ui:UiBinder>
 ```
 
-Notice how the `<ui:import field="..."/>` tag is added to reused the constant defined in `NameTokens`.
+Notice how the `<ui:import field="..."/>` tag is added to reuse the constant defined in `NameTokens`.

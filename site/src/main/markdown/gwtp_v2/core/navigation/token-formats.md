@@ -73,7 +73,7 @@ will lead to the following url: `https://www.mydomain.tld/#/users/homer/photos/h
 Token Parameters can be accessed with `PlaceRequest.getParameter("key", "defaultValue")`. "defaultValue" is a value that will be returned if the parameter "key" is missing from the request in order to avoid unnecessary null-checks.
 
 ```java
-// Override Presenter.prepareFromRequest() to get access
+// Override Presenter.prepareFromRequest() to get access to
 // the current PlaceRequest before a presenter is revealed.
 @Override
 public void prepareFromRequest(PlaceRequest request) {

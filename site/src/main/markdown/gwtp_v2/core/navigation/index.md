@@ -1,5 +1,5 @@
 # Linking Places to a Token
-Some presenters can be associated to a specific URL. GWTP makes it possible by managing the hash section of the URL. This is whatever comes after the "#" (ie: in `https://www.arcbees.com/#!/products/gwtp`, the hash is `!/products/gwtp`).
+Some presenters can be associated to a specific URL. GWTP makes it possible by managing the hash section of the URL. This is whatever comes after the "#" (ie: in `http://www.example.com/#/cars`, the hash is `/cars`).
 
 ## Prepare the presenter
 In order for a presenter to be a place, a regular Presenter with a [proxy]({{#gwtp.doc.url.proxy}}) has to be created first. From there the following changes are required:
