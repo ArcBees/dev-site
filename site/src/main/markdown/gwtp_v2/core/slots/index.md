@@ -198,38 +198,14 @@ You can define your own popup slot if you want to use methods like `getChildren(
 See [here]({{#gwtp.doc.url.popup_presenter}}) for more details on popup presenters.
 
 
-## Slot Methods
-
-#### addToSlot(slot, presenter) - Adding Presenter
-Adds the presenter to the slot.
-When a presenter is added to a slot, it means that it's added to the parent presenter's hierarchy and lifecycle methods will be called on this child presenter.
-
-#### removeFromSlot(slot, presenter) - Removing Presenter
-Removes the presenter from the slot.
-
-#### setInSlot(slot, presenter) - Setting Presenter
-Sets the presenter in the slot. It will replace the previous presenters that were assigned to that slot.
-
-#### clearSlot(slot) - Clears Presenters
-Removes all presenters from this slot.
-
-#### getChildren(slot) - Get Presenters
-Returns all children presenters contained in the slot or an empty collection if the slot is empty.
-If slot is of type `Slot`, returns a Set.
-If slot is of type `OrderedSlot`, returns a sorted List.
-
-#### getChild(slot) - Get Presenter
-Returns the child presenter contained in the slot or null if the slot is empty.
-
-
 ## RevealType
 Used to specify which event will be fired when a presenter reveals itself in it's parent presenter using `Presenter.revealInParent()`.
 
-#### Root
+### Root
 `RevealType.Root` will fire a `RevealRootContentEvent`. This event is fired by a Presenter that desires to reveal itself at the root of the application. This type of content is usually meant to use the browser like a regular webpage, adding a vertical scrollbar as the content overflows.
 
-#### RootLayout
+### RootLayout
 `RevealType.RootLayout` will fire a `RevealRootLayoutContentEvent`. Again, this event will be fired by a Presenter that will be revealed at the application's root. However, this type of content is constrained to lie within the browser window, and to resize with it. You will be responsible for adding your own scrollbars as content overflows, usually via `com.google.gwt.user.client.ui.ScrollPanel`.
 
-#### RootPopup
+### RootPopup
 `RevealType.RootPopup` will fire a `RevealRootPopupContentEvent`. This event is fired when a PresenterWidget wants to reveal itself as a popup at the root of the application. Use this type of event to reveal popup content that should get added at the root of the presenter hierarchy.
