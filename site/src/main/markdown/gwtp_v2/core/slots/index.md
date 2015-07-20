@@ -8,6 +8,7 @@ Typed slots are new in 1.5. If you are using an older version, make sure to read
 
 ## Slot types
 There are different slot types depending on the intended use.
+
 * **SingleSlot**: Slot that can take only one presenter.  Can call `getChild(slot)` to see what's in the slot.
 * **PermanentSlot**: Same as `SingleSlot`, but once a presenter is added it can never be removed. Means that `getChild(slot)` will never be null.
 * **NestedSlot**: Same as `SingleSlot`, but can only take Presenters that have Proxies (no `PresenterWidget`).
@@ -19,6 +20,7 @@ There are different slot types depending on the intended use.
 ## Using slots
 ### In the presenter
 The slot needs to be defined as a field, like this:
+
 ```java
 static final Slot<PresenterWidget<?>> SLOT_CONTENT = new Slot<>();
 ```
@@ -26,6 +28,7 @@ static final Slot<PresenterWidget<?>> SLOT_CONTENT = new Slot<>();
 Then, you have to add/set the presenter(s) that goes in the slot.
 
 If you are adding a ChildPresenter to a slot in CurrentPresenter, use either of these methods:
+
 1. `addToSlot()`: Will append the presenter to the slot.
 2. `setInSlot()`: Will replace existing presenter(s) in the slot.
 

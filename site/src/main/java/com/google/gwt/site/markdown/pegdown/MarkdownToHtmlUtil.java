@@ -29,6 +29,7 @@ import org.pegdown.plugins.ToHtmlSerializerPlugin;
 import com.google.gwt.site.markdown.pegdown.pygments.PygmentsCodeHighlighter;
 
 import static org.pegdown.Extensions.FENCED_CODE_BLOCKS;
+import static org.pegdown.Extensions.HARDWRAPS;
 import static org.pegdown.Extensions.STRIKETHROUGH;
 import static org.pegdown.Extensions.TABLES;
 
@@ -39,7 +40,7 @@ public class MarkdownToHtmlUtil {
     private final List<ToHtmlSerializerPlugin> plugins;
 
     public MarkdownToHtmlUtil() {
-        this(new PegDownProcessor(FENCED_CODE_BLOCKS + STRIKETHROUGH + TABLES, Long.MAX_VALUE, getPlugins()));
+        this(new PegDownProcessor(FENCED_CODE_BLOCKS + STRIKETHROUGH + TABLES + HARDWRAPS, Long.MAX_VALUE, getPlugins()));
     }
 
     private static PegDownPlugins getPlugins() {
