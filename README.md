@@ -38,7 +38,7 @@ In terminal #3 (you have to wait for the action in terminal #2 to be completed)
 cd uploader && ./upload.sh localhost
 ```
 
-If you want to see your new changes after that, reexecute `mvn clean install` in terminal #1 and `./upload.sh localhost` in terminal #3
+If you want to see your new changes after that, re-execute `mvn clean install` in terminal #1 and `./upload.sh localhost` in terminal #3
 
 ##Thanks to
 [![Arcbees.com](http://i.imgur.com/HDf1qfq.png)](http://arcbees.com)
