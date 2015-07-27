@@ -8,7 +8,7 @@ GWTP has a few different ways to setup presenters, but each presenter type uses 
 ##Nested or Layout Presenters
 The nested or layout presenters direct the application layout as in the header, footer and content. Layout presenters which can be nested in many different ways communicate via the Eventbus. The `@NameToken` can be used with the PlaceManager to handle url navigation. Please note that both parent and child presenters in this case are `com.gwtplatform.mvp.client.Presenter`
 
-* Layout presenters (parent) initialize the slot by using the @ContentSlot annotation. See how it is used [here](https://github.com/ArcBees/ArcBees-tools/blob/master/archetypes/gwtp-appengine-objectify/src/main/java/com/arcbees/project/client/application/ApplicationPresenter.java).
+* Layout presenters (parent) initialize the slot by using the @ContentSlot annotation. See how it is used [here](https://github.com/ArcBees/Arcbees-Archetypes/blob/master/archetypes/gwtp-basic/src/main/resources/archetype-resources/src/main/java/client/application/ApplicationPresenter.java).
 
 ```
 @ContentSlot
