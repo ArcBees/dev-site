@@ -134,6 +134,7 @@ Using your real application URL and replacing `home` with the name token of a pa
 
 ##Maximizing efficiency
 You may notice that your `escaped_fragment` pages don't always render correctly, something even giving completely blank pages. This is often due to [AppEngine](https://cloud.google.com/appengine/)'s stringent constraints on maximal request durations and timeouts for external url fetches. GWTP filter's retry mechanism combined to caching on the crawler service usually get rid of the problem, but for complex pages it might not be enough. In this case you have a number of options:
-  * Ensure [AppEngine](https://cloud.google.com/appengine/)'s _always on_ feature is enabled on your crawler service and on your app (if it's using [AppEngine](https://cloud.google.com/appengine/)). *Highly recommended!*
-  * Pages on the crawler service are cached for 15 minutes by default, you can increase this via `bindConstant().annotatedWith(CachedPageTimeoutSec.class).to(3600)` or more if your content changes infrequently.
-  * With very long cache times, you can prime the cache by visiting the `escaped_fragment` versions manually, so that the robot sees a cached page when he visits.
+
+* Ensure [AppEngine](https://cloud.google.com/appengine/)'s _always on_ feature is enabled on your crawler service and on your app (if it's using [AppEngine](https://cloud.google.com/appengine/)). *Highly recommended!*
+* Pages on the crawler service are cached for 15 minutes by default, you can increase this via `bindConstant().annotatedWith(CachedPageTimeoutSec.class).to(3600)` or more if your content changes infrequently.
+* With very long cache times, you can prime the cache by visiting the `escaped_fragment` versions manually, so that the robot sees a cached page when he visits.

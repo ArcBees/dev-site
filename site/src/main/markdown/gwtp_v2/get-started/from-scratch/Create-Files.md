@@ -284,5 +284,4 @@ public class HomeModule extends AbstractPresenterModule {
 ```
 
 ## Conclusion
-That's it! You created your first GWTP application from nothing. You can now improve it by adding more places, style it, and more. Read the content of [Core (MVP)]({{#gwtp.doc_home_url}}/core/index.html) for more information on other awesome GWTP features.
-<!--- TODO: Make sure this link works before release. -->
+That's it! You created your first GWTP application from nothing. You can now improve it by adding more places, style it, and more. Read the content of [Core (MVP)]({{#gwtp.doc.url.core_home}}) for more information on other awesome GWTP features.
