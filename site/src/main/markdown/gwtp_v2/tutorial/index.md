@@ -7,7 +7,7 @@ Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
 
 ## Prerequisites
-1. [Running a project]
+1. [Running a project]({{#gwtp.doc.url.running_project}})
 1. TODO: Provide a pom.xml for this tutorial.
 
 
@@ -67,7 +67,7 @@ public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> i
     }
 ```
 
-We’re going to break it down into simpler part. First, let’s take a look at the class declaration. We have an ApplicationView extending a ViewWithUiHandlers. This specify that ApplicationView will be a View and will also use UiHandlers which I will talk about further in this tutorial. Then the View implements an interface that is declared in the ApplicationPresenter class. This will allow the View to talk to the Presenter.
+We’re going to break it down into simpler part. First, let’s take a look at the class declaration. We have an ApplicationView extending a ViewWithUiHandlers. This specify that ApplicationView will be a View and will also use UiHandlers which we will talk about further in this tutorial. Then the View implements an interface that is declared in the ApplicationPresenter class. This will allow the View to talk to the Presenter.
 
 GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), thus the presence of an `@Inject` annotation on the constructor.
 
@@ -272,4 +272,4 @@ public class ApplicationModule extends AbstractPresenterModule {
 ## Conclusion
 You are now able to create a Presenter and its associated View and delegate some of its action to the Presenter using UiHandlers. You also saw how to create HTML elements and access their values from the View using UiBinder. This conclude the first part of this tutorial. In the next part, we will take a look at PresenterWidgets, Gatekeepers, the PlaceManager and RestDispatch.
 
-[Link to next part]
+[Next part]({{#gwtp.doc.url.beginner_tutorial_part2}})
