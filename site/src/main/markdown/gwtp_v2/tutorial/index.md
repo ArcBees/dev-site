@@ -1,5 +1,5 @@
-# GWTP Beginner’s Tutorial - Part 1	
-This tutorial is intended for someone having no prior knowledge of GWTP who wants to get started right away writing some code. This first part will show you how a basic Presenter can interact with a View by using UiHandler and UiBinder. Chances are that you will need to replicate this over and over again for almost every Presenter you create. This tutorial won’t go much into the details of explaining how GWTP works (we have excellent documentation for that), but rather how the features interact together.
+# GWTP Beginner's Tutorial - Part 1
+This tutorial is intended for someone having no prior knowledge of GWTP who wants to get started right away writing some code. This first part will show you how a basic Presenter can interact with a View by using UiHandler and UiBinder. Chances are that you will need to replicate this over and over again for almost every Presenter you create. This tutorial won't go much into the details of explaining how GWTP works (we have excellent documentation for that), but rather how the features interact together.
 
 
 ## Covered features:
@@ -12,18 +12,19 @@ Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
 
 ## Application Structure
+
 ```
 src/main/java/com/arcbees/demo/client/
-├── application
-│   ├── ApplicationModule.java
-│   ├── ApplicationPresenter.java
-│   ├── ApplicationUiHandlers.java
-│   ├── ApplicationView.java
-│   └── ApplicationView.ui.xml
-├── gin
-│   └── ClientModule.java
-└── place
-    └── NameTokens.java
++- application
+|   +- ApplicationModule.java
+|   +- ApplicationPresenter.java
+|   +- ApplicationUiHandlers.java
+|   +- ApplicationView.java
+|   \- ApplicationView.ui.xml
++- gin
+|   \- ClientModule.java
++- place
+    \- NameTokens.java
 ```
 
 ## Main files and their purpose
@@ -54,7 +55,8 @@ Contains the constants defining your places.
 In a GWTP application, all pages correspond to a View-Presenter pair. The Presenter contains the client side logic and the View only display what it is told to by the Presenter. It is often said that the view should be as dumb as possible.
 
 ### View
-Here’s our basic ApplicationView:
+Here's our basic ApplicationView:
+
 ```java
 public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> implements ApplicationPresenter.MyView {
     interface Binder extends UiBinder<Widget, ApplicationView> {
@@ -67,12 +69,13 @@ public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> i
     }
 ```
 
-We’re going to break it down into simpler part. First, let’s take a look at the class declaration. We have an ApplicationView extending a ViewWithUiHandlers. This specify that ApplicationView will be a View and will also use UiHandlers which we will talk about further in this tutorial. Then the View implements an interface that is declared in the ApplicationPresenter class. This will allow the View to talk to the Presenter.
+We're going to break it down into simpler part. First, let's take a look at the class declaration. We have an ApplicationView extending a ViewWithUiHandlers. This specify that ApplicationView will be a View and will also use UiHandlers which we will talk about further in this tutorial. Then the View implements an interface that is declared in the ApplicationPresenter class. This will allow the View to talk to the Presenter.
 
 GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), thus the presence of an `@Inject` annotation on the constructor.
 
 ### Presenter
 This is the ApplicationPresenter:
+
 ```java
 public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> implements ApplicationUiHandlers {
     @ProxyStandard
@@ -135,7 +138,7 @@ This will create a simple HTML panel containing `Hello World!`. By adding the `u
 </ui:UiBinder>
 ```
 
-Then in your view, you will be able to access the textbox’s values and attributes by using accessors. First, you want to declare a variable that will contain your HTML element. You can do this by using `@UiField` annotation on your variable, like this:
+Then in your view, you will be able to access the textbox's values and attributes by using accessors. First, you want to declare a variable that will contain your HTML element. You can do this by using `@UiField` annotation on your variable, like this:
 
 ```java
 @UiField
@@ -176,7 +179,7 @@ public interface ApplicationUiHandlers extends UiHandlers {
 }
 ```
 
-If we go back to the view, we can now declare a method that will return the textBox’s value. It’s now time to use the `@UiHandlers` annotation that will allow us to bind a ClickEvent to the UiField. Then, we have to specify which type of events we want our method to listen to by passing an Event as parameter.
+If we go back to the view, we can now declare a method that will return the textBox's value. It's now time to use the `@UiHandlers` annotation that will allow us to bind a ClickEvent to the UiField. Then, we have to specify which type of events we want our method to listen to by passing an Event as parameter.
 
 ```java
 @UiHandler("sendButton")
