@@ -11,6 +11,8 @@
             <entry name="advanced/" displayName="Advanced Features"/>
             <entry name="resources/" displayName="Resources"/>
             <entry name="License" title="License" displayName="License"/>
+            <entry name="security/" title="Security" displayName="Security"/>
+            <entry name="tutorial/" title="Tutorial" displayName="Tutorial"/>
         </entries>
     </toc>
 </folder>

@@ -1,4 +1,4 @@
-## Presenter Gatekeeper
+# Presenter Gatekeeper
 Gatekeepers are used to protect places from unauthorized access. For example, a Gatekeeper could be set to protect a Presenter for which a user needs to log in.
 
 Example of use:

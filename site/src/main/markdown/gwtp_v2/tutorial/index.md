@@ -1,4 +1,4 @@
-# GWTP Beginner’s Tutorial - Part 1	
+# GWTP Beginner's Tutorial - Part 1
 This tutorial is intended for someone having no prior knowledge of GWTP who wants to get started right away writing some code. This first part will show you how a basic Presenter can interact with a View by using UiHandler and UiBinder. Chances are that you will need to replicate this over and over again for almost every Presenter you create. This tutorial won’t go much into the details of explaining how GWTP works (we have excellent documentation for that), but rather how the features interact together.
 
 
@@ -12,7 +12,7 @@ Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
 
 ## Application Structure
-```
+<pre>
 src/main/java/com/arcbees/demo/client/
 ├── application
 │   ├── ApplicationModule.java
@@ -24,7 +24,7 @@ src/main/java/com/arcbees/demo/client/
 │   └── ClientModule.java
 └── place
     └── NameTokens.java
-```
+</pre>
 
 ## Main files and their purpose
 
