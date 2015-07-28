@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder title="Slots"
+<folder title="Presenters Slots"
         href="index"
-        description="Slots">
+        description="Presenters Slots">
     <toc>
         <entries>
-            <entry name="index" title="Slots"
-                    displayName="Slots"></entry>
+            <entry name="index" title="Presenters Slots"
+                   displayName="Presenters Slots"></entry>
         </entries>
     </toc>
 </folder>
