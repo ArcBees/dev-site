@@ -38,7 +38,7 @@ Maven user has to add the following sections in the pom.xml :
 
 The snapshot version includes last code features and fixes, note that this is built frequently and sometimes could be broken.
 
-* Download 1.4.3-SNAPSHOT from the [sonatype repository](https://oss.sonatype.org/content/repositories/snapshots/com/googlecode/gwtquery/gwtquery/1.4.3-SNAPSHOT)
+* Download 1.4.3-SNAPSHOT from the [sonatype repository](https://oss.sonatype.org/content/repositories/snapshots/com/googlecode/gwtquery/gwtquery/1.4.4-SNAPSHOT)
 * Maven users of the SNAPSHOT version you have to add these lines:
 
 ```

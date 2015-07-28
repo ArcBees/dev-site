@@ -22,7 +22,7 @@ You can take a look to this great enterprise level project named [Kiahu CX](http
 
 You can also take a look at this awesome time management application named [Karaka](https://github.com/hpehl/karaka).
 
-Another example of web-page-like applications built with GWTP is [ArcBees website](https://github.com/ArcBees/arcbees-website), [GWTP website](https://github.com/ArcBees/gwtp-website), [Jukito website](https://github.com/ArcBees/jukito-website) and [GAE-Studio website](https://github.com/ArcBees/gaestudiowebsite).
+Another example of web-page-like applications built with GWTP is [ArcBees website](https://github.com/ArcBees/arcbees-website), [GWTP website](https://github.com/ArcBees/gwtp), [Jukito website](https://github.com/ArcBees/jukito) and [GAE-Studio website](https://github.com/ArcBees/gae-studio).
 
 [Back to top](#top)
 
