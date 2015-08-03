@@ -21,7 +21,7 @@ For all the following lifecycle methods, one should *always* call the correspond
 A typical use of `onBind()` is to register event handlers and everything expensive in there.
 
 ## onReveal()
-`onReveal()` will be called when the Presenter is being revealed. In GWTP's vocabulary, this means when a Presenter is added to a `Slot` <!--- TODO: Add link to SLOT documentation ---> object. Therefore, it doesn't necessarily mean that the object will be visible in the DOM. See [this issue](https://github.com/ArcBees/GWTP/issues/541) to understand the disambiguition. This should be overriden when one wants to update something on the Presenter when it's about to be added to a Slot.
+`onReveal()` will be called when the Presenter is being revealed. In GWTP's vocabulary, this means when a Presenter is added to a [Slot]({{#gwtp.doc.url.slots}}) Therefore, it doesn't necessarily mean that the object will be visible in the DOM. See [this issue](https://github.com/ArcBees/GWTP/issues/541) to understand the disambiguition. This should be overriden when one wants to update something on the Presenter when it's about to be added to a Slot.
 
 ## onHide()
 This is the opposite of `onReveal()`, called when a Presenter is removed from a Slot.

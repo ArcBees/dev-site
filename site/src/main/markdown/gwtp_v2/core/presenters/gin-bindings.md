@@ -29,4 +29,4 @@ Things to notice in this example:
 
 1. A GWTP module should extend `AbstractPresenterModule` to inherit convenience methods for binding a different Presenter types. (See [the Javadoc](http://arcbees.github.io/GWTP/javadoc/apidocs/) for more information.)
 2. A module can install other modules
-3. A module needs to be installed (by another installed module) to have its code executed. (See [GIN module registration](https://doc-staging-gwtp.appspot.com/gwtp_v2/get-started/Bootstrap-Code.html#gin-modules) <!--- TODO: Fix link ---> for information.)
+3. A module needs to be installed (by another installed module) to have its code executed. (See [GIN module registration]({{#gwtp.doc.url.gwtp.doc.url.bootstrapper}}))

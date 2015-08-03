@@ -4,7 +4,7 @@ A popup presenter is a standard presenter with a view that extends PopupView.
 ##Reference
 * [Popup Presenter Example](https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-tab/src/main/java/com/gwtplatform/samples/tab/client/application/infopopup)
 * [Add Popup Presenter](https://github.com/ArcBees/GWTP-Samples/blob/master/gwtp-samples/gwtp-sample-tab/src/main/java/com/gwtplatform/samples/tab/client/application/globaldialog/GlobalDialogSubTabPresenter.java#L79)
-* [Popup slot](<!--- TODO: add link to popup slot -->)
+* [Popup slot]({{#gwtp.doc.url.slots}})
 
 ##Display a Popup Presenter
 The Popup Presenter skips the view's slot methods all together. When it is used it adds directly to the DOM and requests displays in the center or location selected.
