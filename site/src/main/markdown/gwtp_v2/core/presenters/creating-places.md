@@ -1,5 +1,5 @@
 # Creating places: Presenter Proxy
-A *Place* represents a particular 'bookmark' or location inside the application. A Place is stateful - it may represent a location with it's current settings, such as a particular ID value, or other unique indicator that will allow a user to track back to that location later, either via a browser bookmark, or by clicking the 'back' button.
+A *Place* represents a particular 'bookmark' or location inside the application. A Place is stateful - it may represent a location with its current settings, such as a particular ID value, or other unique indicator that will allow a user to track back to that location later, either via a browser bookmark, or by clicking the 'back' button.
 
 ## Proxy
 Proxies are light-weight classes whose size doesn't depend on the complexity of the underlying Presenter and View. They are instantiated as soon as the application loads and are responsible for listening to any event that would require their associated Presenter and View to be created. Proxies are the key to a fast MVP web application, they enable code splitting and lazy instantiation of the largest part of your code.

@@ -8,7 +8,7 @@ GIN is the library used for dependency injection in GWT.
 [Google GIN](http://code.google.com/p/google-gin/)
 
 ## Binding MVP
-GWTP needs a boostrapping process to link a Presenter class to it's View and View implementation class. The way of doing this is by creating a GIN module and do the setup the binding of classes and interfaces in there.
+GWTP needs a boostrapping process to link a Presenter class to its View and View implementation classes. The way of doing this is by creating a GIN module and put the bindings in there.
 
 Here's an example of a basic module:
 
