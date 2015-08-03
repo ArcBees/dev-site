@@ -17,6 +17,7 @@ _SimpleView.ui.xml_
 
 
 _SimpleViewImpl.java_
+
 ```java
 public class SimpleViewImpl extends ViewImpl implements SimplePresenter.MyView {
     interface Binder extends UiBinder<HTMLPanel, SimpleView> {
