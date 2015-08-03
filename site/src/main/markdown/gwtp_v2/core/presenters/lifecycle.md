@@ -35,6 +35,7 @@ It is frequent that a presenter requires to fetch information from the server be
 Manual reveal gives greater control over the precise moment at which a Presenter is revealed. It can be enabled on any Presenter that uses a ProxyPlace. Simply override the `useManualReveal()` method to return true. Once enabled, the Presenter is responsible to reveal itself. First the Presenter has to override `prepareFromRequest()`. Then there are 2 valid ways :
 
 1- Use `ManualRevealCallback`
+
 ```java
 @Override
 public void prepareFromRequest(PlaceRequest request) {
