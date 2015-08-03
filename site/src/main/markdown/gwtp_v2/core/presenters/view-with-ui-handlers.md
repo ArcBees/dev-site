@@ -50,7 +50,7 @@ class UserEditPresenter extends Presenter<UserEditPresenter.MyView> implements U
 }
 ```
 
-Voilà! The view can then communicate with its Presenter and send whatever data it needs to:
+Voila! The view can then communicate with its Presenter and send whatever data it needs to:
 
 ```java
 class UserEditView // ..... {
