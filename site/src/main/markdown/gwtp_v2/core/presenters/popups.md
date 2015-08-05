@@ -44,7 +44,7 @@ public class InfoPopupPresenterWidget extends PresenterWidget<InfoPopupPresenter
 ```
 
 ##View
-The view extends `PopupViewImpl` or `PopupViewWithUiHandlers<PresentersUiHandlers>`. If the content of the view is defined using `UiBinder`, make sure that the type of the host object is a `PopopPanel`.
+The view extends `PopupViewImpl` or `PopupViewWithUiHandlers<PresentersUiHandlers>`. If the content of the view is defined using `UiBinder`, make sure that the type of the host object is a `PopupPanel`.
 
 ```java
 public class InfoPopupView extends PopupViewImpl implements InfoPopupPresenterWidget.MyView {
