@@ -7,7 +7,7 @@ A popup presenter is a standard presenter with a view that extends PopupView.
 * [Popup slot]({{#gwtp.doc.url.slots}})
 
 ##Display a Popup Presenter
-The Popup Presenter skips the view's slot methods all together. When it is used it adds directly to the DOM and requests displays in the center or location selected.
+The Popup Presenter skips the view's slot methods all together. When it is used, it is added directly to the DOM and displayed at the specified location (centered by default).
 
 * Example of rendering a popup presenter.
 
