@@ -82,7 +82,7 @@ public class InfoPopupView extends PopupViewImpl implements InfoPopupPresenterWi
 
 GWTP provides a PopupPositioner to automatically position a popup.
 
-By default Popups use the CenterPopupPositioner which displays the Popup in the center of the screen. Popups will automatically be repositioned when the window is Resized.
+By default Popups use the CenterPopupPositioner which displays the Popup in the center of the screen. Popups will automatically be repositioned when the window is resized.
 
 There are 3 provided Popup Presenters
 
