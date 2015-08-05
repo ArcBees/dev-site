@@ -1,6 +1,6 @@
 # Lifecycle
 
-A PresenterWidget has multiple phases in its lifecycle. GWTP gives the user access to many handles to execute code during each phases.
+A PresenterWidget has multiple phases in its lifecycle. GWTP gives the user access to many handles to execute code during each phase.
 
 Let's see what the phases are, and then describe each of them with a possible use case for each on of them.
 
