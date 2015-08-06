@@ -1,5 +1,5 @@
 # Optimizations
-When developing a web application, the JavaScript part tends to become more heavy as it progress and this put significant load on the application startup. *Code Splitting* allows the JavaScript code to be split into multiple files that will be loaded depending on the application section being used. Separating your GWTP application into logical and independent sections will provide natural points for code splitting. See [GWT Code Splitting](http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html) for more details.
+When developing a web application, the JavaScript part tends to become more heavy as it progresses and this puts significant load on the application startup. *Code Splitting* allows the JavaScript code to be split into multiple files that will be loaded depending on the application section being used. Separating your GWTP application into logical and independent sections will provide natural points for Code Splitting. See [GWT Code Splitting](http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html) for more details.
 
 ## Code Splitting
 To use Code Splitting, you need a [Proxy]({{#gwtp.doc.url.proxy}}) associated to the [Presenter]({{#gwtp.doc.url.presenter}}) you want to sit behind a split point. Code Splitting is done by simply annotating your Proxy with `@ProxyCodeSplit` instead of `@ProxyStandard`.
@@ -29,7 +29,9 @@ interface MyProxy extends ProxyPlace<Object1> {
 ```
 
 ### Using generated ProviderBundles
-If you use GWTP's generation of [ApplicationController](http://arcbees.github.io/GWTP/javadoc/apidocs/com/gwtplatform/mvp/client/ApplicationController.html), all bundles will be automatically generated for you, all that you need are string identifiers for each unique bundle. The best way to keep your bundles in order is to create an interface that identifies them.
+If you use GWTP's [ApplicationController](http://arcbees.github.io/GWTP/javadoc/apidocs/com/gwtplatform/mvp/client/ApplicationController.html) to trigger your Ginjector generation, all bundles will be automatically generated for you. A good way to keep track of them is to create an interface with string constants identifying every bundle.
+
+Identifying your Bundles:
 
 ```java
 interface Bundles {
@@ -38,7 +40,7 @@ interface Bundles {
 }
 ```
 
-Here is an example of Code Split Bundles when using GWTP's generation feature:
+Finally, here's how to use Code Split Bundles on your Proxy when using GWTP's generation feature:
 
 ```java
 @ProxyCodeSplitBundle(Bundles.MAIN)
