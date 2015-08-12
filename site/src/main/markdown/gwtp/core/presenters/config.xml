@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Presenters" description="Presenters">
+    <toc>
+        <entries>
+            <entry name="index" title="The base: PresenterWidget"
+                    displayName="The base: PresenterWidget"/>
+
+            <entry name="view" title="The visual: View &amp; ViewImpl"
+                    displayName="The visual: View &amp; ViewImpl"/>
+
+            <entry name="view-with-ui-handlers" title="Bottom-Top Communication: UiHandlers &amp; ViewWithUiHandlers"
+                    displayName="Bottom-Top Communication: UiHandlers &amp; ViewWithUiHandlers"/>
+
+            <entry name="creating-places" title="Creating places: Presenter and Proxy"
+                    displayName="Creating places: Presenter and Proxy"/>
+
+            <entry name="lifecycle" title="Lifecycle"
+                    displayName="Lifecycle"/>
+
+            <entry name="popups" title="Popups"
+                    displayName="Popups"/>
+
+            <entry name="gin-bindings" title="Bindings with GIN"
+                    displayName="Bindings with GIN"/>
+        </entries>
+    </toc>
+</folder>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Advanced Features" displayName="Advanced Features">
+    <toc>
+        <entries>
+            <entry name="index" title="Form Factors" displayName="Form Factors"/>
+            <entry name="Phonegap-support" title="Phonegap Support" displayName="Phonegap Support"/>
+            <entry name="crawler-support" title="Crawler Support" displayName="Crawler Support"/>
+            <entry name="Custom-Proxy-Class" title="Custom Proxy Class" displayName="Custom Proxy Class"/>
+            <entry name="Google-Universal-Analytics" title="Google Universal Analytics" displayName="Google Universal Analytics"/>
+            <entry name="Merge-Locale" title="Merge Locale" displayName="Merge Locale"/>
+        </entries>
+    </toc>
+</folder>

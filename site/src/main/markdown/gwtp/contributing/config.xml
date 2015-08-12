@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder title="GWTP"
-        href="index"
-        description="GWTP">
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Contributing" displayName="Contributing">
     <toc>
         <entries>
-            <entry name="index" title="Basic Setup" displayName="Contributing"></entry>
+            <entry name="index" title="Basic Setup" displayName="Contributing"/>
             <entry name="Compiling-and-Debugging" title="Compiling and Debugging"
-                    displayName="Compiling and Debugging"></entry>
+                    displayName="Compiling and Debugging"/>
             <entry name="Contributing-Guidelines" title="Contributing Guidelines"
-                    displayName="Contributing Guidelines"></entry>
+                    displayName="Contributing Guidelines"/>
         </entries>
     </toc>
 </folder>

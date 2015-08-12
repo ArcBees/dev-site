@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Core (MVP)" displayName="Core (MVP)" href="presenters/">
+    <toc>
+        <entries>
+            <entry name="presenters/" displayName="Presenters"/>
+            <entry name="slots/" displayName="Link Presenters (Slots)"/>
+            <entry name="navigation/" displayName="Navigation"/>
+            <entry name="security/" displayName="Security"/>
+            <entry name="events/" displayName="Events"/>
+            <entry name="optimizations" displayName="Optimizations"/>
+        </entries>
+    </toc>
+</folder>

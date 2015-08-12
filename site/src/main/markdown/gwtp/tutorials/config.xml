@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Tutorials" displayName="Tutorials">
+    <toc>
+        <entries>
+            <entry name="index" displayName="Beginner's Tutorial"/>
+        </entries>
+    </toc>
+</folder>

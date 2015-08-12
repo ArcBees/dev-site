@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Navigation" displayName="Navigation">
+    <toc>
+        <entries>
+            <entry name="index" title="Linking Places to a Token" displayName="Linking Places to a Token"/>
+            <entry name="reveal-places" title="Revealing Places" displayName="Revealing Places"/>
+            <entry name="token-formats" title="Token Formats" displayName="Token Formats"/>
+            <entry name="navigation-confirmation" title="Navigation Confirmation"
+                    displayName="Navigation Confirmation"/>
+            <entry name="manual-reveal" title="Manual Reveal (Presenters)" displayName="Manual Reveal (Presenters)"/>
+        </entries>
+    </toc>
+</folder>

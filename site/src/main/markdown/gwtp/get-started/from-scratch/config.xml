@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Create an App from Scratch">
+    <toc>
+        <entries>
+            <entry name="index" displayName="Create the Structure"/>
+            <entry name="Import-Dependencies" displayName="Import the Dependencies"/>
+            <entry name="Create-Files" displayName="Create the Files"/>
+        </entries>
+    </toc>
+</folder>

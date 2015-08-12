@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE folder SYSTEM "folder.dtd">
-<folder title="Advanced Features">
-    <toc>
-        <entries>
-            <entry name="crawler-support" title="Crawler Support" displayName="Crawler Support"/>
-        </entries>
-    </toc>
-</folder>
