@@ -3,11 +3,12 @@
 <folder title="Core (MVP)">
     <toc>
         <entries>
-            <entry name="index" displayName="Overview"/>
             <entry name="presenters/" displayName="Presenters"/>
+            <entry name="slots/" displayName="Link Presenters (Slots)"/>
             <entry name="navigation/" displayName="Navigation"/>
+            <entry name="security/" displayName="Security"/>
             <entry name="events/" displayName="Events"/>
-            <entry name="slots/" displayName="Presenter Slots"/>
+            <entry name="optimizations" displayName="Optimizations"/>
         </entries>
     </toc>
 </folder>

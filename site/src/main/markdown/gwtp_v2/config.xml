@@ -5,12 +5,13 @@
         style="gwtp">
     <toc>
         <entries>
-            <entry name="index" title="Overview" displayName="Overview"/>
+            <entry name="index" displayName="Overview"/>
+            <entry name="tutorial/" displayName="Beginner's Tutorial"/>
             <entry name="get-started/" displayName="Get Started"/>
             <entry name="core/" displayName="Core (MVP)"/>
             <entry name="advanced/" displayName="Advanced Features"/>
             <entry name="resources/" displayName="Resources"/>
-            <entry name="License" title="License" displayName="License"/>
+            <entry name="License" displayName="License"/>
         </entries>
     </toc>
 </folder>

@@ -1,3 +1,4 @@
+# Security
 ## Presenter Gatekeeper
 Gatekeepers are used to protect places from unauthorized access. For example, a Gatekeeper could be set to protect a Presenter for which a user needs to log in.
 
@@ -78,7 +79,7 @@ interface MyProxy extends ProxyPlace<SplashPresenter> {}
 Specialized Gatekeeper which needs additional parameters in order to find out if the protected Place can be revealed.
 
  Example of use:
- 
+
 ```java
 public class HasAllRolesGatekeeper implements GatekeeperWithParams {
     private final CurrentUser currentUser;

@@ -4,7 +4,6 @@
     <toc>
         <entries>
             <entry name="crawler-support" title="Crawler Support" displayName="Crawler Support"/>
-            <entry name="optimizations" title="Optimizations" displayName="Optimizations"/>
         </entries>
     </toc>
 </folder>

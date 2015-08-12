@@ -1,4 +1,4 @@
-# GWTP Beginner's Tutorial - Part 1
+# Beginner's Tutorial - Part 1
 This tutorial is intended for someone having no prior knowledge of GWTP who wants to get started right away writing some code. This first part will show you how a basic Presenter can interact with a View by using UiHandler and UiBinder. Chances are that you will need to replicate this over and over again for almost every Presenter you create. This tutorial won't go much into the details of explaining how GWTP works (we have excellent documentation for that), but rather how the features interact together.
 
 
@@ -61,7 +61,7 @@ Here's our basic ApplicationView:
 public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> implements ApplicationPresenter.MyView {
     interface Binder extends UiBinder<Widget, ApplicationView> {
     }
-    
+
     @Inject
     ApplicationView(
             Binder uiBinder) {
@@ -82,12 +82,12 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
     @NameToken(NameTokens.home)
     interface MyProxy extends ProxyPlace<ApplicationPresenter> {
     }
-    
+
     interface MyView extends View, HasUiHandlers<ApplicationUiHandlers> {
     }
-    
+
     private final PlaceManager placeManager;
-    
+
     @Inject
     ApplicationPresenter(
             EventBus eventBus,
@@ -95,9 +95,9 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyProxy proxy,
             PlaceManager placeManager) {
         super(eventBus, view, proxy, RevealType.Root);
-    
+
         this.placeManager = placeManager;
-    
+
         getView().setUiHandlers(this);
     }
 }
@@ -173,7 +173,7 @@ Then to create our UiHandler, we make a new java file that will contain an inter
 
 ```java
 import com.gwtplatform.mvp.client.UiHandlers;
-    
+
 public interface ApplicationUiHandlers extends UiHandlers {
     void onSend(String name);  // Method we want our presenter to implement.
 }
@@ -183,7 +183,7 @@ If we go back to the view, we can now declare a method that will return the text
 
 ```java
 @UiHandler("sendButton")
-void onSend(ClickEvent event) {  
+void onSend(ClickEvent event) {
     getUiHandlers().onSend(nameField.getText());
 }
 ```
@@ -204,7 +204,7 @@ public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> i
     ApplicationView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
-    
+
     @UiHandler("sendButton")
     void onSend(ClickEvent event) {
         getUiHandlers().onSend(nameField.getText());
@@ -222,9 +222,9 @@ ApplicationPresenter(
     MyProxy proxy,
     PlaceManager placeManager) {
     super(eventBus, view, proxy, RevealType.Root);
-    	
+
     this.placeManager = placeManager;
-    	
+
     getView().setUiHandlers(this);  // This is how we set the UiHandlers for the View
 }
 ```

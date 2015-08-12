@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE folder SYSTEM "folder.dtd">
-<folder title="Tutorial">
+<folder title="Beginner's Tutorial">
     <toc>
         <entries>
-            <entry name="index" displayName="GWTP Beginner's Tutorial"/>
+            <entry name="index" displayName="Beginner's Tutorial"/>
         </entries>
     </toc>
 </folder>
