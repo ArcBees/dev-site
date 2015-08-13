@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder href="index"
-        title="GWTP"
-        description="GWTP"
-        style="gwtp">
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="GWTP" displayName="GWTP" style="gwtp">
     <toc>
         <entries>
-            <entry name="index" displayName="Overview"></entry>
-            <entry name="about/" displayName="About"></entry>
-            <entry name="features/" displayName="Features"></entry>
-            <entry name="communication/" displayName="Communication"></entry>
-            <entry name="advancedfeatures/" displayName="Advanced Features"></entry>
-            <entry name="otherusefulinformation/" displayName="Other useful information"></entry>
-            <entry name="sampletutorial/" displayName="Sample tutorial"></entry>
-            <entry name="versions/" displayName="Versions"></entry>
-            <entry name="contributing/" displayName="Contributing"></entry>
+            <entry name="index" displayName="Overview"/>
+            <entry name="tutorials/" displayName="Beginner's Tutorial"/>
+            <entry name="get-started/" displayName="Get Started"/>
+            <entry name="core/" displayName="Core (MVP)"/>
+            <entry name="advanced/" displayName="Advanced Features"/>
+            <entry name="communication/" displayName="Communication"/>
+            <entry name="tools/" displayName="Tools and Patterns"/>
+            <entry name="resources/" displayName="Resources"/>
+            <entry name="contributing/" displayName="Contributing"/>
+            <entry name="License" displayName="License"/>
         </entries>
     </toc>
 </folder>
