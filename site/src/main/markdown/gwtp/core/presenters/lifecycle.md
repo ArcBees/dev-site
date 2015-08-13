@@ -2,7 +2,7 @@
 
 A PresenterWidget has multiple phases in its lifecycle. GWTP gives the user access to many handles to execute code during each phase.
 
-Let's see what the phases are, and then describe each of them with a possible use case for each on of them.
+Let's see what the phases are, and then describe each of them with a possible use case for each one of them.
 
 <!--- show lifecycle diagram -->
 ![Diagram](http://i.imgur.com/kwjjGuv.png)
@@ -46,7 +46,7 @@ public void prepareFromRequest(PlaceRequest request) {
     carsResource.withCallback(ManualRevealCallback.create(this, new AsyncCallback<Car>() {
             @Override
             public void onFailure(Throwable caught) {
-               // show an error message 
+               // show an error message
             }
 
             @Override
@@ -58,4 +58,3 @@ public void prepareFromRequest(PlaceRequest request) {
 ```
 
 2- Call directly `ProxyPlace.manualReveal()` on success or `ProxyPlace.manualRevealFailed()` on failure in the overriden `prepareFromRequest(PlaceRequest request)` method. __*IMPORTANT: One of these 2 methods must be called, otherwise the application will remain locked*__.
-

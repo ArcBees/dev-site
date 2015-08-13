@@ -12,9 +12,9 @@ Before going any further, you may be wondering what are form factors? Form facto
 
 Not only that, we could have permutations for Wordpress, Facebook and even more!
 
-Before going deeper into form factors, it is important that you use the application controller wich is used to
+Before going deeper into form factors, it is important that you use the application controller which is used to
 generate the ginjector and all the required behind the scene goodies needed to be able to use the full power of this
-new feature. I invite you to read [Bootstrapping or Application Initialization][bs] before going any further.
+new feature. I invite you to read the [bootstrapping section][{{#gwtp.doc.url.gwtp.doc.url.bootstrapper}}] before going any further.
 
 ##Reference
 * [GWTP Mobile Sample Project](https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-mobile)
@@ -102,7 +102,4 @@ TODO: In RC3 of GWTP there will be a convenience method to do all this for you.
 ## Going further
 Now that you know how to use the new form factor feature, you can see it in action in our [mobile sample]
 (https://github.com/ArcBees/GWTP-Samples/tree/master/gwtp-samples/gwtp-sample-mobile) which is also displaying how to
- use the [Phonegap support][ps] to export your mobile web application to a native mobile application.
-
-[bs]: gwtp/basicfeatures/Bootstrapping-or-Application-Initialization.html "Bootstrapping or Application Initialization"
-[ps]: gwtp/advancedfeatures/Phonegap-support.html
+ use the [Phonegap support][{{#gwtp.doc.url.phonegap_support}}] to export your mobile web application to a native mobile application.

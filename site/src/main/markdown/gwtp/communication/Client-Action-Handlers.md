@@ -12,8 +12,6 @@ Unlike "normal" action handlers which are run on the server, and receive request
   * The client action handler can take over and communicate directly with the server, possibly using a different mechanism than GWT-RPC.
 
 #Client Action Handlers HOWTO
-Before you begin, make sure you have read and understand the [RPC-Dispatch](https://github.com/ArcBees/GWTP/wiki/RPC-Dispatch)
-
 In the following example we will implement a ClientActionHandler that caches the result on the client so that subsequent calls don't have to contact the server as long as the fetched object is in the cache. Note that once the ClientActionHandler is implemented, you use the dispatcher normally. The code below will automatically 'inject' your ClientActionHandler into the dispatch call.
 
 ###Creating the ClientActionHandler

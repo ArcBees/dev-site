@@ -1,7 +1,7 @@
 # Merge Locale
 
 # Introduction
-Using [UIBinder internationalisation features](http://code.google.com/webtoolkit/doc/latest/DevGuideUiBinderI18n.html) can be difficult. This has been discussed extensively on GWT [Issue 4355](http://code.google.com/p/google-web-toolkit/issues/detail?id=4355).
+Using [UIBinder internationalisation features](http://www.gwtproject.org/doc/latest/DevGuideUiBinderI18n.html) can be difficult.
 
 # Solution
 To overcome this problem, GWTP makes it easy for you to store all your translations in:

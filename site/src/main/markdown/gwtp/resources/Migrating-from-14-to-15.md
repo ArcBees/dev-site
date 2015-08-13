@@ -1,7 +1,7 @@
 # Migrating from version 1.4 to 1.5
 
 ## Slots
-For migrating between versions, you can use [gwtp-type-slot-upgrader](https://github.com/ArcBees/gwtp-extensions/tree/master/gwtp-type-slot-upgrader) or you can do it manually by following these instructions:
+For migrating between versions, you can use [gwtp-type-slot-upgrader]({{#gwtp.doc.url.slot_migration_tool}}) or you can do it manually by following these instructions:
 
 * Replace every `@ContentSlot` by `NestedSlot`
 * You can replace other slots with the `Slot<PresenterWidget<?>>` type and it will work. However, you should use the right slot type when possible since it will clarify the intent of the slot.

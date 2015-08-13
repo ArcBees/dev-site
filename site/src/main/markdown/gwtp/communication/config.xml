@@ -8,7 +8,6 @@
             <entry name="action-validators" title="Action Validators" displayName="Action Validators"/>
             <entry name="Client-Action-Handlers" title="Client Action Handlers" displayName="Client Action Handlers"/>
             <entry name="CSRF-Protection" title="CSRF Protection" displayName="CSRF Protection"/>
-            <entry name="Exception-Handler" title="Exception Handler" displayName="Exception Handler"/>
         </entries>
     </toc>
 </folder>

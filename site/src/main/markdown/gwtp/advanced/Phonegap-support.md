@@ -32,4 +32,4 @@ protected void configure() {
 }
 ```
 
-And you're all done! For more information please view [GWTP-Carstore] (https://github.com/ArcBees/GWTP/tree/master/gwtp-carstore) example inside GWTP
+And you're all done! For more information please view [GWTP-Carstore] (https://github.com/ArcBees/GWTP-Samples/tree/master/carstore) example inside GWTP

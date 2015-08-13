@@ -7,7 +7,7 @@ Proxies are light-weight classes whose size doesn't depend on the complexity of 
 Chances are you will never have to write a Proxy class. That's because most of the time Proxies can be created automatically by GWT's generators. All you have to do is use special annotations above your `MyProxy` interface.
 
 ## CodeSplit
-The first annotation you will need is either `@ProxyStandard` or `@ProxyCodeSplit`, depending on whether or not you want your Presenter and View to sit behind a split point (see [here](http://code.google.com/webtoolkit/doc/latest/DevGuideCodeSplitting.html) for details on GWT's code splitting feature).
+The first annotation you will need is either `@ProxyStandard`, `@ProxyCodeSplit` or `@ProxyCodeSplitBundle`, depending on whether or not you want your Presenter and View to sit behind a split point (see [here](http://code.google.com/webtoolkit/doc/latest/DevGuideCodeSplitting.html) for details on GWT's code splitting feature).
 
 ## NameToken
 The second annotation you might want to use is the `@NameToken("MyPlaceName")`, so that the current page can use the browser history. This will let you navigate to the current Presenter by entering the name token in the URL, or via an Hyperlink widget. This will also let you use the back and forward button of your browser to navigate in your application.

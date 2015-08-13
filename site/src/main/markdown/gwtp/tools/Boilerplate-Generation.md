@@ -64,7 +64,7 @@ Using DTO classes is a better choice because:
   * Sending the minimal amount of information lowers the bandwidth required for your operation.
 
 ## Generate RequestFactory proxies
-The `@GenProxy` will generate `EntityProxy` or `ValueProxy` interfaces. The generated interfaces equals the given examples on the offical [Getting Started with RequestFactory](https://developers.google.com/web-toolkit/doc/latest/DevGuideRequestFactory) guide.
+The `@GenProxy` will generate `EntityProxy` or `ValueProxy` interfaces. The generated interfaces equals the given examples on the offical [Getting Started with RequestFactory](https://www.gwtproject.org/doc/latest/DevGuideRequestFactory.html) guide.
 
 **Note:** You can embed other generated proxy interfaces (or even the same proxy) using @UseProxyName.
 

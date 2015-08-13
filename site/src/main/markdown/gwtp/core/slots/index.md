@@ -3,7 +3,7 @@ Presenters in GWTP have a concept of slots. Slots are basically placeholders whe
 
 
 ## Note on new slots
-Typed slots are new in 1.5. If you are using an older version, make sure to read the [slots section]({{#gwtp.doc.url.migrating}}) of the migrating from 1.4 to 1.5 guide.
+Typed slots are new in 1.5. If you are using an older version, make sure to read the [slots section]({{#gwtp.doc.url.migrating-15}}) of the migrating from 1.4 to 1.5 guide.
 
 
 ## Slot types

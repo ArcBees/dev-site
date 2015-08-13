@@ -6,9 +6,11 @@ This tutorial is intended for someone having no prior knowledge of GWTP who want
 Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
 
+<!--
 ## Prerequisites
-1. [Running a project]({{#gwtp.doc.url.running_project}})
+1. [Running a project]()
 1. TODO: Provide a pom.xml for this tutorial.
+-->
 
 
 ## Application Structure
@@ -275,4 +277,4 @@ public class ApplicationModule extends AbstractPresenterModule {
 ## Conclusion
 You are now able to create a Presenter and its associated View and delegate some of its action to the Presenter using UiHandlers. You also saw how to create HTML elements and access their values from the View using UiBinder. This conclude the first part of this tutorial. In the next part, we will take a look at PresenterWidgets, Gatekeepers, the PlaceManager and RestDispatch.
 
-[Next part]({{#gwtp.doc.url.beginner_tutorial_part2}})
+Stay tuned for the next part!

@@ -269,9 +269,9 @@ would configure the header `Pragma: NoCache` for all DELETE, POST and PUT reques
 
 There are some extension points available through the dispatch code. You should not need them unless you have a very specific use case. If you do, feel free to browse the code: many classes are extendable and have protected methods that you can override to extend their functionality. The generators also support extensions.
 
-[gp]: gwtp/communication/Rest-Dispatch.html#global-parameters "Global Parameters"
+[gp]: gwtp/communication/index.html#global-parameters "Global Parameters"
 [ca]: gwtp/communication/Client-Action-Handlers.html "Client Action Handlers"
 [eh]: gwtp/communication/Exception-Handler.html "Exception handler"
-[csrf]: gwtp/communication/Rest-Dispatch.html#csrf-protection "CSRF Protection"
+[csrf]: gwtp/communication/index.html#csrf-protection "CSRF Protection"
 [rpc]: gwtp/communication/RPC-Dispatch.html "RPC Dispatch"
-[use]: gwtp/communication/Rest-Dispatch.html#use-your-rest-resources "Use Your Rest Resources"
+[use]: gwtp/communication/index.html#use-your-rest-resources "Use Your Rest Resources"

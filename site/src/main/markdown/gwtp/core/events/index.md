@@ -151,7 +151,7 @@ public HandlerRegistration addComplexEventHandler(ComplexEvent.ComplexHandler ha
 }
 ```
 
-## Proxy Event
+## Proxy Event {proxy-event}
 `Proxy Events` should be used when an event might be fired before a presenter listening for that event is instantiated. The annotation `@ProxyEvent` tells GWTP to bind the event on the Proxy instead of the presenter. Once the event is fired, the proxy will instantiate the Presenter to handle it.
 
 Proxy events can also be used to reveal an uninstantiated Presenter. Imagine a Presenter called `MessagePresenter` that's using code splitting, and therefore is not necessarily instantiated. Let's say it needs to be revealed when `ShowMessageEvent` is fired. Here's an example of how it can be done:

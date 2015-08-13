@@ -7,7 +7,7 @@ A popup presenter is a standard presenter with a view that extends PopupView.
 * [Popup slot]({{#gwtp.doc.url.slots}})
 
 ##Display a Popup Presenter
-The Popup Presenter skips the view's slot methods all together. When it is used, it is added directly to the DOM and displayed at the specified location (centered by default).
+The Popup Presenter skips the view's slot methods altogether. It will be added directly to the DOM and displayed at the specified location.
 
 * Example of rendering a popup presenter.
 
@@ -27,12 +27,11 @@ popupPresenter.getView().hide();
 
 ##Presenter
 
+To create a popup presenter, MyView should extends `PopupView`.
+
 ```java
 public class InfoPopupPresenterWidget extends PresenterWidget<InfoPopupPresenterWidget.MyView> {
-    /**
-     * {@link InfoPopupPresenterWidget}'s view.
-     */
-    public interface MyView extends PopupView {
+    interface MyView extends PopupView {
     }
 
     @Inject
@@ -48,7 +47,7 @@ The view extends `PopupViewImpl` or `PopupViewWithUiHandlers<PresentersUiHandler
 
 ```java
 public class InfoPopupView extends PopupViewImpl implements InfoPopupPresenterWidget.MyView {
-    public interface Binder extends UiBinder<PopupPanel, InfoPopupView> {
+    interface Binder extends UiBinder<PopupPanel, InfoPopupView> {
     }
 
     @Inject
@@ -107,4 +106,3 @@ getView().setPopupPositioner(myPositioner);
 
 To perform any operation before the popup is repositioned, The method `onReposition()` has to be overriden in the popup view.
 This is where any custom styling of the Popup view should happen.
-
