@@ -5,8 +5,7 @@ A PresenterWidget has multiple phases in its lifecycle. GWTP gives the user acce
 Let's see what the phases are, and then describe each of them with a possible use case for each one of them.
 
 <!--- show lifecycle diagram -->
-![Diagram](http://i.imgur.com/kwjjGuv.png)
-
+![Diagram]({{#presenter-lifecycle}})
 
 ## Presenter's construction
 The first phase (which is omitted in this diagram) is the Presenter's construction. This happens when Gin calls the constructor of the Presenter. The only things that usually happen in a Presenter's contructor are:

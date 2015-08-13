@@ -26,4 +26,4 @@ ApplicationView(...) {
     bindSlot(ApplicationPresenter.SLOT_CONTENT, content);
 }
 ```
-It also works for `addToSlot`. You can still use addToSlot/setInSlot if you need to do more, but make sure you have `super.setInSlot()` in a else clause.
+It also works for `addToSlot`. You can still use addToSlot/setInSlot if you need to do more, but make sure you have `super.setInSlot()` in an else clause.
