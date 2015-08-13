@@ -238,7 +238,7 @@
             </activation>
 
             <properties>
-                <github.edit.home>https://github.com/arcbees/dev-site/edit/master/site/</github.edit.home>
+                <github.edit.home>https://github.com/ArcBees/dev-site/edit/master/site/src/main/</github.edit.home>
             </properties>
         </profile>
 
@@ -246,7 +246,7 @@
             <id>staging-gwtp</id>
 
             <properties>
-                <github.edit.home>https://github.com/arcbees/dev-site/edit/develop-gwtp/site/</github.edit.home>
+                <github.edit.home>https://github.com/ArcBees/dev-site/edit/develop-gwtp/site/src/main/</github.edit.home>
             </properties>
         </profile>
     </profiles>

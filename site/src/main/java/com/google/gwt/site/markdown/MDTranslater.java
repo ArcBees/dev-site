@@ -28,6 +28,7 @@ import com.google.gwt.site.markdown.velocity.VelocityWrapperFactory;
 
 public class MDTranslater {
     private static final String SEPARATOR = File.separator;
+    private static final String PATH_ON_GITHUB_SEPARATOR = SEPARATOR + "target" + SEPARATOR;
 
     private final MarkdownToHtmlUtil markdownToHtmlUtil = new MarkdownToHtmlUtil();
     private final TocCreator tocCreator;
@@ -116,8 +117,8 @@ public class MDTranslater {
             return null;
         }
 
-        int index = path.indexOf(SEPARATOR + "src" + SEPARATOR);
-        String url = path.substring(index + 1).replace(SEPARATOR, "/");
+        int index = path.indexOf(PATH_ON_GITHUB_SEPARATOR);
+        String url = path.substring(index + PATH_ON_GITHUB_SEPARATOR.length()).replace(SEPARATOR, "/");
         return "<a class=\"icon_editGithub\" href=\"" + editRootUrl + url + "\"></a>";
     }
 
