@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<folder title="GWTP"
-        href="index"
-        description="GWTP">
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Communication" displayName="Communication">
     <toc>
         <entries>
-            <entry name="index" title="Action Validators" displayName="Action Validators"></entry>
-            <entry name="Client-Action-Handlers"
-                    title="Client Action Handlers" displayName="Client Action Handlers"></entry>
-            <entry name="RPC-Dispatch" title="RPC-Dispatch" displayName="RPC-Dispatch"></entry>
-            <entry name="CSRF-Protection" title="CSRF Protection" displayName="CSRF Protection"></entry>
-            <entry name="Exception-Handler" title="Exception Handler" displayName="Exception Handler"></entry>
-            <entry name="Rest-Dispatch" title="Rest Dispatch" displayName="Rest Dispatch"></entry>
+            <entry name="index" title="Rest Dispatch" displayName="Rest Dispatch"/>
+            <entry name="RPC-Dispatch" title="RPC-Dispatch" displayName="RPC-Dispatch"/>
+            <entry name="action-validators" title="Action Validators" displayName="Action Validators"/>
+            <entry name="Client-Action-Handlers" title="Client Action Handlers" displayName="Client Action Handlers"/>
+            <entry name="CSRF-Protection" title="CSRF Protection" displayName="CSRF Protection"/>
         </entries>
     </toc>
 </folder>

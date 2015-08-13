@@ -49,7 +49,6 @@
                 </a>
             </li>
             <li><a href="gwtp/" class="icon_gwtp">GWTP</a></li>
-            <li><a href="gwtp_v2/" class="icon_gwtp">GWTP (v2)</a></li>
             <li><a href="jukito/" class="icon_jukito">Jukito</a></li>
             <li><a href="gquery/" class="icon_gquery">GQuery</a></li>
             <li><a href="http://arcbees.github.io/gwtchosen/" target="_blank" class="icon_chosen">GWT-Chosen</a></li>

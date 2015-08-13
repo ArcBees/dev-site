@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Tools and Patterns" displayName="Tools and Patterns">
+    <toc>
+        <entries>
+            <entry name="index" title="Resources" displayName="Resources"/>
+            <entry name="Observer" title="Observer" displayName="Observer"/>
+            <entry name="Website-Embedding" title="Website Embedding" displayName="Website Embedding"/>
+            <entry name="Boilerplate-Generation" title="Boilerplate Generation" displayName="Boilerplate Generation"/>
+            <entry name="Unit-Testing-Cookbook" title="Unit Testing Cookbook" displayName="Unit Testing Cookbook"/>
+        </entries>
+    </toc>
+</folder>

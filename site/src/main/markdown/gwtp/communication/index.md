@@ -1,130 +1,277 @@
-# Action Validators
-GWTP makes it possible to link each of your `ActionHandler`s with a server-side `ActionValidator` that determines whether or not the current client can execute the action. Validation logic is up to you and is not limited to inspecting the users, for example you could use it to deny access to some actions at certain times of the day. In this document, however, we focus to the most frequent use case of session-based validation.
+# Rest Dispatch
 
-##Changes from gwt-dispatch
-This section details how GWTP deviates from [gwt-dispatch](http://code.google.com/p/gwt-dispatch/). If you never used gwt-dispatch before, feel free to skip this.
+REST Dispatch is a GWT client library introduced in GWTP 1.0. It allows your client code to send HTTP requests in a REST fashion to any server. It aims to support JSR-311 (or JAX-RS) annotations.
 
-In gwt-dispatch, you either chose a secure dispatcher or a non-secure one. It was difficult to control security on a case by case basis. In GWTP you can precisely control security settings of each of your actions independently. One of your action is open to the world and does not need protection against XSRF attacks? You can do this. One of your action should only be used by the administrator? You can package that right into the `ActionValidator`.
+*Only JSON serialization is supported!*
 
-To keep things as simple as possible, we've deleted a lot of the "secure" classes available in gwt-dispatch. This is because security features (such as foiling XSRF attacks) are built in the base classes themselves. The result is an API that should be simpler to use and understand.
+##Reference
+Many example snippets are taken from the [Car Store](https://github.com/ArcBees/GWTP-Samples/tree/master/carstore), a sample project used for integration tests within GWTP.
 
-Another addition to gwt-dispatch is the ability to map actions to different urls. This lets you cleanly organize your application and can lead to clearer reports. This should not be used for security though, since the actual path the action comes in is not verified server-side.
+The serialization depends on the [gwt-jackson](https://github.com/nmorel/gwt-jackson) project. Whenever you create a pojo, you can use the [Jackson 2 annotations](https://github.com/FasterXML/jackson-annotations) to configure the serialization process!
 
-#Actions
-Actions deviate slightly from gwt-dispatch. You can keep the default by extending `ActionImpl`, this will configure the action url to "dispatch/", as before. It will also make your action secure against XSRF attacks, at the cost of having to define a security cookie (more on this later). If you don't care about XSRF attacks or just want to quickly put something together, you can inherit from `UnsecuredActionImpl` instead. Don't worry, this decision can easily be reverted later.
+##Setup
+Setting up your application to use REST Dispatch requires a few steps:
 
-##Manually defining an action url
-If you want a custom url for your action, simply implement the `Action` interface and make sure your `getServiceName` method returns the desired url. You must also override `isSecured` to return `true` or `false` depending whether or not you want security against XSRF attacks.
+###1. Add REST Dispatch to your maven configuration
+To access the REST Dispatch classes, you need to add the following dependency to your pom file.
 
-Here's a little trick that will let you automatically build urls of the form `"dispatch/MY_ACTION_CLASS"`, at the cost of some java reflexion:
+```xml
+<dependency>
+    <groupId>com.gwtplatform</groupId>
+    <artifactId>gwtp-dispatch-rest</artifactId>
+    <version>1.4</version>
+    <scope>provided</scope>
+</dependency>
+<dependency>
+    <groupId>com.gwtplatform</groupId>
+    <artifactId>gwtp-dispatch-rest-shared</artifactId>
+    <version>1.4</version>
+    <scope>compile</scope>
+</dependency>
+```
 
+###Add REST Dispatch to your GWT module
+You need to add an inherits clause to your project's **gwt.xml** file
+
+```xml
+<inherits name="com.gwtplatform.dispatch.rest.DispatchRest"/>
+```
+
+**Very Important**
+* If you use `MvpWithFormFactor` or `MvpWithEntryPoint`, the previous line _**needs**_ to be _**before**_ the `MvpWith*` inherits tag. ie:
+
+```xml
+<inherits name="com.gwtplatform.dispatch.rest.DispatchRest"/>
+<inherits name="com.gwtplatform.mvp.MvpWithEntryPoint" />
+```
+* If you are using a generated GINjector and have something similar to
+
+```xml
+<set-configuration-property name="gin.ginjector.modules"
+    value="com.gwtplatform.carstore.client.gin.SharedModule"/>
+```
+You need to change `set-configuration-property` to `extend-configuration-property`
+
+### Installing with your own Ginjector
+When you are using your own Ginjector -- that is if you are _not_ using GWTP's generated ginjector -- you need to add `gin.ginjector.modules` to `GinModules`'s properties attribute. This will ensure that generated GIN modules are installed.
 
 ```java
-public abstract class AbstractAction<R extends Result> implements Action<R> {
-    @Override
-    public String getServiceName() {
-        String className = this.getClass().getName();
-        int namePos = className.lastIndexOf(".") + 1;
-        className = ActionImpl.DEFAULT_SERVICE_NAME + className.substring(namePos);
+@GinModules(properties = {"gin.ginjector.modules"})
+public interface MyGinjector extends Ginjector {
+}
+```
 
-        return className;
-    }
+###Install the REST Dispatch module
+To ensure the REST Dispatch can work properly, you need to install the `RestDispatchAsyncModule` in your Gin module as well as bind `RestApplicationPath` to your server API end-point.
 
+```java
+public class DispatchModule extends AbstractGinModule {
     @Override
-    public boolean isSecured() {
-        return true;
+    protected void configure() {
+        RestDispatchAsyncModule.Builder dispatchBuilder =
+            new RestDispatchAsyncModule.Builder();
+        install(dispatchBuilder.build());
+
+        bindConstant().annotatedWith(RestApplicationPath.class).to("/api/v1");
     }
 }
 ```
 
-Here's an example of an action built on this scheme, this action will use the `"dispatch/GetProducts"` url:
+The `RestDispatchAsyncModuleBuilder` has the following configuration methods:
 
+* `addGlobalHeaderParam`: See [Global Parameters][gp];
+* `addGlobalQueryParam`: See [Global Parameters][gp];
+* `interceptorRegistry`: Needs some documentation, see [Client Action Handlers][ca] in the meanwhile;
+* `exceptionHandler`: See [Exception Handler][eh];
+* `requestTimeout`: The number of milliseconds to wait for a request to complete before throwing an exception. Defaults to _0 (no timeout)_;
+* `serialization`: The serialization implementation to use. Defaults to _JsonSerialization_;
+* `sessionAccessorType`: The class used to retrieve the value of your security cookie. Defaults to _DefaultSecurityCookieAccessor_;
+* `xsrfTokenHeaderName`: See [CSRF Protection][csrf].
+
+## Use REST Dispatch
+REST Dispatch tries to reduce the amount of boilerplate required by doing code generation. The customization is done through interfaces and annotations. Most annotations come from [JSR 311 (Jax RS)](https://jsr311.java.net/nonav/releases/1.0/javax/ws/rs/package-summary.html)'s packages.
+
+###Write resources
+*See files under [com.gwtplatform.carstore.shared.api](https://github.com/ArcBees/GWTP-Samples/tree/master/carstore/src/main/java/com/gwtplatform/carstore/shared/api/) for resource examples.*
+
+####Resources
+You can create resources by following the steps below:
+* All resources must be interfaces;
+* You _must_ annotate your resource with `@Path`. All methods under this resource will be prepended with this path.
+* Methods must have one of the following return type:
+    * If the return type is an interface (excluding collections and maps), the method will return a sub-resource;
+    * If the return type is a `RestAction<R>`, the method will return and end-point. You will be able to pass the
+    returned instance to [RestDispatch][use]. The expected result is represented by the generic `R`.
+
+####Endpoints
+In [RPC Dispatch][rpc], you needed to create custom implementations for every single action. In REST Dispatch, you
+return a parameterized interface and the implementation will be generated at compile-time.
+
+Following the steps below, you can create and customize your endpoints:
+* All methods can be annotated by `@Path("/anypath/{pathparam}")`. The string parameter will be appended to your resource's path. As demonstrated, you can optionally specify path parameters by enclosing them between `{`curly braces`}`. If a method is not annotated with `@Path`, the resource's path will be used directly.
+
+* The HTTP Method is specified by annotating your method with the annotations provided by JSR 311. As of 1.4, REST Dispatch only supports `@GET`, `@PUT`, `@POST`, `@DELETE` and `@HEAD`. One and only one of these annotation must be set on end-point methods.
+
+* For all the supported HTTP methods, you can use one or many of the following declarations:
+    * The result is specified in the `RestAction<R>`'s generic. The following example will deserialize the response and give you a `List<Car>` instance.
+
+    ```java
+    RestAction<List<Car>> getCars();
+    ```
+    * You can specify header parameters via the `@HeaderParam` annotation. The following example will send the "Pragma" header along with any value you specify at runtime.
+
+    ```java
+    RestAction<Car> getCars(@HeaderParam("Pragma") String pragma);
+    ```
+
+    * You can add query parameters to your request URI via the `@QueryParam` annotation. The following example will create and send the request to a URI with the start and length parameters (ie.: `/cars?start=3&length=25`).
+
+    ```java
+    RestAction<List<Car>> getCars(@QueryParam("start") int start,
+        @QueryParam("length") int length);
+    ```
+
+    * You can specify path parameters to your request URI via the `@PathParam` annotation. Your path must contain a parameter identical (case-sensitive) to the one given to `@PathParam`. The following example will replace the `{id}` parameter in your path by the specified id (`/cars/5`).
+
+    ```java
+    @Path("/{id}")
+    RestAction<Car> getCar(@PathParam("id") int id);
+    ```
+
+* Additionally, for `@PUT` or `@POST`, you can use either of these parameters, but **not both**:
+    * You can add multiple parameters annotated with `@FormParam`. The request body will then be formatted like a query string would be. The following example will generate this request body: `username=admin&password=s3cr3t`.
+
+    ```java
+    RestAction<Void> login(@FormParam("username") String username,
+        @FormParam("password") String password);
+    ```
+
+    * Or you can provide a single object without any annotation and it will be serialized and sent as your request body.
+        It must match the following rules to be a valid request body:
+        + This parameter can be at any position in the signature;
+        + There must be one and only one such parameter;
+        + It must not be annotated by any of the previous annotations;
+        + It must not be combined with any other `@FormParam` parameters.
+
+    ```java
+    @Path("/{id}")
+    RestAction<Car> saveCar(@PathParam("id") int id, Car car);
+    ```
+
+####Sub-resources
+If a resource returns another resource interface, then the returned resource will be a sub-resource. Methods returning a resource accept the same annotations and parameters then end-points. They will be carried all the way down to your endpoints.
+
+###Use your REST resources {use-your-rest-resources}
+Using your resources is probably the most straight-forward step:
+
+1. You need to inject `RestDispatch` and your resource.
 
 ```java
-public class GetProducts extends AbstractAction<GetProductsResult> {
-    private String categoryId;
-
-    public GetProducts() {}
-
-    public GetProducts(final String categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getCategoryId() {
-        return categoryId;
-    }
+@Inject
+CarPresenter(
+        RestDispatch dispatcher,
+        CarsResource carsResource) {
+    this.dispatcher = dispatcher;
+    this.carsResource = carsResource;
 }
 ```
 
-#Guice/gin configurations
-I will be assumed here that you're using the default. Advanced configurations will be discussed in another page. Just so
- you know, you can make your own `DispatchModule` with your own `ExceptionHandler` that will override `onFailure`. Anyway, gin configurations for dispatch almost always only need to add the default to your Ginjector class like this :
+2. Then you will pass the instance returned by your delegate to RestDispatch, with a callback. ie:
 
 ```java
-@GinModules({ DispatchAsyncModule.class, YourClientModule.class})
+dispatcher.execute(carsResource.car(mycarId).delete()
+    new AsyncCallback<Car>() {
+        @Override
+        public void onSuccess(Void nothing) { /* snip */ }
+
+        @Override
+        public void onFailure(Throwable caught) { /* snip */ }
+    });
 ```
 
-Then don't forget to add a definition :
+Additionally, you can retrieve the raw [Response](http://www.gwtproject.org/javadoc/latest/com/google/gwt/http/client/Response.html) object received from the server. To do so, pass a `RestCallback` instead of an `AsyncCallback`. You will have to implement an additional `setResponse()` method. This method will be called before `onSuccess` or `onFailure`. Your endpoint call would then look like:
 
 ```java
-DispatchAsync getDispatcher();
+dispatcher.execute(carsResource.car(mycarId).delete()
+    new RestCallback<Car>() {
+        @Override
+        public void setResponse(Response response) { /* snip */ }
+
+        @Override
+        public void onSuccess(Void nothing) { /* snip */ }
+
+        @Override
+        public void onFailure(Throwable caught) { /* snip */ }
+    });
 ```
 
-No big changes here.
+## CSRF Protection {csrf-protection}
+Rest-Dispatch offers a built-in way to secure your server calls from CSRF attacks through a security cookie. To enable CSRF protection, you must bind `@SecurityCookie` to the cookie name used to transport your security token.
 
-For guice
-The only change here is that we don't use hard coded dispatch string in your module that extends `ServletModule`.
+The second configurable option is *xsrfTokenHeaderName*. It allows you to change the header used to transport your security token. The default value is **X-CSRF-Token**.
 
-```java
-serve("/yourappname/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(DispatchServiceImpl.class);
-```
-
-#!ActionValidators
-Here's the big change. `ActionValidators` are classes bound to an `ActionHandler` that evaluates if the action can or cannot be executed, typically using the user logged into the current session. They are server-side, secure and reusable.
-
-That change introduced a new overload of `bindHandler` : `bindHandler(action.class, actionHandler.class, actionValidator.class)`.
-
-An action that can be executed by all users, logged-in or not, will be bound to an `ActionValidator` of looking like this :
+For example
 
 ```java
-public class PublicActionValidator implements ActionValidator  {
+protected GinModule extends AbstractGinModule {
     @Override
-    public boolean isValid(Action<? extends Result> action) {
-        return true;
+    protected void configure() {
+        install(new RestDispatchAsyncModuleBuilder()
+            .xsrfTokenHeaderName("Protection-Token")
+            .build());
+        bindConstant().annotatedWith(SecurityCookie.class).to("JSESSIONID");
     }
+}
+
+@Path("/myresource")
+public interface MyResource {
+    @GET
+    RestAction<MyPojo> getMe();
+
+    @NoXsrfHeader
+    DetailsResource details();
 }
 ```
 
-The `isValid` method should return `true` when the user can execute the action, and `false` otherwise. The `Action` itself is also passed as a parameter so you can inspect it if needed.
+will add this header for every `getMe()` request sent to the server: `Protection-Token: value_stored_in_jsessionid`.
 
-You never have to write such a trivial `PublicActionValidator`, however, since this is exactly what you will get by using the 2-parameter version of `bindHandler`: `bindHandler(action.class, actionHandler.class)`. Let's therefore look at a more interesting example that uses the `UserServiceFactory` of !AppEngine to determine whether the user is an admin:
+You can also disable CSRF protection for specific endpoints or resources by using `@NoXsrfHeader`. In the example above, all requests sent after calling `details()` will not include the CSRF protection header. This annotation can be applied to resources, sub-resource methods and endpoint methods.
+
+You can read [CSRF Protection][csrf] for more details.
+
+## Global Parameters {global-parameters}
+If you have header or query parameters you wish to add to every requests, you can save up on the boilerplate by configuring them through `RestDispatchAsyncModuleBuilder.addGlobalHeaderParam(String key)` and `RestDispatchAsyncModuleBuilder.addGlobalQueryParam(String key)`.
+
+The builder also makes it possible to specify to which HTTP methods the configured parameters should be attached.
+
+For example
 
 ```java
-public class AdminActionValidator implements ActionValidator  {
+public class MyModule extends AbstractPresenterModule {
     @Override
-    public boolean isValid(Action<? extends Result> action) {
-        UserService user = UserServiceFactory.getUserService();
-
-        return user.isUserAdmin();
+    protected void configure() {
+        install(new RestDispatchAsyncModuleBuilder()
+            .addGlobalHeaderParam("Pragma")
+                .toHttpMethods(DELETE, POST, PUT)
+                .withValue("NoCache")
+            .addGlobalQueryParam("format")
+                .toHttpMethods(GET)
+                .withValue("xml")
+            .build());
     }
 }
 ```
 
-Short and simple. Now only admin of your appdomain can use actions that are bound to this `AdminActionValidator`. You could also use action validators to check that a user is logged in, that he has some specific rights, that the action can only be accomplished at a given time of the day (i.e. for cleanup operations), etc.
+would configure the header `Pragma: NoCache` for all DELETE, POST and PUT requests and the query parameter `format=xml` for all GET requests.
 
-##What happens when `isValid` returns false ?
+## Extensions
+[Resource Delegates](https://github.com/ArcBees/gwtp-extensions/tree/master/dispatch-rest-delegates) will allow your end-point methods to return the result type directly. This is very useful when you want to reuse your interfaces and the annotations on server implementations of those resources. The downside is that you will lose type safety from your callbacks.
 
-Dispatch will return a new service exception :
+There are some extension points available through the dispatch code. You should not need them unless you have a very specific use case. If you do, feel free to browse the code: many classes are extendable and have protected methods that you can override to extend their functionality. The generators also support extensions.
 
-```java
-throw new ServiceException( actionValidator.getClass().getName() + actionValidatorMessage + action.getClass().getName() );
-```
-
-and the message :
-
-```java
-private final static String actionValidatorMessage = " couldn't allow access to action : ";
-```
-
-#Conclusion
-`ActionValidator` is one of the many features that makes Gwt-Platform one of the best and secure command pattern frameworks out there and we are eager to give you more and more features. Feel free to make comments, ask questions, this document wouldn't exist without your feedback.
+[gp]: gwtp/communication/index.html#global-parameters "Global Parameters"
+[ca]: gwtp/communication/Client-Action-Handlers.html "Client Action Handlers"
+[eh]: gwtp/communication/Exception-Handler.html "Exception handler"
+[csrf]: gwtp/communication/index.html#csrf-protection "CSRF Protection"
+[rpc]: gwtp/communication/RPC-Dispatch.html "RPC Dispatch"
+[use]: gwtp/communication/index.html#use-your-rest-resources "Use Your Rest Resources"
