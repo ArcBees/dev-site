@@ -2,7 +2,7 @@
 
 The second piece of the MVP architectural pattern is the View. Its purpose is to separate the application logic from the "display" logic. By implementing the UI this way, multiple views can be used to represent the same application (ie: different views for different countries, different platforms, etc).
 
-The views in GWTP aren't much different from GWT widgets, except that they talk to a presenter. So the syntax remains pretty similar to GWT's. The preferred way of using complex views in GWT would be with UiBinder. A view can be defined by a declarative syntax in a `.ui.xml` file. Let's continue the previous example has seen [here]({{#gwtp.doc.url.view_uihandlers}}).
+The views in GWTP aren't much different from GWT widgets, except that they talk to a presenter. So the syntax remains pretty similar to GWT's. The preferred way of using complex views in GWT would be with UiBinder. A view can be defined by a declarative syntax in a `.ui.xml` file. Let's continue the previous example as seen [here]({{#gwtp.doc.url.presenter}}).
 
 _SimpleView.ui.xml_
 
