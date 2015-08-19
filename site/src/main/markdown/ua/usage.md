@@ -1,3 +1,5 @@
+# Basic Usage
+
 Inject Analytics into the class you want to track events from.
 
 **REMEMBER TO CALL GO()**

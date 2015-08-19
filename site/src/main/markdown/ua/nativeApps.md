@@ -1,3 +1,5 @@
+# Analytics for Native Apps (Cordova etc..)
+
 You can use Universal Analytics in native apps built with Cordova and other tools.
 
 There are two extra configuration steps:

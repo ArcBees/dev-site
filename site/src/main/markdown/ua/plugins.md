@@ -1,3 +1,5 @@
+# Plugins
+
 Universal Analytics supports the default Analytics plugins.
 
 To use a plugin disable auto create when installing Analytics in your client gin module:

@@ -1,3 +1,5 @@
+# Using Analytics on the Server
+
 In your guice server module:
 
 ```java
