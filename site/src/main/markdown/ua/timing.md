@@ -1,3 +1,5 @@
+# Tracking App Speed (Timing Events)
+
 You can track how fast things happen in your app by using timing events.
 
 Start your timing event when the process you want to track begins:

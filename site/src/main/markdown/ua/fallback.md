@@ -1,3 +1,5 @@
+# Using a Fallback Server
+
 Analytics may not work for a significant portion of your users because https://www.googleanalytics.com/analytic.js is prevented from loading.  This can happen because the user has disabled 3rd party scripts or the user is in a country that blocks requests to Google properties.
 
 In this case you can proxy your analytics calls via your server by setting a fallback path when installing analytics in your gin module:
