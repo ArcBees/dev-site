@@ -5,19 +5,19 @@ This tutorial is intended for someone having no prior knowledge of GWTP who want
 ## Covered features:
 Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
-
-<!--
 ## Prerequisites
-1. [Running a project]()
-1. TODO: Provide a pom.xml for this tutorial.
--->
-
+1. [Generating the project](https://youtu.be/Im1DGozNCsU)
+1. [Executing the project](https://youtu.be/6_MQSJy92m0)
 
 ## Application Structure
 
 ```
-src/main/java/com/arcbees/demo/client/
 +- application
+|   \- home
+|      +- HomeModule
+|      +- HomePresenter
+|      +- HomeUiHandlers
+|      \- HomeView
 |   +- ApplicationModule.java
 |   +- ApplicationPresenter.java
 |   +- ApplicationUiHandlers.java
@@ -114,7 +114,7 @@ interface MyView extends View, HasUiHandlers<ApplicationUiHandlers> {
 }
 ```
 
-`@ProxyStandard` annotation is used to specify whether or not your Presenter should use GWT's code splitting feature. In this case, code splitting is not used but we could have simply used the `@ProxyCodeSplit` annotation instead of this one to use code split. You can learn more on [code splitting](http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html) at GWT Project website.
+`@ProxyStandard` annotation is used to specify whether or not your Presenter should use GWT's code splitting feature. In this case, code splitting is not used but we could have simply used the `@ProxyCodeSplit` annotation instead of this one to use code split. You can learn more on code splitting [here]({{#gwtp.doc.url.proxy}}).
 
 `@NameToken` is used to easily refer to a page in your application. Each page you want to navigate to should have a nameToken associated with it. For instance, this page is called home because it should be the first page a user will see. This will also let you use the back and forward button of your browser to navigate in your application. We generally refer to a Presenter having a NameToken as a **Place**.
 
