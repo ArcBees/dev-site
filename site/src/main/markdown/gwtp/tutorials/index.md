@@ -76,15 +76,16 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
 }
 ```
 
-It doesn't look like much at first, but there are a couple of key points that we need to discuss before we continue.
+It doesn't look like much at first, but there are a couple of key points that we need to explain before we continue.
 
-* `ViewImpl`: HomeView extends `ViewImpl` which gives us access to the `initWidget()` method. This method will take care of initializing any DOM specific elements for you.
+* HomeView extends `ViewImpl` which gives us access to the `initWidget()` method. This method will take care of initializing any DOM specific elements for you.
 
-* `implements HomePresenter.MyView`: The View needs to implements a Presenter interface called `MyView`. This will allow the Presenter to talk to the View using the interface.
+* The View needs to implement an interface called `MyView` which is contained in the Presenter. This will allow the Presenter to talk to the View using the interface.
 
-* `interface Binder extends UiBinder<Widget, HomeView>`: For this tutorial, we use the [UiBinder](http://www.gwtproject.org/doc/latest/DevGuideUiBinder.html) framework to build the UI. We will talk about this later in this tutorial with a concrete [example](#uibinder).
+* In this tutorial, we use the [UiBinder][uibinder] framework to build the UI. This `interface Binder extends UiBinder<Widget, HomeView> {}` is how we tell GWTP to use the UiBinder XML file associated to the View. We will talk about this later with a [concrete example](#uibinder).
 
-* `@Inject`: GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection).
+* GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), thus the presence of the `@Inject` annotation on the constructor method.
+
 
 ### Presenter
 In this example, we have what is called a nested Presenter. This means other Presenters can be nested inside a parent Presenter using a [slot]({{#gwtp.doc.url.slots}}) mechanism. In this case, the ApplicationPresenter is the root Presenter of the application and HomePresenter is nested inside it.
@@ -121,9 +122,9 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
 }
 ```
 
-Just like we did in the View, we're going to break down the Presenter into critical points:
+Just like we did in the View, we're going to explain the critical points of a Presenter:
 
-* `extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>` defines the ApplicationPresenter superclass. This means the interfaces `MyView` and `MyProxy` will need to be defined into the class.
+* `extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>` defines the ApplicationPresenter superclass. This means the interfaces `MyView` and `MyProxy` needs to be defined into the class. `MyView` is the interface we implemented in the View earlier and `MyProxy` is responsible for listening to any event that would require the Presenter and the View to be created.
 
 * `@ProxyStandard` annotation is used to specify whether or not your Presenter should use GWT's code splitting feature. In this case, code splitting is not used but we could have simply used the `@ProxyCodeSplit` annotation instead of this one to use code split. You can learn more on code splitting [here]({{#gwtp.doc.url.proxy}}).
 
@@ -132,7 +133,7 @@ Just like we did in the View, we're going to break down the Presenter into criti
 * `ApplicationPresenter.SLOT_MAIN` tells the Presenter to *reveal* itself into the ApplicationPresenter's slot using the [slot mechanism]({{#gwtp.doc.url.slots}}).
 
 ## UiBinder
-The UiBinder framework is a declarative way to declare both your HTML and any GWT specific widgets from XML markup.
+The [UiBinder][uibinder] framework is a declarative way to declare both your HTML and any GWT specific widgets from XML markup.
 
 Let's take a look back at what we saw earlier in the View section:
 
@@ -333,3 +334,6 @@ And a package named error, for example, would contain all the Presenters mention
 You are now able to create a Presenter and its associated View and delegate some of its action to the Presenter using UiHandlers. You also saw how to create HTML elements and access their values from the View using UiBinder. This conclude the first part of this tutorial. In the next part, we will take a look at PresenterWidgets, Gatekeepers, the PlaceManager and RestDispatch.
 
 Stay tuned for the next part!
+
+
+[uibinder]: (http://www.gwtproject.org/doc/latest/DevGuideUiBinder.html)
