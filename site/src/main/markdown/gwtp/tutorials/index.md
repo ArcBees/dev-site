@@ -1,23 +1,22 @@
 # Beginner's Tutorial - Part 1
 This tutorial is intended for someone having no prior knowledge of GWTP who wants to get started right away writing some code. This first part will show you how a basic Presenter can interact with a View by using UiHandler and UiBinder. Chances are that you will need to replicate this over and over again for almost every Presenter you create. This tutorial won't go much into the details of explaining how GWTP works (we have excellent documentation for that), but rather how the features interact together.
 
-
 ## Covered features:
 Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
-
-<!--
 ## Prerequisites
-1. [Running a project]()
-1. TODO: Provide a pom.xml for this tutorial.
--->
-
+1. [Generating the project](https://youtu.be/Im1DGozNCsU)
+1. [Executing the project](https://youtu.be/6_MQSJy92m0)
 
 ## Application Structure
 
 ```
-src/main/java/com/arcbees/demo/client/
 +- application
+|   \- home
+|      +- HomeModule
+|      +- HomePresenter
+|      +- HomeUiHandlers
+|      \- HomeView
 |   +- ApplicationModule.java
 |   +- ApplicationPresenter.java
 |   +- ApplicationUiHandlers.java
@@ -31,105 +30,156 @@ src/main/java/com/arcbees/demo/client/
 
 ## Main files and their purpose
 
-### ApplicationModule
-Used to bind everything together using dependency injection.
+* HomeModule: This is a GIN module that is used to bind the HomePresenter together.
 
-### ApplicationPresenter
-Contains all of your client-side logic.
+* HomePresenter: This is a child Presenter of ApplicationPresenter. It use its parent Presenter's [Slot]({{#gwtp.doc.url.slots}}) to reveal itself.
 
-### ApplicationUiHandlers
-Used to delegate some of the View actions to the Presenter usually in response of events.
+* HomeView: This is where HTML and widgets values for the HomeView.ui.xml can be accessed.
 
-### ApplicationView
-Views handle all the UI-related code for a Presenter.
+* HomeView.ui.xml: This is where HTML and widgets are declared for the HomePresenter.
 
-### ApplicationView.ui.xml
-Used to write html in your view.
+* ApplicationModule: This is a GIN module that is used to bind ApplicationPresenter together as well as installing any other sub modules (HomeModule for instance).
 
-### ClientModule
-This is where you setup your PlaceManager.
+* ApplicationPresenter: Contains all of the ApplicationPresenter logic.
 
-### NameTokens
-Contains the constants defining your places.
+* ApplicationUiHandlers: Used to delegate some of the ApplicationView actions to the ApplicationPresenter usually in response of events.
 
+* ApplicationView: This is where HTML and widgets values for the ApplicationView.ui.xml can be accessed.
+
+* ApplicationView.ui.xml: This is where HTML and widgets are declared for the ApplicationPresenter.
+
+* ClientModule: This is your main GIN module from which all of the child modules are loaded. It is also where the `DefaultPlaceManager` is setup.
+
+* NameTokens: Contains String constants identifying your [Places]({{#gwtp.doc.url.proxy}}).
 
 ## Views and Presenters
-In a GWTP application, all pages correspond to a View-Presenter pair. The Presenter contains the client side logic and the View only display what it is told to by the Presenter. It is often said that the view should be as dumb as possible.
+In GWTP, the "View" and "Presenters" terms refer to the [MVP architecture](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter). The [Presenter]({{#gwtp.doc.url.presenter}}) is where all of the client-side logic should be written (i.e. validation, manipulation to the model layer, etc). The [View]({{#gwtp.doc.url.view}}) only displays what it's told to by the Presenter and should not contain any logic. It takes care of browser specific events and is the only layer aware of the DOM elements.
 
 ### View
-Here's our basic ApplicationView:
+This is the default View for the project:
 
 ```java
-public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> implements ApplicationPresenter.MyView {
-    interface Binder extends UiBinder<Widget, ApplicationView> {
+import javax.inject.Inject;
+
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewImpl;
+
+public class HomeView extends ViewImpl implements HomePresenter.MyView {
+    interface Binder extends UiBinder<Widget, HomeView> {
     }
 
     @Inject
-    ApplicationView(
-            Binder uiBinder) {
+    HomeView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
+}
 ```
 
-We're going to break it down into simpler part. First, let's take a look at the class declaration. We have an ApplicationView extending a ViewWithUiHandlers. This specify that ApplicationView will be a View and will also use UiHandlers which we will talk about further in this tutorial. Then the View implements an interface that is declared in the ApplicationPresenter class. This will allow the View to talk to the Presenter.
+<<<<<<< HEAD
+It doesn't look like much at first, but there are a couple of key points that we need to explain before we continue.
 
-GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), thus the presence of an `@Inject` annotation on the constructor.
+* HomeView extends `ViewImpl` which gives us access to the `initWidget()` method. This method will take care of initializing any DOM specific elements for you.
+
+* The View needs to implement an interface called `MyView` which is contained in the Presenter. This will allow the Presenter to talk to the View using the interface.
+
+* In this tutorial, we use the [UiBinder][uibinder] framework to build the UI. This `interface Binder extends UiBinder<Widget, HomeView> {}` is how we tell GWTP to use the UiBinder XML file associated to the View. We will talk about this later with a [concrete example](#uibinder).
+
+* GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), thus the presence of the `@Inject` annotation on the constructor method.
+=======
+It doesn't look like much at first, but there are a couple of key points that we need to discuss before we continue.
+
+* `ViewImpl`: HomeView extends `ViewImpl` which gives us access to the `initWidget()` method. This method will take care of initializing any DOM specific elements for you.
+
+* `implements HomePresenter.MyView`: The View needs to implements a Presenter interface called `MyView`. This will allow the Presenter to talk to the View using the interface.
+
+* `interface Binder extends UiBinder<Widget, HomeView>`: For this tutorial, we use the [UiBinder](http://www.gwtproject.org/doc/latest/DevGuideUiBinder.html) framework to build the UI. We will talk about this later in this tutorial with a concrete [example](#uibinder).
+
+* `@Inject`: GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection).
+>>>>>>> d3c5cf1e3d82285718d2c6d0c39e59c38ac8d44d
 
 ### Presenter
-This is the ApplicationPresenter:
+In this example, we have what is called a nested Presenter. This means other Presenters can be nested inside a parent Presenter using a [slot]({{#gwtp.doc.url.slots}}) mechanism. In this case, the ApplicationPresenter is the root Presenter of the application and HomePresenter is nested inside it.
+
+This is the HomePresenter:
 
 ```java
-public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy> implements ApplicationUiHandlers {
+import com.projectname.project.client.application.ApplicationPresenter;
+import com.projectname.project.client.place.NameTokens;
+import com.google.inject.Inject;
+import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.Presenter;
+import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.annotations.NameToken;
+import com.gwtplatform.mvp.client.annotations.ProxyStandard;
+import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+
+public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> {
+    interface MyView extends View {
+    }
+
     @ProxyStandard
-    @NameToken(NameTokens.home)
-    interface MyProxy extends ProxyPlace<ApplicationPresenter> {
+    @NameToken(NameTokens.HOME)
+    interface MyProxy extends ProxyPlace<HomePresenter> {
     }
-
-    interface MyView extends View, HasUiHandlers<ApplicationUiHandlers> {
-    }
-
-    private final PlaceManager placeManager;
 
     @Inject
-    ApplicationPresenter(
+    HomePresenter(
             EventBus eventBus,
             MyView view,
-            MyProxy proxy,
-            PlaceManager placeManager) {
-        super(eventBus, view, proxy, RevealType.Root);
-
-        this.placeManager = placeManager;
-
-        getView().setUiHandlers(this);
+            MyProxy proxy) {
+        super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
     }
 }
 ```
 
-Let's take a look at the class declaration. `Presenter<ApplicationPresenter.MyView, ApplicationPresenter.MyProxy>` defines the ApplicationPresenter superclass. This means we have to define the interfaces `MyView` and `MyProxy` inside our class, like this:
+<<<<<<< HEAD
+Just like we did in the View, we're going to explain the critical points of a Presenter:
+
+* `extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>` defines the ApplicationPresenter superclass. This means the interfaces `MyView` and `MyProxy` needs to be defined into the class. `MyView` is the interface we implemented in the View earlier and `MyProxy` is responsible for listening to any event that would require the Presenter and the View to be created.
+=======
+Just like we did in the View, we're going to break down the Presenter into critical points:
+
+* `extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>` defines the ApplicationPresenter superclass. This means the interfaces `MyView` and `MyProxy` will need to be defined into the class.
+>>>>>>> d3c5cf1e3d82285718d2c6d0c39e59c38ac8d44d
+
+* `@ProxyStandard` annotation is used to specify whether or not your Presenter should use GWT's code splitting feature. In this case, code splitting is not used but we could have simply used the `@ProxyCodeSplit` annotation instead of this one to use code split. You can learn more on code splitting [here]({{#gwtp.doc.url.proxy}}).
+
+* `@NameToken` is used to easily refer to a page in your application. Each page you want to navigate to should have a nameToken associated with it. For instance, this page is called home because it should be the first page a user will see. This will also let you use the back and forward button of your browser to navigate in your application. We generally refer to a Presenter having a NameToken as a [Place]({{#gwtp.doc.url.creating-places}}).
+
+* `ApplicationPresenter.SLOT_MAIN` tells the Presenter to *reveal* itself into the ApplicationPresenter's slot using the [slot mechanism]({{#gwtp.doc.url.slots}}).
+
+## UiBinder
+<<<<<<< HEAD
+The [UiBinder][uibinder] framework is a declarative way to declare both your HTML and any GWT specific widgets from XML markup.
+=======
+The UiBinder framework is a declarative way to declare both your HTML and any GWT specific widgets from XML markup.
+>>>>>>> d3c5cf1e3d82285718d2c6d0c39e59c38ac8d44d
+
+Let's take a look back at what we saw earlier in the View section:
 
 ```java
-interface MyProxy extends ProxyPlace<ApplicationPresenter> {
-}
-interface MyView extends View, HasUiHandlers<ApplicationUiHandlers> {
+interface Binder extends UiBinder<Widget, HomeView> {
 }
 ```
 
-`@ProxyStandard` annotation is used to specify whether or not your Presenter should use GWT's code splitting feature. In this case, code splitting is not used but we could have simply used the `@ProxyCodeSplit` annotation instead of this one to use code split. You can learn more on [code splitting](http://www.gwtproject.org/doc/latest/DevGuideCodeSplitting.html) at GWT Project website.
-
-`@NameToken` is used to easily refer to a page in your application. Each page you want to navigate to should have a nameToken associated with it. For instance, this page is called home because it should be the first page a user will see. This will also let you use the back and forward button of your browser to navigate in your application. We generally refer to a Presenter having a NameToken as a **Place**.
-
-
-## UiBinder
-UiBinder is a declarative way to declare both your HTML and any GWT specific widgets.
+This interface is used to bind the View to its associated UiBinder XML file. In this case, this file:
 
 ```xml
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <g:HTMLPanel>Hello World!</g:HTMLPanel>
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <g:HTMLPanel>
+
+        <p>Hello world!</p>
+
+    </g:HTMLPanel>
 </ui:UiBinder>
 ```
 
-This will create a simple HTML panel containing `Hello World!`. By adding the `ui:field="something"` attribute on an HTML element, you can access this element from the application's view. Now we're going to add a TextBox to the panel.
+This will display a simple HTML Panel containing a "Hello World!".
+
+A great way to identify your HTML elements is to use the `ui:field="someField"` attribute. This will allow to get access to the element values and attributes from the View by using its UiField identifier.
 
 ```xml
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
@@ -140,14 +190,14 @@ This will create a simple HTML panel containing `Hello World!`. By adding the `u
 </ui:UiBinder>
 ```
 
-Then in your view, you will be able to access the textbox's values and attributes by using accessors. First, you want to declare a variable that will contain your HTML element. You can do this by using `@UiField` annotation on your variable, like this:
+Here we've created a TextBox and identified it with the UiField attribute. To access the TextBox's values and attributes from the View, we need to declare a TextBox type variable with a variable name corresponding to the UiField identifier you wish to access. You also need to annotate the variable with `@UiField` in order to bind it to the HTML element. Like this:
 
 ```java
 @UiField
 TextBox nameField;
 ```
 
-Then, for instance, we could create a simple getter method to retrieve an attribute from nameField.
+Then, for instance, a nameField attribute could be accessed by using a simple getter method.
 
 ```java
 public String getTextFromNameField() {
@@ -155,33 +205,84 @@ public String getTextFromNameField() {
 }
 ```
 
-You are now able to create HTML elements and access their values and attributes from the view like any other fields.
-
+This is how we create HTML elements and access their values and attributes from the View.
 
 ## UiHandler
-UiHandlers are used to delegate some of the view events to the Presenter. Remember that what we really want here is to put as much logic as possible in the Presenter. So let's say we add a button to our view that will return the text given in the nameField TextBox. First, we add the new button:
+UiHandlers is a GWTP feature that delegate some of the View actions to the Presenter. A good use case for that would be for handling a click event. The UiHandler will tell GWTP which method to call on a specific browser event.
 
-```xml
-<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-         xmlns:g='urn:import:com.google.gwt.user.client.ui'>
-    <g:HTMLPanel>
-	    <g:TextBox ui:field="nameField"/>
-	    <g:Button ui:field="sendButton">Submit</g:Button>  // Our new button !
-    </g:HTMLPanel>
-</ui:UiBinder>
-```
+### Creating the UiHandler
+Here are the 5 things you need to do before using UiHandlers:
 
-Then to create our UiHandler, we make a new java file that will contain an interface extending UiHandlers. We are going to name our interface and our file `ApplicationUiHandlers`.
+* Create a UiHandler interface:
 
 ```java
 import com.gwtplatform.mvp.client.UiHandlers;
 
-public interface ApplicationUiHandlers extends UiHandlers {
-    void onSend(String name);  // Method we want our presenter to implement.
+public interface HomeUiHandlers extends UiHandlers {
 }
 ```
 
-If we go back to the view, we can now declare a method that will return the textBox's value. It's now time to use the `@UiHandlers` annotation that will allow us to bind a ClickEvent to the UiField. Then, we have to specify which type of events we want our method to listen to by passing an Event as parameter.
+* Implement the UiHandler to the Presenter:
+
+```java
+public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy> implements HomeUiHandlers {
+    ...
+}
+```
+
+* Extend HomePresenter.MyView with `HasUiHandlers<HomePresenter>`:
+
+```java
+interface MyView extends View, HasUiHandlers<HomePresenter> {
+}
+```
+
+* Extend the View with `ViewWithUiHandlers<HomePresenter>` instead of `ViewImpl`:
+
+```java
+public class HomeView extends ViewWithUiHandlers<HomePresenter> implements HomePresenter.MyView {
+    ...
+}
+```
+
+* Set the UiHandler for the View:
+
+```java
+@Inject
+HomePresenter(
+        EventBus eventBus,
+        MyView view,
+        MyProxy proxy) {
+    super(eventBus, view, proxy, ApplicationPresenter.SLOT_MAIN);
+
+    getView().setUiHandlers(this);
+}
+```
+
+Once it's done, we're going to create a button that, when clicked, will send the content of the TextBox to the Presenter.
+
+```xml
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <g:HTMLPanel>
+        <g:TextBox ui:field="nameField"/>
+        <g:Button ui:field="sendButton">Submit</g:Button>
+    </g:HTMLPanel>
+</ui:UiBinder>
+
+```
+
+Then we declare the method we want the UiHandler to call when the event will be triggered.
+
+```java
+public interface HomeUiHandlers extends UiHandlers {
+    void onSend(String name);  // Method we want the Presenter to implement.
+}
+```
+
+### Handling the event
+Now that the HomeUiHandlers is created and correctly set, we can bind it to an event. By using the `@UiHandlers("sendButton")` annotation on a method, GWTP will bind the UiField to an event. In order to listen to a specific event, the event must be passed as a method parameter.
 
 ```java
 @UiHandler("sendButton")
@@ -193,17 +294,25 @@ void onSend(ClickEvent event) {
 Our view now looks like this:
 
 ```java
-public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> implements ApplicationPresenter.MyView {
-    interface Binder extends UiBinder<Widget, ApplicationView> {
+import javax.inject.Inject;
+
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.Widget;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+
+public class HomeView extends ViewWithUiHandlers<HomePresenter> implements HomePresenter.MyView {
+    interface Binder extends UiBinder<Widget, HomeView> {
     }
 
     @UiField
     TextBox nameField;
-    @UiField
-    Button sendButton;
 
     @Inject
-    ApplicationView(Binder uiBinder) {
+    HomeView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 
@@ -214,24 +323,7 @@ public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> i
 }
 ```
 
-Now let's get back to the ApplicationPresenter. Because our class implements ApplicationUiHandlers, we are able to call Presenter methods from our View. It is also important to set the UiHandler for the View by adding this line to the class constructor:
-
-```java
-@Inject
-ApplicationPresenter(
-    EventBus eventBus,
-    MyView view,
-    MyProxy proxy,
-    PlaceManager placeManager) {
-    super(eventBus, view, proxy, RevealType.Root);
-
-    this.placeManager = placeManager;
-
-    getView().setUiHandlers(this);  // This is how we set the UiHandlers for the View
-}
-```
-
-And then we override the method that will be called when our button is clicked.
+Finally, the Presenter needs to implement the method declared in the HomeUiHandlers interface.
 
 ```java
 @Override
@@ -239,7 +331,6 @@ public void onSend(String name) {
     logger.info(name + " got passed from the view to the presenter!");
 }
 ```
-
 
 ## Presenter Module
 A module is used to bind everything together. Every Presenter needs to be bound, but we can bind more than one Presenter per module. We usually have one Module per java package. For instance, we could have something like this:
@@ -260,21 +351,10 @@ public class ErrorModule extends AbstractPresenterModule {
 
 And a package named error, for example, would contain all the Presenters mentioned in the snippet.
 
-For now, let's create a new file named ApplicationModule.java that will contain the class ApplicationModule. Then, we are going to override the configure method.
-
-Your ApplicationModule should now look like this:
-
-```java
-public class ApplicationModule extends AbstractPresenterModule {
-    @Override
-    protected void configure() {
-        bindPresenter(ApplicationPresenter.class, ApplicationPresenter.MyView.class, ApplicationView.class, ApplicationPresenter.MyProxy.class);
-    }
-}
-```
-
-
 ## Conclusion
 You are now able to create a Presenter and its associated View and delegate some of its action to the Presenter using UiHandlers. You also saw how to create HTML elements and access their values from the View using UiBinder. This conclude the first part of this tutorial. In the next part, we will take a look at PresenterWidgets, Gatekeepers, the PlaceManager and RestDispatch.
 
 Stay tuned for the next part!
+
+
+[uibinder]: (http://www.gwtproject.org/doc/latest/DevGuideUiBinder.html)
