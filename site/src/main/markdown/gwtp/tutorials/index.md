@@ -30,27 +30,27 @@ Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
 ## Overview of the main files
 
-* HomeModule: This is a [GIN module]({{#gwtp.doc.url.gin_bindings}}) that is used to bind the HomePresenter together.
+* **HomeModule**: This is a [GIN module]({{#gwtp.doc.url.gin_bindings}}) that is used to bind the HomePresenter together.
 
-* HomePresenter: This is a child Presenter of ApplicationPresenter. It use its parent Presenter's [Slot]({{#gwtp.doc.url.slots}}) to reveal itself.
+* **HomePresenter**: This is a child Presenter of ApplicationPresenter. It use its parent Presenter's [Slot]({{#gwtp.doc.url.slots}}) to reveal itself.
 
-* HomeView: This is where HTML and widgets values for the HomeView.ui.xml can be accessed.
+* **HomeView**: This is where HTML and widgets values for the HomeView.ui.xml can be accessed.
 
-* HomeView.ui.xml: This is where HTML and widgets are declared for the HomePresenter.
+* **HomeView.ui.xml**: This is where HTML and widgets are declared for the HomePresenter.
 
-* ApplicationModule: This is a GIN module that is used to bind ApplicationPresenter together as well as installing any other sub modules (HomeModule for instance).
+* **ApplicationModule**: This is a GIN module that is used to bind ApplicationPresenter together as well as installing any other sub modules (HomeModule for instance).
 
-* ApplicationPresenter: Contains all of the ApplicationPresenter logic.
+* **ApplicationPresenter**: Contains all of the ApplicationPresenter logic.
 
-* ApplicationUiHandlers: Used to delegate some of the ApplicationView actions to the ApplicationPresenter usually in response of events.
+* **ApplicationUiHandlers**: Used to delegate some of the ApplicationView actions to the ApplicationPresenter usually in response of events.
 
-* ApplicationView: This is where HTML and widgets values for the ApplicationView.ui.xml can be accessed.
+* **ApplicationView**: This is where HTML and widgets values for the ApplicationView.ui.xml can be accessed.
 
-* ApplicationView.ui.xml: This is where HTML and widgets are declared for the ApplicationPresenter.
+* **ApplicationView.ui.xml**: This is where HTML and widgets are declared for the ApplicationPresenter.
 
-* ClientModule: This is your main GIN module from which all of the child modules are loaded. It is also where the `DefaultPlaceManager` is setup.
+* **ClientModule**: This is your main GIN module from which all of the child modules are loaded. It is also where the `DefaultPlaceManager` is setup.
 
-* NameTokens: Contains String constants identifying your [Places]({{#gwtp.doc.url.proxy}}).
+* **NameTokens**: Contains String constants identifying your [Places]({{#gwtp.doc.url.proxy}}).
 
 ## Views and Presenters
 In GWTP, the "View" and "Presenters" terms refer to the [MVP architecture]({{#mvp_architecture}}). The [Presenter]({{#gwtp.doc.url.presenter}}) is where all of the client-side logic should be written (i.e. validation, manipulation to the model layer, etc). The [View]({{#gwtp.doc.url.view}}) only displays what it's told to by the Presenter and should not contain any logic. It takes care of browser specific events and is the only layer aware of the DOM elements.
