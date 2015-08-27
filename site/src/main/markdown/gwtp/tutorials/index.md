@@ -5,8 +5,8 @@ This tutorial is intended for someone having no prior knowledge of GWTP who want
 Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
 ## Prerequisites
-1. [Generating the project](https://youtu.be/Im1DGozNCsU)
-1. [Executing the project](https://youtu.be/6_MQSJy92m0)
+1. [Generating the project]({{#generating_project}})
+1. [Executing the project]({{#executing_project}})
 
 ## Application Structure
 
@@ -28,9 +28,9 @@ Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
     \- NameTokens.java
 ```
 
-## Main files and their purpose
+## Overview of the main files
 
-* HomeModule: This is a GIN module that is used to bind the HomePresenter together.
+* HomeModule: This is a [GIN module]({{#gwtp.doc.url.gin_bindings}}) that is used to bind the HomePresenter together.
 
 * HomePresenter: This is a child Presenter of ApplicationPresenter. It use its parent Presenter's [Slot]({{#gwtp.doc.url.slots}}) to reveal itself.
 
@@ -53,7 +53,7 @@ Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 * NameTokens: Contains String constants identifying your [Places]({{#gwtp.doc.url.proxy}}).
 
 ## Views and Presenters
-In GWTP, the "View" and "Presenters" terms refer to the [MVP architecture](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter). The [Presenter]({{#gwtp.doc.url.presenter}}) is where all of the client-side logic should be written (i.e. validation, manipulation to the model layer, etc). The [View]({{#gwtp.doc.url.view}}) only displays what it's told to by the Presenter and should not contain any logic. It takes care of browser specific events and is the only layer aware of the DOM elements.
+In GWTP, the "View" and "Presenters" terms refer to the [MVP architecture]({{#mvp_architecture}}). The [Presenter]({{#gwtp.doc.url.presenter}}) is where all of the client-side logic should be written (i.e. validation, manipulation to the model layer, etc). The [View]({{#gwtp.doc.url.view}}) only displays what it's told to by the Presenter and should not contain any logic. It takes care of browser specific events and is the only layer aware of the DOM elements.
 
 ### View
 This is the default View for the project:
@@ -82,13 +82,13 @@ It doesn't look like much at first, but there are a couple of key points that we
 
 * The View needs to implement an interface called `MyView` which is contained in the Presenter. This will allow the Presenter to talk to the View using the interface.
 
-* In this tutorial, we use the [UiBinder][uibinder] framework to build the UI. This `interface Binder extends UiBinder<Widget, HomeView> {}` is how we tell GWTP to use the UiBinder XML file associated to the View. We will talk about this later with a [concrete example](#uibinder).
+* In this tutorial, we use the [UiBinder]({{#uibinder}}) framework to build the UI. This `interface Binder extends UiBinder<Widget, HomeView> {}` is how we tell GWTP to use the UiBinder XML file associated to the View. We will talk about this later with a concrete example.
 
-* GWTP is heavily relying on [google-gin](https://code.google.com/p/google-gin/) for [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection), thus the presence of the `@Inject` annotation on the constructor method.
+* GWTP is heavily relying on [google-gin]({{#gin}}) for [dependency injection]({{#dependency_injection}}), thus the presence of the `@Inject` annotation on the constructor method.
 
 
 ### Presenter
-In this example, we have what is called a nested Presenter. This means other Presenters can be nested inside a parent Presenter using a [slot]({{#gwtp.doc.url.slots}}) mechanism. In this case, the ApplicationPresenter is the root Presenter of the application and HomePresenter is nested inside it.
+In this example, we have what is called a nested Presenter. This means other Presenters can be nested inside a parent Presenter using a [slot mechanism]({{#gwtp.doc.url.slots}}). In this case, the ApplicationPresenter is the root Presenter of the application and HomePresenter is nested inside it.
 
 This is the HomePresenter:
 
@@ -133,7 +133,7 @@ Just like we did in the View, we're going to explain the critical points of a Pr
 * `ApplicationPresenter.SLOT_MAIN` tells the Presenter to *reveal* itself into the ApplicationPresenter's slot using the [slot mechanism]({{#gwtp.doc.url.slots}}).
 
 ## UiBinder
-The [UiBinder][uibinder] framework is a declarative way to declare both your HTML and any GWT specific widgets from XML markup.
+The [UiBinder]({{#uibinder}}) framework is a declarative way to declare both your HTML and any GWT specific widgets from XML markup.
 
 Let's take a look back at what we saw earlier in the View section:
 
@@ -158,7 +158,7 @@ This interface is used to bind the View to its associated UiBinder XML file. In 
 
 This will display a simple HTML Panel containing a "Hello World!".
 
-A great way to identify your HTML elements is to use the `ui:field="someField"` attribute. This will allow to get access to the element values and attributes from the View by using its UiField identifier.
+A great way to identify your HTML elements is to use the `ui:field="someField"` attribute. This will allow you to access the values and attributes of any HTML elements or widgets directly from the View.
 
 ```xml
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
@@ -169,14 +169,14 @@ A great way to identify your HTML elements is to use the `ui:field="someField"` 
 </ui:UiBinder>
 ```
 
-Here we've created a TextBox and identified it with the UiField attribute. To access the TextBox's values and attributes from the View, we need to declare a TextBox type variable with a variable name corresponding to the UiField identifier you wish to access. You also need to annotate the variable with `@UiField` in order to bind it to the HTML element. Like this:
+Here we've created a TextBox and identified it with the `ui:field` attribute. To access the TextBox's values and attributes from the View, we need to declare a TextBox type variable with a name corresponding to the value that you gave to the `ui:field` attribute. You also need to annotate the variable with `@UiField` in order to bind it to the HTML element. Like this:
 
 ```java
 @UiField
 TextBox nameField;
 ```
 
-Then, for instance, a nameField attribute could be accessed by using a simple getter method.
+Then, a nameField attribute could be accessed by using a simple getter method for instance.
 
 ```java
 public String getTextFromNameField() {
@@ -184,10 +184,8 @@ public String getTextFromNameField() {
 }
 ```
 
-This is how we create HTML elements and access their values and attributes from the View.
-
 ## UiHandler
-UiHandlers is a GWTP feature that delegate some of the View actions to the Presenter. A good use case for that would be for handling a click event. The UiHandler will tell GWTP which method to call on a specific browser event.
+UiHandlers is a GWTP feature that delegate some of the View actions to the Presenter. A good use case for that would be for handling a click event. The UiHandler will listen to a specific browser event and tell GWTP which method to call when the event is triggered.
 
 ### Creating the UiHandler
 Here are the 5 things you need to do before using UiHandlers:
@@ -261,7 +259,7 @@ public interface HomeUiHandlers extends UiHandlers {
 ```
 
 ### Handling the event
-Now that the HomeUiHandlers is created and correctly set, we can bind it to an event. By using the `@UiHandlers("sendButton")` annotation on a method, GWTP will bind the UiField to an event. In order to listen to a specific event, the event must be passed as a method parameter.
+Now that the HomeUiHandlers is created and correctly set, we can bind it to an event. We can do this by using the `@UiHandlers("sendButton")` annotation on a method. In order to listen to a specific event, it must be passed as a method parameter.
 
 ```java
 @UiHandler("sendButton")
@@ -312,7 +310,7 @@ public void onSend(String name) {
 ```
 
 ## Presenter Module
-A module is used to bind everything together. Every Presenter needs to be bound, but we can bind more than one Presenter per module. We usually have one Module per java package. For instance, we could have something like this:
+Modules are used for [GIN Bindings]({{#gwtp.doc.url.gin_bindings}}) which is the process of linking the Presenters to their View. Every Presenter needs to be bound, but we can bind more than one Presenter per module. We usually have one Module per Java package. For instance, we could have something like this:
 
 ```java
 public class ErrorModule extends AbstractPresenterModule {
@@ -328,12 +326,9 @@ public class ErrorModule extends AbstractPresenterModule {
 }
 ```
 
-And a package named error, for example, would contain all the Presenters mentioned in the snippet.
+And a package named error, for example, would contain all the Presenters mentioned in the snippet. Currently in our project we have 3 modules: ClientModule, ApplicationModule and HomeModule. The ClientModule is the root of all the other modules. HomeModule is installed in ApplicationModule, which in turn is installed in ClientModule. Modules should respect the same hierarchy as your Java packages.
 
 ## Conclusion
 You are now able to create a Presenter and its associated View and delegate some of its action to the Presenter using UiHandlers. You also saw how to create HTML elements and access their values from the View using UiBinder. This conclude the first part of this tutorial. In the next part, we will take a look at PresenterWidgets, Gatekeepers, the PlaceManager and RestDispatch.
 
 Stay tuned for the next part!
-
-
-[uibinder]: (http://www.gwtproject.org/doc/latest/DevGuideUiBinder.html)
