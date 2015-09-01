@@ -32,7 +32,7 @@ Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
 * **HomeModule**: This is a [GIN module]({{#gwtp.doc.url.gin_bindings}}) that is used to bind the HomePresenter together.
 
-* **HomePresenter**: This is a child Presenter of ApplicationPresenter. It use its parent Presenter's [Slot]({{#gwtp.doc.url.slots}}) to reveal itself.
+* **HomePresenter**: This is a child Presenter of ApplicationPresenter. It uses its parent Presenter's [Slot]({{#gwtp.doc.url.slots}}) to reveal itself.
 
 * **HomeView**: This is where HTML and widgets values for the HomeView.ui.xml can be accessed.
 
@@ -53,7 +53,7 @@ Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 * **NameTokens**: Contains String constants identifying your [Places]({{#gwtp.doc.url.proxy}}).
 
 ## Views and Presenters
-In GWTP, the "View" and "Presenters" terms refer to the [MVP architecture]({{#mvp_architecture}}). The [Presenter]({{#gwtp.doc.url.presenter}}) is where all of the client-side logic should be written (i.e. validation, manipulation to the model layer, etc). The [View]({{#gwtp.doc.url.view}}) only displays what it's told to by the Presenter and should not contain any logic. It takes care of browser specific events and is the only layer aware of the DOM elements.
+In GWTP, the "View" and "Presenter" terms refer to the [MVP architecture]({{#mvp_architecture}}). The [Presenter]({{#gwtp.doc.url.presenter}}) is where all of the client-side logic should be written (i.e. validation, manipulation to the model layer, etc). The [View]({{#gwtp.doc.url.view}}) only displays what it's told to by the Presenter and should not contain any logic. It takes care of browser specific events and is the only layer aware of the DOM elements.
 
 ### View
 This is the default View for the project:
@@ -78,9 +78,9 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
 
 It doesn't look like much at first, but there are a couple of key points that we need to explain before we continue.
 
-* HomeView extends `ViewImpl` which gives us access to the `initWidget()` method. This method will take care of initializing any DOM specific elements for you.
+* HomeView extends `ViewImpl` which gives us access to the `initWidget()` method. This method will take care of initializing any DOM specific element for you.
 
-* The View needs to implement an interface called `MyView` which is contained in the Presenter. This will allow the Presenter to talk to the View using the interface.
+* The View needs to implement the interface `MyView` which is contained in the Presenter. This will allow the Presenter to talk to the View using the interface.
 
 * In this tutorial, we use the [UiBinder]({{#uibinder}}) framework to build the UI. This `interface Binder extends UiBinder<Widget, HomeView> {}` is how we tell GWTP to use the UiBinder XML file associated to the View. We will talk about this later with a concrete example.
 
@@ -124,7 +124,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
 
 Just like we did in the View, we're going to explain the critical points of a Presenter:
 
-* `extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>` defines the ApplicationPresenter superclass. This means the interfaces `MyView` and `MyProxy` needs to be defined into the class. `MyView` is the interface we implemented in the View earlier and `MyProxy` is responsible for listening to any event that would require the Presenter and the View to be created.
+* `extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>` defines the ApplicationPresenter superclass. This means the interfaces `MyView` and `MyProxy` need to be defined into the class. `MyView` is the interface we implemented in the View earlier and `MyProxy` is responsible for listening to any event that would require the Presenter and the View to be created.
 
 * `@ProxyStandard` annotation is used to specify whether or not your Presenter should use GWT's code splitting feature. In this case, code splitting is not used but we could have simply used the `@ProxyCodeSplit` annotation instead of this one to use code split. You can learn more on code splitting [here]({{#gwtp.doc.url.proxy}}).
 
@@ -149,9 +149,7 @@ This interface is used to bind the View to its associated UiBinder XML file. In 
         xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
     <g:HTMLPanel>
-
         <p>Hello world!</p>
-
     </g:HTMLPanel>
 </ui:UiBinder>
 ```
@@ -176,7 +174,7 @@ Here we've created a TextBox and identified it with the `ui:field` attribute. To
 TextBox nameField;
 ```
 
-Then, a nameField attribute could be accessed by using a simple getter method for instance.
+Then, a nameField attribute could be accessed by using a simple getter method, for instance.
 
 ```java
 public String getTextFromNameField() {
@@ -254,7 +252,7 @@ Then we declare the method we want the UiHandler to call when the event will be 
 
 ```java
 public interface HomeUiHandlers extends UiHandlers {
-    void onSend(String name);  // Method we want the Presenter to implement.
+    void onSend(String name);  // The method we want the Presenter to implement.
 }
 ```
 
@@ -326,7 +324,9 @@ public class ErrorModule extends AbstractPresenterModule {
 }
 ```
 
-And a package named error, for example, would contain all the Presenters mentioned in the snippet. Currently in our project we have 3 modules: ClientModule, ApplicationModule and HomeModule. The ClientModule is the root of all the other modules. HomeModule is installed in ApplicationModule, which in turn is installed in ClientModule. Modules should respect the same hierarchy as your Java packages.
+These Presenters would be contained in the same package that could be named "error", for instance.
+
+Currently in our project we have 3 modules: ClientModule, ApplicationModule and HomeModule. The ClientModule is the root of all the other modules. HomeModule is installed in ApplicationModule, which in turn is installed in ClientModule. Modules should respect the same hierarchy as your Java packages.
 
 ## Conclusion
 You are now able to create a Presenter and its associated View and delegate some of its action to the Presenter using UiHandlers. You also saw how to create HTML elements and access their values from the View using UiBinder. This conclude the first part of this tutorial. In the next part, we will take a look at PresenterWidgets, Gatekeepers, the PlaceManager and RestDispatch.
