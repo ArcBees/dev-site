@@ -14,22 +14,22 @@
  * the License.
  */
 
-package com.google.gwt.site.demo.gsss.animation;
+package com.google.gwt.site.demo.gwtchosen.sample;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.site.demo.AbstractDemos;
-import com.google.gwt.site.demo.gsss.animation.examples.Examples;
-import com.google.gwt.site.demo.gsss.animation.resources.AnimationResources;
 import com.google.web.bindery.event.shared.EventBus;
 
-public class GSSSAnimationDemos extends AbstractDemos {
-    private static final AnimationResources MIXINS = GWT.create(AnimationResources.class);
+public class GwtChosenSampleDemos extends AbstractDemos {
+    public GwtChosenSampleDemos(EventBus eventBus) {
+        super(eventBus, "gwtchosen-sample-");
 
-    public GSSSAnimationDemos(EventBus eventBus) {
-        super(eventBus, "gsss-animation-");
-
-        MIXINS.style().ensureInjected();
-
-        registerDemo(1, Examples.create(MIXINS.style().example1()));
+        registerDemo(1, new WhatIsChosen());
+        registerDemo(2, new OptgroupSupport());
+        registerDemo(3, new SelectedDisabledSupport());
+        registerDemo(4, new AdvancedCLBOptions());
+        registerDemo(5, new ChosenOptionsView());
+        registerDemo(6, new Events());
+        registerDemo(7, new UpdatingDynamically());
+        registerDemo(8, new CustomFiltering());
     }
 }

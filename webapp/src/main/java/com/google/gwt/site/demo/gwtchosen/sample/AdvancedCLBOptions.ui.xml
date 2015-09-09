@@ -1,0 +1,18 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+    <g:HTMLPanel tag="section">
+
+        <div class="row">
+            <div class="col col_full">
+                <p>
+                    The <code>ChosenListBox</code> widget allows you to programmatically construct option hierarchies of arbitrary depth
+                    within or outside of groups, as well as add CSS class names to individual options:
+                </p>
+            </div>
+            <g:SimplePanel ui:field="hierChosenSingle"/>
+        </div>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

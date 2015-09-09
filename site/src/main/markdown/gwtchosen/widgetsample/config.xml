@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="Widget Sample"
+        displayName="Widget Sample"
+        style="gwtchosen">
+    <toc>
+        <entries>
+            <entry name="" displayName="Overview"/>
+        </entries>
+    </toc>
+</folder>
