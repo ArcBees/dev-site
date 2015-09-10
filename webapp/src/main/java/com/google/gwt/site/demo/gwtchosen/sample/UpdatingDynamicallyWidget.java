@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import static com.google.gwt.query.client.GQuery.$;
 
-public class UpdatingDynamically implements IsWidget {
+public class UpdatingDynamicallyWidget implements IsWidget {
 
     private static Binder uiBinder = GWT.create(Binder.class);
 
@@ -25,11 +25,11 @@ public class UpdatingDynamically implements IsWidget {
 
     private final Widget widget;
 
-    @UiTemplate("UpdatingDynamically.ui.xml")
-    interface Binder extends UiBinder<Widget, UpdatingDynamically> {
+    @UiTemplate("UpdatingDynamicallyWidget.ui.xml")
+    interface Binder extends UiBinder<Widget, UpdatingDynamicallyWidget> {
     }
 
-    public UpdatingDynamically() {
+    public UpdatingDynamicallyWidget() {
         widget = uiBinder.createAndBindUi(this);
 
         widget.addAttachHandler(new AttachEvent.Handler() {

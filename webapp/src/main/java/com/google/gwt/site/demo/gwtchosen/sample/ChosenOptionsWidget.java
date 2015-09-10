@@ -14,7 +14,7 @@ import com.google.gwt.user.client.ui.Widget;
 import static com.arcbees.chosen.client.Chosen.Chosen;
 import static com.google.gwt.query.client.GQuery.$;
 
-public class ChosenOptionsView implements IsWidget {
+public class ChosenOptionsWidget implements IsWidget {
     private static Binder uiBinder = GWT.create(Binder.class);
 
     @UiField
@@ -40,11 +40,11 @@ public class ChosenOptionsView implements IsWidget {
 
     private final Widget widget;
 
-    @UiTemplate("ChosenOptionsView.ui.xml")
-    interface Binder extends UiBinder<Widget, ChosenOptionsView> {
+    @UiTemplate("ChosenOptionsWidget.ui.xml")
+    interface Binder extends UiBinder<Widget, ChosenOptionsWidget> {
     }
 
-    public ChosenOptionsView() {
+    public ChosenOptionsWidget() {
         widget = uiBinder.createAndBindUi(this);
 
         widget.addAttachHandler(new AttachEvent.Handler() {

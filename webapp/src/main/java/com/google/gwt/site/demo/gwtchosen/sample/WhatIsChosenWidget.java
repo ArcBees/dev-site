@@ -1,3 +1,19 @@
+/**
+ * Copyright 2015 ArcBees Inc.
+ * <p/>
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * <p/>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p/>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
+
 package com.google.gwt.site.demo.gwtchosen.sample;
 
 import com.google.gwt.core.client.GWT;
@@ -12,29 +28,29 @@ import com.google.gwt.user.client.ui.Widget;
 import static com.arcbees.chosen.client.Chosen.Chosen;
 import static com.google.gwt.query.client.GQuery.$;
 
-public class SelectedDisabledSupport implements IsWidget {
+public class WhatIsChosenWidget implements IsWidget {
 
     private static Binder uiBinder = GWT.create(Binder.class);
 
     @UiField
-    SelectElement chosenSingle;
+    SelectElement chosenSelect;
     @UiField
     SelectElement chosenMultiple;
 
     private final Widget widget;
 
-    @UiTemplate("SelectedDisabledSupport.ui.xml")
-    interface Binder extends UiBinder<Widget, SelectedDisabledSupport> {
+    @UiTemplate("WhatIsChosenWidget.ui.xml")
+    interface Binder extends UiBinder<Widget, WhatIsChosenWidget> {
     }
 
-    public SelectedDisabledSupport() {
+    public WhatIsChosenWidget() {
         widget = uiBinder.createAndBindUi(this);
 
         widget.addAttachHandler(new AttachEvent.Handler() {
             @Override
             public void onAttachOrDetach(AttachEvent attachEvent) {
                 if (attachEvent.isAttached()) {
-                    $(chosenSingle).as(Chosen).chosen();
+                    $(chosenSelect).as(Chosen).chosen();
                     $(chosenMultiple).as(Chosen).chosen();
                 }
             }

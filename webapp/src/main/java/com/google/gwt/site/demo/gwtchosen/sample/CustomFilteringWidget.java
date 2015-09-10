@@ -17,7 +17,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import java.util.List;
 
-public class CustomFiltering implements IsWidget {
+public class CustomFilteringWidget implements IsWidget {
 
     private static Binder uiBinder = GWT.create(Binder.class);
 
@@ -92,11 +92,11 @@ public class CustomFiltering implements IsWidget {
         }
     }
 
-    @UiTemplate("CustomFiltering.ui.xml")
-    interface Binder extends UiBinder<Widget, CustomFiltering> {
+    @UiTemplate("CustomFilteringWidget.ui.xml")
+    interface Binder extends UiBinder<Widget, CustomFilteringWidget> {
     }
 
-    public CustomFiltering() {
+    public CustomFilteringWidget() {
         widget = uiBinder.createAndBindUi(this);
 
         widget.addAttachHandler(new AttachEvent.Handler() {

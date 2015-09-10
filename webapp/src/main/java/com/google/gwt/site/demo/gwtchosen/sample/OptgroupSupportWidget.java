@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.Widget;
 import static com.arcbees.chosen.client.Chosen.Chosen;
 import static com.google.gwt.query.client.GQuery.$;
 
-public class OptgroupSupport implements IsWidget {
+public class OptgroupSupportWidget implements IsWidget {
 
     private static Binder uiBinder = GWT.create(Binder.class);
 
@@ -21,11 +21,11 @@ public class OptgroupSupport implements IsWidget {
 
     private final Widget widget;
 
-    @UiTemplate("OptgroupSupport.ui.xml")
-    interface Binder extends UiBinder<Widget, OptgroupSupport> {
+    @UiTemplate("OptgroupSupportWidget.ui.xml")
+    interface Binder extends UiBinder<Widget, OptgroupSupportWidget> {
     }
 
-    public OptgroupSupport() {
+    public OptgroupSupportWidget() {
         widget = uiBinder.createAndBindUi(this);
 
         widget.addAttachHandler(new AttachEvent.Handler() {

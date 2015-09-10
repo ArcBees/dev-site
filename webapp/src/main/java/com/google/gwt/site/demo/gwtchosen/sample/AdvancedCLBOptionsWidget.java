@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AdvancedCLBOptions implements IsWidget {
+public class AdvancedCLBOptionsWidget implements IsWidget {
     private static Binder uiBinder = GWT.create(Binder.class);
 
     @UiField
@@ -18,11 +18,11 @@ public class AdvancedCLBOptions implements IsWidget {
 
     private final Widget widget;
 
-    @UiTemplate("AdvancedCLBOptions.ui.xml")
-    interface Binder extends UiBinder<Widget, AdvancedCLBOptions> {
+    @UiTemplate("AdvancedCLBOptionsWidget.ui.xml")
+    interface Binder extends UiBinder<Widget, AdvancedCLBOptionsWidget> {
     }
 
-    public AdvancedCLBOptions() {
+    public AdvancedCLBOptionsWidget() {
         widget = uiBinder.createAndBindUi(this);
 
         widget.addAttachHandler(new AttachEvent.Handler() {
