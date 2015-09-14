@@ -11,4 +11,4 @@ Universal Analytics is a complete GWT wrapper for Google's Universal Analytics L
 
 ## Source Code
 
-(https://github.com/ArcBees/universal-analytics)
+[https://github.com/ArcBees/universal-analytics](https://github.com/ArcBees/universal-analytics)

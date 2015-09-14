@@ -3,11 +3,16 @@
 <folder title="Tools and Patterns" displayName="Tools and Patterns">
     <toc>
         <entries>
-            <entry name="index" title="Resources" displayName="Resources"/>
-            <entry name="Observer" title="Observer" displayName="Observer"/>
-            <entry name="Website-Embedding" title="Website Embedding" displayName="Website Embedding"/>
-            <entry name="Boilerplate-Generation" title="Boilerplate Generation" displayName="Boilerplate Generation"/>
-            <entry name="Unit-Testing-Cookbook" title="Unit Testing Cookbook" displayName="Unit Testing Cookbook"/>
+            <entry name="index" title="Resources" displayName="Resources"
+                    description="Bbootstrapping and using resources. This goes over resource types Messages, Constants, CSS and Images."/>
+            <entry name="Observer" title="Observer" displayName="Observer"
+                    description="Grouped Events Observing."/>
+            <entry name="Website-Embedding" title="Website Embedding" displayName="Website Embedding"
+                    description="Embedding GWTP application into a website."/>
+            <entry name="Boilerplate-Generation" title="Boilerplate Generation" displayName="Boilerplate Generation"
+                    description="GWTP provides annotation processors that reduce the effort of creating classes that primarily consist of boilerplate code."/>
+            <entry name="Unit-Testing-Cookbook" title="Unit Testing Cookbook" displayName="Unit Testing Cookbook"
+                    description="How to write unit tests for your GWTP Presenters, using the power of Jukito."/>
         </entries>
     </toc>
 </folder>

@@ -1,9 +1,9 @@
 # Merge Locale
 
-# Introduction
+## Introduction
 Using [UIBinder internationalisation features](http://www.gwtproject.org/doc/latest/DevGuideUiBinderI18n.html) can be difficult.
 
-# Solution
+## Solution
 To overcome this problem, GWTP makes it easy for you to store all your translations in:
 * `src/com/google/gwt/i18n/client/LocalizableResource.properties`
 * `src/com/google/gwt/i18n/client/LocalizableResource_fr.properties`
@@ -18,16 +18,8 @@ The exact process is as follows:
 
 For more details on the script, run `mergelocales --help`.
 
-# Additional information
-GWT looks for the `LocalizableResource???.properties` files in the
-directory of your class implementing Constants or Messages, and in
-the directory of any super interfaces. The problem with `UiBinder`
-translations is that the associated `LocalizableResource` files are
-generated in the folder of the `UiBinder` file, so your resources are
-spread across your directories. `mergelocales` looks for all of these and
-merges them intelligently in a central location: com.google.gwt.i18n.client. This is legit since this package is the
-directory of the `LocalizableResource`, a superinterface common to both
-Constants and Messages.
+## Additional information
+GWT looks for the `LocalizableResource???.properties` files in the directory of your class implementing Constants or Messages, and in the directory of any super interfaces. The problem with `UiBinder`translations is that the associated `LocalizableResource` files aregenerated in the folder of the `UiBinder` file, so your resources arespread across your directories. `mergelocales` looks for all of these andmerges them intelligently in a central location: com.google.gwt.i18n.client. This is legit since this package is thedirectory of the `LocalizableResource`, a superinterface common to bothConstants and Messages.
 
 When compiling a localized GWT project, one has to
 * compile 1st time, to generate extras locales

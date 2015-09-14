@@ -2,25 +2,41 @@
 <folder href="index"
         displayName="Getting Started"
         title="GQuery"
-        description="GQuery"
+        description="GQuery, or GwtQuery, is a jQuery-like library for GWT that enables a page-oriented progressive enhancement style programming model."
+        image="assets/build/img/facebook-gquery.png"
         style="gquery">
     <toc>
         <entries>
-            <entry name="index" title="Overview" displayName="Overview"></entry>
-            <entry name="ajax" title="Ajax" displayName="Ajax"></entry>
-            <entry name="download" title="Download" displayName="Download"></entry>
-            <entry name="contributing" title="How to contribute" displayName="How to contribute"></entry>
-            <entry name="creating-apps" title="Creating applications" displayName="Creating applications"></entry>
-            <entry name="css-guide" title="CSS guide" displayName="CSS Guide"></entry>
-            <entry name="data-binding" title="Data binding" displayName="Data binding"></entry>
-            <entry name="cookbook" title="GQuery Cookbook" displayName="GQuery Cookbook"></entry>
-            <entry name="issues" title="Issues" displayName="Issues"></entry>
-            <entry name="jsquery" title="JsQuery" displayName="JsQuery"></entry>
-            <entry name="promises" title="Promise" displayName="Promise"></entry>
-            <entry name="roadmap" title="Road map" displayName="Road map"></entry>
-            <entry name="sources" title="Sources" displayName="Sources"></entry>
-            <entry name="snapshot" title="Snapshots" displayName="Snapshots"></entry>
-            <entry name="plugins" title="Plugins" displayName="Plugins"></entry>
+            <entry name="index" title="Overview" displayName="Overview"
+                    description="GQuery, or GwtQuery, is a jQuery-like library for GWT that enables a page-oriented progressive enhancement style programming model."></entry>
+            <entry name="ajax" title="Ajax" displayName="Ajax"
+                    description="RPC, Request Factory, Request Builder, jQuery syntax and builders to handle JSON and XML."></entry>
+            <entry name="download" title="Download" displayName="Download"
+                    description="Stable release, older versions and snapshot."></entry>
+            <entry name="contributing" title="How to contribute" displayName="How to contribute"
+                    description="Contributions are welcome! The main goal of this page is to explain a number of points in order to ease contribution in GwtQuery."></entry>
+            <entry name="creating-apps" title="Creating applications" displayName="Creating applications"
+                    description="How to create a new mavenized gwt-application which uses gQuery, from scratch, and using the gquery-archetype."></entry>
+            <entry name="css-guide" title="CSS guide" displayName="CSS Guide"
+                    description="GwtQuery proposes a nice, easy, IDE-friendly and type-safe way to set up css on your elements or widgets."></entry>
+            <entry name="data-binding" title="Data binding" displayName="Data binding"
+                    description="The usage of data binders makes the code more readable, type-saving, handing nulls, type castings, etc, without penalizing the performance."></entry>
+            <entry name="cookbook" title="GQuery Cookbook" displayName="GQuery Cookbook"
+                    description="GSOC Ideas for GQuery."></entry>
+            <entry name="issues" title="Issues" displayName="Issues"
+                    description="Please report any issue to the GitHub issues management system. All of the existing issues were moved to GitHub."></entry>
+            <entry name="jsquery" title="JsQuery" displayName="JsQuery"
+                    description="JsQuery is a project with allows to export gQuery methods and objects to javascript, so as we can produce a library which could be used as a replacement of jQuery."></entry>
+            <entry name="promises" title="Promise" displayName="Promise"
+                    description="A Promise represents a one-time event, typically the outcome of an async task like an Ajax call."></entry>
+            <entry name="roadmap" title="Road map" displayName="Road map"
+                    description="This is an enumeration of thoughts which would be nice to have in gwtquery."></entry>
+            <entry name="sources" title="Sources" displayName="Sources"
+                    description="Sources of gwtquery are now hosted at GitHub."></entry>
+            <entry name="snapshot" title="Snapshots" displayName="Snapshots"
+                    description="How to use the latest code from trunk."></entry>
+            <entry name="plugins" title="Plugins" displayName="Plugins"
+                    description="GQuery supports a Plugin system for extension of the core GQuery object."></entry>
         </entries>
     </toc>
 </folder>

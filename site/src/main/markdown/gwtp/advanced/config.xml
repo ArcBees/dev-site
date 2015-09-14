@@ -3,12 +3,18 @@
 <folder title="Advanced Features" displayName="Advanced Features">
     <toc>
         <entries>
-            <entry name="index" title="Form Factors" displayName="Form Factors"/>
-            <entry name="Phonegap-support" title="Phonegap Support" displayName="Phonegap Support"/>
-            <entry name="crawler-support" title="Crawler Support" displayName="Crawler Support"/>
-            <entry name="Custom-Proxy-Class" title="Custom Proxy Class" displayName="Custom Proxy Class"/>
-            <entry name="Google-Universal-Analytics" title="Google Universal Analytics" displayName="Google Universal Analytics"/>
-            <entry name="Merge-Locale" title="Merge Locale" displayName="Merge Locale"/>
+            <entry name="index" title="Form Factors" displayName="Form Factors"
+                    description="Native form factors support."/>
+            <entry name="Phonegap-support" title="Phonegap Support" displayName="Phonegap Support"
+                    description="How to use PhoneGapDispatchAsync with DefaultDispatchAsync for deploying an application to PhoneGap."/>
+            <entry name="crawler-support" title="Crawler Support" displayName="Crawler Support"
+                    description="GWTP makes it easy for your website to be crawlable by search engines that follows Google's AJAX crawling specification."/>
+            <entry name="Custom-Proxy-Class" title="Custom Proxy Class" displayName="Custom Proxy Class"
+                    description="In rare cases, it might be useful to code your own custom Proxy class."/>
+            <entry name="Google-Universal-Analytics" title="Google Universal Analytics" displayName="Google Universal Analytics"
+                    description="The Universal Analytics library lets you make calls to Google Analytics directly from Java code."/>
+            <entry name="Merge-Locale" title="Merge Locale" displayName="Merge Locale"
+                    description="GWTP makes it easy for you to store all your translations with UIBinder internationalisation features."/>
         </entries>
     </toc>
 </folder>

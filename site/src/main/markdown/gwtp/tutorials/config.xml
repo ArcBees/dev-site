@@ -3,7 +3,8 @@
 <folder title="Tutorials" displayName="Tutorials">
     <toc>
         <entries>
-            <entry name="index" displayName="Beginner's Tutorial"/>
+            <entry name="index" displayName="Beginner's Tutorial"
+                    description="This tutorial is intended for someone having no prior knowledge of GWTP who wants to get started right away writing some code."/>
         </entries>
     </toc>
 </folder>

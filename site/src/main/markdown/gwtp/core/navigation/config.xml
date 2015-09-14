@@ -3,12 +3,17 @@
 <folder title="Navigation" displayName="Navigation">
     <toc>
         <entries>
-            <entry name="index" title="Linking Places to a Token" displayName="Linking Places to a Token"/>
-            <entry name="reveal-places" title="Revealing Places" displayName="Revealing Places"/>
-            <entry name="token-formats" title="Token Formats" displayName="Token Formats"/>
+            <entry name="index" title="Linking Places to a Token" displayName="Linking Places to a Token"
+                    description="Some presenters can be associated to a specific URL. GWTP makes it possible by managing the hash section of the URL."/>
+            <entry name="reveal-places" title="Revealing Places" displayName="Revealing Places"
+                    description="Display the presenter associated with the requested token and trigger the lifecycle methods on that presenter."/>
+            <entry name="token-formats" title="Token Formats" displayName="Token Formats"
+                    description="Default, Crawlable and Route Token Formatter."/>
             <entry name="navigation-confirmation" title="Navigation Confirmation"
-                    displayName="Navigation Confirmation"/>
-            <entry name="manual-reveal" title="Manual Reveal (Presenters)" displayName="Manual Reveal (Presenters)"/>
+                    displayName="Navigation Confirmation"
+                    description="GWTP offers a built-in mechanism to display a confirmation dialog when the user tries to leave a page without saving its changes."/>
+            <entry name="manual-reveal" title="Manual Reveal (Presenters)" displayName="Manual Reveal (Presenters)"
+                    description="Manual reveal gives you greater control over the precise moment at which a presenter is revealed."/>
         </entries>
     </toc>
 </folder>

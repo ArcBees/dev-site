@@ -2,7 +2,7 @@
 
 Client action handlers or rpc-dispatch.
 
-#Introduction
+## Introduction
 Introduced in GWTP 0.5, client action handlers are a powerful way to extend the command pattern.
 
 Unlike "normal" action handlers which are run on the server, and receive requests over gwt-rpc, client action handlers are run on the client before the request is sent over the wire, and can provide a number of benefits :
@@ -11,10 +11,10 @@ Unlike "normal" action handlers which are run on the server, and receive request
   * The result can be modified or processed after it is returned from the server.
   * The client action handler can take over and communicate directly with the server, possibly using a different mechanism than GWT-RPC.
 
-#Client Action Handlers HOWTO
+## Client Action Handlers HOW-TO
 In the following example we will implement a ClientActionHandler that caches the result on the client so that subsequent calls don't have to contact the server as long as the fetched object is in the cache. Note that once the ClientActionHandler is implemented, you use the dispatcher normally. The code below will automatically 'inject' your ClientActionHandler into the dispatch call.
 
-###Creating the ClientActionHandler
+### Creating the ClientActionHandler
 The first thing we need to do is to create the actual ClientActionHandler. Think of this as a client-side version of a normal server-side ActionHandler. Once this ClientActionHandler is installed, this class will be called instead of the ActionHandler on the server.
 
 
@@ -158,7 +158,7 @@ Note that since our example is all about caching the result from the server, we 
 Congratulations! Now calling the `FooRetrieveAction` will call `ClientActionHandler` instead.
 
 
-##Testing Presenters that use client action handlers
+## Testing Presenters that use client action handlers
 
 ```java
 @RunWith(MockitoJUnitRunner.class)
@@ -230,7 +230,7 @@ public class TestMyPresenter {
 }
 ```
 
-#Examples
+## Examples
 
 ### Geocoding Example ###
 The following code demonstrates a client action handler that communicate directly with a server using a different mechanism than gwt-rpc.

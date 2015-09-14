@@ -5,7 +5,7 @@
         title CDATA #IMPLIED
         description CDATA #IMPLIED
         style CDATA #IMPLIED
-        logo CDATA #IMPLIED
+        image CDATA #IMPLIED
 >
 
 <!ELEMENT toc (

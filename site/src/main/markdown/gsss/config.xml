@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Todo: JASON: find better description-->
 <folder title="GSSS"
         description="GSS on Steroids"
+        image="assets/build/img/facebook-gsss.png"
         style="gsss">
     <toc>
         <entries>
-            <entry name="mixins/" displayName="Mixins"></entry>
-            <entry name="grid/" displayName="Grid"></entry>
-            <entry name="animation/" displayName="Animation"></entry>
+            <entry name="mixins/" displayName="Mixins"
+                    description="A library of mixins ready to use. Vendor prefixes made easy."></entry>
+            <entry name="grid/" displayName="Grid"
+                    description="Responsive grid templating system, ready to use in your GWT project."></entry>
+            <entry name="animation/" displayName="Animation"
+                    description="A library of animation mixins ready to use. Animations made easy."></entry>
         </entries>
     </toc>
 </folder>
