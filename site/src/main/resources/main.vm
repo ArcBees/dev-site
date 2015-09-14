@@ -11,10 +11,13 @@
     <meta property="description" content="${node.description}"/>
     <meta property="og:description" content="${node.description}">
 #end
-#if (${node.title})
     
+#if (${node.title} != "")
     <meta property="og:title" content="${node.title}">
     <title>${node.title}</title>
+#else
+    <meta property="og:title" content="Arcbees platform for developers">
+    <title>Arcbees platform for developers</title>
 #end
 #if (${node.image})
     
