@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE folder SYSTEM "folder.dtd">
+<folder title="GWTP" 
+        displayName="GWTP"
+        description="GWT-Platform (GWTP) is your companion for building large web applications based on Google Web Toolkit (GWT)."
+        logo="assets/build/img/facebook-gwtp.png"
+        style="gwtp">
+    <toc>
+        <entries>
+            <entry name="index" displayName="Overview"
+                    description="GWT-Platform (GWTP) is your companion for building large web applications based on Google Web Toolkit (GWT)."/>
+            <entry name="tutorials/" displayName="Beginner's Tutorial"
+                    description="This tutorial is intended for someone having no prior knowledge of GWTP who wants to get started right away writing some code."/>
+            <entry name="get-started/" displayName="Get Started"
+                    description="Generate a project structure by using a Maven Archetype. The Archetype will generate all the boilerplate required to get a fresh project started."/>
+            <entry name="core/" displayName="Core (MVP)"
+                    description="Presenters, Slots, Navigation, Security, Events, Optimizations."/>
+            <entry name="advanced/" displayName="Advanced Features"
+                    description="Form factors, Phonegap support, Crawler support, Custom proxy class, Google Universal Analytics, Merge locale."/>
+            <entry name="communication/" displayName="Communication"
+                    description="Rest Dispatch, RPC-Dispatch, Actions Validators, Client Action Handlers, CSRF Protection."/>
+            <entry name="tools/" displayName="Tools and Patterns"
+                    description="Resources, Observer, Website Embedding, Boilerplate Generation, Unit Testing Cookbook."/>
+            <entry name="resources/" displayName="Resources"
+                    description="Migrating"/>
+            <entry name="contributing/" displayName="Contributing"
+                    description="How to contribute."/>
+            <entry name="License" displayName="License"
+                    description="GWTP is released under the APACHE 2 license."/>
+        </entries>
+    </toc>
+</folder>
