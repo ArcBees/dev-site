@@ -28,7 +28,7 @@ mkdir -p src/main/java/com/mydomain/myproject/client/application/home
 mkdir -p src/main/java/webapp/WEB-INF
 ```
 
-# Import the Dependencies
+## Import the Dependencies
 In order to use GWTP, you need to import the source code. This can either be done with a dependency management tool (Maven, Gradle, etc.) or manually. We highly recommend using such a tool as it makes managing transitive dependencies a lot easier.
 
 If using Maven you should really skip through the boilerplate and [use an archetype]({{#gwtp.doc.url.use_archetype}}).

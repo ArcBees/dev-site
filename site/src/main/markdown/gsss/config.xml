@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <folder title="GSSS"
         description="GSS on Steroids"
-        image="assets/build/img/facebook-gsss.png"
         style="gsss">
     <toc>
         <entries>

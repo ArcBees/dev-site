@@ -3,7 +3,7 @@
 <folder title="GWTP" 
         displayName="GWTP"
         description="GWT-Platform (GWTP) is your companion for building large web applications based on Google Web Toolkit (GWT)."
-        image="assets/build/img/facebook-gwtp.png"
+        logo="assets/build/img/facebook-gwtp.png"
         style="gwtp">
     <toc>
         <entries>

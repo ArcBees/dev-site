@@ -2,7 +2,7 @@
 <folder href="index"
         title="Jukito"
         description="Jukito lets you use dependency injection in all your tests, be they unit tests, full integration tests, or anything in between. Automocking power reducing boilerplate to a minimum, annotation-based and typesafe syntax for parameterized tests."
-        image="assets/build/img/facebook-jukito.png"
+        logo="assets/build/img/facebook-jukito.png"
         style="jukito">
     <toc>
         <entries>

@@ -3,7 +3,7 @@
         displayName="Getting Started"
         title="GQuery"
         description="GQuery, or GwtQuery, is a jQuery-like library for GWT that enables a page-oriented progressive enhancement style programming model."
-        image="assets/build/img/facebook-gquery.png"
+        logo="assets/build/img/facebook-gquery.png"
         style="gquery">
     <toc>
         <entries>

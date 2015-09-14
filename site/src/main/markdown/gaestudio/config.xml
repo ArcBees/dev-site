@@ -3,7 +3,7 @@
         displayName="Getting Started"
         title="GAE Studio"
         description="Helps you optimize applications hosted on Google App Engine. Real-time analysis of datastore requests, allows datastore exploration, modification, deletion, import and export."
-        image="assets/build/img/facebook-gae.png"
+        logo="assets/build/img/facebook-gae.png"
         style="gaestudio">
         <toc>
                 <entries>
