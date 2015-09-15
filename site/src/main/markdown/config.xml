@@ -2,7 +2,7 @@
 <!DOCTYPE folder SYSTEM "folder.dtd">
 <folder displayName="Arcbees platform for developers"
         description="GWTP, Jukito, GQuery, GWT-Chosen, GSSS, Universal Analytics, GAE Studio."
-        logo="assets/build/img/facebook.png">
+        logo="http://dev.arcbees.com/assets/build/img/facebook.png">
     <toc>
         <entries>
             <entry name="index" displayName="Arcbees platform for developers" title="Arcbees' platform for developers"
