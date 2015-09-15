@@ -25,30 +25,26 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
 * Create a file named `application.xml` in `/src/META-INF`
 
     ```xml
-        <?xml version="1.0" encoding="UTF-8"?>
+        <?xml version="1.0" encoding="utf-8"?>
         <application xmlns="http://java.sun.com/xml/ns/javaee"
                 xmlns:xsi="http://www.w3.omarg/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
                     http://java.sun.com/xml/ns/javaee/application_5.xsd"
                 version="5">
-
             <description>${project.name}</description>
             <display-name>${project.name}</display-name>
-
             <module>
                 <web>
                     <web-uri>${project.build.finalName}.war</web-uri>
                     <context-root>/</context-root>
                 </web>
             </module>
-
             <module>
                 <web>
                     <web-uri>gae-studio-${gae-studio.version}.war</web-uri>
                     <context-root>/gaestudio</context-root>
                 </web>
             </module>
-
             <library-directory>lib</library-directory>
         </application>
     ```
@@ -83,26 +79,22 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
     ```xml
         <profile>
             <id>create-ear</id>
-
             <build>
                 <resources>
                     <resource>;
                         <directory>src/META-INF</directory>
                         <targetPath>${webappDirectory}/META-INF</targetPath>
                         <filtering>true</filtering>
-
                         <includes>
                             <include>**/*.xml</include>
                         </includes>
                     </resource>
                 </resources>
-
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-ear-plugin</artifactId>
                         <version>2.10</version>
-
                         <configuration>
                             <version>5</version>
                             <generateApplicationXml>false</generateApplicationXml>
@@ -113,7 +105,6 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                             </packagingExcludes>
                             <unpackTypes>war</unpackTypes>
                         </configuration>
-
                         <executions>
                             <execution>
                                 <phase>install</phase>
@@ -125,7 +116,6 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                     </plugin>
                 </plugins>
             </build>
-
             <dependencies>
                 <!-- GAE Studio -->
                 <dependency>
@@ -134,7 +124,6 @@ GAE Studio will be available at http://gaestudio.__application_id__.appspot.com
                     <version>${gae-studio.version}</version>
                     <type>war</type>
                 </dependency>
-
                 <dependency>
                     <groupId>${project.groupId}</groupId>
                     <artifactId>${project.artifactId}</artifactId>
@@ -154,9 +143,3 @@ GAE Studio is already declared as a module called 'gaestudio'.
 You can run this EAR using the Java Appengine Tools (Google Appengine SDK for Java): /appengine-java-sdk-x.y.z/bin/dev_appserver.sh /path/to/my/ear.
 The development server will start your app and GAE Studio on two different ports. They will be displayed in the
 console output. ie: INFO: Module instance gaestudio is running at http://localhost:8081/
-
-##Running GAE Studio locally (Python runtime)
-
-##Running GAE Studio locally (Go runtime)
-
-##Running GAE Studio locally (PHP runtime)

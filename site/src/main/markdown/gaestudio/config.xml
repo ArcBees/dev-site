@@ -2,12 +2,15 @@
 <folder href="index"
         displayName="Getting Started"
         title="GAE Studio"
-        description="Running GAE Studio on AppEngine 1. Download the latest war of GAE Studio from our Drive folder 2. Extract the content of the war to your preferred location."
+        description="Helps you optimize applications hosted on Google App Engine. Real-time analysis of datastore requests, allows datastore exploration, modification, deletion, import and export."
+        logo="assets/build/img/facebook-gae.png"
         style="gaestudio">
         <toc>
                 <entries>
-                        <entry name="index" title="Overview" displayName="Overview"></entry>
-                        <entry name="contributing/" displayName="Contributing"></entry>
+                        <entry name="index" title="Overview" displayName="Overview"
+                                description="Helps you optimize applications hosted on Google App Engine. Real-time analysis of datastore requests, allows datastore exploration, modification, deletion, import and export."></entry>
+                        <entry name="contributing/" displayName="Contributing"
+                                description="How to help make this project better."></entry>
                 </entries>
         </toc>
 </folder>

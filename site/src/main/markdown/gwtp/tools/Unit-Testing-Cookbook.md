@@ -6,9 +6,7 @@ GWT provides testing facilities through GWTTestCase. However, you may have exper
 
 In this article, I'll show you how to write unit tests for your GWTP Presenters, using the power of Jukito.
 
-Leveraging the MVP pattern, the unit tests you'll write for your Presenters will be way, way faster than GWTTestCases
-. Furthermore, unit-testing your Presenters will force you to migrate most of your app's logic from the View to the
-Presenter, hence creating what I'll call a "dumb" View.
+Leveraging the MVP pattern, the unit tests you'll write for your Presenters will be way, way faster than GWTTestCases. Furthermore, unit-testing your Presenters will force you to migrate most of your app's logic from the View to the Presenter, hence creating what I'll call a "dumb" View.
 
 All code samples below will be found in the gwtp-sample-unit-testing project of gwtp-samples. Feel free to clone the code and run the unit tests yourself.
 

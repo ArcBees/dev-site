@@ -5,9 +5,8 @@ You can use Universal Analytics in native apps built with Cordova and other tool
 There are two extra configuration steps:
 
 1. You need to provide a clientId.
-  * Since native apps don't have cookies you need to provide a unique id for the user.  You can use `device.uuid` or your own identifier.
-  
-2.  You need to turn off the CHECK_PROTOCOL task.
+    * Since native apps don't have cookies you need to provide a unique id for the user.  You can use `device.uuid` or your own identifier.
+2. You need to turn off the CHECK_PROTOCOL task.
 
 So disable autoCreate when creating your module:
 
