@@ -21,6 +21,7 @@
             <entry name="sources" title="Sources" displayName="Sources"></entry>
             <entry name="snapshot" title="Snapshots" displayName="Snapshots"></entry>
             <entry name="plugins" title="Plugins" displayName="Plugins"></entry>
+            <entry name="dragndropplugin/" title="Drag and drop plugin" displayName="Drag and drop plugin"></entry>
         </entries>
     </toc>
 </folder>
