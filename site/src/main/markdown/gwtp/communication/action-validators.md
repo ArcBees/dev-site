@@ -79,7 +79,7 @@ The only change here is that we don't use hard coded dispatch string in your mod
 serve("/yourappname/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(DispatchServiceImpl.class);
 ```
 
-## !ActionValidators
+## ActionValidators
 Here's the big change. `ActionValidators` are classes bound to an `ActionHandler` that evaluates if the action can or cannot be executed, typically using the user logged into the current session. They are server-side, secure and reusable.
 
 That change introduced a new overload of `bindHandler` : `bindHandler(action.class, actionHandler.class, actionValidator.class)`.

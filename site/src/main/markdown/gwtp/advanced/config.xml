@@ -14,7 +14,7 @@
             <entry name="Google-Universal-Analytics" title="Google Universal Analytics" displayName="Google Universal Analytics"
                     description="The Universal Analytics library lets you make calls to Google Analytics directly from Java code."/>
             <entry name="Merge-Locale" title="Merge Locale" displayName="Merge Locale"
-                    description="GWTP makes it easy for you to store all your translations with UIBinder internationalisation features."/>
+                    description="GWTP makes it easy for you to store all your translations with UIBinder internationalization features."/>
         </entries>
     </toc>
 </folder>

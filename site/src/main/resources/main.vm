@@ -16,7 +16,7 @@
     <meta property="og:title" content="${node.title}">
     <title>${node.title}</title>
 #else
-    <meta property="og:title" content="Arcbees platform for developers">
+    <meta property="og:title" content="Arcbees' platform for developers">
     <title>Arcbees platform for developers</title>
 #end
 #if (${node.image})

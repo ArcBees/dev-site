@@ -86,10 +86,6 @@ If you want to build the javadoc yourself, all you have to do is to activate the
 
 The javadoc will be under `gwtp-core/*/target/apidocs`, simply open `index.html` in there. You can also find the javadoc for the current SNAPSHOT version of gwt-platform on the [ContinuousIntegration Continuous Integration server].
 
-### Making sure the Eclipse checkstyle plugin is running
-
-*TODO: Explain how this should work for Eclipse 3.7*
-
 ### Custom maven repository
 
 In snapshot versions, GWTP sometimes makes use of recent versions of various libraries that are not yet available in any Maven repository. To that effect, we maintain our own custom Maven repository with these versions. You can obtain the repository by doing:

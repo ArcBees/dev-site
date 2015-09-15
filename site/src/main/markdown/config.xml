@@ -5,7 +5,7 @@
         logo="assets/build/img/facebook.png">
     <toc>
         <entries>
-            <entry name="index" displayName="Arcbees platform for developers" title="Arcbees platform for developers"
+            <entry name="index" displayName="Arcbees platform for developers" title="Arcbees' platform for developers"
                     description="GWTP, Jukito, GQuery, GWT-Chosen, GSSS, Universal Analytics, GAE Studio."/>
         </entries>
     </toc>
