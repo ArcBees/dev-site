@@ -3,7 +3,8 @@
         description="Presenters Slots">
     <toc>
         <entries>
-            <entry name="index" title="Presenters Slots" displayName="Presenters Slots"/>
+            <entry name="index" title="Presenters Slots" displayName="Presenters Slots"
+                    description="Presenters in GWTP have a concept of slots. Slots are basically placeholders where the child presenters are put and associated to their parent presenter."/>
         </entries>
     </toc>
 </folder>

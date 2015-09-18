@@ -3,7 +3,8 @@
 <folder title="Events" displayName="Events">
     <toc>
         <entries>
-            <entry name="index" displayName="Events"/>
+            <entry name="index" displayName="Events"
+                    description="Writing events based on the GWT way."/>
         </entries>
     </toc>
 </folder>

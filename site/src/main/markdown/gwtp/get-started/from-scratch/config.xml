@@ -3,9 +3,12 @@
 <folder title="Create an App from Scratch">
     <toc>
         <entries>
-            <entry name="index" displayName="Create the Structure"/>
-            <entry name="Import-Dependencies" displayName="Import the Dependencies"/>
-            <entry name="Create-Files" displayName="Create the Files"/>
+            <entry name="index" displayName="Create the Structure" title="Create the Structure"
+                    description="If you can't, or prefer not to use a Maven Archetype, the following steps will guide you through the creation of a new application from scratch."/>
+            <entry name="Import-Dependencies" displayName="Import the Dependencies" title="Import the Dependencies"
+                    description="In order to use GWTP, you need to import the source code. This can either be done with a dependency management tool (Maven, Gradle, etc.) or manually."/>
+            <entry name="Create-Files" displayName="Create the Files" title="Create the Files"
+                    description="GWTP tries to reduce the amount of boilerplate required to create new projects. Still, you need to specify your configuration properties at some point."/>
         </entries>
     </toc>
 </folder>

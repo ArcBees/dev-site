@@ -4,25 +4,32 @@
     <toc>
         <entries>
             <entry name="index" title="The base: PresenterWidget"
-                    displayName="The base: PresenterWidget"/>
+                    displayName="The base: PresenterWidget"
+                    description="GWTP's PresenterWidget is a great tool that leverages the power of regular GWT Widgets."/>
 
             <entry name="view" title="The visual: View &amp; ViewImpl"
-                    displayName="The visual: View &amp; ViewImpl"/>
+                    displayName="The visual: View &amp; ViewImpl"
+                    description="Its purpose is to separate the application logic from the display logic."/>
 
             <entry name="view-with-ui-handlers" title="Bottom-Top Communication: UiHandlers &amp; ViewWithUiHandlers"
-                    displayName="Bottom-Top Communication: UiHandlers &amp; ViewWithUiHandlers"/>
+                    displayName="Bottom-Top Communication: UiHandlers &amp; ViewWithUiHandlers"
+                    description="The way to link a view event to a Presenter is with the Bottom-Top Communication pattern."/>
 
             <entry name="creating-places" title="Creating places: Presenter and Proxy"
-                    displayName="Creating places: Presenter and Proxy"/>
+                    displayName="Creating places: Presenter and Proxy"
+                    description="A Place represents a particular 'bookmark' or location inside the application."/>
 
             <entry name="lifecycle" title="Lifecycle"
-                    displayName="Lifecycle"/>
+                    displayName="Lifecycle"
+                    description="A PresenterWidget has multiple phases in its lifecycle. GWTP gives the user access to many handles to execute code during each phase."/>
 
             <entry name="popups" title="Popups"
-                    displayName="Popups"/>
+                    displayName="Popups"
+                    description="A popup presenter is a standard presenter with a view that extends PopupView."/>
 
             <entry name="gin-bindings" title="Bindings with GIN"
-                    displayName="Bindings with GIN"/>
+                    displayName="Bindings with GIN"
+                    description="GWTP uses dependency injection as a foundation of its architecture. It allows to have a maintainable application and loosely coupled components."/>
         </entries>
     </toc>
 </folder>

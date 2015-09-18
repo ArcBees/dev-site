@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <folder href="index"
         title="Jukito"
-        description="Jukito lets you use dependency injection in all your tests, be they unit tests, full integration tests, or anything in between. Its automocking power reduces boilerplate to a minimum, and you will quickly grow addicted to its nice annotation-based and typesafe syntax for parameterized tests."
-        image="assets/build/img/navLogoSmall.png"
+        description="Jukito lets you use dependency injection in all your tests, be they unit tests, full integration tests, or anything in between. Automocking power reducing boilerplate to a minimum, annotation-based and typesafe syntax for parameterized tests."
+        logo="http://dev.arcbees.com/assets/build/img/facebook-jukito.png"
         style="jukito">
     <toc>
         <entries>
@@ -18,9 +18,9 @@
                    displayName="Advantages over vanilla JUnit"
                    description="Compared to vanilla JUnit tests, Jukito has a number of advantages: Greatly reduces boilerplate via automocking, leading to easier to read tests, leads to tests that are more resilient to API changes in the tested objects"></entry>
             <entry name="Maven" title="Maven" displayName="Maven"
-                   description="Jukito is released on Maven central. If you use Maven you can configure add this dependency: &lt;dependency&gt; &lt;groupId&gt;org.jukito&lt;/groupId&gt; &lt;artifactId&gt;jukito&lt;/artifactId&gt;"></entry>
+                   description="Jukito is released on Maven central."></entry>
             <entry name="Releasing-Procedure" title="Releasing procedure" displayName="Releasing procedure"
-                   description="This page describes the procedure to follow when releasing Jukito. It is targeted to project owners and contributors."></entry>
+                   description="Procedure to follow when releasing Jukito."></entry>
         </entries>
     </toc>
 </folder>

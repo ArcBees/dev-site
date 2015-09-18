@@ -3,11 +3,16 @@
 <folder title="Communication" displayName="Communication">
     <toc>
         <entries>
-            <entry name="index" title="Rest Dispatch" displayName="Rest Dispatch"/>
-            <entry name="RPC-Dispatch" title="RPC-Dispatch" displayName="RPC-Dispatch"/>
-            <entry name="action-validators" title="Action Validators" displayName="Action Validators"/>
-            <entry name="Client-Action-Handlers" title="Client Action Handlers" displayName="Client Action Handlers"/>
-            <entry name="CSRF-Protection" title="CSRF Protection" displayName="CSRF Protection"/>
+            <entry name="index" title="Rest Dispatch" displayName="Rest Dispatch"
+                    description="REST Dispatch allows your client code to send HTTP requests in a REST fashion to any server."/>
+            <entry name="RPC-Dispatch" title="RPC-Dispatch" displayName="RPC-Dispatch"
+                    description="Remote Procedure Call Dispatcher is a client server communication protocol. It serializes and deserializes the objects being sent over the wire."/>
+            <entry name="action-validators" title="Action Validators" displayName="Action Validators"
+                    description="GWTP makes it possible to link each of your ActionHandlers with a server-side ActionValidator that determines whether or not the current client can execute the action."/>
+            <entry name="Client-Action-Handlers" title="Client Action Handlers" displayName="Client Action Handlers"
+                    description="Client action handlers or rpc-dispatch."/>
+            <entry name="CSRF-Protection" title="CSRF Protection" displayName="CSRF Protection"
+                    description="GWTP comes with built-in protection against CSRF attacks."/>
         </entries>
     </toc>
 </folder>

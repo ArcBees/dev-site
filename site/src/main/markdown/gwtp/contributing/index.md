@@ -1,27 +1,27 @@
 # Contributing
 
-How to help make this project better...
+How to help make this project better!
 
-##Reference
+## Reference
 * [Contributing Guidelines][cg]
 
-#Cloning
+## Cloning
 Cloning will download the entire project including all the large files we have messed around with in the past. There are some options to exclude the history to save on space and time to clone.
 
 * run 'git clone --depth 1 git@github.com:ArcBees/GWTP.git' - exclude history
 * run 'git clone --depth 30 git@github.com:ArcBees/GWTP.git' - include last 30 commits history
 * run 'git clone git@github.com:ArcBees/GWTP.git' - include all history
 
-#IDE Setup
+## IDE Setup
 We are using maven to setup the project for both eclipse and IntelliJ.
 
-##After IDE Setup
+### After IDE Setup
 1. run 'mvn generate-sources' - this will get the checkstyle working
 
-##IntelliJ
+### IntelliJ
 TODO
 
-##Eclipse
+### Eclipse
 1. Be sure to have EGit
 2. Clone project using egit
 3. On working directory import existing maven projects
@@ -29,32 +29,32 @@ TODO
 5. Use CheckStyle by following these directions - http://eclipse-cs.sourceforge.net/basic_setup_project.html
 6. Activate checkstyle on the projects your working on by right clicking on project then properties then CheckStyle. Or right click then CheckStyle then activate CheckStyle
 
-##Eclipse Notes
+### Eclipse Notes
 1. Don't run mvn eclipse:eclipse
 2. If you do run mvn eclipse:eclipse, run eclipse:clean, and then close projects and import them as maven projects.
 
-#Unit Testing
+## Unit Testing
 When you build new features please add build unit tests for it. If you have a problem with building unit tests reach out to one of the other contributors for help in the forum.
 
-##Testing
+### Testing
 Be sure to test the project before pulling your code on github.
 
 * run 'mvn clean integration-test' - will test all the gwt client side tests
 * run 'mvn clean test' - will test all the junit tests
 
-#Formatting
+## Formatting
 TODO
 
 
-#Building
+## Building
 
-##Builds
+### Builds
 [![Build Status](http://teamcity.arcbees.com/app/rest/builds/buildType:\(id:GwtPlatformGwtp_DeploySnapshot\)/statusIcon)](http://teamcity.arcbees.com/project.html?projectId=GwtPlatformGwtp)
 
-##Build Server
+### Build Server
 * [TeamCity Build Server](http://teamcity.arcbees.com/) - Snapshots and releases building here
 
-##Snapshot Release
+### Snapshot Release
 These steps build GWTP for Github downloads and release a snapshot
 
 1. run 'mvn clean integration-test'
@@ -62,7 +62,7 @@ These steps build GWTP for Github downloads and release a snapshot
 3. run 'mvn clean deploy -Prelease'
 4. run 'sh ./release-zip.sh /root/.m2/repository/com/gwtplatform'
 
-##Sonatype Release
+### Sonatype Release
 To officially release the library to sonatype.org.
 
 1. run 'mvn clean deploy'
@@ -73,23 +73,23 @@ To officially release the library to sonatype.org.
 6. Test the staged library before releasing
 7. goto [sonatype.org](http://oss.sonatype.org/) select gwtp stage and click close. (See directions for howto.)
 
-###Releasing Notes
+#### Releasing Notes
 * If something goes wrong and you can't Close the release, you will have to backout any change pushed by maven to the repository, including tags. To do this, update to the version before the automatic maven commit, and update with the tip indicating that you want to ignore all the changes for the branch with which you're merging.
 * Next, the artifacts should be downloaded and tested.
 * When everything works, click the Release button.
 To see the release, go to Sonatype's Nexus at http://oss.sonatype.org/ and navigate to Repositories > Releases > com > gwtplatform.
 
-###Directions
+#### Directions
 * [Maven Repo Usage Guide](https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide)
 * [Closing a Release Sonatype Directions](https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8a.ReleaseIt)
 
-###Notes
+#### Notes
 * Important to close eclipse before releasing
 
-##Manual Release
+### Manual Release
 * run 'mvn -Prelease -DaltDeploymentRepository=release::default::file://$DISTRIBUTION/release clean deploy'
 
-##Zips Release
+### Zips Release
 * run 'sh ./release-zip.sh'
 
 [cg]: gwtp/contributing/Contributing-Guidelines.html "Contributing Guidelines"
