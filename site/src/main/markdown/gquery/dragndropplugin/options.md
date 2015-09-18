@@ -56,4 +56,4 @@ onOver | DroppableFunction	Callback function called when an acceptable draggable
 scope | String | Used to group sets of draggable and droppable widget, in addition to droppable's accept option. A droppable will accept any draggable with the same scope value as itself. | "default" | \-
 tolerance | DroppableTolerance | Specifies which mode to use for testing whether a draggable is 'over' a droppable. | DroppableTolerance.INTERSECT | \-
 
-Please note that all properties can be modified after the plugin is instantiated. See this example to test the different options.
+Please note that all properties can be modified after the plugin is instantiated. See this [example](http://gwtquery-plugins.googlecode.com/svn/branches/droppable_1_0/demo/TestOptionsSample/TestOptionsSample.html) to test the different options.

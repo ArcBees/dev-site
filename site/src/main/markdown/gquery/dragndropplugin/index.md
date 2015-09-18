@@ -219,7 +219,7 @@ Example with subclassing :
 ### Configure the dropping behavior
 The DroppableWidget API offers a set of methods which allow you to configure the drop behavior of the widget. All available options are listed in the following [table]({{#gquery.doc.url.droppable_options}}).
 
-Please refer to our ["options in action"][options-in-actions] example to play around with most of the options of the DroppableWidget.
+Please refer to our ["options in action"][options-in-action] example to play around with most of the options of the DroppableWidget.
 
 ### The drop events
 Different events are fired on the DroppableWidget during the drag-and-drop operation :
@@ -446,7 +446,7 @@ addressDropOptions.setOnDrop(new DroppableFunction() {
   }
 });
 
-table.addColumn(nameColumn,"Adress");
+table.addColumn(nameColumn,"Address");
 ```
 
 See this [example](http://gwtquery-plugins.googlecode.com/svn/branches/droppable_1_0/demo/CellTableSample/CellTableSample.html).
