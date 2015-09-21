@@ -37,6 +37,8 @@
                     description="How to use the latest code from trunk."></entry>
             <entry name="plugins" title="Plugins" displayName="Plugins"
                     description="GQuery supports a Plugin system for extension of the core GQuery object."></entry>
+            <entry name="dragndropplugin/" displayName="Drag and drop plugin"
+                    description="GQuery Drag and drop plugin for GWT"></entry>
         </entries>
     </toc>
 </folder>

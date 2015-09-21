@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder href="index"
+        displayName="Drag and drop plugin"
+        title="Drag and drop plugin"
+        description="Drag and drop plugin"
+        style="gquery">
+    <toc>
+        <entries>
+            <entry name="" title="Overview" displayName="Overview"></entry>
+            <entry name="#configuration" title="Configuration" displayName="Configuration"></entry>
+            <entry name="#touch-events" title="Touch Events" displayName="Touch Events"></entry>
+            <entry name="#drag-support" title="Drag Support" displayName="Drag Support"></entry>
+            <entry name="#drop-support" title="Drop Support" displayName="Drop Support"></entry>
+            <entry name="#cell-widgets" title="Cell Widgets" displayName="Cell Widgets"></entry>
+            <entry name="#events" title="Events" displayName="Events"></entry>
+            <entry name="options" title="Options" displayName="Options"></entry>
+        </entries>
+    </toc>
+</folder>
