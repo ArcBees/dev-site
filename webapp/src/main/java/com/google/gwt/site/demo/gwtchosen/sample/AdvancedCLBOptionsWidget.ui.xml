@@ -4,7 +4,7 @@
 
     <g:HTMLPanel tag="section">
 
-        <div class="row">
+        <div class="row clearfix">
             <div class="col col_full">
                 <p>
                     The <code>ChosenListBox</code> widget allows you to programmatically construct option hierarchies of arbitrary depth
