@@ -1,12 +1,12 @@
-/**
+/*
  * Copyright 2015 ArcBees Inc.
- * <p/>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p/>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -18,13 +18,9 @@ package com.google.gwt.site.demo.gwtchosen.widget;
 
 import com.arcbees.chosen.client.event.ChosenChangeEvent;
 import com.arcbees.chosen.client.event.ChosenChangeEvent.ChosenChangeHandler;
-import com.arcbees.chosen.client.event.HidingDropDownEvent;
 import com.arcbees.chosen.client.event.HidingDropDownEvent.HidingDropDownHandler;
-import com.arcbees.chosen.client.event.MaxSelectedEvent;
 import com.arcbees.chosen.client.event.MaxSelectedEvent.MaxSelectedHandler;
-import com.arcbees.chosen.client.event.ReadyEvent;
 import com.arcbees.chosen.client.event.ReadyEvent.ReadyHandler;
-import com.arcbees.chosen.client.event.ShowingDropDownEvent;
 import com.arcbees.chosen.client.event.ShowingDropDownEvent.ShowingDropDownHandler;
 import com.arcbees.chosen.client.gwt.ChosenListBox;
 import com.arcbees.chosen.client.gwt.ChosenValueListBox;
@@ -44,7 +40,6 @@ import com.google.gwt.user.client.ui.Widget;
 import static com.google.gwt.query.client.GQuery.$;
 
 public class EventsLogWidget implements IsWidget {
-
     private static enum Choices {
         FIRST, SECOND, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH, EIGHT, NINTH, TENTH;
 
