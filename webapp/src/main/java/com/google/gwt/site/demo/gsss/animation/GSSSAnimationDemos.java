@@ -31,5 +31,6 @@ public class GSSSAnimationDemos extends AbstractDemos {
         MIXINS.style().ensureInjected();
 
         registerDemo(1, Examples.create(MIXINS.style().example1()));
+        registerDemo(2, Examples.create(MIXINS.style().example2()));
     }
 }
