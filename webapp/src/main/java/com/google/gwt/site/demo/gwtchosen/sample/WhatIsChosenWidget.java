@@ -1,12 +1,12 @@
-/**
+/*
  * Copyright 2015 ArcBees Inc.
- * <p/>
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
- * <p/>
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -29,6 +29,9 @@ import static com.arcbees.chosen.client.Chosen.Chosen;
 import static com.google.gwt.query.client.GQuery.$;
 
 public class WhatIsChosenWidget implements IsWidget {
+    @UiTemplate("WhatIsChosenWidget.ui.xml")
+    interface Binder extends UiBinder<Widget, WhatIsChosenWidget> {
+    }
 
     private static Binder uiBinder = GWT.create(Binder.class);
 
@@ -38,10 +41,6 @@ public class WhatIsChosenWidget implements IsWidget {
     SelectElement chosenMultiple;
 
     private final Widget widget;
-
-    @UiTemplate("WhatIsChosenWidget.ui.xml")
-    interface Binder extends UiBinder<Widget, WhatIsChosenWidget> {
-    }
 
     public WhatIsChosenWidget() {
         widget = uiBinder.createAndBindUi(this);
