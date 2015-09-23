@@ -4,8 +4,10 @@
 
     <g:HTMLPanel tag="section">
 
-        <div class="col col_full">
-            <g:SimplePanel ui:field="serverChosen"/>
+        <div class="row clearfix">
+            <div class="col col_full">
+                <g:SimplePanel ui:field="serverChosen"/>
+            </div>
         </div>
 
     </g:HTMLPanel>

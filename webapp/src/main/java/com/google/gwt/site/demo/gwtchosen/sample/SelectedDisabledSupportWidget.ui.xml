@@ -3,7 +3,7 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
     <g:HTMLPanel tag="section">
-        <div class="row">
+        <div class="row clearfix">
             <div class="col col-1_2 col_tfull">
                 <p>Single select</p>
                 <div>

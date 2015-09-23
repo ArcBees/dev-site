@@ -232,6 +232,26 @@ fieldset {
   padding: 0;
 }
 
+select {
+  line-height: 28px;
+
+  margin-bottom: 1em;
+  border: 1px solid @c-border;
+  width: 80%;
+  height: 28px;
+}
+
+select[multiple],
+select[size] {
+  height: auto;
+}
+
+@media(max-width:649px) {
+  select {
+    width: 100%;
+  }
+}
+
 textarea {
   resize: vertical;
 }

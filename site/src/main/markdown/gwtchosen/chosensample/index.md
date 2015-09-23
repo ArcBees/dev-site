@@ -5,7 +5,7 @@
 Chosen is a javascript plugin (for jQuery and Prototype) that makes long, unwieldy select boxes much more user-friendly. GWT-Chosen is a port of the jquery version of Chosen for Google Web Toolkit. It is not a wrapper but a complete rewrite using the GWT standards. It is available as a GQuery plugin or as a widget.
 
 ## How to install {setup}
-GWT-Chosen depends on [GQuery](http://dev.arcbees.com/gquery/). You need at least GQuery 1.2. Please follow the instructions to download GQuery jar file and put it in your classpath.
+GWT-Chosen depends on [GQuery]({{#gquery.doc.url.home}}). You need at least GQuery 1.2. Please follow the instructions to download GQuery jar file and put it in your classpath.
 
 ### With Maven
 Add the following block to your pom.xml
@@ -16,7 +16,7 @@ Add the following block to your pom.xml
         <dependency>
             <groupId>com.arcbees</groupId>
             <artifactId>gwtchosen</artifactId>
-            <version>3.0-SNAPSHOT</version>
+            <version>3.0</version>
         </dependency>
     </dependencies>
 </build>
@@ -74,7 +74,7 @@ chzn.setMaxSelectedOptions(5);
 chzn.setPlaceholderText("Choose your country...");
 ```
 
-Check this complete example for more code
+Check this complete [example]({{#gwtchosen.doc.url.widget}}) for more code.
 
 ## Optional Group Support {optgroup-support}
 
@@ -187,6 +187,35 @@ $[gwtchosen-sample-5]
 
 $[gwtchosen-sample-6]
 
+GwtChosen uses the GWT event system for firing these events. In order to listen to them, you have to pass an instance of `com.google.web.bindery.event.shared.EventBus` when you call chosen:
+
+```java
+EventBus eventBus = new SimpleEventBus();
+eventBus.addHandler(HidingDropDownEvent.getType(), new HidingDropDownHandler() {
+
+    public void onHidingDropdown(HidingDropDownEvent event) {
+        // Do something when choices are hiding
+    }
+});
+
+$(".chzn-select, .enhance").as(Chosen).chosen(eventBus);
+```
+
+The `ChosenListBox` widget exposes needed method for listening to the events:
+
+```java
+ChosenListBox chzn = new ChosenListBox();
+
+chzn.addHidingDropDownHandler(new HidingDropDownHandler() {
+
+    public void onHidingDropdown(HidingDropDownEvent event) {
+        // Do something when choices are hiding
+    }
+});
+```
+
+Check this [example]({{#gwtchosen.doc.url.widget}}) in order to know how and when the different events are fired.
+
 ## Updating the component dynamically {updating-components}
 
 If you need to update the options in your select field and want Chosen to pick up the changes, you'll need to prevent the component in order to re-build itself based on the updated content.
@@ -226,14 +255,14 @@ public class ServerSideResultFilter implements ResultsFilter {
 
     @Override
     public void filter(final String searchText, final ChosenImpl chosen, boolean isShowing) {
-        if (isShowing &amp;&amp; initialized) {
+        if (isShowing && initialized) {
             return; // do nothing, keep the last results
         }
         initialized = true;
 
-        tagProxy.filterTags(searchText, new MethodCallback&lt;List&lt;Tag>>() {
+        tagProxy.filterTags(searchText, new MethodCallback<List<Tag>>() {
             @Override
-            public void onSuccess(Method method, List&lt;Tag> tags) {
+            public void onSuccess(Method method, List<Tag> tags) {
                 List&lt;SelectItem> selectItems = chosen.getSelectItems();
                 selectItems.clear();
 
@@ -278,4 +307,4 @@ boolean chosenSupport = ChosenListBox.isSupported();
 
 ## Credits
 
-The initial chosen javascript plugin was built by Harvest. Concept and development by Patrick Filler. Design and CSS by Matthew Lettini. The GWT port of Chosen was built by Julien Dramaix
+The initial chosen javascript plugin was built by [Harvest](https://www.getharvest.com/). Concept and development by [Patrick Filler](http://patrickfiller.com/). Design and CSS by [Matthew Lettini](http://matthewlettini.com/). The GWT port of Chosen was built by [Julien Dramaix](https://plus.google.com/u/0/+JulienDramaix/posts).

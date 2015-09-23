@@ -47,6 +47,14 @@
 
 .row.nospace .col{padding:0;}
 
+.row > .col:first-child {
+  border-left-width: 0;
+}
+
+.row > .col:last-child {
+  border-right-width: 0;
+}
+
 .mixin-span(@num, @gutter_pc, @gutter_px, @padding, @max_columns) {
     @one_col: (100% - (@gutter_pc * (@max_columns - 1))) / @max_columns;
     width:(@one_col * @num) + (@gutter_pc * (@num - 1));

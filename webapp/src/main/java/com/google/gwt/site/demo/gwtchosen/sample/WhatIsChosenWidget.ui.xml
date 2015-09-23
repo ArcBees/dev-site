@@ -3,7 +3,7 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
     <g:HTMLPanel tag="section">
-        <div class="row">
+        <div class="row clearfix">
             <div class="col col-1_2 col-mfull">
                 <p>Chosen allows you to turn this single select element:</p>
                 <div>
@@ -508,7 +508,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row clearfix">
             <div class="col col-1_2 col-mfull">
                 <p>Or this multiple select element:</p>
                 <div>

@@ -101,6 +101,26 @@ public class EventsLogWidget implements IsWidget {
         public void onValueChange(ValueChangeEvent valueChangeEvent) {
             log("ValueChangeEvent on", "" + valueChangeEvent.getValue());
         }
+
+        @Override
+        public void onHidingDropdown() {
+
+        }
+
+        @Override
+        public void onMaxSelected() {
+
+        }
+
+        @Override
+        public void onReady() {
+
+        }
+
+        @Override
+        public void onShowingDropDown() {
+
+        }
     }
 
     private static String[] teamsGroup = new String[]{
