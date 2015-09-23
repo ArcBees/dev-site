@@ -3,7 +3,8 @@
 <folder title="Security" displayName="Security">
     <toc>
         <entries>
-            <entry name="index" title="Security" displayName="Security"/>
+            <entry name="index" title="Security" displayName="Security"
+                    description="Gatekeepers are used to protect places from unauthorized access."/>
         </entries>
     </toc>
 </folder>

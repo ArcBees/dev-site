@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <folder title="Universal Analytics"
         href="index"
-        description="Universal Analytics">
+        description="Universal Analytics is a complete GWT wrapper for Google's Universal Analytics Library.">
     <toc>
         <entries>
-            <entry name="index" title="Overview" displayName="Overview"></entry>
-            <entry name="setup" title="How to Setup" displayName="How to Setup"></entry>
-            <entry name="usage" title="Basic Usage" displayName="Basic Usage"></entry>
-            <entry name="server" title="Using Analytics on the Server" displayName="Using Analytics on the Server"></entry>
-            <entry name="timing" title="Tracking App Speed (Timing Events)" displayName="Tracking App Speed (Timing Events)"></entry>
-            <entry name="plugins" title="Plugins" displayName="Plugins"></entry>
-            <entry name="fallback" title="Using a Fallback Server" displayName="Using a Fallback Server"></entry>
-            <entry name="nativeApps" title="Analytics for Native Apps (Cordova etc..)"></entry>
+            <entry name="index" title="Overview" displayName="Overview"
+                    description="Universal Analytics is a complete GWT wrapper for Google's Universal Analytics Library."></entry>
+            <entry name="setup" title="How to Setup" displayName="How to Setup"
+                    description="Step by step basic and advanced installation."></entry>
+            <entry name="usage" title="Basic Usage" displayName="Basic Usage"
+                   description="Inject Analytics into the class you want to track events from."></entry>
+            <entry name="server" title="Using Analytics on the Server" displayName="Using Analytics on the Server"
+                   description="You can use analytics on the server exactly the same as you do on the client."></entry>
+            <entry name="timing" title="Tracking App Speed (Timing Events)" displayName="Tracking App Speed (Timing Events)"
+                   description="You can track how fast things happen in your app by using timing events."></entry>
+            <entry name="plugins" title="Plugins" displayName="Plugins"
+                   description="Universal Analytics supports the default Analytics plugins."></entry>
+            <entry name="fallback" title="Using a Fallback Server" displayName="Using a Fallback Server"
+                   description="Setting a fallback and serving from a subdomain."></entry>
+            <entry name="nativeApps" title="Analytics for Native Apps (Cordova etc..)" displayName="Native Apps"
+                   description="You can use Universal Analytics in native apps built with Cordova and other tools."></entry>
         </entries>
     </toc>
 </folder>

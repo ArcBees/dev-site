@@ -3,10 +3,12 @@
 <folder title="Get Started">
     <toc>
         <entries>
-            <entry name="index" title="Create an App from the Archetype"
-                    displayName="Create an App from the Archetype"/>
-            <entry name="from-scratch/" displayName="Create an App from Scratch"/>
-            <entry name="Bootstrap-Code" title="Hook in the Bootstrap Process" displayName="Hook in the Bootstrap Process"/>
+            <entry name="index" title="Create an App from the Archetype" displayName="Create an App from the Archetype"
+                    description="Generate a project structure by using a Maven Archetype. The Archetype will generate all the boilerplate required to get a fresh project started."/>
+            <entry name="from-scratch/" displayName="Create an App from Scratch"
+                    description="If you can't, or prefer not to use a Maven Archetype, the following steps will guide you through the creation of a new application from scratch."/>
+            <entry name="Bootstrap-Code" title="Hook in the Bootstrap Process" displayName="Hook in the Bootstrap Process"
+                    description="GWTP aims to make the initial configuration of new projects as simple as possible."/>
         </entries>
     </toc>
 </folder>

@@ -1,7 +1,7 @@
 # Action Validators
 GWTP makes it possible to link each of your `ActionHandler`s with a server-side `ActionValidator` that determines whether or not the current client can execute the action. Validation logic is up to you and is not limited to inspecting the users, for example you could use it to deny access to some actions at certain times of the day. In this document, however, we focus to the most frequent use case of session-based validation.
 
-##Changes from gwt-dispatch
+## Changes from gwt-dispatch
 This section details how GWTP deviates from [gwt-dispatch](http://code.google.com/p/gwt-dispatch/). If you never used gwt-dispatch before, feel free to skip this.
 
 In gwt-dispatch, you either chose a secure dispatcher or a non-secure one. It was difficult to control security on a case by case basis. In GWTP you can precisely control security settings of each of your actions independently. One of your action is open to the world and does not need protection against XSRF attacks? You can do this. One of your action should only be used by the administrator? You can package that right into the `ActionValidator`.
@@ -10,10 +10,10 @@ To keep things as simple as possible, we've deleted a lot of the "secure" classe
 
 Another addition to gwt-dispatch is the ability to map actions to different urls. This lets you cleanly organize your application and can lead to clearer reports. This should not be used for security though, since the actual path the action comes in is not verified server-side.
 
-#Actions
+## Actions
 Actions deviate slightly from gwt-dispatch. You can keep the default by extending `ActionImpl`, this will configure the action url to "dispatch/", as before. It will also make your action secure against XSRF attacks, at the cost of having to define a security cookie (more on this later). If you don't care about XSRF attacks or just want to quickly put something together, you can inherit from `UnsecuredActionImpl` instead. Don't worry, this decision can easily be reverted later.
 
-##Manually defining an action url
+### Manually defining an action url
 If you want a custom url for your action, simply implement the `Action` interface and make sure your `getServiceName` method returns the desired url. You must also override `isSecured` to return `true` or `false` depending whether or not you want security against XSRF attacks.
 
 Here's a little trick that will let you automatically build urls of the form `"dispatch/MY_ACTION_CLASS"`, at the cost of some java reflexion:
@@ -56,7 +56,7 @@ public class GetProducts extends AbstractAction<GetProductsResult> {
 }
 ```
 
-#Guice/gin configurations
+## Guice/gin configurations
 I will be assumed here that you're using the default. Advanced configurations will be discussed in another page. Just so
  you know, you can make your own `DispatchModule` with your own `ExceptionHandler` that will override `onFailure`. Anyway, gin configurations for dispatch almost always only need to add the default to your Ginjector class like this :
 
@@ -79,7 +79,7 @@ The only change here is that we don't use hard coded dispatch string in your mod
 serve("/yourappname/" + ActionImpl.DEFAULT_SERVICE_NAME + "*").with(DispatchServiceImpl.class);
 ```
 
-#!ActionValidators
+## ActionValidators
 Here's the big change. `ActionValidators` are classes bound to an `ActionHandler` that evaluates if the action can or cannot be executed, typically using the user logged into the current session. They are server-side, secure and reusable.
 
 That change introduced a new overload of `bindHandler` : `bindHandler(action.class, actionHandler.class, actionValidator.class)`.
@@ -112,7 +112,7 @@ public class AdminActionValidator implements ActionValidator  {
 
 Short and simple. Now only admin of your appdomain can use actions that are bound to this `AdminActionValidator`. You could also use action validators to check that a user is logged in, that he has some specific rights, that the action can only be accomplished at a given time of the day (i.e. for cleanup operations), etc.
 
-##What happens when `isValid` returns false ?
+### What happens when `isValid` returns false ?
 
 Dispatch will return a new service exception :
 
@@ -126,5 +126,5 @@ and the message :
 private final static String actionValidatorMessage = " couldn't allow access to action : ";
 ```
 
-#Conclusion
+## Conclusion
 `ActionValidator` is one of the many features that makes Gwt-Platform one of the best and secure command pattern frameworks out there and we are eager to give you more and more features. Feel free to make comments, ask questions, this document wouldn't exist without your feedback.

@@ -3,11 +3,14 @@
 <folder title="Contributing" displayName="Contributing">
     <toc>
         <entries>
-            <entry name="index" title="Basic Setup" displayName="Contributing"/>
+            <entry name="index" title="Basic Setup" displayName="Contributing"
+                    description="How to help make this project better!"/>
             <entry name="Compiling-and-Debugging" title="Compiling and Debugging"
-                    displayName="Compiling and Debugging"/>
+                    displayName="Compiling and Debugging"
+                    description="Details all the steps needed to build and debug GWTP comfortably within Eclipse."/>
             <entry name="Contributing-Guidelines" title="Contributing Guidelines"
-                    displayName="Contributing Guidelines"/>
+                    displayName="Contributing Guidelines"
+                    description="How to contribute."/>
         </entries>
     </toc>
 </folder>

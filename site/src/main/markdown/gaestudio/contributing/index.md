@@ -1,6 +1,6 @@
 # Contributing
 
-How to help make this project better...
+How to help make this project better!
 
 ##Cloning
 * run `git clone git@github.com:ArcBees/gae-studio.git`
