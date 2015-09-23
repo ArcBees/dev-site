@@ -79,45 +79,6 @@
                         </tbody>
                     </table>
                 </div>
-                <p>
-                    GwtChosen uses the GWT event system for firing these events. In
-                    order to listen to them, you have to pass an instance of
-                    <code>com.google.web.bindery.event.shared.EventBus</code>
-                    when you call chosen:
-                </p>
-                <pre>EventBus eventBus = new SimpleEventBus();
-                    eventBus.addHandler(HidingDropDownEvent.getType(), new HidingDropDownHandler() {
-
-                    public void onHidingDropdown(HidingDropDownEvent event) {
-                    // Do something when choices are hiding
-                    }
-
-                    });
-
-                    $(".chzn-select, .enhance").as(Chosen).chosen(eventBus);
-                </pre>
-                <p>
-                    The
-                    <code>ChosenListBox</code>
-                    widget exposes needed method for listening to the events:
-                </p>
-                <pre>ChosenListBox chzn = new ChosenListBox();
-
-                    chzn.addHidingDropDownHandler(new HidingDropDownHandler() {
-
-                    public void onHidingDropdown(HidingDropDownEvent event) {
-                    // Do something when choices are hiding
-                    }
-
-                    });
-                </pre>
-                <p>
-                    Check this
-                    <a href="WidgetSample.html">example</a>
-                    in order
-                    to know how and when the different events are fired.
-                </p>
-
             </div>
         </div>
 
