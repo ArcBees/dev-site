@@ -76,22 +76,6 @@ public class EventsLogWidget implements IsWidget {
             ).scrollTop($("#log").get(0).getScrollHeight());
         }
 
-        public void onReady(ReadyEvent event) {
-            log("ReadyEvent", "");
-        }
-
-        public void onMaxSelected(MaxSelectedEvent event) {
-            log("MaxSelectedEvent", "");
-        }
-
-        public void onShowingDropDown(ShowingDropDownEvent event) {
-            log("ShowingDropDownEvent", "");
-        }
-
-        public void onHidingDropdown(HidingDropDownEvent event) {
-            log("HidingDropDownEvent", "");
-        }
-
         public void onChange(ChosenChangeEvent event) {
             String additional = (event.isSelection() ? ": selection of " : ": deselection of ") + event.getValue();
             log("ChangeEvent on", additional);
@@ -104,22 +88,22 @@ public class EventsLogWidget implements IsWidget {
 
         @Override
         public void onHidingDropdown() {
-
+            log("HidingDropDownEvent", "");
         }
 
         @Override
         public void onMaxSelected() {
-
+            log("MaxSelectedEvent", "");
         }
 
         @Override
         public void onReady() {
-
+            log("ReadyEvent", "");
         }
 
         @Override
         public void onShowingDropDown() {
-
+            log("ShowingDropDownEvent", "");
         }
     }
 
