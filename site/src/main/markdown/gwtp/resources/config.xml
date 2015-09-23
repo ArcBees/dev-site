@@ -3,7 +3,7 @@
 <folder title="Resources" displayName="Resources">
     <toc>
         <entries>
-            <entry name="" displayName="Community Support"/>
+            <entry name="index" displayName="Community Support"/>
             <entry name="#plugins" displayName="IDE Plugins"/>
             <entry name="#samples" displayName="Samples"/>
             <entry name="#release-notes" displayName="Release notes"/>
