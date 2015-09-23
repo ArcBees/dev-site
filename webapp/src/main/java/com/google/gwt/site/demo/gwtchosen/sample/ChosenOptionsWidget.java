@@ -55,7 +55,6 @@ public class ChosenOptionsWidget implements IsWidget {
     SelectElement mobileWidth;
     @UiField
     SelectElement mobileAnimation;
-
     @UiField
     SelectElement mobileSpeed;
 

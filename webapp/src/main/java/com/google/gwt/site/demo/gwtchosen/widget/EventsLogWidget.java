@@ -18,13 +18,9 @@ package com.google.gwt.site.demo.gwtchosen.widget;
 
 import com.arcbees.chosen.client.event.ChosenChangeEvent;
 import com.arcbees.chosen.client.event.ChosenChangeEvent.ChosenChangeHandler;
-import com.arcbees.chosen.client.event.HidingDropDownEvent;
 import com.arcbees.chosen.client.event.HidingDropDownEvent.HidingDropDownHandler;
-import com.arcbees.chosen.client.event.MaxSelectedEvent;
 import com.arcbees.chosen.client.event.MaxSelectedEvent.MaxSelectedHandler;
-import com.arcbees.chosen.client.event.ReadyEvent;
 import com.arcbees.chosen.client.event.ReadyEvent.ReadyHandler;
-import com.arcbees.chosen.client.event.ShowingDropDownEvent;
 import com.arcbees.chosen.client.event.ShowingDropDownEvent.ShowingDropDownHandler;
 import com.arcbees.chosen.client.gwt.ChosenListBox;
 import com.arcbees.chosen.client.gwt.ChosenValueListBox;
@@ -44,7 +40,6 @@ import com.google.gwt.user.client.ui.Widget;
 import static com.google.gwt.query.client.GQuery.$;
 
 public class EventsLogWidget implements IsWidget {
-
     private static enum Choices {
         FIRST, SECOND, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH, EIGHT, NINTH, TENTH;
 

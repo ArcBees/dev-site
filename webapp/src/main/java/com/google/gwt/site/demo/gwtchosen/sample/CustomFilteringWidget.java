@@ -40,10 +40,10 @@ public class CustomFilteringWidget implements IsWidget {
 
     private static Binder uiBinder = GWT.create(Binder.class);
 
-    private final Widget widget;
-
     @UiField
     SimplePanel serverChosen;
+
+    private final Widget widget;
 
     public static class ServerSideSimulatorResultFilter implements ResultsFilter {
         private static final String[] NAMES = {

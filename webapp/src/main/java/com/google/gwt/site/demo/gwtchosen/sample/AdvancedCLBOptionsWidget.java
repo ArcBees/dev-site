@@ -33,10 +33,10 @@ public class AdvancedCLBOptionsWidget implements IsWidget {
 
     private static Binder uiBinder = GWT.create(Binder.class);
 
-    private final Widget widget;
-
     @UiField
     SimplePanel hierChosenSingle;
+
+    private final Widget widget;
 
     public AdvancedCLBOptionsWidget() {
         widget = uiBinder.createAndBindUi(this);
