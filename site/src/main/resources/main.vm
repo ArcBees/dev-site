@@ -56,7 +56,7 @@
             <li><a href="gwtp/" class="icon_gwtp">GWTP</a></li>
             <li><a href="jukito/" class="icon_jukito">Jukito</a></li>
             <li><a href="gquery/" class="icon_gquery">GQuery</a></li>
-            <li><a href="http://arcbees.github.io/gwtchosen/" target="_blank" class="icon_chosen">GWT-Chosen</a></li>
+            <li><a href="gwtchosen/" class="icon_chosen">GWT-Chosen</a></li>
             <li><a href="gsss/mixins/" class="icon_gsss">GSSS</a></li>
             <li><a href="ua/">Universal Analytics</a></li>
             <li><a href="gaestudio/" class="icon_gae">GAE Studio</a></li>

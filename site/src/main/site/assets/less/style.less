@@ -429,9 +429,9 @@ a#logo-mobile {
   }
 }
 
-.gwtChosen {
+.gwtchosen {
   aside#submenu .logo {
-    background: url("../img/chosenLogo.png") center 42px no-repeat @c-chosen;
+    background: url("../img/chosenLogo.png") center 30px no-repeat @c-chosen;
   }
 
   a {
@@ -1182,6 +1182,88 @@ nav#nav-mobile {
     margin-left: 2px;
 
     white-space: nowrap;
+  }
+}
+
+.tableholder {
+  width: 100%;
+  overflow: auto;
+}
+
+.table {
+  background-color: transparent;
+
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 18px;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table th,
+.table td {
+  line-height: 18px;
+  text-align: left;
+
+  padding: 8px;
+  vertical-align: top;
+  border-top: 1px solid @c-border;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table thead th {
+  vertical-align: bottom;
+}
+
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid @c-border;
+}
+
+.table tbody tr:nth-child(odd) td,
+.table tbody tr:nth-child(odd) th {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr:hover td,
+.table tbody tr:hover th {
+  background-color: #f5f5f5;
+}
+
+.table code {
+  background-color: #f5f5f5;
+  color: #dd1144;
+
+  display: inline-block;
+  padding: 0 .4em;
+  margin: 0 .2em;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.log {
+  display: block;
+  border: 1px solid #444;
+  padding: 1em;
+  margin-bottom: .5em;
+  height: 200px;
+  overflow: auto;
+  & > span {
+    display: block;
+    margin-bottom: .5em;
   }
 }
 

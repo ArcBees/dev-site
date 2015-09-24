@@ -67,12 +67,17 @@ public class TocFromMdCreator implements TocCreator {
             List<FolderConfig.Entry> entries = config.getFolderEntries();
             List<MDNode> children = mdParent.getChildren();
 
-            if (children.size() >= entries.size()) {
+            if (children.size() >= countEntries(entries)) {
                 writeFromNodes(node, buffer, tocNode, margin, children);
             } else {
-                openNode("#", node.getDisplayName(), buffer, margin, true);
+                boolean hasChildren = node.getDepth() > 1;
+                if (hasChildren) {
+                    openNode("#", node.getDisplayName(), buffer, margin, hasChildren);
+                }
                 writeFromConfig(node, buffer, margin, entries);
-                closeNode(buffer, margin, true);
+                if (hasChildren) {
+                    closeNode(buffer, margin, hasChildren);
+                }
             }
         } else {
             StringBuilder relativeUrl = new StringBuilder();
@@ -94,6 +99,16 @@ public class TocFromMdCreator implements TocCreator {
                             + node.getDisplayName() + "</a>");
             buffer.append("</li>\n");
         }
+    }
+
+    private int countEntries(List<FolderConfig.Entry> entries) {
+        int count = 0;
+        for (FolderConfig.Entry entry : entries) {
+            count += countEntries(entry.getSubEntries());
+            count++;
+        }
+
+        return count;
     }
 
     private void writeFromConfig(

@@ -32,6 +32,7 @@ import com.google.gwt.regexp.shared.RegExp;
 import com.google.gwt.site.demo.ContentLoadedEvent;
 import com.google.gwt.site.demo.gsss.grid.GSSSGridDemos;
 import com.google.gwt.site.demo.gsss.mixins.GSSSMixinsDemos;
+import com.google.gwt.site.demo.gwtchosen.GwtChosenSampleDemos;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.impl.HyperlinkImpl;
@@ -93,6 +94,7 @@ public class GWTProjectEntryPoint implements EntryPoint {
     private void registerDemos() {
         new GSSSGridDemos(eventBus);
         new GSSSMixinsDemos(eventBus);
+        new GwtChosenSampleDemos(eventBus);
 
         ContentLoadedEvent.fire(eventBus);
     }

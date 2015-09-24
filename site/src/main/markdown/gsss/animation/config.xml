@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Todo: JASON: find better description-->
 <folder href="index" title="Animation" description="Animation">
-    <toc>
-        <entries>
-            <entry name="" displayName="How to install"></entry>
-            <entry name="#default-structure" displayName="Default structure"></entry>
-            <entry name="#animations" displayName="Animations">
-                <entry name="#bounce" displayName="Bounce"></entry>
-                <entry name="#spin" displayName="Spin"></entry>
-            </entry>
-        </entries>
-    </toc>
+<toc>
+    <entries>
+        <entry name="" displayName="How to install"></entry>
+        <entry name="#default-structure" displayName="Default structure"></entry>
+        <entry name="#animations" displayName="Animations">
+            <entry name="#bounce" displayName="Bounce"></entry>
+            <entry name="#spin" displayName="Spin"></entry>
+        </entry>
+    </entries>
+</toc>
 </folder>

@@ -1,0 +1,19 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
+    <g:HTMLPanel tag="section">
+        <div class="row clearfix">
+            <div class="col col_full">
+                <p>Example:</p>
+            </div>
+            <div class="col col-1_3">
+                <g:SimplePanel ui:field="updateChosen"/>
+            </div>
+            <div class="col col-2_3">
+                <button ui:field="updateButton" class="btn btn-primary">Add 100 items</button>
+            </div>
+        </div>
+
+    </g:HTMLPanel>
+</ui:UiBinder>
