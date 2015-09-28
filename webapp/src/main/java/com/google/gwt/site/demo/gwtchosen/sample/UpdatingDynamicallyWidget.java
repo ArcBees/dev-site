@@ -54,6 +54,7 @@ public class UpdatingDynamicallyWidget implements IsWidget {
 
                     final ChosenListBox chzn = new ChosenListBox();
                     chzn.addItem("item 1");
+                    chzn.setWidth("300px");
 
                     updateChosen.setWidget(chzn);
 
