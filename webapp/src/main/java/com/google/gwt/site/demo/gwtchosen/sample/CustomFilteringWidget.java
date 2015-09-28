@@ -121,6 +121,7 @@ public class CustomFilteringWidget implements IsWidget {
                     ChosenOptions options = new ChosenOptions();
                     options.setResultFilter(new ServerSideSimulatorResultFilter());
                     final ChosenListBox serverChosenListBox = new ChosenListBox(false, options);
+                    serverChosenListBox.setWidth("350px");
                     serverChosen.setWidget(serverChosenListBox);
                 }
             }
