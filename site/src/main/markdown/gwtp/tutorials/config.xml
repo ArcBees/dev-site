@@ -3,8 +3,10 @@
 <folder title="Tutorials" displayName="Tutorials">
     <toc>
         <entries>
-            <entry name="index" displayName="Beginner's Tutorial"
+            <entry name="index" displayName="The Presenter and the View"
                     description="This tutorial is intended for someone having no prior knowledge of GWTP who wants to get started right away writing some code."/>
+            <entry name="tutorial-part2" displayName="PresenterWidget, Gatekeeper, PlaceManager and RestDispatch"
+                   description="This second part describes how to protect your application using Gatekeepers, using the PlaceManager to navigate between Places, creating a PresenterWidget and make requests to an external API using RestDispatch."/>
         </entries>
     </toc>
 </folder>
