@@ -75,7 +75,6 @@
         <dependency>
             <groupId>com.arcbees</groupId>
             <artifactId>gwtchosen</artifactId>
-            <version>3.0</version>
         </dependency>
 
         <!-- Test Dependencies -->
