@@ -41,6 +41,6 @@ _The presenter will be omitted for now._
 
 The first things to notice here are the `extends` and `implements` on the class. In GWTP, views have to extend an implementation of the `View` interface. There are multiple implementations available, but let's keep it simple with the regular `ViewImpl`. Also, a view should implement a Presenter's view contract. As mentioned in the Presenter section, a Presenter should declare the interface of its view, so this view implements its Presenter's view interface.
 
-If the view uses the UiBinder (like here), it should declare its UiBinder's mapping. That's what is the `Binder` interface for. The result of `binder.createAndBindUi(this)` is passed to the initWidget method. In GWTP, when it is possible, it is preferred to inject an instance by constructor using dependency injection.
+If the view uses the UiBinder (like here), it should declare its UiBinder's mapping. That's what the `Binder` interface is for. The result of `binder.createAndBindUi(this)` is passed to the initWidget method. In GWTP, when it is possible, it is preferred to inject an instance by constructor using dependency injection.
 
 The elements declared in the `.ui.xml` file can be referenced in the view by annotating them with `@UiField`. See [GWT's UiBinder](http://www.gwtproject.org/doc/latest/DevGuideUiBinder.html) for more information.
