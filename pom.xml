@@ -38,6 +38,7 @@
         <gsss.version>1.0</gsss.version>
         <servlet.version>2.5</servlet.version>
         <universal-analytics.version>2.1</universal-analytics.version>
+        <gwtchosen.version>3.1-SNAPSHOT</gwtchosen.version>
 
         <!-- Test dependencies -->
         <junit.version>4.12</junit.version>
@@ -184,6 +185,11 @@
                 <artifactId>guava-gwt</artifactId>
                 <version>${guava.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.arcbees</groupId>
+                <artifactId>gwtchosen</artifactId>
+                <version>${gwtchosen.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.googlecode.gwtquery</groupId>

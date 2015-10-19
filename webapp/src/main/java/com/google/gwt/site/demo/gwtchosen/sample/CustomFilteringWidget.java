@@ -16,6 +16,8 @@
 
 package com.google.gwt.site.demo.gwtchosen.sample;
 
+import java.util.List;
+
 import com.arcbees.chosen.client.ChosenImpl;
 import com.arcbees.chosen.client.ChosenOptions;
 import com.arcbees.chosen.client.ResultsFilter;
@@ -30,8 +32,6 @@ import com.google.gwt.uibinder.client.UiTemplate;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-
-import java.util.List;
 
 public class CustomFilteringWidget implements IsWidget {
     @UiTemplate("CustomFilteringWidget.ui.xml")
@@ -71,15 +71,8 @@ public class CustomFilteringWidget implements IsWidget {
                 "Riley", "Armstrong", "Carpenter", "Weaver", "Greene", "Lawrence", "Elliott", "Chavez",
                 "Sims", "Austin", "Peters", "Kelley", "Franklin", "Lawson"};
 
-        private boolean initialized;
-
         @Override
-        public void filter(final String searchText, final ChosenImpl chosen, boolean isShowing) {
-            if (isShowing && initialized) {
-                return; // do nothing, keep the last results
-            }
-            initialized = true;
-
+        public void filter(final String searchText, final ChosenImpl chosen, final boolean isShowing) {
             // filter the result asynchronously to simulate a call to a server
             Scheduler.get().scheduleFixedPeriod(new Scheduler.RepeatingCommand() {
                 @Override
@@ -88,7 +81,8 @@ public class CustomFilteringWidget implements IsWidget {
                     selectItems.clear();
                     int arrayIndex = 0;
                     for (String name : NAMES) {
-                        if (searchText != null && name.toUpperCase().startsWith(searchText.toUpperCase())) {
+                        if (searchText != null && !searchText.isEmpty()
+                                && name.toUpperCase().startsWith(searchText.toUpperCase())) {
                             SelectParser.OptionItem optionItem = new SelectParser.OptionItem();
                             optionItem.setHtml("<div style='color:blue'>" + name + "</div>");
                             optionItem.setText(name);
