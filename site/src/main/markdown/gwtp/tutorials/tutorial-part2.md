@@ -87,9 +87,9 @@ public class LoggedInGatekeeper implements Gatekeeper {
 ```
 
 ### Gatekeeper annotations
-Once the Gatekeeper is defined, there is multiple way to apply it on Presenters. Here's 2 annotations that we're going to use:
+Once the Gatekeeper is defined, there is multiple way to apply it on Presenters. Here are 2 annotations that we're going to use:
 
-* Using the `@DefaultGatekeeper` annotation above your **Gatekeeper** class declaration will tell GWTP to apply this Gatekeeper on every Presenters in the application.
+* Using the `@DefaultGatekeeper` annotation above your **Gatekeeper** class declaration will tell GWTP to apply this Gatekeeper on every Presenter in the application.
 * The `@NoGatekeeper` annotation above a **Presenter's ProxyPlace** will tell GWTP to bypass the default Gatekeeper.
 
 For this tutorial, we're going to set LoggedInGatekeeper as the default one:
@@ -246,7 +246,7 @@ public class ApplicationModule extends AbstractPresenterModule {
 ```
 
 ## PlaceManager - Navigating between Places
-The [PlaceManager]({{#gwtp.doc.url.navigation}}) allow you to navigate from one Place to another by using the `revealPlace()` method. The PlaceManager needs to be injected into the Presenter's constructor and needs a [PlaceRequest](http://arcbees.github.io/GWTP/javadoc/apidocs/com/gwtplatform/mvp/client/proxy/PlaceRequest.Builder.html) object in order to call `revealPlace(placeRequest)`.
+The [PlaceManager]({{#gwtp.doc.url.navigation}}) allows you to navigate from one Place to another by using the `revealPlace()` method. The PlaceManager needs to be injected into the Presenter's constructor and needs a [PlaceRequest](http://arcbees.github.io/GWTP/javadoc/apidocs/com/gwtplatform/mvp/client/proxy/PlaceRequest.Builder.html) object in order to call `revealPlace(placeRequest)`.
 
 From the LoginPresenter, a PlaceRequest can be built using the `PlaceRequest.Builder()`:
 
