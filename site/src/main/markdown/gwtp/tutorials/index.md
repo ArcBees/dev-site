@@ -10,22 +10,23 @@ Presenter, View, PresenterModule, UiHandler, UiBinder, NameToken and CodeSplit.
 
 ## Application Structure
 
-```
-+- application
-|   \- home
-|      +- HomeModule
-|      +- HomePresenter
-|      +- HomeUiHandlers
-|      \- HomeView
-|   +- ApplicationModule.java
-|   +- ApplicationPresenter.java
-|   +- ApplicationUiHandlers.java
-|   +- ApplicationView.java
-|   \- ApplicationView.ui.xml
-+- gin
-|   \- ClientModule.java
-+- place
-    \- NameTokens.java
+```ascii
+|-- application
+|   |-- ApplicationModule.java
+|   |-- ApplicationPresenter.java
+|   |-- ApplicationUiHandlers.java
+|   |-- ApplicationView.java
+|   |-- ApplicationView.ui.xml
+|   `-- home
+|       |-- HomeModule.java
+|       |-- HomePresenter.java
+|       |-- HomeUiHandlers.java
+|       |-- HomeView.java
+|       `-- HomeView.ui.xml
+|-- gin
+|   `-- ClientModule.java
+`-- place
+    `-- NameTokens.java
 ```
 
 ## Overview of the main files

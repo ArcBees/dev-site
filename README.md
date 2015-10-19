@@ -20,6 +20,16 @@ mvn clean install && cd webapp && mvn appengine:update -Pprod && cd ../uploader 
 When prompted, app id is `docs-site`.
 
 ## How to run it on localhost
+
+IntelliJ Run Configuration:
+
+Parameter | Value
+--- | ---
+Module | `webapp`
+Dev Mode Parameters | `-port 8080`
+Server | AppEngine Dev
+
+
 ```
 mvn clean install -pl -webapp && cd uploader/ &&  ./upload.sh localhost && cd ..
 ```
