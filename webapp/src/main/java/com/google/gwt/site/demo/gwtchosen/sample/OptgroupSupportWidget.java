@@ -37,6 +37,8 @@ public class OptgroupSupportWidget implements IsWidget {
 
     @UiField
     SelectElement chosenMultiple;
+    @UiField
+    SelectElement chosenSingle;
 
     private final Widget widget;
 
@@ -48,6 +50,7 @@ public class OptgroupSupportWidget implements IsWidget {
             public void onAttachOrDetach(AttachEvent attachEvent) {
                 if (attachEvent.isAttached()) {
                     $(chosenMultiple).as(Chosen).chosen();
+                    $(chosenSingle).as(Chosen).chosen();
                 }
             }
         });
