@@ -13,6 +13,8 @@
                     description="Client action handlers or rpc-dispatch."/>
             <entry name="CSRF-Protection" title="CSRF Protection" displayName="CSRF Protection"
                     description="GWTP comes with built-in protection against CSRF attacks."/>
+            <entry name="resource-delegates" title="Resource Delegate" displayName="Resource Delegate"
+                   description="This extension aims at making your resource interfaces (and annotations!) reusable by server implementations (DRY principle). To achieve this, the extension will generate a delegate that will wrap the call to the resource and to RestDispatch"/>
         </entries>
     </toc>
 </folder>
