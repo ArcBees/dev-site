@@ -16,7 +16,7 @@ More information about Maven Archetypes [here](https://maven.apache.org/guides/i
 mvn archetype:generate -DarchetypeGroupId=com.arcbees.archetypes \
 -DarchetypeRepository=https://oss.sonatype.org/content/repositories/snapshots/ \
 -DarchetypeArtifactId=gwtp-basic-archetype \
--DarchetypeVersion={{#gwtp.version}} \
+-DarchetypeVersion={{#gwtp.version}}-SNAPSHOT \
 -DgroupId=$groupId \
 -DartifactId=$artifactId \
 -DmoduleName=$moduleName
