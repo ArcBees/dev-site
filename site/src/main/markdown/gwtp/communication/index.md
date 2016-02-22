@@ -265,7 +265,7 @@ public class MyModule extends AbstractPresenterModule {
 would configure the header `Pragma: NoCache` for all DELETE, POST and PUT requests and the query parameter `format=xml` for all GET requests.
 
 ## Extensions
-[Resource Delegates](https://github.com/ArcBees/gwtp-extensions/tree/master/dispatch-rest-delegates) will allow your end-point methods to return the result type directly. This is very useful when you want to reuse your interfaces and the annotations on server implementations of those resources. The downside is that you will lose type safety from your callbacks.
+[Resource Delegates]({{#gwtp.doc.url.resource-delegate}}) will allow your end-point methods to return the result type directly. This is very useful when you want to reuse your interfaces and the annotations on server implementations of those resources. The downside is that you will lose type safety from your callbacks.
 
 There are some extension points available through the dispatch code. You should not need them unless you have a very specific use case. If you do, feel free to browse the code: many classes are extendable and have protected methods that you can override to extend their functionality. The generators also support extensions.
 
