@@ -14,7 +14,6 @@ More information about Maven Archetypes [here](https://maven.apache.org/guides/i
 
 ```bash
 mvn archetype:generate -DarchetypeGroupId=com.arcbees.archetypes \
--DarchetypeRepository=https://oss.sonatype.org/content/repositories/snapshots/ \
 -DarchetypeArtifactId=gwtp-basic-archetype \
 -DarchetypeVersion={{#gwtp.version}} \
 -DgroupId=$groupId \
