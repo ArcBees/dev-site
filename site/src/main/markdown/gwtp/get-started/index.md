@@ -16,13 +16,11 @@ More information about Maven Archetypes [here](https://maven.apache.org/guides/i
 mvn archetype:generate -DarchetypeGroupId=com.arcbees.archetypes \
 -DarchetypeRepository=https://oss.sonatype.org/content/repositories/snapshots/ \
 -DarchetypeArtifactId=gwtp-basic-archetype \
--DarchetypeVersion={{#gwtp.minor_version}} \
+-DarchetypeVersion={{#gwtp.version}} \
 -DgroupId=$groupId \
 -DartifactId=$artifactId \
 -DmoduleName=$moduleName
 ```
-
-You should replace `{{#gwtp.minor_version}}` by the minor version you want (ex : 1.5 but not 1.5.1)
 
 ## IDE Project Import
 Choose an IDE to import the Maven project and get started with development.
