@@ -1,7 +1,7 @@
 # Create an App from Scratch
 If you can't, or prefer not to use a Maven Archetype, the following steps will guide you through the creation of a new application from scratch.
 
-> **Note**: For a more in-depth guide on creating a new GWTP application, you can read the [Beginner's Tutorial]({{#gwtp.doc.url.beginner_tutorial}}).
+> **Note**: For a more in-depth guide on creating a new GWTP application, you can read the [Beginner's Tutorial]({{#gwtp.doc.url.beginner_tutorial_part1}}).
 
 ## Folder Structure
 First, start off by creating the initial folder structure. This structure is going to help us separate logical components.
