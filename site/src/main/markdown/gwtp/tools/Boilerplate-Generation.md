@@ -51,9 +51,9 @@ The above example will generate a `LineItemDto` class that could be used on the 
 ```java
 @GenDispatch
 public class CreateInvoice {
-    @In Key<Customer> customerKey;
-    @In LineItemDto[] lineItems;
-    @Out Invoice invoice;
+    @In(1) Key<Customer> customerKey;
+    @In(2) LineItemDto[] lineItems;
+    @Out(1) Invoice invoice;
 }
 ```
 
