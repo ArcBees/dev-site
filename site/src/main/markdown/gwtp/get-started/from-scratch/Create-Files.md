@@ -88,6 +88,7 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
 import com.gwtplatform.mvp.shared.proxy.RouteTokenFormatter;
 import com.mydomain.myproject.client.application.ApplicationModule;
+import com.gwtplatform.mvp.client.gin.DefaultModule.Builder;
 
 public class ClientModule extends AbstractPresenterModule {
     @Override
