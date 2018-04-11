@@ -64,7 +64,7 @@ public class LoggedInGatekeeper implements Gatekeeper {
 }
 ```
 
-The next snippet shows you the same Gatekeeper, however `canReveal()` has to verify if the current used is logged in.
+The next snippet shows you the same Gatekeeper, however `canReveal()` has to verify if the current user is logged in.
 
 ```java
 import com.arcbees.demo.client.CurrentUser;
