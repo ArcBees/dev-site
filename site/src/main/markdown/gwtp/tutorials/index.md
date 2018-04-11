@@ -125,7 +125,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
 
 Just like we did in the View, we're going to explain the critical points of a Presenter:
 
-* `extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>` defines the ApplicationPresenter superclass. This means the interfaces `MyView` and `MyProxy` need to be defined into the class. `MyView` is the interface we implemented in the View earlier and `MyProxy` is responsible for listening to any event that would require the Presenter and the View to be created.
+* `extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>` defines the HomePresenter superclass. This means the interfaces `MyView` and `MyProxy` need to be defined into the class. `MyView` is the interface we implemented in the View earlier and `MyProxy` is responsible for listening to any event that would require the Presenter and the View to be created.
 
 * `@ProxyStandard` annotation is used to specify whether or not your Presenter should use GWT's code splitting feature. In this case, code splitting is not used but we could have simply used the `@ProxyCodeSplit` annotation instead of this one to use code split. You can learn more on code splitting [here]({{#gwtp.doc.url.proxy}}).
 
